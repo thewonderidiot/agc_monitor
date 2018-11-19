@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date         : Sun Nov 18 15:20:03 2018
+| Date         : Sun Nov 18 16:41:56 2018
 | Host         : elnath running 64-bit Ubuntu 16.04.5 LTS
 | Command      : report_timing_summary -max_paths 10 -file agc_monitor_timing_summary_routed.rpt -pb agc_monitor_timing_summary_routed.pb -rpx agc_monitor_timing_summary_routed.rpx -warn_on_violation
 | Design       : agc_monitor
@@ -137,9 +137,10 @@ All user specified timing constraints are met.
 | -------------
 ------------------------------------------------------------------------------------------------
 
-Clock  Waveform(ns)       Period(ns)      Frequency(MHz)
------  ------------       ----------      --------------
-clk    {0.000 5.000}      10.000          100.000         
+Clock       Waveform(ns)       Period(ns)      Frequency(MHz)
+-----       ------------       ----------      --------------
+clk         {0.000 5.000}      10.000          100.000         
+clk_fpga_0  {0.000 5.000}      10.000          100.000         
 
 
 ------------------------------------------------------------------------------------------------
@@ -1352,7 +1353,7 @@ Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.00
 Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X112Y81  counter_reg[14]/C
 Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X112Y81  counter_reg[15]/C
 Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X112Y82  counter_reg[16]/C
-Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X112Y78  counter_reg[1]/C
+Min Period        n/a     FDRE/C   n/a            1.000         10.000      9.000      SLICE_X112Y79  counter_reg[5]/C
 Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X112Y81  counter_reg[12]/C
 Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X112Y81  counter_reg[13]/C
 Low Pulse Width   Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X112Y81  counter_reg[14]/C
@@ -1372,7 +1373,7 @@ High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.50
 High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X112Y81  counter_reg[13]/C
 High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X112Y81  counter_reg[14]/C
 High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X112Y81  counter_reg[15]/C
-High Pulse Width  Slow    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X112Y78  counter_reg[1]/C
+High Pulse Width  Fast    FDRE/C   n/a            0.500         5.000       4.500      SLICE_X112Y79  counter_reg[5]/C
 
 
 

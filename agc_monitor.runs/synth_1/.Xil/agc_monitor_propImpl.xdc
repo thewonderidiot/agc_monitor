@@ -1,0 +1,7 @@
+set_property SRC_FILE_INFO {cfile:/home/mike/agc/agc_monitor/agc_monitor.srcs/constrs_1/new/agc_monitor.xdc rfile:../../../agc_monitor.srcs/constrs_1/new/agc_monitor.xdc id:1} [current_design]
+set_property src_info {type:XDC file:1 line:3 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN J22 [get_ports led]
+set_property src_info {type:XDC file:1 line:4 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN Y6 [get_ports clk]
+set_property src_info {type:XDC file:1 line:5 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN L21 [get_ports rstn]

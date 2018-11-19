@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1542583041">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1542587922">
   <File Type="VDS-TIMING-PB" Name="agc_monitor_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="agc_monitor_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="agc_monitor.dcp"/>
@@ -11,6 +11,20 @@
   <File Type="PA-TCL" Name="agc_monitor.tcl"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/bd/monitor_ps/monitor_ps.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/agc_monitor.v">
       <FileInfo>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -43,4 +57,5 @@
     </StratHandle>
     <Step Id="synth_design"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="monitor_ps_processing_system7_0_0"/>
 </GenRun>

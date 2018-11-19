@@ -65,10 +65,13 @@ start_step write_bitstream
 set ACTIVE_STEP write_bitstream
 set rc [catch {
   create_msg_db write_bitstream.pb
+  set_param xicom.use_bs_reader 1
   open_checkpoint agc_monitor_routed.dcp
   set_property webtalk.parent_dir /home/mike/agc/agc_monitor/agc_monitor.cache/wt [current_project]
+  set_property XPM_LIBRARIES {XPM_FIFO XPM_MEMORY} [current_project]
   catch { write_mem_info -force agc_monitor.mmi }
   write_bitstream -force agc_monitor.bit 
+  catch { write_sysdef -hwdef agc_monitor.hwdef -bitfile agc_monitor.bit -meminfo agc_monitor.mmi -file agc_monitor.sysdef }
   catch {write_debug_probes -quiet -force agc_monitor}
   catch {file copy -force agc_monitor.ltx debug_nets.ltx}
   close_msg_db -file write_bitstream.pb

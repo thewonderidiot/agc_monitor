@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-| Date             : Sun Nov 18 15:20:03 2018
+| Date             : Sun Nov 18 16:41:56 2018
 | Host             : elnath running 64-bit Ubuntu 16.04.5 LTS
 | Command          : report_power -file agc_monitor_power_routed.rpt -pb agc_monitor_power_summary_routed.pb -rpx agc_monitor_power_routed.rpx
 | Design           : agc_monitor
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.107        |
+| Total On-Chip Power (W)  | 1.418        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.001        |
-| Device Static (W)        | 0.106        |
+| Dynamic (W)              | 1.282        |
+| Device Static (W)        | 0.136        |
 | Effective TJA (C/W)      | 11.5         |
-| Max Ambient (C)          | 83.8         |
-| Junction Temperature (C) | 26.2         |
+| Max Ambient (C)          | 68.6         |
+| Junction Temperature (C) | 41.4         |
 | Confidence Level         | Medium       |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,16 +52,17 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |    <0.001 |       26 |       --- |             --- |
+| Clocks         |    <0.001 |        4 |       --- |             --- |
+| Slice Logic    |    <0.001 |      160 |       --- |             --- |
 |   CARRY4       |    <0.001 |        5 |     13300 |            0.04 |
 |   Register     |    <0.001 |       17 |    106400 |            0.02 |
 |   LUT as Logic |    <0.001 |        2 |     53200 |           <0.01 |
-|   Others       |     0.000 |        2 |       --- |             --- |
+|   Others       |     0.000 |      136 |       --- |             --- |
 | Signals        |    <0.001 |       23 |       --- |             --- |
 | I/O            |    <0.001 |        3 |       200 |            1.50 |
-| Static Power   |     0.106 |          |           |                 |
-| Total          |     0.107 |          |           |                 |
+| PS7            |     1.280 |        1 |       --- |             --- |
+| Static Power   |     0.136 |          |           |                 |
+| Total          |     1.418 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -71,8 +72,8 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.008 |       0.001 |      0.007 |
-| Vccaux    |       1.800 |     0.010 |       0.000 |      0.010 |
+| Vccint    |       1.000 |     0.014 |       0.001 |      0.013 |
+| Vccaux    |       1.800 |     0.014 |       0.000 |      0.014 |
 | Vcco33    |       3.300 |     0.001 |       0.000 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
@@ -80,16 +81,16 @@ Table of Contents
 | Vcco135   |       1.350 |     0.000 |       0.000 |      0.000 |
 | Vcco12    |       1.200 |     0.000 |       0.000 |      0.000 |
 | Vccaux_io |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccbram   |       1.000 |     0.000 |       0.000 |      0.000 |
+| Vccbram   |       1.000 |     0.001 |       0.000 |      0.001 |
 | MGTAVcc   |       1.000 |     0.000 |       0.000 |      0.000 |
 | MGTAVtt   |       1.200 |     0.000 |       0.000 |      0.000 |
 | MGTVccaux |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vccpint   |       1.000 |     0.016 |       0.000 |      0.016 |
-| Vccpaux   |       1.800 |     0.010 |       0.000 |      0.010 |
-| Vccpll    |       1.800 |     0.003 |       0.000 |      0.003 |
-| Vcco_ddr  |       1.500 |     0.000 |       0.000 |      0.000 |
-| Vcco_mio0 |       1.800 |     0.000 |       0.000 |      0.000 |
-| Vcco_mio1 |       1.800 |     0.000 |       0.000 |      0.000 |
+| Vccpint   |       1.000 |     0.693 |       0.666 |      0.027 |
+| Vccpaux   |       1.800 |     0.036 |       0.026 |      0.010 |
+| Vccpll    |       1.800 |     0.018 |       0.015 |      0.003 |
+| Vcco_ddr  |       1.500 |     0.356 |       0.354 |      0.002 |
+| Vcco_mio0 |       1.800 |     0.004 |       0.003 |      0.001 |
+| Vcco_mio1 |       1.800 |     0.002 |       0.001 |      0.001 |
 | Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
 +-----------+-------------+-----------+-------------+------------+
 
@@ -144,10 +145,14 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-------------+-----------+
-| Name        | Power (W) |
-+-------------+-----------+
-| agc_monitor |     0.001 |
-+-------------+-----------+
++----------------------------+-----------+
+| Name                       | Power (W) |
++----------------------------+-----------+
+| agc_monitor                |     1.281 |
+|   monitor_ps               |     1.280 |
+|     monitor_ps_i           |     1.280 |
+|       processing_system7_0 |     1.280 |
+|         inst               |     1.280 |
++----------------------------+-----------+
 
 
