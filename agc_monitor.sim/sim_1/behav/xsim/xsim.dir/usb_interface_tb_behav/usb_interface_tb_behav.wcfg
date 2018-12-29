@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="usb_interface_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="usb_interface_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="1146564571fs"></ZoomStartTime>
+      <ZoomEndTime time="1466564572fs"></ZoomEndTime>
+      <Cursor1Time time="1316815000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="142"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="15" />
+   <wvobject type="logic" fp_name="/usb_interface_tb/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/rst_n">
+      <obj_property name="ElementShortName">rst_n</obj_property>
+      <obj_property name="ObjectShortName">rst_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/clkout">
+      <obj_property name="ElementShortName">clkout</obj_property>
+      <obj_property name="ObjectShortName">clkout</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/usb_interface_tb/data">
+      <obj_property name="ElementShortName">data[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/rxf_n">
+      <obj_property name="ElementShortName">rxf_n</obj_property>
+      <obj_property name="ObjectShortName">rxf_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/txe_n">
+      <obj_property name="ElementShortName">txe_n</obj_property>
+      <obj_property name="ObjectShortName">txe_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/rd_n">
+      <obj_property name="ElementShortName">rd_n</obj_property>
+      <obj_property name="ObjectShortName">rd_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/wr_n">
+      <obj_property name="ElementShortName">wr_n</obj_property>
+      <obj_property name="ObjectShortName">wr_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/oe_n">
+      <obj_property name="ElementShortName">oe_n</obj_property>
+      <obj_property name="ObjectShortName">oe_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/siwu">
+      <obj_property name="ElementShortName">siwu</obj_property>
+      <obj_property name="ObjectShortName">siwu</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/usb_interface_tb/data_in">
+      <obj_property name="ElementShortName">data_in[7:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/usb_if/cmd_rx/msg_valid">
+      <obj_property name="ElementShortName">msg_valid</obj_property>
+      <obj_property name="ObjectShortName">msg_valid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/usb_interface_tb/usb_if/cmd_rx/state">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/usb_interface_tb/usb_if/cmd_rx/write_index">
+      <obj_property name="ElementShortName">write_index[2:0]</obj_property>
+      <obj_property name="ObjectShortName">write_index[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/usb_interface_tb/usb_if/cmd_rx/msg">
+      <obj_property name="ElementShortName">msg[39:0]</obj_property>
+      <obj_property name="ObjectShortName">msg[39:0]</obj_property>
+   </wvobject>
+</wave_config>

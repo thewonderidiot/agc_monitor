@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../agc_monitor.srcs/sources_1/bd/monitor_ps/ipshared/ec67/hdl" --include "../../../../agc_monitor.srcs/sources_1/bd/monitor_ps/ipshared/5bb9/hdl/verilog" --include "../../../../agc_monitor.srcs/sources_1/bd/monitor_ps/ipshared/70fd/hdl" --include "/opt/Xilinx/Vivado/2018.3/data/xilinx_vip/include" \
+"../../../../agc_monitor.srcs/sources_1/new/cmd_receiver.v" \
+"../../../../agc_monitor.srcs/sources_1/new/usb_interface.v" \
+"../../../../agc_monitor.srcs/sim_1/new/usb_interface_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
