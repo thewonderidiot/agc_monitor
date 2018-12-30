@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1146564571fs"></ZoomStartTime>
-      <ZoomEndTime time="1466564572fs"></ZoomEndTime>
-      <Cursor1Time time="1316815000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="6480000001fs"></ZoomEndTime>
+      <Cursor1Time time="1050021000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="142"></ValueColumnWidth>
+      <ValueColumnWidth column_width="134"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="15" />
+   <WVObjectSize size="21" />
    <wvobject type="logic" fp_name="/usb_interface_tb/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -64,20 +64,44 @@
       <obj_property name="ElementShortName">data_in[7:0]</obj_property>
       <obj_property name="ObjectShortName">data_in[7:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/usb_interface_tb/usb_if/cmd_rx/msg_valid">
-      <obj_property name="ElementShortName">msg_valid</obj_property>
-      <obj_property name="ObjectShortName">msg_valid</obj_property>
-   </wvobject>
    <wvobject type="array" fp_name="/usb_interface_tb/usb_if/cmd_rx/state">
       <obj_property name="ElementShortName">state[1:0]</obj_property>
       <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/usb_interface_tb/usb_if/cmd_rx/next_state">
+      <obj_property name="ElementShortName">next_state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">next_state[1:0]</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/usb_interface_tb/usb_if/cmd_rx/write_index">
       <obj_property name="ElementShortName">write_index[2:0]</obj_property>
       <obj_property name="ObjectShortName">write_index[2:0]</obj_property>
    </wvobject>
-   <wvobject type="array" fp_name="/usb_interface_tb/usb_if/cmd_rx/msg">
-      <obj_property name="ElementShortName">msg[39:0]</obj_property>
-      <obj_property name="ObjectShortName">msg[39:0]</obj_property>
+   <wvobject type="array" fp_name="/usb_interface_tb/usb_if/cmd_rx/cmd_msg">
+      <obj_property name="ElementShortName">cmd_msg[39:0]</obj_property>
+      <obj_property name="ObjectShortName">cmd_msg[39:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/usb_if/cmd_rx/cmd_valid">
+      <obj_property name="ElementShortName">cmd_valid</obj_property>
+      <obj_property name="ObjectShortName">cmd_valid</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/usb_if/cmd_queue/empty">
+      <obj_property name="ElementShortName">empty</obj_property>
+      <obj_property name="ObjectShortName">empty</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/usb_if/cmd_queue/wr_en">
+      <obj_property name="ElementShortName">wr_en</obj_property>
+      <obj_property name="ObjectShortName">wr_en</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/usb_interface_tb/usb_if/cmd_queue/din">
+      <obj_property name="ElementShortName">din[39:0]</obj_property>
+      <obj_property name="ObjectShortName">din[39:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/usb_interface_tb/usb_if/rx_data_ready">
+      <obj_property name="ElementShortName">rx_data_ready</obj_property>
+      <obj_property name="ObjectShortName">rx_data_ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/usb_interface_tb/cmd_out">
+      <obj_property name="ElementShortName">cmd_out[39:0]</obj_property>
+      <obj_property name="ObjectShortName">cmd_out[39:0]</obj_property>
    </wvobject>
 </wave_config>

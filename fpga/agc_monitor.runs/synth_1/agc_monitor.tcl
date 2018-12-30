@@ -25,7 +25,7 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir /home/mike/agc_monitor/fpga/agc_monitor.cache/wt [current_project]
 set_property parent.project_path /home/mike/agc_monitor/fpga/agc_monitor.xpr [current_project]
-set_property XPM_LIBRARIES {XPM_FIFO XPM_MEMORY} [current_project]
+set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part numato.com:styx:part0:1.0 [current_project]
@@ -41,6 +41,11 @@ read_verilog -library xil_defaultlib {
 add_files /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/monitor_ps.bd
 set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/ip/monitor_ps_processing_system7_0_0/monitor_ps_processing_system7_0_0.xdc]
 set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/monitor_ps_ooc.xdc]
+
+read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/cmd_fifo/cmd_fifo.xci
+set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/cmd_fifo/cmd_fifo.xdc]
+set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/cmd_fifo/cmd_fifo_clocks.xdc]
+set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/cmd_fifo/cmd_fifo_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

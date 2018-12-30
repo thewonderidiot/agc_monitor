@@ -13,6 +13,8 @@ wire wr_n;
 wire oe_n;
 wire siwu;
 reg [7:0] data_in;
+wire [39:0] cmd_out;
+wire cmd_ready;
 
 always #16.667 clkout = ~clkout;
 always #10 clk = ~clk;
@@ -29,7 +31,9 @@ usb_interface usb_if(
     .rd_n(rd_n),
     .wr_n(wr_n),
     .oe_n(oe_n),
-    .siwu(siwu)
+    .siwu(siwu),
+    .cmd(cmd_out),
+    .cmd_ready(cmd_ready)
 );
 
 initial begin

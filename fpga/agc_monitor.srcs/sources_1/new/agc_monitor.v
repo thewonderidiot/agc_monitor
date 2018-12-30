@@ -39,6 +39,9 @@ module agc_monitor(
     inout wire FIXED_IO_ps_srstb
 );
 
+wire [39:0] cmd;
+wire cmd_ready;
+
 // USB interface
 usb_interface usb_if(
     .clk(clk),
@@ -50,7 +53,9 @@ usb_interface usb_if(
     .rd_n(rd_n),
     .wr_n(wr_n),
     .oe_n(oe_n),
-    .siwu(siwu)
+    .siwu(siwu),
+    .cmd(cmd),
+    .cmd_ready(cmd_ready)
 );
 
 // Zynq PS instantiation (currently just used for booting)

@@ -6,7 +6,9 @@ module cmd_receiver(
     input wire clk,
     input wire rst_n,
     input wire [7:0] data,
-    input wire data_ready
+    input wire data_ready,
+    output reg cmd_valid,
+    output wire [39:0] cmd_msg
 );
 
 localparam IDLE = 0,
@@ -19,11 +21,9 @@ reg [7:0] msg_bytes[4:0];
 reg [7:0] data_q;
 reg [2:0] write_index_q;
 reg [2:0] write_index;
-reg msg_valid;
 reg data_valid;
 
-wire [39:0] msg;
-assign msg = {msg_bytes[0], msg_bytes[1], msg_bytes[2], msg_bytes[3], msg_bytes[4]};
+assign cmd_msg = {msg_bytes[0], msg_bytes[1], msg_bytes[2], msg_bytes[3], msg_bytes[4]};
 
 wire [2:0] msg_length;
 assign msg_length = (msg_bytes[0][7]) ? `MSG_WRITE_LENGTH : `MSG_READ_LENGTH;
@@ -42,7 +42,7 @@ always @(posedge clk) begin
             msg_bytes[write_index] <= data_q;
         end
 
-        if (msg_valid) begin
+        if (cmd_valid) begin
             for (i = 0; i < `MSG_WRITE_LENGTH; i = i+1) msg_bytes[i] <= 8'b0;
         end
     end
@@ -53,7 +53,7 @@ always @(*) begin
     write_index_q = write_index;
     data_q = 8'h0;
     data_valid = 1'b0;
-    msg_valid = 1'b0;
+    cmd_valid = 1'b0;
 
     if (data_ready) begin
         case (state)
@@ -69,7 +69,7 @@ always @(*) begin
                 if (write_index != 3'd0) begin
                     next_state = IDLE;
                     if (write_index == msg_length) begin
-                        msg_valid = 1'b1;
+                        cmd_valid = 1'b1;
                     end
                 end
             end else if (write_index < msg_length) begin

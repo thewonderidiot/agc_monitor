@@ -10,7 +10,9 @@ module usb_interface(
     output reg rd_n,
     output reg wr_n,
     output reg oe_n,
-    output wire siwu
+    output wire siwu,
+    output wire [39:0] cmd,
+    output wire cmd_ready
 );
 
 localparam IDLE  = 0,
@@ -20,16 +22,41 @@ localparam IDLE  = 0,
 
 assign siwu = 1'b1;
 
-reg [1:0] state;
+wire rx_data_ready;
+wire [39:0] cmd_in;
 
 cmd_receiver cmd_rx(
     .clk(clkout),
     .rst_n(rst_n),
     .data(data),
-    .data_ready(state == READ2)
+    .data_ready(rx_data_ready),
+    .cmd_valid(cmd_valid),
+    .cmd_msg(cmd_in)
 );
 
+wire cmd_fifo_empty;
+assign cmd_ready = ~cmd_fifo_empty;
+
+wire cmd_fifo_full;
+
+cmd_fifo cmd_queue(
+    .rst(~rst_n),
+    .wr_clk(clkout),
+    .rd_clk(clk),
+    .din(cmd_in),
+    .wr_en(cmd_valid),
+    .rd_en(1'b0),
+    .dout(cmd),
+    .full(cmd_fifo_full), 
+    .empty(cmd_fifo_empty),
+    .wr_rst_busy(),
+    .rd_rst_busy()
+);
+
+reg [1:0] state;
 reg [1:0] next_state;
+
+assign rx_data_ready = (state == READ2);
 
 reg oe_n_q;
 reg rd_n_q;
@@ -49,14 +76,14 @@ always @(posedge clkout or negedge rst_n) begin
     end
 end
 
-always @(state, rxf_n, txe_n) begin
+always @(*) begin
     oe_n_q = 1'b1;
     rd_n_q = 1'b1;
     wr_n_q = 1'b1;
 
     case (state)
     IDLE: begin
-        if (~rxf_n) begin
+        if ((~cmd_fifo_full) & (~rxf_n)) begin
             next_state = READ1;
             oe_n_q = 1'b0;
         end else if (~txe_n) begin
