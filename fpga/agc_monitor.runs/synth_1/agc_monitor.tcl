@@ -33,6 +33,7 @@ set_property ip_output_repo /home/mike/agc_monitor/fpga/agc_monitor.cache/ip [cu
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface_defines.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_controller.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface.v

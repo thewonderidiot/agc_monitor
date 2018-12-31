@@ -41,6 +41,7 @@ module agc_monitor(
 
 wire [39:0] cmd;
 wire cmd_ready;
+wire cmd_read_en;
 
 // USB interface
 usb_interface usb_if(
@@ -55,10 +56,19 @@ usb_interface usb_if(
     .oe_n(oe_n),
     .siwu(siwu),
     .cmd(cmd),
-    .cmd_ready(cmd_ready)
+    .cmd_ready(cmd_ready),
+    .cmd_read_en(cmd_read_en)
+);
+
+cmd_controller cmd_ctrl(
+    .clk(clk),
+    .rst_n(rst_n),
+    .cmd(cmd),
+    .cmd_ready(cmd_ready), .cmd_read_en(cmd_read_en)
 );
 
 // Zynq PS instantiation (currently just used for booting)
+`ifndef XILINX_SIMULATOR
 monitor_ps_wrapper monitor_ps(
     .DDR_addr(DDR_addr),
     .DDR_ba(DDR_ba),
@@ -82,6 +92,7 @@ monitor_ps_wrapper monitor_ps(
     .FIXED_IO_ps_porb(FIXED_IO_ps_porb),
     .FIXED_IO_ps_srstb(FIXED_IO_ps_srstb)
 );
+`endif
 
 reg [31:0] counter;
 assign led = counter[16];

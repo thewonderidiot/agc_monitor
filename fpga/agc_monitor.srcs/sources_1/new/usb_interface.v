@@ -12,7 +12,8 @@ module usb_interface(
     output reg oe_n,
     output wire siwu,
     output wire [39:0] cmd,
-    output wire cmd_ready
+    output wire cmd_ready,
+    input wire cmd_read_en
 );
 
 localparam IDLE  = 0,
@@ -45,7 +46,7 @@ cmd_fifo cmd_queue(
     .rd_clk(clk),
     .din(cmd_in),
     .wr_en(cmd_valid),
-    .rd_en(1'b0),
+    .rd_en(cmd_read_en),
     .dout(cmd),
     .full(cmd_fifo_full), 
     .empty(cmd_fifo_empty),
