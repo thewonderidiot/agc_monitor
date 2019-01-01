@@ -94,6 +94,28 @@ initial begin
     @(posedge clkout) data_in = 8'hC0;
     rxf_n = 1'b1;
 
+    #100 rxf_n = 1'b0;
+    @(negedge oe_n) data_in = 8'hC0;
+    @(negedge rd_n);
+    @(posedge clkout) data_in = 8'hA0;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h01;
+    @(posedge clkout) data_in = 8'hC0;
+    rxf_n = 1'b1;
+
+    #100 rxf_n = 1'b0;
+    @(negedge oe_n) data_in = 8'hC0;
+    @(negedge rd_n);
+    @(posedge clkout) data_in = 8'hA0;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'hC0;
+    rxf_n = 1'b1;
+
     #1000 $finish;
 end
 

@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Mon Dec 31 18:01:12 2018
+# Process ID: 21046
+# Current directory: /home/mike/agc_monitor/fpga/agc_monitor.runs/impl_1
+# Command line: vivado -log agc_monitor.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source agc_monitor.tcl -notrace
+# Log file: /home/mike/agc_monitor/fpga/agc_monitor.runs/impl_1/agc_monitor.vdi
+# Journal file: /home/mike/agc_monitor/fpga/agc_monitor.runs/impl_1/vivado.jou
+#-----------------------------------------------------------
+source agc_monitor.tcl -notrace
