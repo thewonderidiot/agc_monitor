@@ -7,7 +7,8 @@ module msg_sender(
     input wire msg_ready,
     output wire sender_ready,
     output reg [7:0] out_byte,
-    output wire out_byte_ready
+    output wire out_byte_ready,
+    input wire byte_fifo_full
 );
 
 localparam IDLE = 0,
@@ -34,7 +35,7 @@ assign msg_bytes[4] = active_msg[7:0];
 assign cur_byte = (byte_index < `MSG_WRITE_LENGTH) ? msg_bytes[byte_index] : 8'b0;
 
 assign sender_ready = (state == IDLE);
-assign out_byte_ready = (msg_ready) || (state != IDLE);
+assign out_byte_ready = ((msg_ready) || (state != IDLE)) && (~byte_fifo_full);
 
 always @(posedge clk) begin
     if (~rst_n) begin
@@ -56,38 +57,40 @@ always @(*) begin
     byte_index_q = byte_index;
     out_byte = cur_byte;
 
-    case (state)
-    IDLE: begin
-        if (msg_ready) begin
-            next_state = ACTIVE;
-            byte_index_q = 3'b0;
-            out_byte = `SLIP_END;
+    if (~byte_fifo_full) begin
+        case (state)
+        IDLE: begin
+            if (msg_ready) begin
+                next_state = ACTIVE;
+                byte_index_q = 3'b0;
+                out_byte = `SLIP_END;
+            end
         end
-    end
 
-    ACTIVE: begin
-        if (byte_index == `MSG_WRITE_LENGTH) begin
-            next_state = IDLE;
-            out_byte = `SLIP_END;
-        end else if ((cur_byte == `SLIP_END) || (cur_byte == `SLIP_ESC)) begin
-            next_state = ESCAPE;
-            out_byte = `SLIP_ESC;
-        end else begin
+        ACTIVE: begin
+            if (byte_index == `MSG_WRITE_LENGTH) begin
+                next_state = IDLE;
+                out_byte = `SLIP_END;
+            end else if ((cur_byte == `SLIP_END) || (cur_byte == `SLIP_ESC)) begin
+                next_state = ESCAPE;
+                out_byte = `SLIP_ESC;
+            end else begin
+                byte_index_q = byte_index + 1;
+            end
+        end
+
+        ESCAPE: begin
+            if (cur_byte == `SLIP_END) begin
+                out_byte = `SLIP_ESC_END;
+            end else begin
+                out_byte = `SLIP_ESC_ESC;
+            end
+            next_state = ACTIVE;
             byte_index_q = byte_index + 1;
         end
-    end
 
-    ESCAPE: begin
-        if (cur_byte == `SLIP_END) begin
-            out_byte = `SLIP_ESC_END;
-        end else begin
-            out_byte = `SLIP_ESC_ESC;
-        end
-        next_state = ACTIVE;
-        byte_index_q = byte_index + 1;
+        endcase
     end
-
-    endcase
 end
 
 endmodule

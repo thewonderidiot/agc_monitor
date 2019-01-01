@@ -33,6 +33,7 @@ wire read_fifo_ready;
 wire read_fifo_empty;
 wire [7:0] send_byte;
 wire send_byte_ready;
+wire read_byte_fifo_full;
 
 assign read_fifo_ready = ~read_fifo_empty;
 
@@ -52,11 +53,13 @@ msg_sender msg_sndr(
     .msg_ready(read_fifo_ready),
     .sender_ready(sender_ready),
     .out_byte(send_byte),
-    .out_byte_ready(send_byte_ready)
+    .out_byte_ready(send_byte_ready),
+    .byte_fifo_full(read_byte_fifo_full)
 );
 
 wire cmd_fifo_empty;
-assign cmd_ready = ~cmd_fifo_empty;
+wire read_fifo_full;
+assign cmd_ready = (~cmd_fifo_empty) & (~read_fifo_full);
 
 wire cmd_fifo_full;
 wire read_byte_fifo_empty;
@@ -88,7 +91,7 @@ read_fifo read_msg_queue(
   .wr_en(read_msg_ready),
   .rd_en(sender_ready),
   .dout(send_msg),
-  .full(),
+  .full(read_fifo_full),
   .empty(read_fifo_empty)
 );
 
@@ -100,7 +103,7 @@ read_byte_fifo read_byte_queue(
     .wr_en(send_byte_ready),
     .rd_en(tx_byte_read_en),
     .dout(tx_byte),
-    .full(),
+    .full(read_byte_fifo_full),
     .empty(read_byte_fifo_empty),
     .wr_rst_busy(),
     .rd_rst_busy()
