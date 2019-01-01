@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date             : Mon Dec 31 18:02:18 2018
+| Date             : Tue Jan  1 14:18:19 2019
 | Host             : luminary running 64-bit unknown
 | Command          : report_power -file agc_monitor_power_routed.rpt -pb agc_monitor_power_summary_routed.pb -rpx agc_monitor_power_routed.rpx
 | Design           : agc_monitor
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.424        |
+| Total On-Chip Power (W)  | 1.426        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.288        |
+| Dynamic (W)              | 1.289        |
 | Device Static (W)        | 0.137        |
 | Effective TJA (C/W)      | 11.5         |
 | Max Ambient (C)          | 68.6         |
@@ -53,18 +53,18 @@ Table of Contents
 | On-Chip                 | Power (W) | Used     | Available | Utilization (%) |
 +-------------------------+-----------+----------+-----------+-----------------+
 | Clocks                  |     0.003 |        5 |       --- |             --- |
-| Slice Logic             |    <0.001 |      577 |       --- |             --- |
-|   LUT as Logic          |    <0.001 |      117 |     53200 |            0.22 |
-|   Register              |    <0.001 |      267 |    106400 |            0.25 |
-|   CARRY4                |    <0.001 |        7 |     13300 |            0.05 |
-|   Others                |     0.000 |      161 |       --- |             --- |
-|   LUT as Shift Register |     0.000 |        3 |     17400 |            0.02 |
-| Signals                 |    <0.001 |      393 |       --- |             --- |
-| Block RAM               |     0.001 |        1 |       140 |            0.71 |
+| Slice Logic             |    <0.001 |     1148 |       --- |             --- |
+|   LUT as Logic          |    <0.001 |      273 |     53200 |            0.51 |
+|   Register              |    <0.001 |      595 |    106400 |            0.56 |
+|   CARRY4                |    <0.001 |       15 |     13300 |            0.11 |
+|   Others                |     0.000 |      207 |       --- |             --- |
+|   LUT as Shift Register |     0.000 |        5 |     17400 |            0.03 |
+| Signals                 |    <0.001 |      853 |       --- |             --- |
+| Block RAM               |     0.002 |      2.5 |       140 |            1.79 |
 | I/O                     |     0.003 |       19 |       200 |            9.50 |
 | PS7                     |     1.280 |        1 |       --- |             --- |
 | Static Power            |     0.137 |          |           |                 |
-| Total                   |     1.424 |          |           |                 |
+| Total                   |     1.426 |          |           |                 |
 +-------------------------+-----------+----------+-----------+-----------------+
 
 
@@ -74,7 +74,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.018 |       0.005 |      0.013 |
+| Vccint    |       1.000 |     0.019 |       0.006 |      0.013 |
 | Vccaux    |       1.800 |     0.014 |       0.000 |      0.014 |
 | Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -151,13 +151,15 @@ Table of Contents
 +----------------------------+-----------+
 | Name                       | Power (W) |
 +----------------------------+-----------+
-| agc_monitor                |     1.288 |
+| agc_monitor                |     1.289 |
 |   monitor_ps               |     1.280 |
 |     monitor_ps_i           |     1.280 |
 |       processing_system7_0 |     1.280 |
-|   usb_if                   |     0.004 |
-|     cmd_queue              |     0.003 |
-|       U0                   |     0.003 |
+|   usb_if                   |     0.006 |
+|     cmd_queue              |     0.002 |
+|       U0                   |     0.002 |
+|     read_byte_queue        |     0.002 |
+|       U0                   |     0.002 |
 +----------------------------+-----------+
 
 

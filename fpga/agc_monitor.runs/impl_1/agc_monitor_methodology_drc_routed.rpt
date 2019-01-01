@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Mon Dec 31 18:02:18 2018
+| Date         : Tue Jan  1 14:18:18 2019
 | Host         : luminary running 64-bit unknown
 | Command      : report_methodology -file agc_monitor_methodology_drc_routed.rpt -pb agc_monitor_methodology_drc_routed.pb -rpx agc_monitor_methodology_drc_routed.rpx
 | Design       : agc_monitor
@@ -23,11 +23,11 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 17
+             Violations found: 18
 +-----------+----------+-------------------------------------------------+------------+
 | Rule      | Severity | Description                                     | Violations |
 +-----------+----------+-------------------------------------------------+------------+
-| PDRC-190  | Warning  | Suboptimally placed synchronized register chain | 1          |
+| PDRC-190  | Warning  | Suboptimally placed synchronized register chain | 2          |
 | TIMING-18 | Warning  | Missing input or output delay                   | 16         |
 +-----------+----------+-------------------------------------------------+------------+
 
@@ -35,7 +35,12 @@ Table of Contents
 -----------------
 PDRC-190#1 Warning
 Suboptimally placed synchronized register chain  
-The FDRE cell usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X109Y42 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+The FDRE cell usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X109Y69 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
+Related violations: <none>
+
+PDRC-190#2 Warning
+Suboptimally placed synchronized register chain  
+The FDRE cell usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d2_reg in site SLICE_X105Y65 is part of a synchronized register chain that is suboptimally placed as the load FDSE cell usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/rstblk/grstd1.grst_full.grst_f.rst_d3_reg is not placed in the same (SLICE) site.
 Related violations: <none>
 
 TIMING-18#1 Warning

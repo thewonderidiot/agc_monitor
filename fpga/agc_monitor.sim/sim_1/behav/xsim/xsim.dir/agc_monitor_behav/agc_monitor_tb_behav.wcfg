@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="569452500fs"></ZoomStartTime>
-      <ZoomEndTime time="3986167500fs"></ZoomEndTime>
-      <Cursor1Time time="3277824000fs"></Cursor1Time>
+      <ZoomStartTime time="2057285208fs"></ZoomStartTime>
+      <ZoomEndTime time="2705285209fs"></ZoomEndTime>
+      <Cursor1Time time="2349285000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="126"></ValueColumnWidth>
+      <ValueColumnWidth column_width="106"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="8" />
+   <WVObjectSize size="21" />
    <wvobject type="logic" fp_name="/agc_monitor_tb/rxf_n">
       <obj_property name="ElementShortName">rxf_n</obj_property>
       <obj_property name="ObjectShortName">rxf_n</obj_property>
@@ -45,11 +45,63 @@
       <obj_property name="ObjectShortName">cmd_read_en</obj_property>
    </wvobject>
    <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/cmd_ctrl/state">
-      <obj_property name="ElementShortName">state[2:0]</obj_property>
-      <obj_property name="ObjectShortName">state[2:0]</obj_property>
+      <obj_property name="ElementShortName">state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/ctrl_regs/nhalga">
       <obj_property name="ElementShortName">nhalga</obj_property>
       <obj_property name="ObjectShortName">nhalga</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/cmd_ctrl/read_msg_ready">
+      <obj_property name="ElementShortName">read_msg_ready</obj_property>
+      <obj_property name="ObjectShortName">read_msg_ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/cmd_ctrl/read_msg">
+      <obj_property name="ElementShortName">read_msg[39:0]</obj_property>
+      <obj_property name="ObjectShortName">read_msg[39:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/ctrl_regs/read_en">
+      <obj_property name="ElementShortName">read_en</obj_property>
+      <obj_property name="ObjectShortName">read_en</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/ctrl_regs/read_data">
+      <obj_property name="ElementShortName">read_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/usb_if/msg_sndr/state">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/usb_if/msg_sndr/out_byte">
+      <obj_property name="ElementShortName">out_byte[7:0]</obj_property>
+      <obj_property name="ObjectShortName">out_byte[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/usb_if/msg_sndr/out_byte_ready">
+      <obj_property name="ElementShortName">out_byte_ready</obj_property>
+      <obj_property name="ObjectShortName">out_byte_ready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/usb_if/read_fifo_ready">
+      <obj_property name="ElementShortName">read_fifo_ready</obj_property>
+      <obj_property name="ObjectShortName">read_fifo_ready</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/usb_if/state">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/usb_if/tx_byte_read_en">
+      <obj_property name="ElementShortName">tx_byte_read_en</obj_property>
+      <obj_property name="ObjectShortName">tx_byte_read_en</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/txe_n">
+      <obj_property name="ElementShortName">txe_n</obj_property>
+      <obj_property name="ObjectShortName">txe_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/wr_n">
+      <obj_property name="ElementShortName">wr_n</obj_property>
+      <obj_property name="ObjectShortName">wr_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/clkout">
+      <obj_property name="ElementShortName">clkout</obj_property>
+      <obj_property name="ObjectShortName">clkout</obj_property>
    </wvobject>
 </wave_config>

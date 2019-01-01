@@ -1,0 +1,2 @@
+read_fifo.v,verilog,xil_defaultlib,../../../../agc_monitor.srcs/sources_1/ip/read_fifo/sim/read_fifo.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

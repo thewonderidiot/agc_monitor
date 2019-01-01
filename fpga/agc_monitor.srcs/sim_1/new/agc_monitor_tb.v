@@ -44,53 +44,16 @@ initial begin
     rst_n = 1'b0;
     clkout = 1'b0;
     rxf_n = 1'b1;
-    txe_n = 1'b1;
+    txe_n = 1'b0;
     data_in = 8'h00;
     
     #20 rst_n = 1'b1;
     #100 rxf_n = 1'b0;
     @(negedge oe_n) data_in = 8'hC0;
     @(negedge rd_n);
-    @(posedge clkout) data_in = 8'h80;
-    @(posedge clkout) data_in = 8'h12;
-    @(posedge clkout) data_in = 8'h34;
-    @(posedge clkout) data_in = 8'h56;
-    @(posedge clkout) data_in = 8'h78;
-    @(posedge clkout) data_in = 8'hC0;
-    rxf_n = 1'b1;
-
-    #100 rxf_n = 1'b0;
-    @(negedge oe_n) data_in = 8'hC0;
-    @(negedge rd_n);
-    @(posedge clkout) data_in = 8'h02;
-    @(posedge clkout) data_in = 8'hDB;
-    @(posedge clkout) data_in = 8'hDC;
-    @(posedge clkout) data_in = 8'hDB;
-    @(posedge clkout) data_in = 8'hDD;
-    @(posedge clkout) data_in = 8'hC0;
-    rxf_n = 1'b1;
-
-    #100 rxf_n = 1'b0;
-    @(negedge oe_n) data_in = 8'hC0;
-    @(negedge rd_n);
-    @(posedge clkout) data_in = 8'h05;
-    @(posedge clkout) data_in = 8'hDB;
-    @(posedge clkout) data_in = 8'hA0;
-    @(posedge clkout) data_in = 8'hDB;
-    @(posedge clkout) data_in = 8'hDD;
-    @(posedge clkout) data_in = 8'hC0;
-    rxf_n = 1'b1;
-
-    #100 rxf_n = 1'b0;
-    @(negedge oe_n) data_in = 8'hC0;
-    @(negedge rd_n);
-    @(posedge clkout) data_in = 8'h06;
-    @(posedge clkout) data_in = 8'h2A;
-    @(posedge clkout) data_in = 8'h3B;
-    @(posedge clkout) data_in = 8'h4C;
-    @(posedge clkout) data_in = 8'h5D;
-    @(posedge clkout) data_in = 8'h6E;
-    @(posedge clkout) data_in = 8'h7F;
+    @(posedge clkout) data_in = 8'h20;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h00;
     @(posedge clkout) data_in = 8'hC0;
     rxf_n = 1'b1;
 
@@ -108,6 +71,15 @@ initial begin
     #100 rxf_n = 1'b0;
     @(negedge oe_n) data_in = 8'hC0;
     @(negedge rd_n);
+    @(posedge clkout) data_in = 8'h20;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'hC0;
+    rxf_n = 1'b1;
+
+    #100 rxf_n = 1'b0;
+    @(negedge oe_n) data_in = 8'hC0;
+    @(negedge rd_n);
     @(posedge clkout) data_in = 8'hA0;
     @(posedge clkout) data_in = 8'h00;
     @(posedge clkout) data_in = 8'h00;
@@ -115,6 +87,18 @@ initial begin
     @(posedge clkout) data_in = 8'h00;
     @(posedge clkout) data_in = 8'hC0;
     rxf_n = 1'b1;
+
+    #100 rxf_n = 1'b0;
+    @(negedge oe_n) data_in = 8'hC0;
+    @(negedge rd_n);
+    @(posedge clkout) data_in = 8'h20;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'hC0;
+    rxf_n = 1'b1;
+    
+    #200 txe_n = 1'b1;
+    #200 txe_n = 1'b0;
 
     #1000 $finish;
 end

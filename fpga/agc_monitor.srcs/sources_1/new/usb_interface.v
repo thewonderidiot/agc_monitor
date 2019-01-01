@@ -13,7 +13,9 @@ module usb_interface(
     output wire siwu,
     output wire [39:0] cmd,
     output wire cmd_ready,
-    input wire cmd_read_en
+    input wire cmd_read_en,
+    input wire [39:0] read_msg,
+    input wire read_msg_ready
 );
 
 localparam IDLE  = 0,
@@ -25,6 +27,14 @@ assign siwu = 1'b1;
 
 wire rx_data_ready;
 wire [39:0] cmd_in;
+wire [39:0] send_msg;
+wire sender_ready;
+wire read_fifo_ready;
+wire read_fifo_empty;
+wire [7:0] send_byte;
+wire send_byte_ready;
+
+assign read_fifo_ready = ~read_fifo_empty;
 
 cmd_receiver cmd_rx(
     .clk(clkout),
@@ -35,10 +45,27 @@ cmd_receiver cmd_rx(
     .cmd_msg(cmd_in)
 );
 
+msg_sender msg_sndr(
+    .clk(clk),
+    .rst_n(rst_n),
+    .msg(send_msg),
+    .msg_ready(read_fifo_ready),
+    .sender_ready(sender_ready),
+    .out_byte(send_byte),
+    .out_byte_ready(send_byte_ready)
+);
+
 wire cmd_fifo_empty;
 assign cmd_ready = ~cmd_fifo_empty;
 
 wire cmd_fifo_full;
+wire read_byte_fifo_empty;
+
+wire [7:0] tx_byte;
+wire tx_byte_read_en;
+
+assign tx_byte_read_en = ((~wr_n) & (~txe_n));
+assign data = ((state == WRITE) & (~read_byte_fifo_empty)) ? tx_byte : 8'bZ;
 
 cmd_fifo cmd_queue(
     .rst(~rst_n),
@@ -50,6 +77,31 @@ cmd_fifo cmd_queue(
     .dout(cmd),
     .full(cmd_fifo_full), 
     .empty(cmd_fifo_empty),
+    .wr_rst_busy(),
+    .rd_rst_busy()
+);
+
+read_fifo read_msg_queue(
+  .clk(clk),
+  .srst(~rst_n),
+  .din(read_msg),
+  .wr_en(read_msg_ready),
+  .rd_en(sender_ready),
+  .dout(send_msg),
+  .full(),
+  .empty(read_fifo_empty)
+);
+
+read_byte_fifo read_byte_queue(
+    .rst(~rst_n),
+    .wr_clk(clk),
+    .rd_clk(clkout),
+    .din(send_byte),
+    .wr_en(send_byte_ready),
+    .rd_en(tx_byte_read_en),
+    .dout(tx_byte),
+    .full(),
+    .empty(read_byte_fifo_empty),
     .wr_rst_busy(),
     .rd_rst_busy()
 );
@@ -87,7 +139,7 @@ always @(*) begin
         if ((~cmd_fifo_full) & (~rxf_n)) begin
             next_state = READ1;
             oe_n_q = 1'b0;
-        end else if (~txe_n) begin
+        end else if ((~read_byte_fifo_empty) & (~txe_n)) begin
             next_state = WRITE;
             wr_n_q = 1'b0;
         end else begin
@@ -116,7 +168,13 @@ always @(*) begin
     end
 
     WRITE: begin
-        next_state = IDLE;
+        if (txe_n | (~rxf_n) | (read_byte_fifo_empty)) begin
+            wr_n_q = 1'b1;
+            next_state = IDLE;
+        end else begin
+            wr_n_q = 1'b0;
+            next_state = WRITE;
+        end
     end
     endcase
 end

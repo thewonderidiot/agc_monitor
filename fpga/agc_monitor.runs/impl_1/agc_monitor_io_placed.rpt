@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date                      : Mon Dec 31 18:01:51 2018
+| Date                      : Tue Jan  1 14:17:53 2019
 | Host                      : luminary running 64-bit unknown
 | Command                   : report_io -file agc_monitor_io_placed.rpt
 | Design                    : agc_monitor

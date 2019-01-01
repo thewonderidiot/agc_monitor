@@ -10,34 +10,41 @@ module cmd_controller(
     output reg cmd_read_en,
     output wire [15:0] cmd_addr,
     output wire [15:0] cmd_data,
+    input wire [15:0] read_data,
+    output wire [39:0] read_msg,
+    output wire read_msg_ready,
     output reg ctrl_read_en,
     output reg ctrl_write_en
 );
 
-localparam IDLE         = 0,
-           ERASABLE     = 1,
-           FIXED        = 2,
-           CHANNELS     = 3,
-           SIM_ERASABLE = 4,
-           SIM_FIXED    = 5,
-           CONTROL      = 6,
-           MON_REGS     = 7;
+localparam IDLE          = 0,
+           ERASABLE      = 1,
+           FIXED         = 2,
+           CHANNELS      = 3,
+           SIM_ERASABLE  = 4,
+           SIM_FIXED     = 5,
+           CONTROL       = 6,
+           MON_REGS      = 7,
+           SEND_READ_MSG = 8;
 
 reg [39:0] active_cmd;
 
-wire [7:0] new_cmd_addr_group;
+wire [6:0] new_cmd_addr_group;
 assign new_cmd_addr_group = cmd[38:32];
 
 wire cmd_write_flag;
-wire [7:0] cmd_addr_group;
+wire [6:0] cmd_addr_group;
 
 assign cmd_write_flag = active_cmd[39];
 assign cmd_addr_group = active_cmd[38:32];
 assign cmd_addr = active_cmd[31:16];
 assign cmd_data = active_cmd[15:0];
 
-reg [2:0] state;
-reg [2:0] next_state;
+assign read_msg = {1'b1, cmd_addr_group, cmd_addr, read_data};
+assign read_msg_ready = (state == SEND_READ_MSG);
+
+reg [3:0] state;
+reg [3:0] next_state;
 
 always @(posedge clk) begin
     if (~rst_n) begin
@@ -97,13 +104,18 @@ always @(*) begin
     CONTROL: begin
         if (cmd_write_flag) begin
             ctrl_write_en = 1'b1;
+            next_state = IDLE;
         end else begin
             ctrl_read_en = 1'b1;
+            next_state = SEND_READ_MSG;
         end
-        next_state = IDLE;
     end
 
     MON_REGS: begin
+        next_state = IDLE;
+    end
+
+    SEND_READ_MSG: begin
         next_state = IDLE;
     end
 

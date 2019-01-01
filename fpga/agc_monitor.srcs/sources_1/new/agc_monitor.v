@@ -43,6 +43,8 @@ module agc_monitor(
 wire [39:0] cmd;
 wire cmd_ready;
 wire cmd_read_en;
+wire [39:0] read_msg;
+wire read_msg_ready;
 
 // USB interface
 usb_interface usb_if(
@@ -58,11 +60,14 @@ usb_interface usb_if(
     .siwu(siwu),
     .cmd(cmd),
     .cmd_ready(cmd_ready),
-    .cmd_read_en(cmd_read_en)
+    .cmd_read_en(cmd_read_en),
+    .read_msg(read_msg),
+    .read_msg_ready(read_msg_ready)
 );
 
 wire [15:0] cmd_addr;
 wire [15:0] cmd_data;
+wire [15:0] read_data;
 
 cmd_controller cmd_ctrl(
     .clk(clk),
@@ -72,9 +77,14 @@ cmd_controller cmd_ctrl(
     .cmd_read_en(cmd_read_en),
     .cmd_addr(cmd_addr),
     .cmd_data(cmd_data),
+    .read_data(read_data),
+    .read_msg(read_msg),
+    .read_msg_ready(read_msg_ready),
     .ctrl_read_en(ctrl_read_en),
     .ctrl_write_en(ctrl_write_en)
 );
+
+wire [15:0] ctrl_data;
 
 control_regs ctrl_regs(
     .clk(clk),
@@ -83,9 +93,11 @@ control_regs ctrl_regs(
     .data_in(cmd_data),
     .read_en(ctrl_read_en),
     .write_en(ctrl_write_en),
-    .data_out(),
+    .data_out(ctrl_data),
     .nhalga(led2)
 );
+
+assign read_data = ctrl_data;
 
 // Zynq PS instantiation (currently just used for booting)
 `ifndef XILINX_SIMULATOR

@@ -65,7 +65,6 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
-  set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7z020clg484-1
   set_property board_part numato.com:styx:part0:1.0 [current_project]
   set_property design_mode GateLvl [current_fileset]
@@ -80,6 +79,8 @@ set rc [catch {
   set_param project.isImplRun true
   add_files /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/monitor_ps.bd
   read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/cmd_fifo/cmd_fifo.xci
+  read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/read_fifo/read_fifo.xci
+  read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/read_byte_fifo/read_byte_fifo.xci
   set_param project.isImplRun false
   read_xdc /home/mike/agc_monitor/fpga/agc_monitor.srcs/constrs_1/new/agc_monitor.xdc
   set_param project.isImplRun true
@@ -157,26 +158,6 @@ if {$rc} {
   return -code error $RESULT
 } else {
   end_step route_design
-  unset ACTIVE_STEP 
-}
-
-start_step write_bitstream
-set ACTIVE_STEP write_bitstream
-set rc [catch {
-  create_msg_db write_bitstream.pb
-  set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
-  catch { write_mem_info -force agc_monitor.mmi }
-  write_bitstream -force agc_monitor.bit 
-  catch { write_sysdef -hwdef agc_monitor.hwdef -bitfile agc_monitor.bit -meminfo agc_monitor.mmi -file agc_monitor.sysdef }
-  catch {write_debug_probes -quiet -force agc_monitor}
-  catch {file copy -force agc_monitor.ltx debug_nets.ltx}
-  close_msg_db -file write_bitstream.pb
-} RESULT]
-if {$rc} {
-  step_failed write_bitstream
-  return -code error $RESULT
-} else {
-  end_step write_bitstream
   unset ACTIVE_STEP 
 }
 
