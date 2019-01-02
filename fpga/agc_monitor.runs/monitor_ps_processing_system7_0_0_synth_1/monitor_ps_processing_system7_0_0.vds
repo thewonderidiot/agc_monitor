@@ -2,8 +2,8 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Tue Jan  1 15:15:40 2019
-# Process ID: 10526
+# Start of session at: Tue Jan  1 22:22:36 2019
+# Process ID: 13122
 # Current directory: /home/mike/agc_monitor/fpga/agc_monitor.runs/monitor_ps_processing_system7_0_0_synth_1
 # Command line: vivado -log monitor_ps_processing_system7_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source monitor_ps_processing_system7_0_0.tcl
 # Log file: /home/mike/agc_monitor/fpga/agc_monitor.runs/monitor_ps_processing_system7_0_0_synth_1/monitor_ps_processing_system7_0_0.vds
@@ -11,4 +11,4 @@
 #-----------------------------------------------------------
 source monitor_ps_processing_system7_0_0.tcl -notrace
 INFO: [IP_Flow 19-4838] Using cached IP synthesis design for IP monitor_ps_processing_system7_0_0, cache-ID = 76abbd588ad90f9c.
-INFO: [Common 17-206] Exiting Vivado at Tue Jan  1 15:15:51 2019...
+INFO: [Common 17-206] Exiting Vivado at Tue Jan  1 22:22:45 2019...

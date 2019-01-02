@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Tue Jan  1 15:16:25 2019
+| Date         : Tue Jan  1 22:23:14 2019
 | Host         : luminary running 64-bit unknown
 | Command      : report_utilization -file agc_monitor_utilization_synth.rpt -pb agc_monitor_utilization_synth.pb
 | Design       : agc_monitor
@@ -30,11 +30,11 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |  105 |     0 |     53200 |  0.20 |
-|   LUT as Logic          |  105 |     0 |     53200 |  0.20 |
+| Slice LUTs*             |  107 |     0 |     53200 |  0.20 |
+|   LUT as Logic          |  107 |     0 |     53200 |  0.20 |
 |   LUT as Memory         |    0 |     0 |     17400 |  0.00 |
-| Slice Registers         |  154 |     0 |    106400 |  0.14 |
-|   Register as Flip Flop |  154 |     0 |    106400 |  0.14 |
+| Slice Registers         |  153 |     0 |    106400 |  0.14 |
+|   Register as Flip Flop |  153 |     0 |    106400 |  0.14 |
 |   Register as Latch     |    0 |     0 |    106400 |  0.00 |
 | F7 Muxes                |    0 |     0 |     26600 |  0.00 |
 | F8 Muxes                |    0 |     0 |     13300 |  0.00 |
@@ -54,7 +54,7 @@ Table of Contents
 | 0     |            _ |         Set |            - |
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
-| 3     |          Yes |           - |          Set |
+| 2     |          Yes |           - |          Set |
 | 2     |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
 | 149   |          Yes |       Reset |            - |
@@ -147,17 +147,17 @@ Table of Contents
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
 | FDRE     |  149 |        Flop & Latch |
-| LUT6     |   49 |                 LUT |
-| LUT4     |   29 |                 LUT |
-| LUT5     |   17 |                 LUT |
-| LUT2     |   16 |                 LUT |
+| LUT6     |   55 |                 LUT |
+| LUT4     |   23 |                 LUT |
+| LUT2     |   17 |                 LUT |
+| LUT5     |   16 |                 LUT |
+| LUT3     |   13 |                 LUT |
 | IBUF     |   13 |                  IO |
-| LUT3     |    9 |                 LUT |
 | OBUFT    |    8 |                  IO |
 | CARRY4   |    7 |          CarryLogic |
 | OBUF     |    6 |                  IO |
 | LUT1     |    4 |                 LUT |
-| FDPE     |    3 |        Flop & Latch |
+| FDPE     |    2 |        Flop & Latch |
 | FDCE     |    2 |        Flop & Latch |
 | BUFG     |    2 |               Clock |
 +----------+------+---------------------+

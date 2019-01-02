@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Tue Jan  1 13:57:37 2019
+| Date         : Tue Jan  1 22:17:03 2019
 | Host         : luminary running 64-bit unknown
 | Command      : report_utilization -file read_byte_fifo_utilization_synth.rpt -pb read_byte_fifo_utilization_synth.pb
 | Design       : read_byte_fifo
@@ -35,8 +35,8 @@ Table of Contents
 |   LUT as Memory            |    2 |     0 |     17400 |  0.01 |
 |     LUT as Distributed RAM |    0 |     0 |           |       |
 |     LUT as Shift Register  |    2 |     0 |           |       |
-| Slice Registers            |  192 |     0 |    106400 |  0.18 |
-|   Register as Flip Flop    |  192 |     0 |    106400 |  0.18 |
+| Slice Registers            |  202 |     0 |    106400 |  0.19 |
+|   Register as Flip Flop    |  202 |     0 |    106400 |  0.19 |
 |   Register as Latch        |    0 |     0 |    106400 |  0.00 |
 | F7 Muxes                   |    0 |     0 |     26600 |  0.00 |
 | F8 Muxes                   |    0 |     0 |     13300 |  0.00 |
@@ -58,8 +58,8 @@ Table of Contents
 | 0     |          Yes |           - |            - |
 | 0     |          Yes |           - |          Set |
 | 0     |          Yes |           - |        Reset |
-| 14    |          Yes |         Set |            - |
-| 178   |          Yes |       Reset |            - |
+| 15    |          Yes |         Set |            - |
+| 187   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -149,10 +149,10 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |  178 |        Flop & Latch |
+| FDRE     |  187 |        Flop & Latch |
 | LUT4     |   33 |                 LUT |
 | LUT2     |   30 |                 LUT |
-| FDSE     |   14 |        Flop & Latch |
+| FDSE     |   15 |        Flop & Latch |
 | LUT3     |   12 |                 LUT |
 | LUT5     |   10 |                 LUT |
 | LUT6     |    9 |                 LUT |

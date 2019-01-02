@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="read_byte_fifo_synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1546379754">
+<GenRun Id="read_byte_fifo_synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1546409743">
   <File Type="VDS-TIMING-PB" Name="read_byte_fifo_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="read_byte_fifo_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="read_byte_fifo.dcp"/>
@@ -42,9 +42,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

@@ -14,18 +14,23 @@ USB_PID_LIST.append(STYX_PID)
 
 with Device() as dev:
     dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x00)
-    time.sleep(0.1)
     dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x40)
-    time.sleep(0.1)
-    dev.ftdi_fn.ftdi_set_latency_timer(2)
-    time.sleep(0.1)
+    dev.ftdi_fn.ftdi_set_latency_timer(1)
     dev.ftdi_fn.ftdi_setflowctrl(0)
-    time.sleep(0.1)
     dev.ftdi_fn.ftdi_usb_purge_buffers()
-    time.sleep(0.1)
 
     while True:
-        dev.write('\xC0\xA0\x00\x00\x00\x00\xC0')
-        time.sleep(0.2)
         dev.write('\xC0\xA0\x00\x00\x00\x01\xC0')
-        time.sleep(0.2)
+        dev.write('\xC0\x20\x00\x00\xC0')
+        res = ''
+        while not res:
+            res = dev.read(64).hex()
+        print(res)
+        time.sleep(0.1)
+        dev.write('\xC0\xA0\x00\x00\x00\x00\xC0')
+        dev.write('\xC0\x20\x00\x00\xC0')
+        res = ''
+        while not res:
+            res = dev.read(64).hex()
+        print(res)
+        time.sleep(0.1)

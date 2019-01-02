@@ -63,6 +63,7 @@ module read_byte_fifo (
   dout,
   full,
   empty,
+  almost_empty,
   wr_rst_busy,
   rd_rst_busy
 );
@@ -86,6 +87,8 @@ output wire [7 : 0] dout;
 output wire full;
 (* X_INTERFACE_INFO = "xilinx.com:interface:fifo_read:1.0 FIFO_READ EMPTY" *)
 output wire empty;
+(* X_INTERFACE_INFO = "xilinx.com:interface:fifo_read:1.0 FIFO_READ ALMOST_EMPTY" *)
+output wire almost_empty;
 output wire wr_rst_busy;
 output wire rd_rst_busy;
 
@@ -101,7 +104,7 @@ output wire rd_rst_busy;
     .C_ENABLE_RLOCS(0),
     .C_FAMILY("zynq"),
     .C_FULL_FLAGS_RST_VAL(1),
-    .C_HAS_ALMOST_EMPTY(0),
+    .C_HAS_ALMOST_EMPTY(1),
     .C_HAS_ALMOST_FULL(0),
     .C_HAS_BACKUP(0),
     .C_HAS_DATA_COUNT(0),
@@ -321,7 +324,7 @@ output wire rd_rst_busy;
     .wr_ack(),
     .overflow(),
     .empty(empty),
-    .almost_empty(),
+    .almost_empty(almost_empty),
     .valid(),
     .underflow(),
     .data_count(),
