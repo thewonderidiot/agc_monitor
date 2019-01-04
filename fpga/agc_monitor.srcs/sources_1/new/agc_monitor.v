@@ -68,6 +68,8 @@ usb_interface usb_if(
 wire [15:0] cmd_addr;
 wire [15:0] cmd_data;
 wire [15:0] read_data;
+wire ctrl_read_en;
+wire ctrl_write_en;
 
 cmd_controller cmd_ctrl(
     .clk(clk),

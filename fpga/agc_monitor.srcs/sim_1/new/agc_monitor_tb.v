@@ -97,8 +97,8 @@ initial begin
     @(posedge clkout) data_in = 8'hC0;
     rxf_n = 1'b1;
     
-    #190 txe_n = 1'b1;
-    #190 txe_n = 1'b0;
+    #200 txe_n = 1'b1;
+    #200 txe_n = 1'b0;
 
     #1000 $finish;
 end

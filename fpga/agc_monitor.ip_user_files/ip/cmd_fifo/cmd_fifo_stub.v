@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-// Date        : Sat Dec 29 18:34:55 2018
+// Date        : Thu Jan  3 22:27:49 2019
 // Host        : luminary running 64-bit unknown
 // Command     : write_verilog -force -mode synth_stub
 //               /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/cmd_fifo/cmd_fifo_stub.v
@@ -15,8 +15,8 @@
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
 (* x_core_info = "fifo_generator_v13_2_3,Vivado 2018.3" *)
 module cmd_fifo(rst, wr_clk, rd_clk, din, wr_en, rd_en, dout, full, 
-  empty, wr_rst_busy, rd_rst_busy)
-/* synthesis syn_black_box black_box_pad_pin="rst,wr_clk,rd_clk,din[39:0],wr_en,rd_en,dout[39:0],full,empty,wr_rst_busy,rd_rst_busy" */;
+  empty)
+/* synthesis syn_black_box black_box_pad_pin="rst,wr_clk,rd_clk,din[39:0],wr_en,rd_en,dout[39:0],full,empty" */;
   input rst;
   input wr_clk;
   input rd_clk;
@@ -26,6 +26,4 @@ module cmd_fifo(rst, wr_clk, rd_clk, din, wr_en, rd_en, dout, full,
   output [39:0]dout;
   output full;
   output empty;
-  output wr_rst_busy;
-  output rd_rst_busy;
 endmodule

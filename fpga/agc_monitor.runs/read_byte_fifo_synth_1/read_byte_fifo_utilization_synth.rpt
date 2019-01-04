@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Tue Jan  1 22:17:03 2019
+| Date         : Thu Jan  3 22:31:54 2019
 | Host         : luminary running 64-bit unknown
 | Command      : report_utilization -file read_byte_fifo_utilization_synth.rpt -pb read_byte_fifo_utilization_synth.pb
 | Design       : read_byte_fifo
@@ -27,20 +27,18 @@ Table of Contents
 1. Slice Logic
 --------------
 
-+----------------------------+------+-------+-----------+-------+
-|          Site Type         | Used | Fixed | Available | Util% |
-+----------------------------+------+-------+-----------+-------+
-| Slice LUTs*                |   82 |     0 |     53200 |  0.15 |
-|   LUT as Logic             |   80 |     0 |     53200 |  0.15 |
-|   LUT as Memory            |    2 |     0 |     17400 |  0.01 |
-|     LUT as Distributed RAM |    0 |     0 |           |       |
-|     LUT as Shift Register  |    2 |     0 |           |       |
-| Slice Registers            |  202 |     0 |    106400 |  0.19 |
-|   Register as Flip Flop    |  202 |     0 |    106400 |  0.19 |
-|   Register as Latch        |    0 |     0 |    106400 |  0.00 |
-| F7 Muxes                   |    0 |     0 |     26600 |  0.00 |
-| F8 Muxes                   |    0 |     0 |     13300 |  0.00 |
-+----------------------------+------+-------+-----------+-------+
++-------------------------+------+-------+-----------+-------+
+|        Site Type        | Used | Fixed | Available | Util% |
++-------------------------+------+-------+-----------+-------+
+| Slice LUTs*             |   77 |     0 |     53200 |  0.14 |
+|   LUT as Logic          |   77 |     0 |     53200 |  0.14 |
+|   LUT as Memory         |    0 |     0 |     17400 |  0.00 |
+| Slice Registers         |  184 |     0 |    106400 |  0.17 |
+|   Register as Flip Flop |  184 |     0 |    106400 |  0.17 |
+|   Register as Latch     |    0 |     0 |    106400 |  0.00 |
+| F7 Muxes                |    0 |     0 |     26600 |  0.00 |
+| F8 Muxes                |    0 |     0 |     13300 |  0.00 |
++-------------------------+------+-------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
 
 
@@ -56,10 +54,10 @@ Table of Contents
 | 0     |            _ |         Set |            - |
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
-| 0     |          Yes |           - |          Set |
-| 0     |          Yes |           - |        Reset |
-| 15    |          Yes |         Set |            - |
-| 187   |          Yes |       Reset |            - |
+| 23    |          Yes |           - |          Set |
+| 65    |          Yes |           - |        Reset |
+| 0     |          Yes |         Set |            - |
+| 96    |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -149,15 +147,15 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |  187 |        Flop & Latch |
-| LUT4     |   33 |                 LUT |
-| LUT2     |   30 |                 LUT |
-| FDSE     |   15 |        Flop & Latch |
-| LUT3     |   12 |                 LUT |
-| LUT5     |   10 |                 LUT |
-| LUT6     |    9 |                 LUT |
+| FDRE     |   96 |        Flop & Latch |
+| FDCE     |   65 |        Flop & Latch |
+| LUT4     |   32 |                 LUT |
+| LUT2     |   29 |                 LUT |
+| FDPE     |   23 |        Flop & Latch |
+| LUT5     |   12 |                 LUT |
+| LUT3     |   11 |                 LUT |
 | CARRY4   |    8 |          CarryLogic |
-| SRL16E   |    2 |  Distributed Memory |
+| LUT6     |    7 |                 LUT |
 | LUT1     |    2 |                 LUT |
 | RAMB18E1 |    1 |        Block Memory |
 +----------+------+---------------------+
