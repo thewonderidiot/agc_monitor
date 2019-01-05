@@ -1,22 +1,36 @@
 `timescale 1ns / 1ps
+`default_nettype none
 
 `include "usb_interface_defines.v"
 
 module cmd_controller(
     input wire clk,
     input wire rst_n,
+
+    // Incoming commands
     input wire [39:0] cmd,
     input wire cmd_ready,
     output reg cmd_read_en,
+
+    // Active command address/data
     output wire [15:0] cmd_addr,
     output wire [15:0] cmd_data,
+
+    // Read command resulting data
     input wire [15:0] read_data,
+
+    // Completed read response
     output wire [39:0] read_msg,
     output wire read_msg_ready,
+
+    // Control registers control signals
     output reg ctrl_read_en,
     output reg ctrl_write_en
 );
 
+/*******************************************************************************.
+* FSM States                                                                    *
+'*******************************************************************************/
 localparam IDLE          = 0,
            ERASABLE      = 1,
            FIXED         = 2,
@@ -27,39 +41,48 @@ localparam IDLE          = 0,
            MON_REGS      = 7,
            SEND_READ_MSG = 8;
 
-reg [39:0] active_cmd;
+reg [3:0] state;
+reg [3:0] next_state;
 
+/*******************************************************************************.
+* FSM States                                                                    *
+'*******************************************************************************/
+// Address group of incoming command
 wire [6:0] new_cmd_addr_group;
 assign new_cmd_addr_group = cmd[38:32];
 
+// Command currently being processed
+reg [39:0] active_cmd;
+reg [39:0] active_cmd_q;
+
+// Active command components
 wire cmd_write_flag;
 wire [6:0] cmd_addr_group;
-
 assign cmd_write_flag = active_cmd[39];
 assign cmd_addr_group = active_cmd[38:32];
 assign cmd_addr = active_cmd[31:16];
 assign cmd_data = active_cmd[15:0];
 
+// Read command response message
 assign read_msg = {1'b1, cmd_addr_group, cmd_addr, read_data};
 assign read_msg_ready = (state == SEND_READ_MSG);
 
-reg [3:0] state;
-reg [3:0] next_state;
-
+/*******************************************************************************.
+* Command Controller State Machine                                              *
+'*******************************************************************************/
 always @(posedge clk) begin
     if (~rst_n) begin
         state <= IDLE;
         active_cmd <= 40'b0;
     end else begin
         state <= next_state;
-        if ((state == IDLE) && cmd_read_en) begin
-            active_cmd <= cmd;
-        end
+        active_cmd <= active_cmd_q;
     end
 end
 
 always @(*) begin
     next_state = state;
+    active_cmd_q = active_cmd;
     cmd_read_en = 1'b0;
     ctrl_read_en = 1'b0;
     ctrl_write_en = 1'b0;
@@ -67,7 +90,10 @@ always @(*) begin
     case (state)
     IDLE: begin
         if (cmd_ready) begin
+            // A new command is read. Read it in, latch it, and move on to the
+            // state associated with its target
             cmd_read_en = 1'b1;
+            active_cmd_q = cmd;
             case (new_cmd_addr_group)
             `ADDR_GROUP_ERASABLE:     next_state = ERASABLE;
             `ADDR_GROUP_FIXED:        next_state = FIXED;
@@ -102,6 +128,8 @@ always @(*) begin
     end
 
     CONTROL: begin
+        // Control register actions are instant, so toggle the appropriate
+        // signal and move on
         if (cmd_write_flag) begin
             ctrl_write_en = 1'b1;
             next_state = IDLE;
@@ -116,6 +144,7 @@ always @(*) begin
     end
 
     SEND_READ_MSG: begin
+        // The read response should now be constructed; proceed to IDLE
         next_state = IDLE;
     end
 
@@ -128,3 +157,4 @@ end
 
 
 endmodule
+`default_nettype wire

@@ -1,4 +1,5 @@
 `timescale 1ns / 1ps
+`default_nettype none
 
 module agc_monitor(
     input wire clk,
@@ -40,9 +41,15 @@ module agc_monitor(
     inout wire FIXED_IO_ps_srstb
 );
 
+/*******************************************************************************.
+* USB Interface                                                                 *
+'*******************************************************************************/
+// Incoming command from USB, associated validity flag, and read signal
 wire [39:0] cmd;
 wire cmd_ready;
 wire cmd_read_en;
+
+// Read response message for sending back over USB, and its validity flag
 wire [39:0] read_msg;
 wire read_msg_ready;
 
@@ -65,12 +72,24 @@ usb_interface usb_if(
     .read_msg_ready(read_msg_ready)
 );
 
+/*******************************************************************************.
+* Command Controller                                                            *
+'*******************************************************************************/
+// Address and (if applicable) data associated with the command currently
+// being processed
 wire [15:0] cmd_addr;
 wire [15:0] cmd_data;
-wire [15:0] read_data;
+
+// Control Registers control signals
 wire ctrl_read_en;
 wire ctrl_write_en;
+wire [15:0] ctrl_data;
 
+// Resulting data from the active read command
+wire [15:0] read_data;
+assign read_data = ctrl_data;
+
+// Command controller 
 cmd_controller cmd_ctrl(
     .clk(clk),
     .rst_n(rst_n),
@@ -86,8 +105,9 @@ cmd_controller cmd_ctrl(
     .ctrl_write_en(ctrl_write_en)
 );
 
-wire [15:0] ctrl_data;
-
+/*******************************************************************************.
+* Monitor Control Registers                                                     *
+'*******************************************************************************/
 control_regs ctrl_regs(
     .clk(clk),
     .rst_n(rst_n),
@@ -99,8 +119,9 @@ control_regs ctrl_regs(
     .nhalga(led2)
 );
 
-assign read_data = ctrl_data;
-
+/*******************************************************************************.
+* Zync Processor Subsystem                                                      *
+'*******************************************************************************/
 // Zynq PS instantiation (currently just used for booting)
 `ifndef XILINX_SIMULATOR
 monitor_ps_wrapper monitor_ps(
@@ -128,15 +149,5 @@ monitor_ps_wrapper monitor_ps(
 );
 `endif
 
-reg [31:0] counter;
-assign led = counter[26];
-
-always @(posedge clk) begin
-    if (~rst_n) begin
-        counter <= 32'b0;
-    end else begin
-        counter <= counter + 1;
-    end
-end
-
 endmodule
+`default_nettype wire

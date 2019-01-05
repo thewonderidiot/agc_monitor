@@ -2,8 +2,8 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Thu Jan  3 22:34:16 2019
-# Process ID: 27352
+# Start of session at: Fri Jan  4 20:57:55 2019
+# Process ID: 15509
 # Current directory: /home/mike/agc_monitor/fpga/agc_monitor.runs/monitor_ps_processing_system7_0_0_synth_1
 # Command line: vivado -log monitor_ps_processing_system7_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source monitor_ps_processing_system7_0_0.tcl
 # Log file: /home/mike/agc_monitor/fpga/agc_monitor.runs/monitor_ps_processing_system7_0_0_synth_1/monitor_ps_processing_system7_0_0.vds
