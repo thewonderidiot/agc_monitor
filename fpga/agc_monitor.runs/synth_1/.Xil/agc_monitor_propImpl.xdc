@@ -19,6 +19,8 @@ set_property src_info {type:XDC file:1 line:31 export:INPUT save:INPUT read:READ
 set_property PACKAGE_PIN Y21 [get_ports txe_n]
 set_property src_info {type:XDC file:1 line:32 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN W21 [get_ports wr_n]
+set_property src_info {type:XDC file:1 line:34 export:INPUT save:INPUT read:READ} [current_design]
+set_property IOSTANDARD LVCMOS33 [get_ports led2]
 set_property src_info {type:XDC file:1 line:35 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN J21 [get_ports led2]
 set_property src_info {type:XDC file:1 line:36 export:INPUT save:INPUT read:READ} [current_design]

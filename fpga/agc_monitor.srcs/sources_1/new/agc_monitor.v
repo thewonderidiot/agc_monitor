@@ -5,7 +5,6 @@ module agc_monitor(
     input wire clk,
     input wire rst_n,
     output wire led,
-    output wire led2,
 
     // FT232 FIFO interface
     input wire clkout,
@@ -16,6 +15,24 @@ module agc_monitor(
     output wire wr_n,
     output wire oe_n,
     output wire siwu,
+
+    // AGC signals
+    input wire [12:1] mt,
+    input wire monwt,
+    input wire [16:1] mwl,
+
+    input wire mwag,
+    input wire mwlg,
+    input wire mwqg,
+    input wire mwebg,
+    input wire mwfbg,
+    input wire mwbbeg,
+    input wire mwzg,
+    input wire mwbg,
+    input wire mwsg,
+    input wire mwg,
+    input wire mwyg,
+    input wire mrgg,
     
     // Zynq PS I/O
     inout wire [14:0] DDR_addr,
@@ -85,9 +102,12 @@ wire ctrl_read_en;
 wire ctrl_write_en;
 wire [15:0] ctrl_data;
 
+wire mon_reg_read_en;
+wire [15:0] mon_reg_data;
+
 // Resulting data from the active read command
 wire [15:0] read_data;
-assign read_data = ctrl_data;
+assign read_data = ctrl_data | mon_reg_data;
 
 // Command controller 
 cmd_controller cmd_ctrl(
@@ -102,11 +122,12 @@ cmd_controller cmd_ctrl(
     .read_msg(read_msg),
     .read_msg_ready(read_msg_ready),
     .ctrl_read_en(ctrl_read_en),
-    .ctrl_write_en(ctrl_write_en)
+    .ctrl_write_en(ctrl_write_en),
+    .mon_reg_read_en(mon_reg_read_en)
 );
 
 /*******************************************************************************.
-* Monitor Control Registers                                                     *
+* Control Registers                                                             *
 '*******************************************************************************/
 control_regs ctrl_regs(
     .clk(clk),
@@ -116,7 +137,34 @@ control_regs ctrl_regs(
     .read_en(ctrl_read_en),
     .write_en(ctrl_write_en),
     .data_out(ctrl_data),
-    .nhalga(led2)
+    .nhalga(led)
+);
+
+/*******************************************************************************.
+* Monitor AGC Register Mirrors                                                  *
+'*******************************************************************************/
+monitor_regs mon_regs(
+    .clk(clk),
+    .rst_n(rst_n),
+    .mt02(mt[2]),
+    .monwt(monwt),
+    .mwl(mwl),
+    .mwag(mwag),
+    .mwlg(mwlg),
+    .mwqg(mwqg),
+    .mwebg(mwebg),
+    .mwfbg(mwfbg),
+    .mwbbeg(mwbbeg),
+    .mwzg(mwzg),
+    .mwbg(mwbg),
+    .mwsg(mwsg),
+    .mwg(mwg),
+    .mwyg(mwyg),
+    .mrgg(mrgg),
+
+    .read_en(mon_reg_read_en),
+    .addr(cmd_addr),
+    .data_out(mon_reg_data)
 );
 
 /*******************************************************************************.

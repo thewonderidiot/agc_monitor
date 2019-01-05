@@ -25,7 +25,10 @@ module cmd_controller(
 
     // Control registers control signals
     output reg ctrl_read_en,
-    output reg ctrl_write_en
+    output reg ctrl_write_en,
+
+    // Monitor registers control signals
+    output reg mon_reg_read_en
 );
 
 /*******************************************************************************.
@@ -86,6 +89,7 @@ always @(*) begin
     cmd_read_en = 1'b0;
     ctrl_read_en = 1'b0;
     ctrl_write_en = 1'b0;
+    mon_reg_read_en = 1'b0;
 
     case (state)
     IDLE: begin
@@ -140,7 +144,12 @@ always @(*) begin
     end
 
     MON_REGS: begin
-        next_state = IDLE;
+        if (~cmd_write_flag) begin
+            mon_reg_read_en = 1'b1;
+            next_state = SEND_READ_MSG;
+        end else begin
+            next_state = IDLE;
+        end
     end
 
     SEND_READ_MSG: begin

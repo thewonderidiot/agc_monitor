@@ -15,7 +15,7 @@ USB_PID_LIST.append(STYX_PID)
 with Device() as dev:
     dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x00)
     dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x40)
-    dev.ftdi_fn.ftdi_set_latency_timer(1)
+    dev.ftdi_fn.ftdi_set_latency_timer(2)
     dev.ftdi_fn.ftdi_setflowctrl(0)
     dev.ftdi_fn.ftdi_usb_purge_buffers()
 
