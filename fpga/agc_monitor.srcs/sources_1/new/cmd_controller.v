@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
-`include "usb_interface_defines.v"
+`include "monitor_defs.v"
 
 module cmd_controller(
     input wire clk,
@@ -73,7 +73,7 @@ assign read_msg_ready = (state == SEND_READ_MSG);
 /*******************************************************************************.
 * Command Controller State Machine                                              *
 '*******************************************************************************/
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         state <= IDLE;
         active_cmd <= 40'b0;

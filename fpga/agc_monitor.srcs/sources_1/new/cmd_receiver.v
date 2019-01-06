@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
-`include "usb_interface_defines.v"
+`include "monitor_defs.v"
 
 module cmd_receiver(
     input wire clk,
@@ -46,7 +46,7 @@ assign msg_length = (cmd_msg[39]) ? `MSG_WRITE_LENGTH : `MSG_READ_LENGTH;
 /*******************************************************************************.
 * Command Receiver State Machine                                                *
 '*******************************************************************************/
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         state <= IDLE;
         write_index <= 3'd0;

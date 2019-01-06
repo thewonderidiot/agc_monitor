@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
+`default_nettype none
 
-`define CTRL_REG_MNHNC 16'h0
+`include "monitor_defs.v"
 
 module control_regs(
     input wire clk,
@@ -18,7 +19,7 @@ reg read_done;
 
 assign data_out = read_done ? read_data : 16'b0;
 
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         mnhnc <= 1'b0;
     end else if (write_en) begin
@@ -30,7 +31,7 @@ always @(posedge clk) begin
     end
 end
 
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         read_data <= 16'b0;
         read_done <= 1'b0;
@@ -47,3 +48,4 @@ always @(posedge clk) begin
 end
 
 endmodule
+`default_nettype wire

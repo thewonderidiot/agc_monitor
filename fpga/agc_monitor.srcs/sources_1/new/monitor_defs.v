@@ -18,3 +18,18 @@
 `define ADDR_GROUP_SIM_FIXED    7'h11
 `define ADDR_GROUP_CONTROL      7'h20
 `define ADDR_GROUP_MON_REGS     7'h21
+`define ADDR_GROUP_MON_CHANNELS 7'h22
+
+// Control Registers
+`define CTRL_REG_MNHNC 16'h0
+
+// Monitor AGC Register Mirrors
+`define MON_REG_A  16'o00
+`define MON_REG_L  16'o01
+`define MON_REG_Q  16'o02
+`define MON_REG_Z  16'o03
+`define MON_REG_BB 16'o04
+`define MON_REG_B  16'o05
+`define MON_REG_S  16'o06
+`define MON_REG_G  16'o07
+`define MON_REG_Y  16'o10

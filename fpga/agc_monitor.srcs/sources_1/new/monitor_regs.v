@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
-`define MON_REG_A 16'o0
+`include "monitor_defs.v"
 
 module monitor_regs(
     input wire clk,
@@ -180,8 +180,6 @@ register reg_y(
     .val(y)
 );
 
-
-
 reg read_en_q;
 
 always @(posedge clk or negedge rst_n) begin
@@ -195,13 +193,16 @@ end
 always @(*) begin
     if (read_en_q) begin
         case (addr)
-        `MON_REG_A: begin
-            data_out = a;
-        end
-
-        default: begin
-            data_out = 16'b0;
-        end
+        `MON_REG_A:  data_out = a;
+        `MON_REG_L:  data_out = l;
+        `MON_REG_Q:  data_out = q;
+        `MON_REG_Z:  data_out = z;
+        `MON_REG_BB: data_out = {1'b0, fb, 7'b0, eb};
+        `MON_REG_B:  data_out = b;
+        `MON_REG_S:  data_out = {4'b0, s};
+        `MON_REG_G:  data_out = g;
+        `MON_REG_Y:  data_out = y;
+        default:     data_out = 16'b0;
         endcase
     end else begin
         data_out = 16'b0;

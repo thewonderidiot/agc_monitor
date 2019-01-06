@@ -1,6 +1,8 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
+`include "monitor_defs.v"
+
 module msg_sender(
     input wire clk,
     input wire rst_n,
@@ -62,7 +64,7 @@ end
 /*******************************************************************************.
 * Message Sender State Machine                                                  *
 '*******************************************************************************/
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         state <= IDLE;
         byte_index <= 3'b0;
