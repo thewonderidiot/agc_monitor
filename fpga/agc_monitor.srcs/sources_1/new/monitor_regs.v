@@ -8,7 +8,7 @@ module monitor_regs(
     input wire rst_n,
 
     input wire mt02,
-    input wire monwt,
+    input wire ct,
 
     input wire [16:1] mwl,
 
@@ -25,36 +25,14 @@ module monitor_regs(
     input wire mwyg,
     input wire mrgg,
 
+    output wire [16:1] l,
+    output wire [16:1] q,
+    output wire [12:1] s,
+
     input wire read_en,
     input wire [15:0] addr,
     output reg [15:0] data_out
 );
-
-parameter CT_COUNT = 5'o30;
-
-reg monwt_d;
-reg [4:0] ct_count;
-
-wire ct;
-assign ct = (ct_count > 5'o0);
-
-always @(posedge clk or negedge rst_n) begin
-    if (~rst_n) begin
-        monwt_d <= 1'b0;
-        ct_count <= 5'o0;
-    end else begin
-        monwt_d <= monwt;
-        if (monwt & ~monwt_d) begin
-            ct_count <= CT_COUNT;
-        end else begin
-            if (ct_count > 5'o0) begin
-                ct_count <= ct_count - 5'o1;
-            end else begin
-                ct_count <= 5'o0;
-            end
-        end
-    end
-end
 
 // Register A
 wire [16:1] a;
@@ -68,7 +46,6 @@ register reg_a(
 );
 
 // Register L
-wire [16:1] l;
 register reg_l(
     .clk(clk),
     .rst_n(rst_n),
@@ -79,7 +56,6 @@ register reg_l(
 );
 
 // Register Q
-wire [16:1] q;
 register reg_q(
     .clk(clk),
     .rst_n(rst_n),
@@ -136,7 +112,6 @@ register reg_b(
 );
 
 // Register S
-wire [12:1] s;
 register #(12) reg_s(
     .clk(clk),
     .rst_n(rst_n),

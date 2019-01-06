@@ -28,7 +28,8 @@ module cmd_controller(
     output reg ctrl_write_en,
 
     // Monitor registers control signals
-    output reg mon_reg_read_en
+    output reg mon_reg_read_en,
+    output reg mon_chan_read_en
 );
 
 /*******************************************************************************.
@@ -42,7 +43,8 @@ localparam IDLE          = 0,
            SIM_FIXED     = 5,
            CONTROL       = 6,
            MON_REGS      = 7,
-           SEND_READ_MSG = 8;
+           MON_CHANNELS  = 8,
+           SEND_READ_MSG = 15;
 
 reg [3:0] state;
 reg [3:0] next_state;
@@ -90,6 +92,7 @@ always @(*) begin
     ctrl_read_en = 1'b0;
     ctrl_write_en = 1'b0;
     mon_reg_read_en = 1'b0;
+    mon_chan_read_en = 1'b0;
 
     case (state)
     IDLE: begin
@@ -106,6 +109,7 @@ always @(*) begin
             `ADDR_GROUP_SIM_FIXED:    next_state = SIM_FIXED;
             `ADDR_GROUP_CONTROL:      next_state = CONTROL;
             `ADDR_GROUP_MON_REGS:     next_state = MON_REGS;
+            `ADDR_GROUP_MON_CHANNELS: next_state = MON_CHANNELS;
             default:                  next_state = IDLE;
             endcase
         end
@@ -146,6 +150,15 @@ always @(*) begin
     MON_REGS: begin
         if (~cmd_write_flag) begin
             mon_reg_read_en = 1'b1;
+            next_state = SEND_READ_MSG;
+        end else begin
+            next_state = IDLE;
+        end
+    end
+
+    MON_CHANNELS: begin
+        if (~cmd_write_flag) begin
+            mon_chan_read_en = 1'b1;
             next_state = SEND_READ_MSG;
         end else begin
             next_state = IDLE;

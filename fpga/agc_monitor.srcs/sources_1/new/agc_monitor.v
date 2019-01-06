@@ -33,6 +33,19 @@ module agc_monitor(
     input wire mwg,
     input wire mwyg,
     input wire mrgg,
+    input wire mrch,
+    input wire mwch,
+
+    input wire mpal_n,
+    input wire mtcal_n,
+    input wire mrptal_n,
+    input wire mwatch_n,
+    input wire mvfail_n,
+    input wire mctral_n,
+    input wire mscafl_n,
+    input wire mscdbl_n,
+
+    output wire [16:1] mdt,
     
     // Zynq PS I/O
     inout wire [14:0] DDR_addr,
@@ -105,9 +118,12 @@ wire [15:0] ctrl_data;
 wire mon_reg_read_en;
 wire [15:0] mon_reg_data;
 
+wire mon_chan_read_en;
+wire [15:0] mon_chan_data;
+
 // Resulting data from the active read command
 wire [15:0] read_data;
-assign read_data = ctrl_data | mon_reg_data;
+assign read_data = ctrl_data | mon_reg_data | mon_chan_data;
 
 // Command controller 
 cmd_controller cmd_ctrl(
@@ -123,7 +139,8 @@ cmd_controller cmd_ctrl(
     .read_msg_ready(read_msg_ready),
     .ctrl_read_en(ctrl_read_en),
     .ctrl_write_en(ctrl_write_en),
-    .mon_reg_read_en(mon_reg_read_en)
+    .mon_reg_read_en(mon_reg_read_en),
+    .mon_chan_read_en(mon_chan_read_en)
 );
 
 /*******************************************************************************.
@@ -141,13 +158,28 @@ control_regs ctrl_regs(
 );
 
 /*******************************************************************************.
+* Clear Timer                                                                   *
+'*******************************************************************************/
+wire ct;
+clear_timer ctmr(
+    .clk(clk),
+    .rst_n(rst_n),
+    .monwt(monwt),
+    .ct(ct)
+);
+
+/*******************************************************************************.
 * Monitor AGC Register Mirrors                                                  *
 '*******************************************************************************/
+wire [16:1] l;
+wire [16:1] q;
+wire [12:1] s;
 monitor_regs mon_regs(
     .clk(clk),
     .rst_n(rst_n),
+
     .mt02(mt[2]),
-    .monwt(monwt),
+    .ct(ct),
     .mwl(mwl),
     .mwag(mwag),
     .mwlg(mwlg),
@@ -162,10 +194,64 @@ monitor_regs mon_regs(
     .mwyg(mwyg),
     .mrgg(mrgg),
 
+    .l(l),
+    .q(q),
+    .s(s),
+
     .read_en(mon_reg_read_en),
     .addr(cmd_addr),
     .data_out(mon_reg_data)
 );
+
+/*******************************************************************************.
+* Monitor AGC Channel Mirrors                                                   *
+'*******************************************************************************/
+wire [9:1] chan77;
+monitor_channels mon_chans(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .ct(ct),
+
+    .mrch(mrch),
+    .mwch(mwch),
+    .ch(s[9:1]),
+    .mwl({mwl[16], mwl[14:1]}),
+    .l({l[16], l[14:1]}),
+    .q({q[16], q[14:1]}),
+    .chan77(chan77),
+
+    .read_en(mon_chan_read_en),
+    .addr(cmd_addr),
+    .data_out(mon_chan_data)
+);
+
+/*******************************************************************************.
+* Restart Monitor                                                               *
+'*******************************************************************************/
+wire [16:1] mdt_chan77;
+restart_monitor restart_mon(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .mt05(mt[5]),
+    .mrch(mrch),
+    .mwch(mwch),
+    .ch(s[9:1]),
+    .mpal_n(mpal_n),
+    .mtcal_n(mtcal_n),
+    .mrptal_n(mrptal_n),
+    .mwatch_n(mwatch_n),
+    .mvfail_n(mvfail_n),
+    .mctral_n(mctral_n),
+    .mscafl_n(mscafl_n),
+    .mscdbl_n(mscdbl_n),
+
+    .chan77(chan77),
+    .mdt(mdt_chan77)
+);
+
+assign mdt = mdt_chan77;
 
 /*******************************************************************************.
 * Zync Processor Subsystem                                                      *

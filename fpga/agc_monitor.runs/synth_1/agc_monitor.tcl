@@ -33,16 +33,19 @@ set_property board_part numato.com:styx:part0:1.0 [current_project]
 set_property ip_output_repo /home/mike/agc_monitor/fpga/agc_monitor.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
-  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface_defines.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/clear_timer.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_controller.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/edit.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_channels.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_regs.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/restart_monitor.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_monitor.v
 }
