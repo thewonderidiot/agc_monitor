@@ -3,6 +3,8 @@ set_property src_info {type:XDC file:1 line:2 export:INPUT save:INPUT read:READ}
 set_property PACKAGE_PIN J22 [get_ports led]
 set_property src_info {type:XDC file:1 line:3 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN Y6 [get_ports clk]
+set_property src_info {type:XDC file:1 line:5 export:INPUT save:INPUT read:READ} [current_design]
+set_property IOSTANDARD LVCMOS33 [get_ports led]
 set_property src_info {type:XDC file:1 line:25 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN U20 [get_ports oe_n]
 set_property src_info {type:XDC file:1 line:26 export:INPUT save:INPUT read:READ} [current_design]

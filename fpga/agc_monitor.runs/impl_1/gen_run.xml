@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7z020clg484-1" LaunchTime="1546748195">
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="BG-DRC" Name="agc_monitor.drc"/>
+  <File Type="BG-BGN" Name="agc_monitor.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="agc_monitor.sysdef"/>
+  <File Type="BITSTR-LTX" Name="debug_nets.ltx"/>
+  <File Type="BITSTR-LTX" Name="agc_monitor.ltx"/>
+  <File Type="BITSTR-MMI" Name="agc_monitor.mmi"/>
+  <File Type="BITSTR-BMM" Name="agc_monitor_bd.bmm"/>
+  <File Type="BITSTR-NKY" Name="agc_monitor.nky"/>
+  <File Type="BITSTR-RBT" Name="agc_monitor.rbt"/>
+  <File Type="BITSTR-MSK" Name="agc_monitor.msk"/>
+  <File Type="BG-BIN" Name="agc_monitor.bin"/>
+  <File Type="BG-BIT" Name="agc_monitor.bit"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-RPX" Name="agc_monitor_bus_skew_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW-PB" Name="agc_monitor_bus_skew_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-BUS-SKEW" Name="agc_monitor_bus_skew_postroute_physopted.rpt"/>
+  <File Type="RDI-RDI" Name="agc_monitor.vdi"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-RPX" Name="agc_monitor_timing_summary_postroute_physopted.rpx"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING-PB" Name="agc_monitor_timing_summary_postroute_physopted.pb"/>
+  <File Type="POSTROUTE-PHYSOPT-TIMING" Name="agc_monitor_timing_summary_postroute_physopted.rpt"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="agc_monitor_postroute_physopt_bb.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="agc_monitor_postroute_physopt.dcp"/>
+  <File Type="ROUTE-BUS-SKEW" Name="agc_monitor_bus_skew_routed.rpt"/>
+  <File Type="ROUTE-CLK" Name="agc_monitor_clock_utilization_routed.rpt"/>
+  <File Type="ROUTE-SIMILARITY" Name="agc_monitor_incremental_reuse_routed.rpt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="agc_monitor_timing_summary_routed.rpx"/>
+  <File Type="ROUTE-TIMING-PB" Name="agc_monitor_timing_summary_routed.pb"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="agc_monitor_timing_summary_routed.rpt"/>
+  <File Type="ROUTE-STATUS-PB" Name="agc_monitor_route_status.pb"/>
+  <File Type="ROUTE-STATUS" Name="agc_monitor_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="agc_monitor_power_routed.rpx"/>
+  <File Type="ROUTE-PWR-SUM" Name="agc_monitor_power_summary_routed.pb"/>
+  <File Type="ROUTE-PWR" Name="agc_monitor_power_routed.rpt"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="agc_monitor_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="agc_monitor_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="agc_monitor_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="agc_monitor_drc_routed.rpx"/>
+  <File Type="ROUTE-DRC-PB" Name="agc_monitor_drc_routed.pb"/>
+  <File Type="ROUTE-DRC" Name="agc_monitor_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="agc_monitor_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="agc_monitor_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="agc_monitor_routed_error.dcp"/>
+  <File Type="PHYSOPT-TIMING" Name="agc_monitor_timing_summary_physopted.rpt"/>
+  <File Type="PHYSOPT-DRC" Name="agc_monitor_drc_physopted.rpt"/>
+  <File Type="PHYSOPT-DCP" Name="agc_monitor_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-TIMING" Name="agc_monitor_timing_summary_postplace_pwropted.rpt"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="agc_monitor_postplace_pwropt.dcp"/>
+  <File Type="PLACE-TIMING" Name="agc_monitor_timing_summary_placed.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="agc_monitor_incremental_reuse_pre_placed.rpt"/>
+  <File Type="PLACE-SIMILARITY" Name="agc_monitor_incremental_reuse_placed.rpt"/>
+  <File Type="PLACE-CTRL" Name="agc_monitor_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="agc_monitor_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="agc_monitor_utilization_placed.rpt"/>
+  <File Type="PLACE-CLK" Name="agc_monitor_clock_utilization_placed.rpt"/>
+  <File Type="PLACE-IO" Name="agc_monitor_io_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="agc_monitor_placed.dcp"/>
+  <File Type="PWROPT-TIMING" Name="agc_monitor_timing_summary_pwropted.rpt"/>
+  <File Type="PWROPT-DRC" Name="agc_monitor_drc_pwropted.rpt"/>
+  <File Type="PWROPT-DCP" Name="agc_monitor_pwropt.dcp"/>
+  <File Type="OPT-TIMING" Name="agc_monitor_timing_summary_opted.rpt"/>
+  <File Type="OPT-HWDEF" Name="agc_monitor.hwdef"/>
+  <File Type="OPT-METHODOLOGY-DRC" Name="agc_monitor_methodology_drc_opted.rpt"/>
+  <File Type="OPT-DRC" Name="agc_monitor_drc_opted.rpt"/>
+  <File Type="OPT-DCP" Name="agc_monitor_opt.dcp"/>
+  <File Type="INIT-TIMING" Name="agc_monitor_timing_summary_init.rpt"/>
+  <File Type="ROUTE-BUS-SKEW-RPX" Name="agc_monitor_bus_skew_routed.rpx"/>
+  <File Type="REPORTS-TCL" Name="agc_monitor_reports.tcl"/>
+  <File Type="ROUTE-BUS-SKEW-PB" Name="agc_monitor_bus_skew_routed.pb"/>
+  <File Type="PA-TCL" Name="agc_monitor.tcl"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/bd/monitor_ps/monitor_ps.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/usb_interface_defines.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/cmd_controller.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/cmd_receiver.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/control_regs.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/edit.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/monitor_regs.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/msg_sender.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/register.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/register2.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/usb_interface.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/agc_monitor.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="agc_monitor"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <File Path="$PSRCDIR/constrs_1/new/agc_monitor.xdc">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/agc_monitor.xdc"/>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="utils" Type="Utils" RelSrcDir="$PSRCDIR/utils_1">
+    <Filter Type="Utils"/>
+    <Config>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2018"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="read_byte_fifo"/>
+  <BlockFileSet Type="BlockSrcs" Name="read_fifo"/>
+  <BlockFileSet Type="BlockSrcs" Name="cmd_fifo"/>
+  <BlockFileSet Type="BlockSrcs" Name="monitor_ps_processing_system7_0_0"/>
+</GenRun>

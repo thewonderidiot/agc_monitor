@@ -4,7 +4,7 @@
 module agc_monitor(
     input wire clk,
     input wire rst_n,
-    output wire led,
+    output wire mnhnc,
 
     // FT232 FIFO interface
     input wire clkout,
@@ -137,7 +137,7 @@ control_regs ctrl_regs(
     .read_en(ctrl_read_en),
     .write_en(ctrl_write_en),
     .data_out(ctrl_data),
-    .nhalga(led)
+    .mnhnc(mnhnc)
 );
 
 /*******************************************************************************.
