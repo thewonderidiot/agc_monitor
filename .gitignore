@@ -88,3 +88,15 @@
 #Python-files
 #########
 !*.py
+
+#########
+#KiCAD-files
+#########
+!*.lib
+!*.dcm
+!*.kicad_pcb
+!*.pretty
+!*.pro
+!*.sch
+!*-table
+!*.kicad_mod
