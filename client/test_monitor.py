@@ -20,15 +20,15 @@ with Device() as dev:
     dev.ftdi_fn.ftdi_usb_purge_buffers()
 
     while True:
-        dev.write('\xC0\xA0\x00\x00\x00\x01\xC0')
-        dev.write('\xC0\x20\x00\x00\xC0')
+        dev.write('\xC0\xA0\x00\x04\x00\x01\xC0')
+        dev.write('\xC0\x20\x00\x04\xC0')
         res = ''
         while not res:
             res = dev.read(64).hex()
         print(res)
         time.sleep(0.1)
-        dev.write('\xC0\xA0\x00\x00\x00\x00\xC0')
-        dev.write('\xC0\x20\x00\x00\xC0')
+        dev.write('\xC0\xA0\x00\x04\x00\x00\xC0')
+        dev.write('\xC0\x20\x00\x04\xC0')
         res = ''
         while not res:
             res = dev.read(64).hex()
