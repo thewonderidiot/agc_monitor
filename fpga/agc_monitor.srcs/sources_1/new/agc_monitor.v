@@ -4,7 +4,6 @@
 module agc_monitor(
     input wire clk,
     input wire rst_n,
-    output wire mnhnc,
 
     // FT232 FIFO interface
     input wire clkout,
@@ -17,8 +16,9 @@ module agc_monitor(
     output wire siwu,
 
     // AGC signals
-    input wire [12:1] mt,
+    input wire mgojam,
     input wire monwt,
+    input wire [12:1] mt,
     input wire [16:1] mwl,
 
     input wire mwag,
@@ -35,6 +35,7 @@ module agc_monitor(
     input wire mrgg,
     input wire mrch,
     input wire mwch,
+    input wire mnisq,
 
     input wire mpal_n,
     input wire mtcal_n,
@@ -46,6 +47,12 @@ module agc_monitor(
     input wire mscdbl_n,
 
     output wire [16:1] mdt,
+
+    output wire mstrt,
+    output wire mstp,
+
+    output wire mnhrpt,
+    output wire mnhnc,
     
     // Zynq PS I/O
     inout wire [14:0] DDR_addr,
@@ -146,6 +153,11 @@ cmd_controller cmd_ctrl(
 /*******************************************************************************.
 * Control Registers                                                             *
 '*******************************************************************************/
+wire start_req;
+wire proceed_req;
+wire [10:0] stop_conds;
+wire [10:0] stop_cause;
+
 control_regs ctrl_regs(
     .clk(clk),
     .rst_n(rst_n),
@@ -154,7 +166,30 @@ control_regs ctrl_regs(
     .read_en(ctrl_read_en),
     .write_en(ctrl_write_en),
     .data_out(ctrl_data),
+    .start_req(start_req),
+    .proceed_req(proceed_req),
+    .stop_conds(stop_conds),
+    .stop_cause(stop_cause),
+    .mnhrpt(mnhrpt),
     .mnhnc(mnhnc)
+);
+
+/*******************************************************************************.
+* Start/Stop Logic                                                              *
+'*******************************************************************************/
+start_stop strt_stp(
+    .clk(clk),
+    .rst_n(rst_n),
+    .start_req(start_req),
+    .proceed_req(proceed_req),
+    .stop_conds(stop_conds),
+    .stop_cause(stop_cause),
+    .mt01(mt[1]),
+    .mt12(mt[12]),
+    .mgojam(mgojam),
+    .mnisq(mnisq),
+    .mstrt(mstrt),
+    .mstp(mstp)
 );
 
 /*******************************************************************************.

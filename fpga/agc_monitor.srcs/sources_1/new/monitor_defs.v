@@ -21,7 +21,12 @@
 `define ADDR_GROUP_MON_CHANNELS 7'h22
 
 // Control Registers
-`define CTRL_REG_MNHNC 16'h0
+`define CTRL_REG_START      16'h0
+`define CTRL_REG_STOP       16'h1
+`define CTRL_REG_STOP_CAUSE 16'h2
+`define CTRL_REG_PROCEED    16'h3
+`define CTRL_REG_MNHRPT     16'h4
+`define CTRL_REG_MNHNC      16'h5
 
 // Monitor AGC Register Mirrors
 `define MON_REG_A  16'o00

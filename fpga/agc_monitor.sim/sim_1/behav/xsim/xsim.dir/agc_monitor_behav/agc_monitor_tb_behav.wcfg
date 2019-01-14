@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="4008213000fs"></ZoomEndTime>
-      <Cursor1Time time="2680000000fs"></Cursor1Time>
+      <ZoomStartTime time="929142166fs"></ZoomStartTime>
+      <ZoomEndTime time="6503995167fs"></ZoomEndTime>
+      <Cursor1Time time="1890886000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="102"></ValueColumnWidth>
+      <ValueColumnWidth column_width="98"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="21" />
+   <WVObjectSize size="25" />
    <wvobject type="logic" fp_name="/agc_monitor_tb/rxf_n">
       <obj_property name="ElementShortName">rxf_n</obj_property>
       <obj_property name="ObjectShortName">rxf_n</obj_property>
@@ -43,10 +43,6 @@
    <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/cmd_ctrl/state">
       <obj_property name="ElementShortName">state[3:0]</obj_property>
       <obj_property name="ObjectShortName">state[3:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/ctrl_regs/nhalga">
-      <obj_property name="ElementShortName">nhalga</obj_property>
-      <obj_property name="ObjectShortName">nhalga</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/cmd_ctrl/read_msg_ready">
       <obj_property name="ElementShortName">read_msg_ready</obj_property>
@@ -103,5 +99,25 @@
    <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/mon_regs/a">
       <obj_property name="ElementShortName">a[16:1]</obj_property>
       <obj_property name="ObjectShortName">a[16:1]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/mnhnc">
+      <obj_property name="ElementShortName">mnhnc</obj_property>
+      <obj_property name="ObjectShortName">mnhnc</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/mnisq">
+      <obj_property name="ElementShortName">mnisq</obj_property>
+      <obj_property name="ObjectShortName">mnisq</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/mstp">
+      <obj_property name="ElementShortName">mstp</obj_property>
+      <obj_property name="ObjectShortName">mstp</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/mt">
+      <obj_property name="ElementShortName">mt[12:1]</obj_property>
+      <obj_property name="ObjectShortName">mt[12:1]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/proceed_req">
+      <obj_property name="ElementShortName">proceed_req</obj_property>
+      <obj_property name="ObjectShortName">proceed_req</obj_property>
    </wvobject>
 </wave_config>
