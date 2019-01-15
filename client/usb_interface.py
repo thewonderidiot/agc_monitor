@@ -1,10 +1,10 @@
 import threading
 import queue
 import time
-from pylibftdi import Device, USB_PID_LIST, USB_VID_LIST, FtdiError
 from ctypes import *
-from slip import slip, unslip
+from pylibftdi import Device, USB_PID_LIST, USB_VID_LIST, FtdiError
 from usb_msg import WriteMessage, ReadMessage, DataMessage, pack_msg
+from slip import slip, unslip
 
 STYX_VID = 0x2a19
 STYX_PID = 0x1007
@@ -13,6 +13,8 @@ class USBInterface(threading.Thread):
     def __init__(self):
         super().__init__()
 
+        # Clear the FTDI VID and PID lists and replace them with the Styx
+        # PID and VID, so we will only match Styx boards
         USB_VID_LIST.clear()
         USB_VID_LIST.append(STYX_VID)
 
@@ -26,12 +28,16 @@ class USBInterface(threading.Thread):
         self.alive.set()
 
     def run(self):
+        # Main run loop. Try to connect if we're not connected, otherwise
+        # perform routine servicing
         while self.alive.isSet():
             if not self.connected.isSet():
+                # FIXME: Try to auto-connect
                 time.sleep(0.1)
             else:
                 self._service()
 
+        # Clean up the device, if we managed to attach to it
         if self.dev:
             self.dev.flush()
             self.dev.close()
@@ -41,15 +47,25 @@ class USBInterface(threading.Thread):
             return True
 
         try:
+            # Attempt to construct an FTDI Device
             self.dev = Device()
+
+            # Reset the mode, then switch into serial FIFO
             self.dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x00)
+            time.sleep(0.01)
             self.dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x40)
+
+            # Set communication params
             self.dev.ftdi_fn.ftdi_set_latency_timer(2)
             self.dev.ftdi_fn.ftdi_setflowctrl(0)
             self.dev.ftdi_fn.ftdi_usb_purge_buffers()
+
+            # Mark ourselves connected
             self.connected.set()
             return True
+
         except FtdiError:
+            # No luck connecting/talking to the board; clear the connect status
             self.connected.clear()
 
         return False

@@ -9,32 +9,41 @@ class Indicator(QWidget):
         self.color = color
         self.on = False
 
+    def set_on(self, on):
+        # Set our state and redraw
+        self.on = bool(on)
+        self.repaint()
+
     def paintEvent(self, event):
         p = QPainter(self)
         p.setRenderHint(QPainter.Antialiasing)
+
+        # Determine the width and height of the indicator
         w = self.width()
         h = self.height()
 
+        # The smaller dimension determines our diameter
         d = min(w,h) * 0.9
         r = d/2
+
+        # Locate the center of the indicator circle
         center = QPointF(w/2, h/2)
 
         if self.on:
+            # Gradient focus in the top left, fading from brighter to bright
             focus = center - QPointF(r, r)
             color0 = self.color
             color1 = self.color.darker(132)
         else:
+            # Gradient focus in the bottom right, fading from darker to dark
             focus = center + QPointF(r, r)
-            color0 = self.color.darker(255)
-            color1 = self.color.darker(800)
+            color0 = self.color.darker(800)
+            color1 = self.color.darker(255)
 
-        gradient = QRadialGradient(focus, d*1.5, focus)
+        # Construct the gradient and draw the circle using it
+        gradient = QRadialGradient(focus, d*1.4, focus)
         gradient.setColorAt(0, color0)
         gradient.setColorAt(1, color1)
         p.setBrush(gradient)
         p.setPen(QColor(96,96,96))
         p.drawEllipse(center,r,r)
-
-    def setOn(self, on):
-        self.on = bool(on)
-        self.repaint()

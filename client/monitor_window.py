@@ -10,27 +10,37 @@ class MonitorWindow(QMainWindow):
     def __init__(self, parent):
         super().__init__(parent)
         self.setWindowTitle('AGC Monitor')
-        self.if_thread = USBInterface()
-        self._setup_window()
 
+        # Construct the USB interface thread first, since widgets need to know
+        # where to find it
+        self.if_thread = USBInterface()
+
+        # Set up the UI
+        self._setup_ui()
+
+        # Kick off the UI thread and try to connect to the device
         self.if_thread.start()
         self.connect()
 
-    def _setup_window(self):
+    def _setup_ui(self):
+        # Add a dropdown menu for various non-original actions
         menu = self.menuBar().addMenu('Monitor')
         menu.addAction('Connect', self.connect)
 
+        # Create a status bar widget to display connection state
+        # FIXME: Replace with an indicator if this becomes automatic?
         status_bar = self.statusBar()
         self.status = QLabel('')
         status_bar.addWidget(self.status)
 
+        # Create a central widget, give it a layout, and set it up
         central = QWidget(self)
         self.setCentralWidget(central)
-
         layout = QVBoxLayout(central)
         central.setLayout(layout)
         layout.setSpacing(2)
 
+        # Add all of the registers for display
         self.reg_a = Register(None, 'A', False, QColor(0,255,0))
         layout.addWidget(self.reg_a)
         layout.setAlignment(self.reg_a, Qt.AlignRight)
@@ -62,6 +72,7 @@ class MonitorWindow(QMainWindow):
         self.reg_s = AddressRegister(None, QColor(0, 255, 0))
         layout.addWidget(self.reg_s)
 
+        # Add the control panel
         self.ctrl_panel = Control(None, self.if_thread)
         layout.addWidget(self.ctrl_panel)
 
