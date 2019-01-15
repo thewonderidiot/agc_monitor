@@ -1,0 +1,80 @@
+{
+    "name": "Control",
+    "id": 32,
+    "registers": [
+        {
+            "addr": 0,
+            "name": "Start",
+            "type": "w",
+            "fields": [
+                {
+                    "name": "start",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 1,
+            "name": "Stop",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "t12",
+                    "width": 1
+                },
+                {
+                    "name": "nisq",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 2,
+            "name": "StopCause",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "t12",
+                    "width": 1
+                },
+                {
+                    "name": "nisq",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 3,
+            "name": "Proceed",
+            "type": "w",
+            "fields": [
+                {
+                    "name": "proceed",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 4,
+            "name": "MNHRPT",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "mnhrpt",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 5,
+            "name": "MNHNC",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "mnhnc",
+                    "width": 1
+                }
+            ]
+        }
+    ]
+}
