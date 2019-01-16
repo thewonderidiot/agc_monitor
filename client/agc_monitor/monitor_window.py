@@ -13,13 +13,13 @@ class MonitorWindow(QMainWindow):
 
         # Construct the USB interface thread first, since widgets need to know
         # where to find it
-        self.if_thread = USBInterface()
+        self.usbif = USBInterface()
 
         # Set up the UI
         self._setup_ui()
 
         # Kick off the UI thread and try to connect to the device
-        self.if_thread.start()
+        self.usbif.start()
         self.connect()
 
     def _setup_ui(self):
@@ -73,11 +73,11 @@ class MonitorWindow(QMainWindow):
         layout.addWidget(self.reg_s)
 
         # Add the control panel
-        self.ctrl_panel = Control(None, self.if_thread)
+        self.ctrl_panel = Control(None, self.usbif)
         layout.addWidget(self.ctrl_panel)
 
     def connect(self):
-        connected = self.if_thread.connect()
+        connected = self.usbif.connect()
         if connected:
             message = 'Connected!'
         else:

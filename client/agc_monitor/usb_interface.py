@@ -3,8 +3,8 @@ import queue
 import time
 from ctypes import *
 from pylibftdi import Device, USB_PID_LIST, USB_VID_LIST, FtdiError
-from usb_msg import WriteMessage, ReadMessage, DataMessage, pack_msg
 from slip import slip, unslip
+import usb_msg as um
 
 STYX_VID = 0x2a19
 STYX_PID = 0x1007
@@ -70,8 +70,7 @@ class USBInterface(threading.Thread):
 
         return False
 
-    def write(self, group, addr, value):
-        msg = WriteMessage(group, addr, value)
+    def send(self, msg):
         self.queue.put(msg)
 
     def join(self, timeout=None):
@@ -82,6 +81,6 @@ class USBInterface(threading.Thread):
         time.sleep(0.01)
         while not self.queue.empty():
             msg = self.queue.get_nowait()
-            packed_msg = pack_msg(msg)
+            packed_msg = um.pack(msg)
             slipped_msg = slip(packed_msg)
             self.dev.write(slipped_msg)

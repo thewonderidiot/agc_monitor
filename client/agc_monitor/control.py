@@ -2,29 +2,29 @@ from PySide2.QtWidgets import QWidget, QFrame, QHBoxLayout, QGridLayout, QLabel,
 from PySide2.QtGui import QFont, QColor
 from PySide2.QtCore import Qt
 from indicator import Indicator
-from usb_msg import AddressGroup, ControlReg
+import usb_msg as um
 
 class Control(QFrame):
-    def __init__(self, parent, if_thread):
+    def __init__(self, parent, usbif):
         super().__init__(parent)
-        self.if_thread = if_thread
+        self.usbif = usbif
 
         self._setup_ui()
 
     def _set_mnhrpt(self, on):
         self.mnhrpt_ind.set_on(on)
         val = 1 if on else 0
-        self.if_thread.write(AddressGroup.Control, ControlReg.MNHRPT, val)
+        self.usbif.send(um.WriteControlMNHRPT(mnhrpt=val))
 
     def _set_mnhnc(self, on):
         self.mnhnc_ind.set_on(on)
         val = 1 if on else 0
-        self.if_thread.write(AddressGroup.Control, ControlReg.MNHNC, val)
+        self.usbif.send(um.WriteControlMNHNC(mnhnc=val))
 
     def _set_nhalga(self, on):
         self.nhalga_ind.set_on(on)
         val = 1 if on else 0
-        self.if_thread.write(AddressGroup.Control, ControlReg.NHALGA, val)
+        self.usbif.send(um.WriteControlNHALGA(nhalga=val))
 
     def _setup_ui(self):
         self.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
