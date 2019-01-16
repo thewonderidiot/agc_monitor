@@ -234,12 +234,13 @@ def generate_interface(specs_dir, output_filename):
     output += generate_unpack_dicts(specs) + '\n'
     output += FOOTER_TEMPLATE
 
-    print(output)
+    with open(output_filename, 'w') as f:
+        f.write(output)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Generate Monitor USB message handling code from JSON spec')
     parser.add_argument('-s', '--specs', default='../spec', help='Folder containing JSON specs')
-    parser.add_argument('-o', '--output', default='../agc_monitor/usb_msgs.py', help='Output python file')
+    parser.add_argument('-o', '--output', default='../agc_monitor/usb_msg.py', help='Output python file')
     args = parser.parse_args()
 
     generate_interface(args.specs, args.output)
