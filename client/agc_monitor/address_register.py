@@ -176,7 +176,7 @@ class AddressRegister(QWidget):
         # Add indicators for each bit in the register, from MSB to LSB
         for i in range(width, 0, -1):
             ind = Indicator(bit_frame, color)
-            ind.setMinimumSize(20, 32)
+            ind.setFixedSize(20, 32)
             bit_layout.addWidget(ind)
             ind_list.insert(0, ind)
 

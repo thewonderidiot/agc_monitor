@@ -46,6 +46,15 @@ WriteControlMNHRPT = namedtuple('WriteControlMNHRPT', ['mnhrpt'])
 ReadControlMNHNC = namedtuple('ReadControlMNHNC', [])
 ControlMNHNC = namedtuple('ControlMNHNC', ['mnhnc'])
 WriteControlMNHNC = namedtuple('WriteControlMNHNC', ['mnhnc'])
+ReadControlNHALGA = namedtuple('ReadControlNHALGA', [])
+ControlNHALGA = namedtuple('ControlNHALGA', ['nhalga'])
+WriteControlNHALGA = namedtuple('WriteControlNHALGA', ['nhalga'])
+ReadControlSTRT1 = namedtuple('ReadControlSTRT1', [])
+ControlSTRT1 = namedtuple('ControlSTRT1', ['strt1'])
+WriteControlSTRT1 = namedtuple('WriteControlSTRT1', ['strt1'])
+ReadControlSTRT2 = namedtuple('ReadControlSTRT2', [])
+ControlSTRT2 = namedtuple('ControlSTRT2', ['strt2'])
+WriteControlSTRT2 = namedtuple('WriteControlSTRT2', ['strt2'])
 
 class AddressGroup(object):
     SimErasable = 0x10
@@ -62,6 +71,9 @@ class Control(object):
     Proceed = 0x0003
     MNHRPT = 0x0004
     MNHNC = 0x0005
+    NHALGA = 0x0040
+    STRT1 = 0x0041
+    STRT2 = 0x0042
 
 def _pack_ReadSimErasable(msg):
     return _pack_read_msg(AddressGroup.SimErasable, msg.addr)
@@ -122,6 +134,30 @@ def _pack_WriteControlMNHNC(msg):
     data |= (msg.mnhnc & 0x0001) << 0
     return _pack_write_msg(AddressGroup.Control, Control.MNHNC, data)
 
+def _pack_ReadControlNHALGA(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.NHALGA)
+
+def _pack_WriteControlNHALGA(msg):
+    data = 0x0000
+    data |= (msg.nhalga & 0x0001) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.NHALGA, data)
+
+def _pack_ReadControlSTRT1(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.STRT1)
+
+def _pack_WriteControlSTRT1(msg):
+    data = 0x0000
+    data |= (msg.strt1 & 0x0001) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.STRT1, data)
+
+def _pack_ReadControlSTRT2(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.STRT2)
+
+def _pack_WriteControlSTRT2(msg):
+    data = 0x0000
+    data |= (msg.strt2 & 0x0001) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.STRT2, data)
+
 
 def _unpack_SimErasable(addr, data):
     return SimErasable(addr=addr, data=data)
@@ -160,12 +196,30 @@ def _unpack_ControlMNHNC(data):
         mnhnc = (data >> 0) & 0x0001,
     )
 
+def _unpack_ControlNHALGA(data):
+    return ControlNHALGA(
+        nhalga = (data >> 0) & 0x0001,
+    )
+
+def _unpack_ControlSTRT1(data):
+    return ControlSTRT1(
+        strt1 = (data >> 0) & 0x0001,
+    )
+
+def _unpack_ControlSTRT2(data):
+    return ControlSTRT2(
+        strt2 = (data >> 0) & 0x0001,
+    )
+
 
 _unpack_reg_fns = {
     (AddressGroup.Control, Control.Stop): _unpack_ControlStop,
     (AddressGroup.Control, Control.StopCause): _unpack_ControlStopCause,
     (AddressGroup.Control, Control.MNHRPT): _unpack_ControlMNHRPT,
     (AddressGroup.Control, Control.MNHNC): _unpack_ControlMNHNC,
+    (AddressGroup.Control, Control.NHALGA): _unpack_ControlNHALGA,
+    (AddressGroup.Control, Control.STRT1): _unpack_ControlSTRT1,
+    (AddressGroup.Control, Control.STRT2): _unpack_ControlSTRT2,
 }
 
 _unpack_mem_fns = {

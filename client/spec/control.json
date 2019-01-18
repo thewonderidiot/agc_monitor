@@ -75,6 +75,39 @@
                     "width": 1
                 }
             ]
+        },
+        {
+            "addr": 64,
+            "name": "NHALGA",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "nhalga",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 65,
+            "name": "STRT1",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "strt1",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 66,
+            "name": "STRT2",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "strt2",
+                    "width": 1
+                }
+            ]
         }
     ]
 }

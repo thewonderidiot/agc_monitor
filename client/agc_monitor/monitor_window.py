@@ -71,10 +71,12 @@ class MonitorWindow(QMainWindow):
 
         self.reg_s = AddressRegister(None, QColor(0, 255, 0))
         layout.addWidget(self.reg_s)
+        layout.setAlignment(self.reg_s, Qt.AlignRight)
 
         # Add the control panel
         self.ctrl_panel = Control(None, self.usbif)
         layout.addWidget(self.ctrl_panel)
+        layout.setAlignment(self.ctrl_panel, Qt.AlignLeft)
 
     def connect(self):
         connected = self.usbif.connect()

@@ -54,7 +54,7 @@ class Register(QWidget):
         # Add the 16 bit indicators to the frame, from 16 to 1.
         for i in range(16, 0, -1):
             ind = Indicator(bit_frame, color)
-            ind.setMinimumSize(20, 32)
+            ind.setFixedSize(20, 32)
             bit_layout.addWidget(ind)
             self.indicators.insert(0, ind)
 
@@ -73,7 +73,7 @@ class Register(QWidget):
 
             for i in range(2, 0, -1):
                 ind = Indicator(bit_frame, QColor(255,255,0))
-                ind.setMinimumSize(20, 32)
+                ind.setFixedSize(20, 32)
                 bit_layout.addWidget(ind)
                 self.parity_inds.insert(0, ind)
             
