@@ -60,7 +60,7 @@ class Control(QFrame):
         sl_group.setLayout(sl_layout)
         sl_layout.setMargin(1)
         sl_layout.setSpacing(1)
-        sl_layout.addSpacing(8)
+        sl_layout.addSpacing(4)
 
         stat_group = QWidget(sl_group)
         sl_layout.addWidget(stat_group)
@@ -99,6 +99,7 @@ class Control(QFrame):
         check = QCheckBox(parent)
         layout.addWidget(check, 2, col)
         layout.setAlignment(check, Qt.AlignCenter)
+        layout.setColumnMinimumWidth(col, 25)
 
         self.inh_switches.append(check)
         self.inh_inds.append(ind)

@@ -4,6 +4,7 @@ from PySide2.QtCore import Qt
 from register import Register
 from address_register import AddressRegister
 from control import Control
+from comp_stop import CompStop
 from usb_interface import USBInterface
 
 class MonitorWindow(QMainWindow):
@@ -77,6 +78,11 @@ class MonitorWindow(QMainWindow):
         self.ctrl_panel = Control(None, self.usbif)
         layout.addWidget(self.ctrl_panel)
         layout.setAlignment(self.ctrl_panel, Qt.AlignLeft)
+
+        # Add the computer stop panel
+        self.comp_stop = CompStop(None, self.usbif)
+        layout.addWidget(self.comp_stop)
+        layout.setAlignment(self.comp_stop, Qt.AlignLeft)
 
     def connect(self):
         connected = self.usbif.connect()
