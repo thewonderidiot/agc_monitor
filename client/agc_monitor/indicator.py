@@ -6,12 +6,12 @@ class Indicator(QWidget):
     def __init__(self, parent, color):
         super().__init__(parent)
         self.setMinimumSize(16,16)
-        self.color = color
-        self.on = False
+        self._color = color
+        self._on = False
 
     def set_on(self, on):
         # Set our state and redraw
-        self.on = bool(on)
+        self._on = bool(on)
         self.repaint()
 
     def paintEvent(self, event):
@@ -29,16 +29,16 @@ class Indicator(QWidget):
         # Locate the center of the indicator circle
         center = QPointF(w/2, h/2)
 
-        if self.on:
+        if self._on:
             # Gradient focus in the top left, fading from brighter to bright
             focus = center - QPointF(r, r)
-            color0 = self.color
-            color1 = self.color.darker(132)
+            color0 = self._color
+            color1 = self._color.darker(132)
         else:
             # Gradient focus in the bottom right, fading from darker to dark
             focus = center + QPointF(r, r)
-            color0 = self.color.darker(800)
-            color1 = self.color.darker(255)
+            color0 = self._color.darker(800)
+            color1 = self._color.darker(255)
 
         # Construct the gradient and draw the circle using it
         gradient = QRadialGradient(focus, d*1.4, focus)

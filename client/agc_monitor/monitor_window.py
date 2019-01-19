@@ -14,13 +14,13 @@ class MonitorWindow(QMainWindow):
 
         # Construct the USB interface thread first, since widgets need to know
         # where to find it
-        self.usbif = USBInterface()
+        self._usbif = USBInterface()
 
         # Set up the UI
         self._setup_ui()
 
         # Kick off the UI thread and try to connect to the device
-        self.usbif.start()
+        self._usbif.start()
         self.connect()
 
     def _setup_ui(self):
@@ -31,8 +31,8 @@ class MonitorWindow(QMainWindow):
         # Create a status bar widget to display connection state
         # FIXME: Replace with an indicator if this becomes automatic?
         status_bar = self.statusBar()
-        self.status = QLabel('')
-        status_bar.addWidget(self.status)
+        self._status = QLabel('')
+        status_bar.addWidget(self._status)
 
         # Create a central widget, give it a layout, and set it up
         central = QWidget(self)
@@ -42,53 +42,53 @@ class MonitorWindow(QMainWindow):
         layout.setSpacing(2)
 
         # Add all of the registers for display
-        self.reg_a = Register(None, 'A', False, QColor(0,255,0))
-        layout.addWidget(self.reg_a)
-        layout.setAlignment(self.reg_a, Qt.AlignRight)
+        self._reg_a = Register(None, 'A', False, QColor(0,255,0))
+        layout.addWidget(self._reg_a)
+        layout.setAlignment(self._reg_a, Qt.AlignRight)
 
-        self.reg_l = Register(None, 'L', False, QColor(0,255,0))
-        layout.addWidget(self.reg_l)
-        layout.setAlignment(self.reg_l, Qt.AlignRight)
+        self._reg_l = Register(None, 'L', False, QColor(0,255,0))
+        layout.addWidget(self._reg_l)
+        layout.setAlignment(self._reg_l, Qt.AlignRight)
 
-        self.reg_q = Register(None, 'Q', False, QColor(0,255,0))
-        layout.addWidget(self.reg_q)
-        layout.setAlignment(self.reg_q, Qt.AlignRight)
+        self._reg_q = Register(None, 'Q', False, QColor(0,255,0))
+        layout.addWidget(self._reg_q)
+        layout.setAlignment(self._reg_q, Qt.AlignRight)
 
-        self.reg_z = Register(None, 'Z', False, QColor(0,255,0))
-        layout.addWidget(self.reg_z)
-        layout.setAlignment(self.reg_z, Qt.AlignRight)
+        self._reg_z = Register(None, 'Z', False, QColor(0,255,0))
+        layout.addWidget(self._reg_z)
+        layout.setAlignment(self._reg_z, Qt.AlignRight)
 
-        self.reg_b = Register(None, 'B', False, QColor(0,255,0))
-        layout.addWidget(self.reg_b)
-        layout.setAlignment(self.reg_b, Qt.AlignRight)
+        self._reg_b = Register(None, 'B', False, QColor(0,255,0))
+        layout.addWidget(self._reg_b)
+        layout.setAlignment(self._reg_b, Qt.AlignRight)
 
-        self.reg_g = Register(None, 'G', True, QColor(0,255,0))
-        layout.addWidget(self.reg_g)
-        layout.setAlignment(self.reg_g, Qt.AlignRight)
+        self._reg_g = Register(None, 'G', True, QColor(0,255,0))
+        layout.addWidget(self._reg_g)
+        layout.setAlignment(self._reg_g, Qt.AlignRight)
 
-        self.reg_w = Register(None, 'W', True, QColor(0,255,0))
-        layout.addWidget(self.reg_w)
-        layout.setAlignment(self.reg_w, Qt.AlignRight)
+        self._reg_w = Register(None, 'W', True, QColor(0,255,0))
+        layout.addWidget(self._reg_w)
+        layout.setAlignment(self._reg_w, Qt.AlignRight)
 
-        self.reg_s = AddressRegister(None, QColor(0, 255, 0))
-        layout.addWidget(self.reg_s)
-        layout.setAlignment(self.reg_s, Qt.AlignRight)
+        self._reg_s = AddressRegister(None, QColor(0, 255, 0))
+        layout.addWidget(self._reg_s)
+        layout.setAlignment(self._reg_s, Qt.AlignRight)
 
         # Add the control panel
-        self.ctrl_panel = Control(None, self.usbif)
-        layout.addWidget(self.ctrl_panel)
-        layout.setAlignment(self.ctrl_panel, Qt.AlignLeft)
+        self._ctrl_panel = Control(None, self._usbif)
+        layout.addWidget(self._ctrl_panel)
+        layout.setAlignment(self._ctrl_panel, Qt.AlignLeft)
 
         # Add the computer stop panel
-        self.comp_stop = CompStop(None, self.usbif)
-        layout.addWidget(self.comp_stop)
-        layout.setAlignment(self.comp_stop, Qt.AlignLeft)
+        self._comp_stop = CompStop(None, self._usbif)
+        layout.addWidget(self._comp_stop)
+        layout.setAlignment(self._comp_stop, Qt.AlignLeft)
 
     def connect(self):
-        connected = self.usbif.connect()
+        connected = self._usbif.connect()
         if connected:
             message = 'Connected!'
         else:
             message = 'Device not found.'
 
-        self.status.setText(message)
+        self._status.setText(message)

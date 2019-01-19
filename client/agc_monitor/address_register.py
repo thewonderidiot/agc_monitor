@@ -6,24 +6,24 @@ from indicator import Indicator
 class AddressRegister(QWidget):
     def __init__(self, parent, color):
         super().__init__(parent)
-        self.eb_inds = []
-        self.fext_inds = []
-        self.fb_inds = []
-        self.s_inds = []
+        self._eb_inds = []
+        self._fext_inds = []
+        self._fb_inds = []
+        self._s_inds = []
 
         self._setup_ui(color)
 
     def set_bb_value(self, x):
-        self._set_reg_value(self.eb_inds, self.eb_value, x & 0o7)
-        self._set_reg_value(self.fb_inds, self.fb_value, (x >> 10) & 0o37)
+        self._set_reg_value(self._eb_inds, self._eb_value, x & 0o7)
+        self._set_reg_value(self._fb_inds, self._fb_value, (x >> 10) & 0o37)
         self._update_addr_value()
 
     def set_s_value(self, x):
-        self._set_reg_value(self.s_inds, self.s_value, x)
+        self._set_reg_value(self._s_inds, self._s_value, x)
         self._update_addr_value()
 
     def set_fext_value(self, x):
-        self._set_reg_value(self.fext_inds, self.fext_value, x)
+        self._set_reg_value(self._fext_inds, self._fext_value, x)
         self._update_addr_value()
 
     def _setup_ui(self, color):
@@ -34,10 +34,10 @@ class AddressRegister(QWidget):
         layout.setMargin(1)
 
         # Construct register groups for EB, FEXT, FB, and S
-        eb_frame, self.eb_value = self._create_reg(self.eb_inds, 'EBANK', 3, color)
-        fext_frame, self.fext_value = self._create_reg(self.fext_inds, 'FEXT', 3, color)
-        fb_frame, self.fb_value = self._create_reg(self.fb_inds, 'FBANK', 5, color)
-        s_frame, self.s_value = self._create_reg(self.s_inds, '', 12, color)
+        eb_frame, self._eb_value = self._create_reg(self._eb_inds, 'EBANK', 3, color)
+        fext_frame, self._fext_value = self._create_reg(self._fext_inds, 'FEXT', 3, color)
+        fb_frame, self._fb_value = self._create_reg(self._fb_inds, 'FBANK', 5, color)
+        s_frame, self._s_value = self._create_reg(self._s_inds, '', 12, color)
         layout.addWidget(eb_frame)
         layout.addWidget(fext_frame)
         layout.addWidget(fb_frame)
@@ -53,16 +53,16 @@ class AddressRegister(QWidget):
         layout.addWidget(label_value)
 
         # Create a value box for displaying the overall decoded address
-        self.addr_value = QLineEdit(label_value)
-        self.addr_value.setReadOnly(True)
-        self.addr_value.setMaximumSize(65, 32)
-        self.addr_value.setText('00,0000')
+        self._addr_value = QLineEdit(label_value)
+        self._addr_value.setReadOnly(True)
+        self._addr_value.setMaximumSize(65, 32)
+        self._addr_value.setText('00,0000')
         font = QFont('Monospace')
         font.setStyleHint(QFont.TypeWriter)
         font.setPointSize(10)
-        self.addr_value.setFont(font)
-        self.addr_value.setAlignment(Qt.AlignCenter)
-        lv_layout.addWidget(self.addr_value)
+        self._addr_value.setFont(font)
+        self._addr_value.setAlignment(Qt.AlignCenter)
+        lv_layout.addWidget(self._addr_value)
         
         # Create a label to show 'S'
         label = QLabel('S', label_value)
@@ -77,10 +77,10 @@ class AddressRegister(QWidget):
 
     def _update_addr_value(self):
         # Get the values of all tracked registers
-        s = int(self.s_value.text(), 8)
-        eb = int(self.eb_value.text(), 8)
-        fb = int(self.fb_value.text(), 8)
-        fext = int(self.fext_value.text(), 8)
+        s = int(self._s_value.text(), 8)
+        eb = int(self._eb_value.text(), 8)
+        fb = int(self._fb_value.text(), 8)
+        fext = int(self._fext_value.text(), 8)
 
         # Determine which class of memory is being addressed by looking at S,
         # and further decode the address based on that
@@ -110,7 +110,7 @@ class AddressRegister(QWidget):
             # Fixed-fixed addresses also use only the value of S
             value_text = '%04o' % s
 
-        self.addr_value.setText(value_text)
+        self._addr_value.setText(value_text)
 
     def _set_reg_value(self, inds, value_box, x):
         # Generic function to display in octal the value of a register, with the

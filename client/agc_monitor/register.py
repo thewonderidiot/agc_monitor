@@ -6,33 +6,33 @@ from indicator import Indicator
 class Register(QWidget):
     def __init__(self, parent, name, has_parity, color):
         super().__init__(parent)
-        self.has_parity = has_parity
-        self.indicators = []
-        self.parity_inds = []
+        self._has_parity = has_parity
+        self._indicators = []
+        self._parity_inds = []
 
         # Set up the UI
         self._setup_ui(name, color)
 
     def set_value(self, x):
         # Toggle each of the 16 value indicators to match the new value
-        for i in range(0, len(self.indicators)):
-            self.indicators[i].set_on((x & (1 << i)) != 0)
+        for i in range(0, len(self._indicators)):
+            self._indicators[i].set_on((x & (1 << i)) != 0)
 
         # Update the octal decoding of the indicators. Bit 15 is ignored
         # in the actual value, so mask it out and shift down bit 16.
         value = ((x & 0o100000) >> 1) | (x & 0o37777)
-        self.value_box.setText('%05o' % value)
+        self._value_box.setText('%05o' % value)
 
         # Instead we will convey overflow information with text color.
         # Positive overflow is red, and negative overflow is purple.
         sign1 = (x & 0o100000) != 0
         sign2 = (x & 0o040000) != 0
         if (not sign1 and sign2):
-            self.value_box.setStyleSheet('color: red;')
+            self._value_box.setStyleSheet('color: red;')
         elif (sign1 and not sign2):
-            self.value_box.setStyleSheet('color: purple;')
+            self._value_box.setStyleSheet('color: purple;')
         else:
-            self.value_box.setStyleSheet('color: black;')
+            self._value_box.setStyleSheet('color: black;')
 
     def _setup_ui(self, name, color):
         # Set up the overall horizontal layout
@@ -56,7 +56,7 @@ class Register(QWidget):
             ind = Indicator(bit_frame, color)
             ind.setFixedSize(20, 32)
             bit_layout.addWidget(ind)
-            self.indicators.insert(0, ind)
+            self._indicators.insert(0, ind)
 
             # Add separators between every group of 3 bits (except between
             # bits 15 and 16).
@@ -66,7 +66,7 @@ class Register(QWidget):
                 bit_layout.addWidget(sep)
 
         # Add sensed and generated parity bits, if this register has them
-        if self.has_parity:
+        if self._has_parity:
             sep = QFrame(bit_frame)
             sep.setFrameStyle(QFrame.VLine | QFrame.Raised)
             bit_layout.addWidget(sep)
@@ -75,21 +75,21 @@ class Register(QWidget):
                 ind = Indicator(bit_frame, QColor(255,255,0))
                 ind.setFixedSize(20, 32)
                 bit_layout.addWidget(ind)
-                self.parity_inds.insert(0, ind)
+                self._parity_inds.insert(0, ind)
             
         # Add a box to display the octal decoded value in
-        self.value_box = QLineEdit()
-        self.value_box.setMaximumSize(52, 32)
-        self.value_box.setReadOnly(True)
-        self.value_box.setAlignment(Qt.AlignCenter)
-        self.value_box.setText('00000')
+        self._value_box = QLineEdit()
+        self._value_box.setMaximumSize(52, 32)
+        self._value_box.setReadOnly(True)
+        self._value_box.setAlignment(Qt.AlignCenter)
+        self._value_box.setText('00000')
 
         font = QFont('Monospace')
         font.setStyleHint(QFont.TypeWriter)
         font.setPointSize(10)
-        self.value_box.setFont(font)
+        self._value_box.setFont(font)
 
-        layout.addWidget(self.value_box)
+        layout.addWidget(self._value_box)
 
         # Add a label showing the name of the register
         label = QLabel(name, self)
@@ -102,5 +102,5 @@ class Register(QWidget):
         layout.addWidget(label)
 
         # If parity was not included, fill up the equivalent space
-        if not self.has_parity:
+        if not self._has_parity:
             layout.addSpacing(45)

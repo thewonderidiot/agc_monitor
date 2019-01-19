@@ -14,9 +14,9 @@ class CompStop(QFrame):
     def __init__(self, parent, usbif):
         super().__init__(parent)
         
-        self.usbif = usbif
-        self.stop_switches = {}
-        self.stop_inds = {}
+        self._usbif = usbif
+        self._stop_switches = {}
+        self._stop_inds = {}
 
         self._setup_ui()
 
@@ -26,12 +26,12 @@ class CompStop(QFrame):
     def handle_msg(self, msg):
         if isinstance(msg, um.ControlStopCause):
             for v in STOP_CONDS.values():
-                self.stop_inds[v].set_on(getattr(msg, v))
+                self._stop_inds[v].set_on(getattr(msg, v))
 
     def _set_stop_conds(self, on):
-        self.usbif.send(um.WriteControlStop(
-            t12 = self.stop_switches['t12'].isChecked(),
-            nisq = self.stop_switches['nisq'].isChecked()
+        self._usbif.send(um.WriteControlStop(
+            t12 = self._stop_switches['t12'].isChecked(),
+            nisq = self._stop_switches['nisq'].isChecked()
         ))
 
     def _setup_ui(self):
@@ -54,14 +54,14 @@ class CompStop(QFrame):
         ind.setFixedSize(20, 20)
         layout.addWidget(ind, 0, col)
         layout.setAlignment(ind, Qt.AlignCenter)
-        self.stop_inds[name] = ind
+        self._stop_inds[name] = ind
 
         # Add a switch to control the stop control state
         check = QCheckBox(self)
         layout.addWidget(check, 1, col)
         layout.setAlignment(check, Qt.AlignCenter)
         check.stateChanged.connect(self._set_stop_conds)
-        self.stop_switches[name] = check
+        self._stop_switches[name] = check
 
         # Create a label for the inhibit switch
         label = QLabel(label_text, self)

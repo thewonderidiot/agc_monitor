@@ -16,15 +16,15 @@ INH_SWITCHES = OrderedDict([
 class Control(QFrame):
     def __init__(self, parent, usbif):
         super().__init__(parent)
-        self.usbif = usbif
-        self.inh_switches = []
-        self.inh_inds = []
+        self._usbif = usbif
+        self._inh_switches = []
+        self._inh_inds = []
         self._setup_ui()
 
     def _set_inh(self, ind, msg, on):
         ind.set_on(on)
         val = 1 if on else 0
-        self.usbif.send(msg(val))
+        self._usbif.send(msg(val))
 
     def _setup_ui(self):
         self.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
@@ -50,8 +50,8 @@ class Control(QFrame):
         col = 0
         for switch, msg in INH_SWITCHES.items():
             self._create_inh_control(switch, nh_group, nh_layout, col)
-            ind = self.inh_inds[-1]
-            self.inh_switches[-1].stateChanged.connect(lambda on, ind=ind, msg=msg: self._set_inh(ind, msg, on))
+            ind = self._inh_inds[-1]
+            self._inh_switches[-1].stateChanged.connect(lambda on, ind=ind, msg=msg: self._set_inh(ind, msg, on))
             col += 1
 
         sl_group = QWidget(self)
@@ -101,8 +101,8 @@ class Control(QFrame):
         layout.setAlignment(check, Qt.AlignCenter)
         layout.setColumnMinimumWidth(col, 25)
 
-        self.inh_switches.append(check)
-        self.inh_inds.append(ind)
+        self._inh_switches.append(check)
+        self._inh_inds.append(ind)
 
     def _create_status_light(self, name, parent, layout, col):
         label = QLabel(name, parent)
