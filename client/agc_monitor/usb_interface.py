@@ -3,7 +3,7 @@ import queue
 import time
 import warnings
 from ctypes import *
-from PySide2.QtCore import QTimer
+from PySide2.QtCore import Signal, QObject, QTimer
 from pylibftdi import Device, USB_PID_LIST, USB_VID_LIST, FtdiError
 
 from slip import slip, unslip, unslip_from
@@ -12,9 +12,12 @@ import usb_msg as um
 STYX_VID = 0x2a19
 STYX_PID = 0x1007
 
-class USBInterface(threading.Thread):
+class USBInterface(QObject, threading.Thread):
+    connected = Signal(bool)
+
     def __init__(self):
-        super().__init__()
+        QObject.__init__(self)
+        threading.Thread.__init__(self)
 
         # Clear the FTDI VID and PID lists and replace them with the Styx
         # PID and VID, so we will only match Styx boards
@@ -33,7 +36,6 @@ class USBInterface(threading.Thread):
 
         self._poll_msgs = []
         self._subscriptions = {}
-
         self._rx_bytes = b''
 
         self._timer = QTimer(None)
@@ -45,8 +47,8 @@ class USBInterface(threading.Thread):
         # perform routine servicing
         while self._alive.isSet():
             if not self._connected.isSet():
-                # FIXME: Try to auto-connect
-                time.sleep(0.1)
+                self._connect()
+                time.sleep(0.5)
             else:
                 self._service()
 
@@ -54,34 +56,6 @@ class USBInterface(threading.Thread):
         if self._dev:
             self._dev.flush()
             self._dev.close()
-
-    def connect(self):
-        if self._connected.isSet():
-            return True
-
-        try:
-            # Attempt to construct an FTDI Device
-            self._dev = Device()
-
-            # Reset the mode, then switch into serial FIFO
-            self._dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x00)
-            time.sleep(0.01)
-            self._dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x40)
-
-            # Set communication params
-            self._dev.ftdi_fn.ftdi_set_latency_timer(2)
-            self._dev.ftdi_fn.ftdi_setflowctrl(0)
-            self._dev.ftdi_fn.ftdi_usb_purge_buffers()
-
-            # Mark ourselves connected
-            self._connected.set()
-            return True
-
-        except FtdiError:
-            # No luck connecting/talking to the board; clear the connect status
-            self._connected.clear()
-
-        return False
 
     def send(self, msg):
         self._tx_queue.put(msg)
@@ -118,13 +92,13 @@ class USBInterface(threading.Thread):
             try:
                 self._dev.write(slipped_msg)
             except:
-                self._connected.clear()
+                self._disconnect()
                 return
 
         try:
             self._rx_bytes += self._dev.read(256)
         except:
-            self._connected.clear()
+            self._disconnect()
             return
 
         while self._rx_bytes != b'':
@@ -139,6 +113,36 @@ class USBInterface(threading.Thread):
                 continue
 
             self._rx_queue.put(msg)
+
+    def _connect(self):
+        if self._connected.isSet():
+            return
+
+        try:
+            # Attempt to construct an FTDI Device
+            self._dev = Device()
+
+            # Reset the mode, then switch into serial FIFO
+            self._dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x00)
+            time.sleep(0.01)
+            self._dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x40)
+
+            # Set communication params
+            self._dev.ftdi_fn.ftdi_set_latency_timer(2)
+            self._dev.ftdi_fn.ftdi_setflowctrl(0)
+            self._dev.ftdi_fn.ftdi_usb_purge_buffers()
+
+            # Mark ourselves connected
+            self._connected.set()
+            self.connected.emit(True)
+
+        except FtdiError:
+            pass
+
+    def _disconnect(self):
+        if self._connected.isSet():
+            self._connected.clear()
+            self.connected.emit(False)
 
     def _publish(self, msg):
         if type(msg) in self._subscriptions:

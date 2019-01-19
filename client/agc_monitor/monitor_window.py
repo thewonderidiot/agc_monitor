@@ -15,19 +15,15 @@ class MonitorWindow(QMainWindow):
         # Construct the USB interface thread first, since widgets need to know
         # where to find it
         self._usbif = USBInterface()
+        self._usbif.connected.connect(self.connected)
 
         # Set up the UI
         self._setup_ui()
 
         # Kick off the UI thread and try to connect to the device
         self._usbif.start()
-        self.connect()
 
     def _setup_ui(self):
-        # Add a dropdown menu for various non-original actions
-        menu = self.menuBar().addMenu('Monitor')
-        menu.addAction('Connect', self.connect)
-
         # Create a status bar widget to display connection state
         # FIXME: Replace with an indicator if this becomes automatic?
         status_bar = self.statusBar()
@@ -84,8 +80,7 @@ class MonitorWindow(QMainWindow):
         layout.addWidget(self._comp_stop)
         layout.setAlignment(self._comp_stop, Qt.AlignLeft)
 
-    def connect(self):
-        connected = self._usbif.connect()
+    def connected(self, connected):
         if connected:
             message = 'Connected!'
         else:
