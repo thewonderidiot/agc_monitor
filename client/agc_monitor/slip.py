@@ -1,3 +1,5 @@
+import warnings
+
 SLIP_END = b'\xC0'
 SLIP_ESC = b'\xDB'
 SLIP_ESC_END = b'\xDC'
@@ -17,3 +19,26 @@ def unslip(msg):
     msg = msg.replace(SLIP_ESC+SLIP_ESC_END, SLIP_END)
     msg = msg.replace(SLIP_ESC+SLIP_ESC_ESC, SLIP_ESC)
     return msg
+
+def unslip_from(data):
+    first_end = data.find(SLIP_END)
+    if first_end == -1:
+        return b'', b''
+    elif first_end != 0:
+        warnings.warn('Dropping %u bytes from data stream' % first_end)
+
+    data = data[first_end:]
+    non_end = 0
+    for i, b in enumerate(data):
+        if b != ord(SLIP_END):
+            non_end = i
+            break
+
+    if non_end == 0:
+        return b'', data
+
+    next_end = data.find(SLIP_END, non_end)
+    if next_end == -1:
+        return b'', data
+
+    return unslip(data[non_end-1:next_end+1]), data[next_end+1:]

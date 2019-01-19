@@ -51,7 +51,7 @@ class Control(QFrame):
         for switch, msg in INH_SWITCHES.items():
             self._create_inh_control(switch, nh_group, nh_layout, col)
             ind = self.inh_inds[-1]
-            self.inh_switches[-1].stateChanged.connect(lambda on, ind=ind: self._set_inh(ind, msg, on))
+            self.inh_switches[-1].stateChanged.connect(lambda on, ind=ind, msg=msg: self._set_inh(ind, msg, on))
             col += 1
 
         sl_group = QWidget(self)

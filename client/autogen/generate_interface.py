@@ -12,7 +12,7 @@ import struct
 
 DATA_FMT = '>BHH'
 READ_FMT = '>BH'
-WRITE_FLAG = 0x80
+DATA_FLAG = 0x80
 
 def pack(msg):
     return globals()['_pack_' + type(msg).__name__](msg)
@@ -30,6 +30,7 @@ def unpack(msg_bytes):
 '''
 
 TYPE_TEMPLATE = '''{name} = namedtuple('{name}', {fields})
+{name}.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 '''
 
 GROUP_ENUM_TEMPLATE = '''class AddressGroup(object):
@@ -62,10 +63,10 @@ _unpack_mem_fns = {{
 {mem_fns}}}
 '''
 
-UNPACK_REG_ENTRY_TEMPLATE = '''    (AddressGroup.{group}, {group}.{reg}): _unpack_{group}{reg},
+UNPACK_REG_ENTRY_TEMPLATE = '''    (DATA_FLAG | AddressGroup.{group}, {group}.{reg}): _unpack_{group}{reg},
 '''
 
-UNPACK_MEM_ENTRY_TEMPLATE = '''    (AddressGroup.{group}): _unpack_{group},
+UNPACK_MEM_ENTRY_TEMPLATE = '''    (DATA_FLAG | AddressGroup.{group}): _unpack_{group},
 '''
 
 UNPACK_REG_TEMPLATE = '''def _unpack_{group}{reg}(data):
@@ -80,7 +81,7 @@ UNPACK_MEM_TEMPLATE = '''def _unpack_{group}(addr, data):
 '''
 
 FOOTER_TEMPLATE = '''def _pack_write_msg(group, addr, data):
-    return struct.pack(DATA_FMT, WRITE_FLAG | group, addr, data)
+    return struct.pack(DATA_FMT, DATA_FLAG | group, addr, data)
 
 def _pack_read_msg(group, addr):
     return struct.pack(READ_FMT, group, addr)

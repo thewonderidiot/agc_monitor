@@ -20,6 +20,14 @@ class CompStop(QFrame):
 
         self._setup_ui()
 
+        usbif.poll(um.ReadControlStopCause())
+        usbif.subscribe(self, um.ControlStopCause)
+
+    def handle_msg(self, msg):
+        if isinstance(msg, um.ControlStopCause):
+            for v in STOP_CONDS.values():
+                self.stop_inds[v].set_on(getattr(msg, v))
+
     def _set_stop_conds(self, on):
         self.usbif.send(um.WriteControlStop(
             t12 = self.stop_switches['t12'].isChecked(),

@@ -6,7 +6,7 @@ import struct
 
 DATA_FMT = '>BHH'
 READ_FMT = '>BH'
-WRITE_FLAG = 0x80
+DATA_FLAG = 0x80
 
 def pack(msg):
     return globals()['_pack_' + type(msg).__name__](msg)
@@ -22,39 +22,73 @@ def unpack(msg_bytes):
         return _unpack_reg_fns[(group, addr)](data)
 
 ReadSimErasable = namedtuple('ReadSimErasable', ['addr'])
+ReadSimErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 SimErasable = namedtuple('SimErasable', ['addr', 'data'])
+SimErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteSimErasable = namedtuple('WriteSimErasable', ['addr', 'data'])
+WriteSimErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadFixed = namedtuple('ReadFixed', ['addr'])
+ReadFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Fixed = namedtuple('Fixed', ['addr', 'data'])
+Fixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadSimFixed = namedtuple('ReadSimFixed', ['addr'])
+ReadSimFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 SimFixed = namedtuple('SimFixed', ['addr', 'data'])
+SimFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteSimFixed = namedtuple('WriteSimFixed', ['addr', 'data'])
+WriteSimFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadChannels = namedtuple('ReadChannels', ['addr'])
+ReadChannels.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Channels = namedtuple('Channels', ['addr', 'data'])
+Channels.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadErasable = namedtuple('ReadErasable', ['addr'])
+ReadErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Erasable = namedtuple('Erasable', ['addr', 'data'])
+Erasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlStart = namedtuple('WriteControlStart', ['start'])
+WriteControlStart.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlStop = namedtuple('ReadControlStop', [])
+ReadControlStop.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlStop = namedtuple('ControlStop', ['t12', 'nisq'])
+ControlStop.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlStop = namedtuple('WriteControlStop', ['t12', 'nisq'])
+WriteControlStop.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlStopCause = namedtuple('ReadControlStopCause', [])
+ReadControlStopCause.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlStopCause = namedtuple('ControlStopCause', ['t12', 'nisq'])
+ControlStopCause.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlProceed = namedtuple('WriteControlProceed', ['proceed'])
+WriteControlProceed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlMNHRPT = namedtuple('ReadControlMNHRPT', [])
+ReadControlMNHRPT.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlMNHRPT = namedtuple('ControlMNHRPT', ['mnhrpt'])
+ControlMNHRPT.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlMNHRPT = namedtuple('WriteControlMNHRPT', ['mnhrpt'])
+WriteControlMNHRPT.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlMNHNC = namedtuple('ReadControlMNHNC', [])
+ReadControlMNHNC.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlMNHNC = namedtuple('ControlMNHNC', ['mnhnc'])
+ControlMNHNC.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlMNHNC = namedtuple('WriteControlMNHNC', ['mnhnc'])
+WriteControlMNHNC.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlNHALGA = namedtuple('ReadControlNHALGA', [])
+ReadControlNHALGA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlNHALGA = namedtuple('ControlNHALGA', ['nhalga'])
+ControlNHALGA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlNHALGA = namedtuple('WriteControlNHALGA', ['nhalga'])
+WriteControlNHALGA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlSTRT1 = namedtuple('ReadControlSTRT1', [])
+ReadControlSTRT1.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlSTRT1 = namedtuple('ControlSTRT1', ['strt1'])
+ControlSTRT1.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlSTRT1 = namedtuple('WriteControlSTRT1', ['strt1'])
+WriteControlSTRT1.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlSTRT2 = namedtuple('ReadControlSTRT2', [])
+ReadControlSTRT2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlSTRT2 = namedtuple('ControlSTRT2', ['strt2'])
+ControlSTRT2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlSTRT2 = namedtuple('WriteControlSTRT2', ['strt2'])
+WriteControlSTRT2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 
 class AddressGroup(object):
     SimErasable = 0x10
@@ -213,25 +247,25 @@ def _unpack_ControlSTRT2(data):
 
 
 _unpack_reg_fns = {
-    (AddressGroup.Control, Control.Stop): _unpack_ControlStop,
-    (AddressGroup.Control, Control.StopCause): _unpack_ControlStopCause,
-    (AddressGroup.Control, Control.MNHRPT): _unpack_ControlMNHRPT,
-    (AddressGroup.Control, Control.MNHNC): _unpack_ControlMNHNC,
-    (AddressGroup.Control, Control.NHALGA): _unpack_ControlNHALGA,
-    (AddressGroup.Control, Control.STRT1): _unpack_ControlSTRT1,
-    (AddressGroup.Control, Control.STRT2): _unpack_ControlSTRT2,
+    (DATA_FLAG | AddressGroup.Control, Control.Stop): _unpack_ControlStop,
+    (DATA_FLAG | AddressGroup.Control, Control.StopCause): _unpack_ControlStopCause,
+    (DATA_FLAG | AddressGroup.Control, Control.MNHRPT): _unpack_ControlMNHRPT,
+    (DATA_FLAG | AddressGroup.Control, Control.MNHNC): _unpack_ControlMNHNC,
+    (DATA_FLAG | AddressGroup.Control, Control.NHALGA): _unpack_ControlNHALGA,
+    (DATA_FLAG | AddressGroup.Control, Control.STRT1): _unpack_ControlSTRT1,
+    (DATA_FLAG | AddressGroup.Control, Control.STRT2): _unpack_ControlSTRT2,
 }
 
 _unpack_mem_fns = {
-    (AddressGroup.SimErasable): _unpack_SimErasable,
-    (AddressGroup.Fixed): _unpack_Fixed,
-    (AddressGroup.SimFixed): _unpack_SimFixed,
-    (AddressGroup.Channels): _unpack_Channels,
-    (AddressGroup.Erasable): _unpack_Erasable,
+    (DATA_FLAG | AddressGroup.SimErasable): _unpack_SimErasable,
+    (DATA_FLAG | AddressGroup.Fixed): _unpack_Fixed,
+    (DATA_FLAG | AddressGroup.SimFixed): _unpack_SimFixed,
+    (DATA_FLAG | AddressGroup.Channels): _unpack_Channels,
+    (DATA_FLAG | AddressGroup.Erasable): _unpack_Erasable,
 }
 
 def _pack_write_msg(group, addr, data):
-    return struct.pack(DATA_FMT, WRITE_FLAG | group, addr, data)
+    return struct.pack(DATA_FMT, DATA_FLAG | group, addr, data)
 
 def _pack_read_msg(group, addr):
     return struct.pack(READ_FMT, group, addr)

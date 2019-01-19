@@ -1,9 +1,12 @@
 import threading
 import queue
 import time
+import warnings
 from ctypes import *
+from PySide2.QtCore import QTimer
 from pylibftdi import Device, USB_PID_LIST, USB_VID_LIST, FtdiError
-from slip import slip, unslip
+
+from slip import slip, unslip, unslip_from
 import usb_msg as um
 
 STYX_VID = 0x2a19
@@ -22,10 +25,20 @@ class USBInterface(threading.Thread):
         USB_PID_LIST.append(STYX_PID)
 
         self.dev = None
-        self.queue = queue.Queue()
+        self.tx_queue = queue.Queue()
+        self.rx_queue = queue.Queue()
         self.connected = threading.Event()
         self.alive = threading.Event()
         self.alive.set()
+
+        self.poll_msgs = []
+        self.subscriptions = {}
+
+        self.rx_bytes = b''
+
+        self.timer = QTimer(None)
+        self.timer.timeout.connect(self._transmit_poll_msgs)
+        self.timer.start(20)
 
     def run(self):
         # Main run loop. Try to connect if we're not connected, otherwise
@@ -71,16 +84,63 @@ class USBInterface(threading.Thread):
         return False
 
     def send(self, msg):
-        self.queue.put(msg)
+        self.tx_queue.put(msg)
+
+    def poll(self, msg):
+        if msg not in self.poll_msgs:
+            self.poll_msgs.append(msg)
+
+    def subscribe(self, subscriber, msg_type):
+        if msg_type in self.subscriptions:
+            if subscriber not in self.subscriptions[msg_type]:
+                self.subscriptions[msg_type].append(subscriber)
+        else:
+            self.subscriptions[msg_type] = [subscriber]
 
     def join(self, timeout=None):
         self.alive.clear()
         threading.Thread.join(self, timeout)
 
+    def _transmit_poll_msgs(self):
+        if self.connected.isSet():
+            for msg in self.poll_msgs:
+                self.send(msg)
+
+        while not self.rx_queue.empty():
+            msg = self.rx_queue.get_nowait()
+            self._publish(msg)
+
     def _service(self):
-        time.sleep(0.01)
-        while not self.queue.empty():
-            msg = self.queue.get_nowait()
+        while not self.tx_queue.empty():
+            msg = self.tx_queue.get_nowait()
             packed_msg = um.pack(msg)
             slipped_msg = slip(packed_msg)
-            self.dev.write(slipped_msg)
+            try:
+                self.dev.write(slipped_msg)
+            except:
+                self.connected.clear()
+                return
+
+        try:
+            self.rx_bytes += self.dev.read(256)
+        except:
+            self.connected.clear()
+            return
+
+        while self.rx_bytes != b'':
+            msg_bytes, self.rx_bytes = unslip_from(self.rx_bytes)
+            if msg_bytes == b'':
+                break
+
+            try:
+                msg = um.unpack(msg_bytes)
+            except:
+                warnings.warn('Unknown message %s' % msg_bytes)
+                continue
+
+            self.rx_queue.put(msg)
+
+    def _publish(self, msg):
+        if type(msg) in self.subscriptions:
+            for subscriber in self.subscriptions[type(msg)]:
+                subscriber.handle_msg(msg)
