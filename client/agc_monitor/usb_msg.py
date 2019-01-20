@@ -27,10 +27,54 @@ SimErasable = namedtuple('SimErasable', ['addr', 'data'])
 SimErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteSimErasable = namedtuple('WriteSimErasable', ['addr', 'data'])
 WriteSimErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegA = namedtuple('ReadMonRegA', [])
+ReadMonRegA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegA = namedtuple('MonRegA', ['a'])
+MonRegA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegL = namedtuple('ReadMonRegL', [])
+ReadMonRegL.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegL = namedtuple('MonRegL', ['l'])
+MonRegL.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegQ = namedtuple('ReadMonRegQ', [])
+ReadMonRegQ.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegQ = namedtuple('MonRegQ', ['q'])
+MonRegQ.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegZ = namedtuple('ReadMonRegZ', [])
+ReadMonRegZ.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegZ = namedtuple('MonRegZ', ['z'])
+MonRegZ.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegBB = namedtuple('ReadMonRegBB', [])
+ReadMonRegBB.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegBB = namedtuple('MonRegBB', ['eb', 'fb'])
+MonRegBB.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegB = namedtuple('ReadMonRegB', [])
+ReadMonRegB.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegB = namedtuple('MonRegB', ['b'])
+MonRegB.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegS = namedtuple('ReadMonRegS', [])
+ReadMonRegS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegS = namedtuple('MonRegS', ['s'])
+MonRegS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegG = namedtuple('ReadMonRegG', [])
+ReadMonRegG.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegG = namedtuple('MonRegG', ['g'])
+MonRegG.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegY = namedtuple('ReadMonRegY', [])
+ReadMonRegY.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegY = namedtuple('MonRegY', ['y'])
+MonRegY.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegW = namedtuple('ReadMonRegW', [])
+ReadMonRegW.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegW = namedtuple('MonRegW', ['w'])
+MonRegW.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadFixed = namedtuple('ReadFixed', ['addr'])
 ReadFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Fixed = namedtuple('Fixed', ['addr', 'data'])
 Fixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonChanFEXT = namedtuple('ReadMonChanFEXT', [])
+ReadMonChanFEXT.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonChanFEXT = namedtuple('MonChanFEXT', ['fext'])
+MonChanFEXT.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadSimFixed = namedtuple('ReadSimFixed', ['addr'])
 ReadSimFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 SimFixed = namedtuple('SimFixed', ['addr', 'data'])
@@ -92,12 +136,27 @@ WriteControlSTRT2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tup
 
 class AddressGroup(object):
     SimErasable = 0x10
+    MonReg = 0x21
     Fixed = 0x01
+    MonChan = 0x22
     SimFixed = 0x11
     Channels = 0x02
     Erasable = 0x00
     Control = 0x20
 
+class MonReg(object):
+    A = 0x0000
+    L = 0x0001
+    Q = 0x0002
+    Z = 0x0003
+    BB = 0x0004
+    B = 0x0005
+    S = 0x0006
+    G = 0x0007
+    Y = 0x0008
+    W = 0x0040
+class MonChan(object):
+    FEXT = 0x0007
 class Control(object):
     Start = 0x0000
     Stop = 0x0001
@@ -115,8 +174,41 @@ def _pack_ReadSimErasable(msg):
 def _pack_WriteSimErasable(msg):
     return _pack_write_msg(AddressGroup.SimErasable, msg.addr, msg.data)
 
+def _pack_ReadMonRegA(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.A)
+
+def _pack_ReadMonRegL(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.L)
+
+def _pack_ReadMonRegQ(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.Q)
+
+def _pack_ReadMonRegZ(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.Z)
+
+def _pack_ReadMonRegBB(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.BB)
+
+def _pack_ReadMonRegB(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.B)
+
+def _pack_ReadMonRegS(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.S)
+
+def _pack_ReadMonRegG(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.G)
+
+def _pack_ReadMonRegY(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.Y)
+
+def _pack_ReadMonRegW(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.W)
+
 def _pack_ReadFixed(msg):
     return _pack_read_msg(AddressGroup.Fixed, msg.addr)
+
+def _pack_ReadMonChanFEXT(msg):
+    return _pack_read_msg(AddressGroup.MonChan, MonChan.FEXT)
 
 def _pack_ReadSimFixed(msg):
     return _pack_read_msg(AddressGroup.SimFixed, msg.addr)
@@ -196,8 +288,64 @@ def _pack_WriteControlSTRT2(msg):
 def _unpack_SimErasable(addr, data):
     return SimErasable(addr=addr, data=data)
 
+def _unpack_MonRegA(data):
+    return MonRegA(
+        a = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_MonRegL(data):
+    return MonRegL(
+        l = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_MonRegQ(data):
+    return MonRegQ(
+        q = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_MonRegZ(data):
+    return MonRegZ(
+        z = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_MonRegBB(data):
+    return MonRegBB(
+        eb = (data >> 0) & 0x0007,
+        fb = (data >> 10) & 0x001F,
+    )
+
+def _unpack_MonRegB(data):
+    return MonRegB(
+        b = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_MonRegS(data):
+    return MonRegS(
+        s = (data >> 0) & 0x0FFF,
+    )
+
+def _unpack_MonRegG(data):
+    return MonRegG(
+        g = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_MonRegY(data):
+    return MonRegY(
+        y = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_MonRegW(data):
+    return MonRegW(
+        w = (data >> 0) & 0xFFFF,
+    )
+
 def _unpack_Fixed(addr, data):
     return Fixed(addr=addr, data=data)
+
+def _unpack_MonChanFEXT(data):
+    return MonChanFEXT(
+        fext = (data >> 0) & 0x0007,
+    )
 
 def _unpack_SimFixed(addr, data):
     return SimFixed(addr=addr, data=data)
@@ -247,6 +395,17 @@ def _unpack_ControlSTRT2(data):
 
 
 _unpack_reg_fns = {
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.A): _unpack_MonRegA,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.L): _unpack_MonRegL,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.Q): _unpack_MonRegQ,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.Z): _unpack_MonRegZ,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.BB): _unpack_MonRegBB,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.B): _unpack_MonRegB,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.S): _unpack_MonRegS,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.G): _unpack_MonRegG,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.Y): _unpack_MonRegY,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.W): _unpack_MonRegW,
+    (DATA_FLAG | AddressGroup.MonChan, MonChan.FEXT): _unpack_MonChanFEXT,
     (DATA_FLAG | AddressGroup.Control, Control.Stop): _unpack_ControlStop,
     (DATA_FLAG | AddressGroup.Control, Control.StopCause): _unpack_ControlStopCause,
     (DATA_FLAG | AddressGroup.Control, Control.MNHRPT): _unpack_ControlMNHRPT,

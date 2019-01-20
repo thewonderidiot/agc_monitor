@@ -107,7 +107,8 @@ def generate_message_type(name, reg, include_fields):
             fields.append('data')
     elif include_fields:
         for field in reg['fields']:
-            fields.append(field['name'])
+            if field['name'] != 'spare':
+                fields.append(field['name'])
 
     return TYPE_TEMPLATE.format(name=name, fields=str(fields))
 

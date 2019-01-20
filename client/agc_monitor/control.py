@@ -21,6 +21,9 @@ class Control(QFrame):
         self._inh_inds = []
         self._setup_ui()
 
+        for msg in INH_SWITCHES.values():
+            usbif.send(msg(0))
+
     def _set_inh(self, ind, msg, on):
         ind.set_on(on)
         val = 1 if on else 0

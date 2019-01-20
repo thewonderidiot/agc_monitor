@@ -1,4 +1,4 @@
-from PySide2.QtWidgets import QWidget, QFrame, QHBoxLayout, QVBoxLayout, QGridLayout, QLabel, QGroupBox, QCheckBox
+from PySide2.QtWidgets import QWidget, QFrame, QHBoxLayout, QVBoxLayout, QGridLayout, QLabel, QGroupBox, QCheckBox, QPushButton
 from PySide2.QtGui import QFont, QColor
 from PySide2.QtCore import Qt
 from collections import OrderedDict
@@ -22,6 +22,7 @@ class CompStop(QFrame):
 
         usbif.poll(um.ReadControlStopCause())
         usbif.subscribe(self, um.ControlStopCause)
+        usbif.send(um.WriteControlStop(t12=0, nisq=0))
 
     def handle_msg(self, msg):
         if isinstance(msg, um.ControlStopCause):
@@ -47,6 +48,13 @@ class CompStop(QFrame):
         for l,n in STOP_CONDS.items():
             self._create_stop_cond(l, n, layout, col)
             col += 1
+
+        pro = QPushButton("Proceed", self)
+        layout.addWidget(pro, 0, col)
+        pro.pressed.connect(self._proceed)
+
+    def _proceed(self):
+        self._usbif.send(um.WriteControlProceed(1))
 
     def _create_stop_cond(self, label_text, name, layout, col):
         # Create an indicator to show stop status

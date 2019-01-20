@@ -2,9 +2,10 @@ from PySide2.QtWidgets import QWidget, QFrame, QVBoxLayout, QHBoxLayout, QLineEd
 from PySide2.QtGui import QFont
 from PySide2.QtCore import Qt
 from indicator import Indicator
+import usb_msg as um
 
 class AddressRegister(QWidget):
-    def __init__(self, parent, color):
+    def __init__(self, parent, usbif, color):
         super().__init__(parent)
         self._eb_inds = []
         self._fext_inds = []
@@ -13,9 +14,25 @@ class AddressRegister(QWidget):
 
         self._setup_ui(color)
 
-    def set_bb_value(self, x):
-        self._set_reg_value(self._eb_inds, self._eb_value, x & 0o7)
-        self._set_reg_value(self._fb_inds, self._fb_value, (x >> 10) & 0o37)
+        usbif.poll(um.ReadMonRegS())
+        usbif.poll(um.ReadMonRegBB())
+        usbif.poll(um.ReadMonChanFEXT())
+
+        usbif.subscribe(self, um.MonRegS)
+        usbif.subscribe(self, um.MonRegBB)
+        usbif.subscribe(self, um.MonChanFEXT)
+
+    def handle_msg(self, msg):
+        if isinstance(msg, um.MonRegS):
+            self.set_s_value(msg.s)
+        elif isinstance(msg, um.MonRegBB):
+            self.set_bank_values(msg.eb, msg.fb)
+        elif isinstance(msg, um.MonChanFEXT):
+            self.set_fext_value(msg.fext)
+
+    def set_bank_values(self, eb, fb):
+        self._set_reg_value(self._eb_inds, self._eb_value, eb)
+        self._set_reg_value(self._fb_inds, self._fb_value, fb)
         self._update_addr_value()
 
     def set_s_value(self, x):

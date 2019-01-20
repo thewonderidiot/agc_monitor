@@ -38,35 +38,35 @@ class MonitorWindow(QMainWindow):
         layout.setSpacing(2)
 
         # Add all of the registers for display
-        self._reg_a = Register(None, 'A', False, QColor(0,255,0))
+        self._reg_a = Register(None, self._usbif, 'A', False, QColor(0,255,0))
         layout.addWidget(self._reg_a)
         layout.setAlignment(self._reg_a, Qt.AlignRight)
 
-        self._reg_l = Register(None, 'L', False, QColor(0,255,0))
+        self._reg_l = Register(None, self._usbif, 'L', False, QColor(0,255,0))
         layout.addWidget(self._reg_l)
         layout.setAlignment(self._reg_l, Qt.AlignRight)
 
-        self._reg_q = Register(None, 'Q', False, QColor(0,255,0))
+        self._reg_q = Register(None, self._usbif, 'Q', False, QColor(0,255,0))
         layout.addWidget(self._reg_q)
         layout.setAlignment(self._reg_q, Qt.AlignRight)
 
-        self._reg_z = Register(None, 'Z', False, QColor(0,255,0))
+        self._reg_z = Register(None, self._usbif, 'Z', False, QColor(0,255,0))
         layout.addWidget(self._reg_z)
         layout.setAlignment(self._reg_z, Qt.AlignRight)
 
-        self._reg_b = Register(None, 'B', False, QColor(0,255,0))
+        self._reg_b = Register(None, self._usbif, 'B', False, QColor(0,255,0))
         layout.addWidget(self._reg_b)
         layout.setAlignment(self._reg_b, Qt.AlignRight)
 
-        self._reg_g = Register(None, 'G', True, QColor(0,255,0))
+        self._reg_g = Register(None, self._usbif, 'G', True, QColor(0,255,0))
         layout.addWidget(self._reg_g)
         layout.setAlignment(self._reg_g, Qt.AlignRight)
 
-        self._reg_w = Register(None, 'W', True, QColor(0,255,0))
+        self._reg_w = Register(None, self._usbif, 'W', True, QColor(0,255,0))
         layout.addWidget(self._reg_w)
         layout.setAlignment(self._reg_w, Qt.AlignRight)
 
-        self._reg_s = AddressRegister(None, QColor(0, 255, 0))
+        self._reg_s = AddressRegister(None, self._usbif, QColor(0, 255, 0))
         layout.addWidget(self._reg_s)
         layout.setAlignment(self._reg_s, Qt.AlignRight)
 

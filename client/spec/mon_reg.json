@@ -1,0 +1,124 @@
+{
+    "name": "MonReg",
+    "id": 33,
+    "registers": [
+        {
+            "addr": 0,
+            "name": "A",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "a",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 1,
+            "name": "L",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "l",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 2,
+            "name": "Q",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "q",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 3,
+            "name": "Z",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "z",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 4,
+            "name": "BB",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "eb",
+                    "width": 3
+                },
+                {
+                    "name": "spare",
+                    "width": 7
+                },
+                {
+                    "name": "fb",
+                    "width": 5
+                }
+            ]
+        },
+        {
+            "addr": 5,
+            "name": "B",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "b",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 6,
+            "name": "S",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "s",
+                    "width": 12
+                }
+            ]
+        },
+        {
+            "addr": 7,
+            "name": "G",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "g",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 8,
+            "name": "Y",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "y",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 64,
+            "name": "W",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "w",
+                    "width": 16
+                }
+            ]
+        }
+    ]
+}

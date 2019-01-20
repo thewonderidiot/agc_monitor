@@ -1,0 +1,17 @@
+{
+    "name": "MonChan",
+    "id": 34,
+    "registers": [
+        {
+            "addr": 7,
+            "name": "FEXT",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "fext",
+                    "width": 3
+                }
+            ]
+        }
+    ]
+}

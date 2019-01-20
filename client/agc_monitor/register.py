@@ -2,9 +2,10 @@ from PySide2.QtWidgets import QWidget, QFrame, QHBoxLayout, QLineEdit, QLabel
 from PySide2.QtGui import QFont, QColor
 from PySide2.QtCore import Qt
 from indicator import Indicator
+import usb_msg as um
 
 class Register(QWidget):
-    def __init__(self, parent, name, has_parity, color):
+    def __init__(self, parent, usbif, name, has_parity, color):
         super().__init__(parent)
         self._has_parity = has_parity
         self._indicators = []
@@ -12,6 +13,16 @@ class Register(QWidget):
 
         # Set up the UI
         self._setup_ui(name, color)
+
+        # Set up register reading and updates
+        read_cmd = getattr(um, 'ReadMonReg' + name)
+        self._data_msg = getattr(um, 'MonReg' + name)
+        usbif.poll(read_cmd())
+        usbif.subscribe(self, self._data_msg)
+
+    def handle_msg(self, msg):
+        if isinstance(msg, self._data_msg):
+            self.set_value(msg[0])
 
     def set_value(self, x):
         # Toggle each of the 16 value indicators to match the new value
