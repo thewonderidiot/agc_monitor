@@ -186,3 +186,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports mwch]
 
 set_property IOSTANDARD LVCMOS33 [get_ports {mdt[16]}]
 set_property IOSTANDARD LVCMOS33 [get_ports {mdt[15]}]
+
+set_property IOSTANDARD LVCMOS33 [get_ports nhalga]
+set_property PACKAGE_PIN Y9 [get_ports nhalga]

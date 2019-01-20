@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <GenRun Id="read_fifo_synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1546361935">
-  <File Type="RDS-UTIL-PB" Name="read_fifo_utilization_synth.pb"/>
   <File Type="RDS-UTIL" Name="read_fifo_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="read_fifo_utilization_synth.pb"/>
   <File Type="RDS-RDS" Name="read_fifo.vds"/>
   <File Type="RDS-DCP" Name="read_fifo.dcp"/>
   <File Type="PA-TCL" Name="read_fifo.tcl"/>

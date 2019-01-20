@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Sun Jan 13 20:56:53 2019
+| Date         : Sat Jan 19 17:44:40 2019
 | Host         : luminary running 64-bit unknown
 | Command      : report_methodology -file agc_monitor_methodology_drc_routed.rpt -pb agc_monitor_methodology_drc_routed.pb -rpx agc_monitor_methodology_drc_routed.rpx
 | Design       : agc_monitor
@@ -23,11 +23,11 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 87
+             Violations found: 88
 +-----------+----------+-------------------------------+------------+
 | Rule      | Severity | Description                   | Violations |
 +-----------+----------+-------------------------------+------------+
-| TIMING-18 | Warning  | Missing input or output delay | 87         |
+| TIMING-18 | Warning  | Missing input or output delay | 88         |
 +-----------+----------+-------------------------------+------------+
 
 2. REPORT DETAILS
@@ -454,15 +454,20 @@ Related violations: <none>
 
 TIMING-18#85 Warning
 Missing input or output delay  
-An output delay is missing on oe_n relative to clock(s) clkout
+An output delay is missing on nhalga relative to clock(s) clk
 Related violations: <none>
 
 TIMING-18#86 Warning
 Missing input or output delay  
-An output delay is missing on rd_n relative to clock(s) clkout
+An output delay is missing on oe_n relative to clock(s) clkout
 Related violations: <none>
 
 TIMING-18#87 Warning
+Missing input or output delay  
+An output delay is missing on rd_n relative to clock(s) clkout
+Related violations: <none>
+
+TIMING-18#88 Warning
 Missing input or output delay  
 An output delay is missing on wr_n relative to clock(s) clkout
 Related violations: <none>

@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date             : Sun Jan 13 20:56:54 2019
+| Date             : Sat Jan 19 17:44:42 2019
 | Host             : luminary running 64-bit unknown
 | Command          : report_power -file agc_monitor_power_routed.rpt -pb agc_monitor_power_summary_routed.pb -rpx agc_monitor_power_routed.rpx
 | Design           : agc_monitor
@@ -53,14 +53,14 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.005 |        5 |       --- |             --- |
-| Slice Logic    |     0.001 |     2226 |       --- |             --- |
-|   LUT as Logic |     0.001 |      773 |     53200 |            1.45 |
-|   Register     |    <0.001 |      975 |    106400 |            0.92 |
+| Slice Logic    |     0.001 |     2234 |       --- |             --- |
+|   LUT as Logic |     0.001 |      781 |     53200 |            1.47 |
+|   Register     |    <0.001 |      976 |    106400 |            0.92 |
 |   CARRY4       |    <0.001 |        8 |     13300 |            0.06 |
-|   Others       |     0.000 |      204 |       --- |             --- |
+|   Others       |     0.000 |      205 |       --- |             --- |
 | Signals        |     0.002 |     1777 |       --- |             --- |
 | Block RAM      |     0.002 |      2.5 |       140 |            1.79 |
-| I/O            |     0.003 |       82 |       200 |           41.00 |
+| I/O            |     0.003 |       83 |       200 |           41.50 |
 | PS7            |     1.280 |        1 |       --- |             --- |
 | Static Power   |     0.137 |          |           |                 |
 | Total          |     1.429 |          |           |                 |

@@ -53,6 +53,7 @@ module agc_monitor(
 
     output wire mnhrpt,
     output wire mnhnc,
+    output wire nhalga,
     
     // Zynq PS I/O
     inout wire [14:0] DDR_addr,
@@ -171,7 +172,8 @@ control_regs ctrl_regs(
     .stop_conds(stop_conds),
     .stop_cause(stop_cause),
     .mnhrpt(mnhrpt),
-    .mnhnc(mnhnc)
+    .mnhnc(mnhnc),
+    .nhalga(nhalga)
 );
 
 /*******************************************************************************.

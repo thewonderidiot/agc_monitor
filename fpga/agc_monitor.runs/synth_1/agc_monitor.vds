@@ -2,8 +2,8 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Sun Jan 13 20:55:15 2019
-# Process ID: 22824
+# Start of session at: Sat Jan 19 17:39:37 2019
+# Process ID: 9998
 # Current directory: /home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1
 # Command line: vivado -log agc_monitor.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source agc_monitor.tcl
 # Log file: /home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/agc_monitor.vds
@@ -18,9 +18,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 22878 
+INFO: Helper process launched with PID 10043 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 1346.809 ; gain = 1.645 ; free physical = 1276 ; free virtual = 17467
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1354.164 ; gain = 0.000 ; free physical = 298 ; free virtual = 18433
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'agc_monitor' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_monitor.v:4]
 INFO: [Synth 8-6157] synthesizing module 'usb_interface' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface.v:4]
@@ -35,18 +35,18 @@ INFO: [Synth 8-6157] synthesizing module 'cmd_receiver' [/home/mike/agc_monitor/
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v:62]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v:81]
 INFO: [Synth 8-6155] done synthesizing module 'cmd_receiver' (1#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v:6]
-INFO: [Synth 8-6157] synthesizing module 'cmd_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-22824-luminary/realtime/cmd_fifo_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'cmd_fifo' (2#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-22824-luminary/realtime/cmd_fifo_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'read_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-22824-luminary/realtime/read_fifo_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'read_fifo' (3#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-22824-luminary/realtime/read_fifo_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'cmd_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-9998-luminary/realtime/cmd_fifo_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cmd_fifo' (2#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-9998-luminary/realtime/cmd_fifo_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'read_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-9998-luminary/realtime/read_fifo_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'read_fifo' (3#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-9998-luminary/realtime/read_fifo_stub.v:6]
 INFO: [Synth 8-6157] synthesizing module 'msg_sender' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v:6]
 	Parameter IDLE bound to: 0 - type: integer 
 	Parameter ACTIVE bound to: 1 - type: integer 
 	Parameter ESCAPE bound to: 2 - type: integer 
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v:86]
 INFO: [Synth 8-6155] done synthesizing module 'msg_sender' (4#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v:6]
-INFO: [Synth 8-6157] synthesizing module 'read_byte_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-22824-luminary/realtime/read_byte_fifo_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'read_byte_fifo' (5#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-22824-luminary/realtime/read_byte_fifo_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'read_byte_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-9998-luminary/realtime/read_byte_fifo_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'read_byte_fifo' (5#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-9998-luminary/realtime/read_byte_fifo_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'usb_interface' (6#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface.v:4]
 INFO: [Synth 8-6157] synthesizing module 'cmd_controller' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_controller.v:6]
 	Parameter IDLE bound to: 0 - type: integer 
@@ -61,8 +61,9 @@ INFO: [Synth 8-6157] synthesizing module 'cmd_controller' [/home/mike/agc_monito
 	Parameter SEND_READ_MSG bound to: 15 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'cmd_controller' (7#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_controller.v:6]
 INFO: [Synth 8-6157] synthesizing module 'control_regs' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:6]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:39]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:56]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:40]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:58]
+WARNING: [Synth 8-5788] Register nhalga_reg in module control_regs is has both Set and reset with same priority. This may cause simulation mismatches. Consider rewriting code  [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:46]
 INFO: [Synth 8-6155] done synthesizing module 'control_regs' (8#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:6]
 INFO: [Synth 8-6157] synthesizing module 'start_stop' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/start_stop.v:5]
 INFO: [Synth 8-6155] done synthesizing module 'start_stop' (9#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/start_stop.v:5]
@@ -166,8 +167,8 @@ INFO: [Synth 8-6157] synthesizing module 'restart_monitor' [/home/mike/agc_monit
 INFO: [Synth 8-6155] done synthesizing module 'restart_monitor' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/restart_monitor.v:4]
 INFO: [Synth 8-6157] synthesizing module 'monitor_ps_wrapper' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'monitor_ps' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/synth/monitor_ps.v:13]
-INFO: [Synth 8-6157] synthesizing module 'monitor_ps_processing_system7_0_0' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-22824-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'monitor_ps_processing_system7_0_0' (18#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-22824-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'monitor_ps_processing_system7_0_0' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-9998-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'monitor_ps_processing_system7_0_0' (18#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-9998-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
 WARNING: [Synth 8-350] instance 'processing_system7_0' of module 'monitor_ps_processing_system7_0_0' requires 25 connections, but only 22 given [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/synth/monitor_ps.v:79]
 INFO: [Synth 8-6155] done synthesizing module 'monitor_ps' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/synth/monitor_ps.v:13]
 INFO: [Synth 8-6155] done synthesizing module 'monitor_ps_wrapper' (20#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v:12]
@@ -195,7 +196,7 @@ WARNING: [Synth 8-3331] design agc_monitor has unconnected port mt[6]
 WARNING: [Synth 8-3331] design agc_monitor has unconnected port mt[4]
 WARNING: [Synth 8-3331] design agc_monitor has unconnected port mt[3]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1391.559 ; gain = 46.395 ; free physical = 1282 ; free virtual = 17477
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1392.309 ; gain = 38.145 ; free physical = 303 ; free virtual = 18441
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -208,10 +209,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1391.559 ; gain = 46.395 ; free physical = 1284 ; free virtual = 17479
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1392.309 ; gain = 38.145 ; free physical = 305 ; free virtual = 18443
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1391.559 ; gain = 46.395 ; free physical = 1284 ; free virtual = 17479
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1392.309 ; gain = 38.145 ; free physical = 305 ; free virtual = 18443
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -232,24 +233,24 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/agc_monitor_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/dont_touch.xdc]
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1780.605 ; gain = 0.000 ; free physical = 971 ; free virtual = 17195
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1780.355 ; gain = 0.000 ; free physical = 169 ; free virtual = 18180
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1780.605 ; gain = 0.000 ; free physical = 971 ; free virtual = 17196
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1780.355 ; gain = 0.000 ; free physical = 170 ; free virtual = 18181
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1780.605 ; gain = 0.000 ; free physical = 971 ; free virtual = 17196
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1780.605 ; gain = 0.000 ; free physical = 971 ; free virtual = 17196
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1780.355 ; gain = 0.000 ; free physical = 170 ; free virtual = 18181
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1780.355 ; gain = 0.000 ; free physical = 170 ; free virtual = 18181
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 1070 ; free virtual = 17281
+Finished Constraint Validation : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 260 ; free virtual = 18265
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 1070 ; free virtual = 17281
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:13 ; elapsed = 00:00:16 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 260 ; free virtual = 18265
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -520,7 +521,7 @@ Applied set_property DONT_TOUCH = true for usb_if/cmd_queue. (constraint file  a
 Applied set_property DONT_TOUCH = true for usb_if/read_msg_queue. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for usb_if/read_byte_queue. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 1072 ; free virtual = 17282
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 263 ; free virtual = 18266
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'cmd_receiver'
 INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
@@ -538,6 +539,7 @@ INFO: [Synth 8-5546] ROM "start_req" won't be mapped to RAM because it is too sp
 INFO: [Synth 8-5546] ROM "stop_conds" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "mnhrpt" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "mnhnc" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nhalga" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "read_data" won't be mapped to RAM because it is too sparse
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
@@ -565,7 +567,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'usb_interface'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 1048 ; free virtual = 17258
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:18 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 254 ; free virtual = 18256
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -592,11 +594,11 @@ Detailed RTL Component Info :
 	                5 Bit    Registers := 3     
 	                4 Bit    Registers := 1     
 	                3 Bit    Registers := 4     
-	                1 Bit    Registers := 10    
+	                1 Bit    Registers := 11    
 +---Muxes : 
 	   7 Input     40 Bit        Muxes := 1     
 	   2 Input     40 Bit        Muxes := 2     
-	   5 Input     16 Bit        Muxes := 1     
+	   6 Input     16 Bit        Muxes := 1     
 	   2 Input     16 Bit        Muxes := 11    
 	   4 Input     16 Bit        Muxes := 1     
 	   2 Input     15 Bit        Muxes := 15    
@@ -617,13 +619,12 @@ Detailed RTL Component Info :
 	   3 Input      2 Bit        Muxes := 3     
 	   2 Input      2 Bit        Muxes := 6     
 	   4 Input      2 Bit        Muxes := 1     
-	   5 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 33    
+	   2 Input      1 Bit        Muxes := 34    
 	   3 Input      1 Bit        Muxes := 8     
 	   4 Input      1 Bit        Muxes := 1     
 	  11 Input      1 Bit        Muxes := 7     
-	   5 Input      1 Bit        Muxes := 1     
-	   6 Input      1 Bit        Muxes := 5     
+	   6 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 6     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -686,14 +687,13 @@ Detailed RTL Component Info :
 +---Registers : 
 	               16 Bit    Registers := 1     
 	               11 Bit    Registers := 1     
-	                1 Bit    Registers := 5     
+	                1 Bit    Registers := 6     
 +---Muxes : 
-	   5 Input     16 Bit        Muxes := 1     
+	   6 Input     16 Bit        Muxes := 1     
 	   2 Input     16 Bit        Muxes := 1     
-	   5 Input      2 Bit        Muxes := 1     
-	   2 Input      1 Bit        Muxes := 6     
-	   5 Input      1 Bit        Muxes := 1     
-	   6 Input      1 Bit        Muxes := 5     
+	   6 Input      1 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 7     
+	   7 Input      1 Bit        Muxes := 6     
 Module start_stop 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -900,6 +900,13 @@ INFO: [Synth 8-5546] ROM "cmd_rx/write_index_q" won't be mapped to RAM because i
 INFO: [Synth 8-5546] ROM "cmd_rx/next_state" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "msg_sndr/out_byte" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5587] ROM size for "next_state" is below threshold of ROM address width. It will be mapped to LUTs
+INFO: [Synth 8-5546] ROM "read_data" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "stop_conds" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "mnhrpt" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "mnhnc" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "nhalga" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "start_req" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "proceed_req" won't be mapped to RAM because it is too sparse
 WARNING: [Synth 8-3331] design start_stop has unconnected port stop_conds[10]
 WARNING: [Synth 8-3331] design start_stop has unconnected port stop_conds[9]
 WARNING: [Synth 8-3331] design start_stop has unconnected port stop_conds[8]
@@ -922,9 +929,9 @@ WARNING: [Synth 8-3331] design agc_monitor has unconnected port mt[7]
 WARNING: [Synth 8-3331] design agc_monitor has unconnected port mt[6]
 WARNING: [Synth 8-3331] design agc_monitor has unconnected port mt[4]
 WARNING: [Synth 8-3331] design agc_monitor has unconnected port mt[3]
-INFO: [Synth 8-3886] merging instance 'ctrl_regs/read_data_reg[11]' (FDCE) to 'ctrl_regs/read_data_reg[12]'
-INFO: [Synth 8-3886] merging instance 'ctrl_regs/read_data_reg[12]' (FDCE) to 'ctrl_regs/read_data_reg[13]'
-INFO: [Synth 8-3886] merging instance 'ctrl_regs/read_data_reg[13]' (FDCE) to 'ctrl_regs/read_data_reg[14]'
+INFO: [Synth 8-3886] merging instance 'ctrl_regs/read_data_reg[11]' (FDCE) to 'ctrl_regs/read_data_reg[15]'
+INFO: [Synth 8-3886] merging instance 'ctrl_regs/read_data_reg[12]' (FDCE) to 'ctrl_regs/read_data_reg[15]'
+INFO: [Synth 8-3886] merging instance 'ctrl_regs/read_data_reg[13]' (FDCE) to 'ctrl_regs/read_data_reg[15]'
 INFO: [Synth 8-3886] merging instance 'ctrl_regs/read_data_reg[14]' (FDCE) to 'ctrl_regs/read_data_reg[15]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\ctrl_regs/read_data_reg[15] )
 INFO: [Synth 8-3886] merging instance 'strt_stp/stop_cause_reg[3]' (FDCE) to 'strt_stp/stop_cause_reg[10]'
@@ -937,7 +944,7 @@ INFO: [Synth 8-3886] merging instance 'strt_stp/stop_cause_reg[8]' (FDCE) to 'st
 INFO: [Synth 8-3886] merging instance 'strt_stp/stop_cause_reg[6]' (FDCE) to 'strt_stp/stop_cause_reg[7]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (\strt_stp/stop_cause_reg[7] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 1035 ; free virtual = 17237
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:22 ; elapsed = 00:00:26 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 214 ; free virtual = 18221
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -951,13 +958,13 @@ Start Applying XDC Timing Constraints
 INFO: [Synth 8-5578] Moved timing constraint from pin 'monitor_ps/monitor_ps_i/processing_system7_0/FCLK_CLK0' to pin 'monitor_ps/monitor_ps_i/processing_system7_0/bbstub_FCLK_CLK0/O'
 INFO: [Synth 8-5819] Moved 1 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 779 ; free virtual = 17013
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:30 ; elapsed = 00:00:33 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 172 ; free virtual = 18138
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:20 ; elapsed = 00:00:22 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 775 ; free virtual = 17006
+Finished Timing Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:34 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 191 ; free virtual = 18136
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -969,7 +976,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:20 ; elapsed = 00:00:23 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 771 ; free virtual = 17002
+Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:35 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 189 ; free virtual = 18134
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -993,7 +1000,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 775 ; free virtual = 17001
+Finished IO Insertion : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 184 ; free virtual = 18135
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1006,7 +1013,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 775 ; free virtual = 17001
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 184 ; free virtual = 18135
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1018,25 +1025,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 777 ; free virtual = 17000
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 184 ; free virtual = 18135
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:21 ; elapsed = 00:00:23 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 777 ; free virtual = 17000
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 184 ; free virtual = 18135
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 787 ; free virtual = 17000
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 183 ; free virtual = 18134
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 786 ; free virtual = 17000
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 183 ; free virtual = 18135
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1062,41 +1069,42 @@ Report Cell Usage:
 |4     |read_fifo                         |     1|
 |5     |BUFG                              |     2|
 |6     |LUT1                              |     7|
-|7     |LUT2                              |    42|
+|7     |LUT2                              |    40|
 |8     |LUT3                              |   373|
-|9     |LUT4                              |    94|
-|10    |LUT5                              |    89|
-|11    |LUT6                              |   236|
+|9     |LUT4                              |    90|
+|10    |LUT5                              |    99|
+|11    |LUT6                              |   238|
 |12    |FDCE                              |   549|
-|13    |IBUF                              |    50|
-|14    |IOBUF                             |     8|
-|15    |OBUF                              |    24|
+|13    |FDRE                              |     1|
+|14    |IBUF                              |    50|
+|15    |IOBUF                             |     8|
+|16    |OBUF                              |    25|
 +------+----------------------------------+------+
 
 Report Instance Areas: 
 +------+-----------------+--------------------------+------+
 |      |Instance         |Module                    |Cells |
 +------+-----------------+--------------------------+------+
-|1     |top              |                          |  1572|
-|2     |  cmd_ctrl       |cmd_controller            |   243|
+|1     |top              |                          |  1580|
+|2     |  cmd_ctrl       |cmd_controller            |   246|
 |3     |  ctmr           |clear_timer               |   355|
-|4     |  ctrl_regs      |control_regs              |    33|
-|5     |  mon_chans      |monitor_channels          |   285|
+|4     |  ctrl_regs      |control_regs              |    34|
+|5     |  mon_chans      |monitor_channels          |   288|
 |6     |    chan_10      |channel__parameterized4   |    22|
-|7     |    chan_11      |channel__parameterized5   |    16|
+|7     |    chan_11      |channel__parameterized5   |    15|
 |8     |    chan_12      |channel__parameterized6   |    21|
 |9     |    chan_13      |channel__parameterized7   |    15|
-|10    |    chan_14      |channel__parameterized8   |    15|
+|10    |    chan_14      |channel__parameterized8   |    16|
 |11    |    chan_15      |channel__parameterized9   |     5|
 |12    |    chan_16      |channel__parameterized10  |    16|
 |13    |    chan_3       |channel                   |    23|
 |14    |    chan_30      |channel__parameterized11  |    15|
 |15    |    chan_31      |channel__parameterized12  |    15|
-|16    |    chan_32      |channel__parameterized13  |    15|
-|17    |    chan_33      |channel__parameterized14  |    29|
-|18    |    chan_34      |channel__parameterized15  |    16|
-|19    |    chan_35      |channel__parameterized16  |    16|
-|20    |    chan_4       |channel__parameterized0   |    23|
+|16    |    chan_32      |channel__parameterized13  |    16|
+|17    |    chan_33      |channel__parameterized14  |    26|
+|18    |    chan_34      |channel__parameterized15  |    19|
+|19    |    chan_35      |channel__parameterized16  |    15|
+|20    |    chan_4       |channel__parameterized0   |    26|
 |21    |    chan_5       |channel__parameterized1   |     8|
 |22    |    chan_6       |channel__parameterized2   |    11|
 |23    |    chan_7       |channel__parameterized3   |     3|
@@ -1121,28 +1129,28 @@ Report Instance Areas:
 |42    |    msg_sndr     |msg_sender                |    98|
 +------+-----------------+--------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 786 ; free virtual = 16999
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:32 ; elapsed = 00:00:36 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 183 ; free virtual = 18135
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 22 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:17 ; elapsed = 00:00:19 . Memory (MB): peak = 1780.605 ; gain = 46.395 ; free physical = 837 ; free virtual = 17058
-Synthesis Optimization Complete : Time (s): cpu = 00:00:21 ; elapsed = 00:00:24 . Memory (MB): peak = 1780.605 ; gain = 435.441 ; free physical = 847 ; free virtual = 17068
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:26 ; elapsed = 00:00:29 . Memory (MB): peak = 1780.355 ; gain = 38.145 ; free physical = 239 ; free virtual = 18189
+Synthesis Optimization Complete : Time (s): cpu = 00:00:33 ; elapsed = 00:00:36 . Memory (MB): peak = 1780.355 ; gain = 426.191 ; free physical = 249 ; free virtual = 18200
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 8 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1788.613 ; gain = 0.000 ; free physical = 776 ; free virtual = 16998
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1788.363 ; gain = 0.000 ; free physical = 183 ; free virtual = 18131
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 8 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 8 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-143 Infos, 45 Warnings, 0 Critical Warnings and 0 Errors encountered.
+151 Infos, 46 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:23 ; elapsed = 00:00:25 . Memory (MB): peak = 1788.613 ; gain = 443.805 ; free physical = 830 ; free virtual = 17052
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1788.613 ; gain = 0.000 ; free physical = 830 ; free virtual = 17052
+synth_design: Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1788.363 ; gain = 434.555 ; free physical = 238 ; free virtual = 18187
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1788.363 ; gain = 0.000 ; free physical = 238 ; free virtual = 18187
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/agc_monitor.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file agc_monitor_utilization_synth.rpt -pb agc_monitor_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun Jan 13 20:55:49 2019...
+INFO: [Common 17-206] Exiting Vivado at Sat Jan 19 17:40:33 2019...

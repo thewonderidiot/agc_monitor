@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------
 | Tool Version              : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date                      : Sun Jan 13 20:56:29 2019
+| Date                      : Sat Jan 19 17:43:55 2019
 | Host                      : luminary running 64-bit unknown
 | Command                   : report_io -file agc_monitor_io_placed.rpt
 | Design                    : agc_monitor
@@ -25,7 +25,7 @@ Table of Contents
 +---------------+
 | Total User IO |
 +---------------+
-|           220 |
+|           221 |
 +---------------+
 
 
@@ -505,7 +505,7 @@ Table of Contents
 | Y6         | clk               | High Range | IO_L13P_T2_MRCC_13      | INPUT       | LVCMOS33          |      13 |            |      |                     |                 NONE |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | Y7         |                   | High Range | VCCO_13                 | VCCO        |                   |      13 |            |      |                     |                      |    3.30 |            |           |          |      |                  |              |                   |              |
 | Y8         |                   | High Range | IO_L12N_T1_MRCC_13      | User IO     |                   |      13 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
-| Y9         |                   | High Range | IO_L12P_T1_MRCC_13      | User IO     |                   |      13 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
+| Y9         | nhalga            | High Range | IO_L12P_T1_MRCC_13      | OUTPUT      | LVCMOS33          |      13 |         12 | SLOW |                     |            FP_VTT_50 |         | FIXED      |           |          |      | NONE             |              |                   |              |
 | Y10        |                   | High Range | IO_L10N_T1_13           | User IO     |                   |      13 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | Y11        |                   | High Range | IO_L10P_T1_13           | User IO     |                   |      13 |            |      |                     |                      |         |            |           |          |      |                  |              |                   |              |
 | Y12        |                   |            | GND                     | GND         |                   |         |            |      |                     |                      |     0.0 |            |           |          |      |                  |              |                   |              |

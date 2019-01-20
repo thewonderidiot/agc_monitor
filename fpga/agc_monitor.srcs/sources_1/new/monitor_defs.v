@@ -27,6 +27,7 @@
 `define CTRL_REG_PROCEED    16'h3
 `define CTRL_REG_MNHRPT     16'h4
 `define CTRL_REG_MNHNC      16'h5
+`define CTRL_REG_NHALGA     16'h40
 
 // Monitor AGC Register Mirrors
 `define MON_REG_A  16'o00
