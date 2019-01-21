@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1547948552">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1548022550">
   <File Type="VDS-TIMING-PB" Name="agc_monitor_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="agc_monitor_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="agc_monitor.dcp"/>

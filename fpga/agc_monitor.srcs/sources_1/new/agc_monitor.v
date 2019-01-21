@@ -17,9 +17,19 @@ module agc_monitor(
 
     // AGC signals
     input wire mgojam,
+    input wire mstpit_n,
     input wire monwt,
     input wire [12:1] mt,
     input wire [16:1] mwl,
+
+    input wire miip,
+    input wire minhl,
+    input wire minkl,
+
+    input wire msqext,
+    input wire [15:10] msq,
+    input wire [3:1] mst,
+    input wire [2:1] mbr,
 
     input wire mwag,
     input wire mwlg,
@@ -230,6 +240,17 @@ monitor_regs mon_regs(
     .mwg(mwg),
     .mwyg(mwyg),
     .mrgg(mrgg),
+
+    .msqext(msqext),
+    .msq(msq),
+    .mst(mst),
+    .mbr(mbr),
+
+    .mgojam(mgojam),
+    .mstpit_n(mstpit_n),
+    .miip(miip),
+    .minhl(minhl),
+    .minkl(minkl),
 
     .l(l),
     .q(q),

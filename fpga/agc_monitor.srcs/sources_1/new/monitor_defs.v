@@ -30,12 +30,15 @@
 `define CTRL_REG_NHALGA     16'h40
 
 // Monitor AGC Register Mirrors
-`define MON_REG_A  16'o00
-`define MON_REG_L  16'o01
-`define MON_REG_Q  16'o02
-`define MON_REG_Z  16'o03
-`define MON_REG_BB 16'o04
-`define MON_REG_B  16'o05
-`define MON_REG_S  16'o06
-`define MON_REG_G  16'o07
-`define MON_REG_Y  16'o10
+`define MON_REG_A      16'o00
+`define MON_REG_L      16'o01
+`define MON_REG_Q      16'o02
+`define MON_REG_Z      16'o03
+`define MON_REG_BB     16'o04
+`define MON_REG_B      16'o05
+`define MON_REG_S      16'o06
+`define MON_REG_G      16'o07
+`define MON_REG_Y      16'o10
+`define MON_REG_U      16'o11
+`define MON_REG_I      16'o12
+`define MON_REG_STATUS 16'o13

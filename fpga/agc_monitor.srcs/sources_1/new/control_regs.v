@@ -32,6 +32,7 @@ always @(posedge clk or negedge rst_n) begin
         stop_conds <= 11'b0;
         mnhrpt <= 1'b0;
         mnhnc <= 1'b0;
+        nhalga <= 1'b0;
     end else begin
         start_req <= 1'b0;
         proceed_req <= 1'b0;

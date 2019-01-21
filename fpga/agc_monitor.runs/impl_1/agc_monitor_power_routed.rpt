@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date             : Sat Jan 19 17:44:42 2019
+| Date             : Sun Jan 20 14:17:48 2019
 | Host             : luminary running 64-bit unknown
 | Command          : report_power -file agc_monitor_power_routed.rpt -pb agc_monitor_power_summary_routed.pb -rpx agc_monitor_power_routed.rpx
 | Design           : agc_monitor
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.429        |
+| Total On-Chip Power (W)  | 1.430        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.292        |
+| Dynamic (W)              | 1.293        |
 | Device Static (W)        | 0.137        |
 | Effective TJA (C/W)      | 11.5         |
 | Max Ambient (C)          | 68.5         |
@@ -53,17 +53,17 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.005 |        5 |       --- |             --- |
-| Slice Logic    |     0.001 |     2234 |       --- |             --- |
-|   LUT as Logic |     0.001 |      781 |     53200 |            1.47 |
+| Slice Logic    |     0.001 |     2247 |       --- |             --- |
+|   LUT as Logic |     0.001 |      797 |     53200 |            1.50 |
 |   Register     |    <0.001 |      976 |    106400 |            0.92 |
 |   CARRY4       |    <0.001 |        8 |     13300 |            0.06 |
-|   Others       |     0.000 |      205 |       --- |             --- |
-| Signals        |     0.002 |     1777 |       --- |             --- |
+|   Others       |     0.000 |      204 |       --- |             --- |
+| Signals        |     0.002 |     1809 |       --- |             --- |
 | Block RAM      |     0.002 |      2.5 |       140 |            1.79 |
-| I/O            |     0.003 |       83 |       200 |           41.50 |
+| I/O            |     0.003 |       99 |       200 |           49.50 |
 | PS7            |     1.280 |        1 |       --- |             --- |
 | Static Power   |     0.137 |          |           |                 |
-| Total          |     1.429 |          |           |                 |
+| Total          |     1.430 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,7 +73,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.023 |       0.009 |      0.013 |
+| Vccint    |       1.000 |     0.023 |       0.010 |      0.013 |
 | Vccaux    |       1.800 |     0.014 |       0.000 |      0.014 |
 | Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -150,7 +150,7 @@ Table of Contents
 +----------------------------+-----------+
 | Name                       | Power (W) |
 +----------------------------+-----------+
-| agc_monitor                |     1.292 |
+| agc_monitor                |     1.293 |
 |   mon_chans                |     0.001 |
 |   mon_regs                 |     0.001 |
 |   monitor_ps               |     1.280 |

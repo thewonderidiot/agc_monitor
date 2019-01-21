@@ -25,6 +25,17 @@ module monitor_regs(
     input wire mwyg,
     input wire mrgg,
 
+    input wire msqext,
+    input wire [15:10] msq,
+    input wire [3:1] mst,
+    input wire [2:1] mbr,
+
+    input wire mgojam,
+    input wire mstpit_n,
+    input wire miip,
+    input wire minhl,
+    input wire minkl,
+
     output wire [16:1] l,
     output wire [16:1] q,
     output wire [12:1] s,
@@ -168,16 +179,18 @@ end
 always @(*) begin
     if (read_en_q) begin
         case (addr)
-        `MON_REG_A:  data_out = a;
-        `MON_REG_L:  data_out = l;
-        `MON_REG_Q:  data_out = q;
-        `MON_REG_Z:  data_out = z;
-        `MON_REG_BB: data_out = {1'b0, fb, 7'b0, eb};
-        `MON_REG_B:  data_out = b;
-        `MON_REG_S:  data_out = {4'b0, s};
-        `MON_REG_G:  data_out = g;
-        `MON_REG_Y:  data_out = y;
-        default:     data_out = 16'b0;
+        `MON_REG_A:      data_out = a;
+        `MON_REG_L:      data_out = l;
+        `MON_REG_Q:      data_out = q;
+        `MON_REG_Z:      data_out = z;
+        `MON_REG_BB:     data_out = {1'b0, fb, 7'b0, eb};
+        `MON_REG_B:      data_out = b;
+        `MON_REG_S:      data_out = {4'b0, s};
+        `MON_REG_G:      data_out = g;
+        `MON_REG_Y:      data_out = y;
+        `MON_REG_I:      data_out = {5'b0, mbr, mst, msqext, msq};
+        `MON_REG_STATUS: data_out = {11'b0, minkl, minhl, miip, mstpit_n, mgojam}; // FIXME: add OUTCOM
+        default:         data_out = 16'b0;
         endcase
     end else begin
         data_out = 16'b0;
