@@ -3,8 +3,8 @@ from PySide2.QtGui import QFont, QColor
 from PySide2.QtCore import Qt
 from collections import OrderedDict
 from indicator import Indicator
-from asm import disassemble
 import usb_msg as um
+import agc
 
 STATUS_INDS = OrderedDict([
     ('iip', 'IIP'),
@@ -44,7 +44,7 @@ class InstructionRegister(QWidget):
         self._set_reg_value(self._br_inds, self._br_value, br)
         self._set_reg_value(self._st_inds, self._st_value, st)
         self._set_reg_value(self._sq_inds, self._sq_value, (sqext << 5) | sq)
-        self._inst_value.setText(disassemble(sqext, sq, st))
+        self._inst_value.setText(agc.disassemble(sqext, sq, st))
 
     def _setup_ui(self, color):
         # Set up our basic layout

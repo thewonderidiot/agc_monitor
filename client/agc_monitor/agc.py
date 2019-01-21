@@ -92,3 +92,34 @@ def disassemble(sqext, sqr, st):
             opcode = 'MP'
 
     return opcode + str(st)
+
+def format_addr(s, eb, fb, fext):
+    # Determine which class of memory is being addressed by looking at S,
+    # and further decode the address based on that
+    if s < 0o1400:
+        # Fixed-erasable memory addresses use only the value of S
+        addr = '%04o' % s
+    elif s < 0o2000:
+        # Switched-erasable memory addresses display as EN,XXXX where N
+        # is the EB number, *unless* the switched bank is also one of the
+        # fixed banks, in which case the fixed-erasable notation is used
+        if (eb < 3):
+            addr = '%04o' % ((s-0o1400) + 0o400*eb)
+        else:
+            addr = 'E%o,%04o' % (eb, s)
+    elif s < 0o4000:
+        # Switched-fixed memory displays as NN,XXXX where NN is the FB
+        # number, with the same fixed-fixed caveat as above.
+        if fb in [0o2, 0o3]:
+            addr = '%04o' % (0o4000 + (fb-0o3)*0o2000 + s)
+        else:
+            if (fb < 0o30) or (fext < 0o4):
+                bank = fb
+            else:
+                bank = fb + (fext - 0o3)*0o10
+            addr = '%02o,%04o' % (bank, s)
+    else:
+        # Fixed-fixed addresses also use only the value of S
+        addr = '%04o' % s
+
+    return addr

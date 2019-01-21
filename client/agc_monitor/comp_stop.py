@@ -8,6 +8,15 @@ import usb_msg as um
 STOP_CONDS = OrderedDict([
     ('T12', 't12'),
     ('NISQ', 'nisq'),
+    ('S1', 's1'),
+    ('S2', 's2'),
+    ('W', 'w'),
+    ('S&W', 's_w'),
+    ('S&I', 's_i'),
+    ('CHAN', 'chan'),
+    ('PAR', 'par'),
+    ('I', 'i'),
+    ('PROG\nSTEP', 'prog_step'),
 ])
 
 class CompStop(QFrame):
@@ -22,7 +31,8 @@ class CompStop(QFrame):
 
         usbif.poll(um.ReadControlStopCause())
         usbif.subscribe(self, um.ControlStopCause)
-        usbif.send(um.WriteControlStop(t12=0, nisq=0))
+        z = (0,)*len(STOP_CONDS)
+        usbif.send(um.WriteControlStop(*z))
 
     def handle_msg(self, msg):
         if isinstance(msg, um.ControlStopCause):
@@ -30,10 +40,8 @@ class CompStop(QFrame):
                 self._stop_inds[v].set_on(getattr(msg, v))
 
     def _set_stop_conds(self, on):
-        self._usbif.send(um.WriteControlStop(
-            t12 = self._stop_switches['t12'].isChecked(),
-            nisq = self._stop_switches['nisq'].isChecked()
-        ))
+        settings = {s: self._stop_switches[s].isChecked() for s in STOP_CONDS.values()}
+        self._usbif.send(um.WriteControlStop(**settings))
 
     def _setup_ui(self):
         self.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
@@ -49,23 +57,26 @@ class CompStop(QFrame):
             self._create_stop_cond(l, n, layout, col)
             col += 1
 
-        pro = QPushButton("Proceed", self)
-        layout.addWidget(pro, 0, col)
-        pro.pressed.connect(self._proceed)
-
-    def _proceed(self):
-        self._usbif.send(um.WriteControlProceed(1))
+        label = QLabel('COMP STOP', self)
+        font = label.font()
+        font.setPointSize(12)
+        font.setBold(True)
+        label.setFont(font)
+        label.setAlignment(Qt.AlignCenter)
+        layout.addWidget(label, 3, 0, 1, 4, Qt.AlignCenter)
 
     def _create_stop_cond(self, label_text, name, layout, col):
         # Create an indicator to show stop status
         ind = Indicator(self, QColor(255, 0, 0))
-        ind.setFixedSize(20, 20)
+        ind.setFixedSize(30, 20)
         layout.addWidget(ind, 0, col)
         layout.setAlignment(ind, Qt.AlignCenter)
         self._stop_inds[name] = ind
 
         # Add a switch to control the stop control state
         check = QCheckBox(self)
+        check.setFixedSize(20,20)
+        check.setLayoutDirection(Qt.RightToLeft)
         layout.addWidget(check, 1, col)
         layout.setAlignment(check, Qt.AlignCenter)
         check.stateChanged.connect(self._set_stop_conds)
@@ -77,4 +88,6 @@ class CompStop(QFrame):
         font = label.font()
         font.setPointSize(8)
         label.setFont(font)
-        layout.addWidget(label, 2, col)
+        label_height = 2 if '\n' in label_text else 1
+        layout.addWidget(label, 2, col, label_height, 1)
+        layout.setAlignment(label, Qt.AlignCenter | Qt.AlignTop)
