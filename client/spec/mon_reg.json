@@ -110,6 +110,71 @@
             ]
         },
         {
+            "addr": 9,
+            "name": "U",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "u",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 10,
+            "name": "I",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "sqr",
+                    "width": 6
+                },
+                {
+                    "name": "sqext",
+                    "width": 1
+                },
+                {
+                    "name": "st",
+                    "width": 3
+                },
+                {
+                    "name": "br",
+                    "width": 2
+                }
+            ]
+        },
+        {
+            "addr": 11,
+            "name": "Status",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "gojam",
+                    "width": 1
+                },
+                {
+                    "name": "run",
+                    "width": 1
+                },
+                {
+                    "name": "iip",
+                    "width": 1
+                },
+                {
+                    "name": "inhl",
+                    "width": 1
+                },
+                {
+                    "name": "inkl",
+                    "width": 1
+                },
+                {
+                    "name": "outcom",
+                    "width": 1
+                }
+            ]
+        },
+        {
             "addr": 64,
             "name": "W",
             "type": "r",

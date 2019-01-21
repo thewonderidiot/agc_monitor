@@ -63,6 +63,18 @@ ReadMonRegY = namedtuple('ReadMonRegY', [])
 ReadMonRegY.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 MonRegY = namedtuple('MonRegY', ['y'])
 MonRegY.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegU = namedtuple('ReadMonRegU', [])
+ReadMonRegU.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegU = namedtuple('MonRegU', ['u'])
+MonRegU.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegI = namedtuple('ReadMonRegI', [])
+ReadMonRegI.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegI = namedtuple('MonRegI', ['sqr', 'sqext', 'st', 'br'])
+MonRegI.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegStatus = namedtuple('ReadMonRegStatus', [])
+ReadMonRegStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegStatus = namedtuple('MonRegStatus', ['gojam', 'run', 'iip', 'inhl', 'inkl', 'outcom'])
+MonRegStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadMonRegW = namedtuple('ReadMonRegW', [])
 ReadMonRegW.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 MonRegW = namedtuple('MonRegW', ['w'])
@@ -154,6 +166,9 @@ class MonReg(object):
     S = 0x0006
     G = 0x0007
     Y = 0x0008
+    U = 0x0009
+    I = 0x000A
+    Status = 0x000B
     W = 0x0040
 class MonChan(object):
     FEXT = 0x0007
@@ -200,6 +215,15 @@ def _pack_ReadMonRegG(msg):
 
 def _pack_ReadMonRegY(msg):
     return _pack_read_msg(AddressGroup.MonReg, MonReg.Y)
+
+def _pack_ReadMonRegU(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.U)
+
+def _pack_ReadMonRegI(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.I)
+
+def _pack_ReadMonRegStatus(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.Status)
 
 def _pack_ReadMonRegW(msg):
     return _pack_read_msg(AddressGroup.MonReg, MonReg.W)
@@ -334,6 +358,29 @@ def _unpack_MonRegY(data):
         y = (data >> 0) & 0xFFFF,
     )
 
+def _unpack_MonRegU(data):
+    return MonRegU(
+        u = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_MonRegI(data):
+    return MonRegI(
+        sqr = (data >> 0) & 0x003F,
+        sqext = (data >> 6) & 0x0001,
+        st = (data >> 7) & 0x0007,
+        br = (data >> 10) & 0x0003,
+    )
+
+def _unpack_MonRegStatus(data):
+    return MonRegStatus(
+        gojam = (data >> 0) & 0x0001,
+        run = (data >> 1) & 0x0001,
+        iip = (data >> 2) & 0x0001,
+        inhl = (data >> 3) & 0x0001,
+        inkl = (data >> 4) & 0x0001,
+        outcom = (data >> 5) & 0x0001,
+    )
+
 def _unpack_MonRegW(data):
     return MonRegW(
         w = (data >> 0) & 0xFFFF,
@@ -404,6 +451,9 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.MonReg, MonReg.S): _unpack_MonRegS,
     (DATA_FLAG | AddressGroup.MonReg, MonReg.G): _unpack_MonRegG,
     (DATA_FLAG | AddressGroup.MonReg, MonReg.Y): _unpack_MonRegY,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.U): _unpack_MonRegU,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.I): _unpack_MonRegI,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.Status): _unpack_MonRegStatus,
     (DATA_FLAG | AddressGroup.MonReg, MonReg.W): _unpack_MonRegW,
     (DATA_FLAG | AddressGroup.MonChan, MonChan.FEXT): _unpack_MonChanFEXT,
     (DATA_FLAG | AddressGroup.Control, Control.Stop): _unpack_ControlStop,

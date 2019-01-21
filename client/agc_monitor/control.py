@@ -1,8 +1,8 @@
 from PySide2.QtWidgets import QWidget, QFrame, QHBoxLayout, QVBoxLayout, QGridLayout, QLabel, QGroupBox, QCheckBox
 from PySide2.QtGui import QFont, QColor
 from PySide2.QtCore import Qt
-from indicator import Indicator
 from collections import OrderedDict
+from indicator import Indicator
 import usb_msg as um
 
 INH_SWITCHES = OrderedDict([
@@ -12,6 +12,12 @@ INH_SWITCHES = OrderedDict([
     ('ST1', um.WriteControlSTRT1),
     ('ST2', um.WriteControlSTRT2),
 ])
+STATUS_INDS = OrderedDict([
+    ('gojam', 'GO\nJAM'),
+    ('mon_stop', 'MON\nSTOP'),
+    ('agc_run', 'AGC\nRUN'),
+    ('crs_cycle', 'CRS\nCYCL')
+])
 
 class Control(QFrame):
     def __init__(self, parent, usbif):
@@ -19,10 +25,23 @@ class Control(QFrame):
         self._usbif = usbif
         self._inh_switches = []
         self._inh_inds = []
+        self._status_inds = {}
         self._setup_ui()
+
+        usbif.poll(um.ReadMonRegStatus())
+        usbif.poll(um.ReadControlStopCause())
+        usbif.subscribe(self, um.MonRegStatus)
+        usbif.subscribe(self, um.ControlStopCause)
 
         for msg in INH_SWITCHES.values():
             usbif.send(msg(0))
+
+    def handle_msg(self, msg):
+        if isinstance(msg, um.MonRegStatus):
+            self._status_inds['gojam'].set_on(msg.gojam)
+            self._status_inds['agc_run'].set_on(msg.run)
+        elif isinstance(msg, um.ControlStopCause):
+            self._status_inds['mon_stop'].set_on(any(msg))
 
     def _set_inh(self, ind, msg, on):
         ind.set_on(on)
@@ -71,8 +90,10 @@ class Control(QFrame):
         stat_layout.setMargin(3)
         stat_layout.setSpacing(3)
 
-        for col, name in enumerate(['GO\nJAM', 'MON\nSTOP', 'AGC\nRUN', 'CRS\nCYCL']):
-            self._create_status_light(name, stat_group, stat_layout, col)
+        col = 0
+        for name, label in STATUS_INDS.items():
+            self._status_inds[name] = self._create_status_light(label, stat_group, stat_layout, col)
+            col += 1
 
         label = QLabel('CONTROL', sl_group)
         font = label.font()
@@ -120,3 +141,5 @@ class Control(QFrame):
         ind.setFixedSize(20, 20)
         layout.addWidget(ind, 2, col)
         layout.setAlignment(ind, Qt.AlignCenter)
+
+        return ind

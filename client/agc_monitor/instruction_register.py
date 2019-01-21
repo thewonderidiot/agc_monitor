@@ -1,56 +1,50 @@
-from PySide2.QtWidgets import QWidget, QFrame, QVBoxLayout, QHBoxLayout, QLineEdit, QLabel
-from PySide2.QtGui import QFont
+from PySide2.QtWidgets import QWidget, QFrame, QVBoxLayout, QHBoxLayout, QGridLayout, QLineEdit, QLabel
+from PySide2.QtGui import QFont, QColor
 from PySide2.QtCore import Qt
+from collections import OrderedDict
 from indicator import Indicator
+from asm import disassemble
 import usb_msg as um
 
-class AddressRegister(QWidget):
+STATUS_INDS = OrderedDict([
+    ('iip', 'IIP'),
+    ('inhl', 'INHL'),
+    ('inkl', 'INKL'),
+    ('ld', 'LD'),
+    ('chld', 'CHLD'),
+    ('rd', 'RD'),
+    ('chrd', 'CHRD'),
+])
+
+class InstructionRegister(QWidget):
     def __init__(self, parent, usbif, color):
         super().__init__(parent)
-        self._eb_inds = []
-        self._fext_inds = []
-        self._fb_inds = []
-        self._s_inds = []
-
-        self._eb_value = 0
-        self._fext_value = 0
-        self._fb_value = 0
-        self._s_value = 0
+        self._br_inds = []
+        self._st_inds = []
+        self._sq_inds = []
+        self._status_inds = {}
 
         self._setup_ui(color)
 
-        usbif.poll(um.ReadMonRegS())
-        usbif.poll(um.ReadMonRegBB())
-        usbif.poll(um.ReadMonChanFEXT())
+        usbif.poll(um.ReadMonRegI())
+        usbif.poll(um.ReadMonRegStatus())
 
-        usbif.subscribe(self, um.MonRegS)
-        usbif.subscribe(self, um.MonRegBB)
-        usbif.subscribe(self, um.MonChanFEXT)
+        usbif.subscribe(self, um.MonRegI)
+        usbif.subscribe(self, um.MonRegStatus)
 
     def handle_msg(self, msg):
-        if isinstance(msg, um.MonRegS):
-            self.set_s_value(msg.s)
-        elif isinstance(msg, um.MonRegBB):
-            self.set_bank_values(msg.eb, msg.fb)
-        elif isinstance(msg, um.MonChanFEXT):
-            self.set_fext_value(msg.fext)
+        if isinstance(msg, um.MonRegI):
+            self.set_i_values(msg.br, msg.st, msg.sqext, msg.sqr)
+        elif isinstance(msg, um.MonRegStatus):
+            self._status_inds['iip'].set_on(msg.iip)
+            self._status_inds['inhl'].set_on(msg.inhl)
+            self._status_inds['inkl'].set_on(msg.inkl)
 
-    def set_bank_values(self, eb, fb):
-        self._set_reg_value(self._eb_inds, self._eb_box, eb)
-        self._set_reg_value(self._fb_inds, self._fb_box, fb)
-        self._eb_value = eb
-        self._fb_value = fb
-        self._update_addr_value()
-
-    def set_s_value(self, x):
-        self._set_reg_value(self._s_inds, self._s_box, x)
-        self._s_value = x
-        self._update_addr_value()
-
-    def set_fext_value(self, x):
-        self._set_reg_value(self._fext_inds, self._fext_box, x)
-        self._fext_value = x
-        self._update_addr_value()
+    def set_i_values(self, br, st, sqext, sq):
+        self._set_reg_value(self._br_inds, self._br_value, br)
+        self._set_reg_value(self._st_inds, self._st_value, st)
+        self._set_reg_value(self._sq_inds, self._sq_value, (sqext << 5) | sq)
+        self._inst_value.setText(disassemble(sqext, sq, st))
 
     def _setup_ui(self, color):
         # Set up our basic layout
@@ -59,17 +53,26 @@ class AddressRegister(QWidget):
         layout.setSpacing(3)
         layout.setMargin(1)
 
-        # Construct register groups for EB, FEXT, FB, and S
-        eb_frame, self._eb_box = self._create_reg(self._eb_inds, 'EBANK', 3, color)
-        fext_frame, self._fext_box = self._create_reg(self._fext_inds, 'FEXT', 3, color)
-        fb_frame, self._fb_box = self._create_reg(self._fb_inds, 'FBANK', 5, color)
-        s_frame, self._s_box = self._create_reg(self._s_inds, '', 12, color)
-        layout.addWidget(eb_frame)
-        layout.addWidget(fext_frame)
-        layout.addWidget(fb_frame)
-        layout.addWidget(s_frame)
+        # Construct register groups for BR, ST, and SQ
+        br_frame, self._br_value = self._create_reg(self._br_inds, 'BR', 2, color)
+        st_frame, self._st_value = self._create_reg(self._st_inds, 'ST', 3, color)
+        sq_frame, self._sq_value = self._create_reg(self._sq_inds, 'SQ', 7, color)
+        layout.addWidget(br_frame)
+        layout.addWidget(st_frame)
+        layout.addWidget(sq_frame)
 
-        # Create a grouping widget for the S label and decoded octal value box
+        stat_group = QWidget(self)
+        layout.addWidget(stat_group)
+        stat_layout = QGridLayout(stat_group)
+        stat_layout.setMargin(3)
+        stat_layout.setSpacing(3)
+
+        col = 0
+        for name, label in STATUS_INDS.items():
+            self._status_inds[name] = self._create_status_light(label, stat_group, stat_layout, col)
+            col += 1
+
+        # Create a grouping widget for the I label and decoded instruction value box
         label_value = QWidget(self)
         lv_layout = QHBoxLayout(label_value)
         lv_layout.setSpacing(3)
@@ -78,20 +81,20 @@ class AddressRegister(QWidget):
         label_value.setLayout(lv_layout)
         layout.addWidget(label_value)
 
-        # Create a value box for displaying the overall decoded address
-        self._addr_value = QLineEdit(label_value)
-        self._addr_value.setReadOnly(True)
-        self._addr_value.setMaximumSize(65, 32)
-        self._addr_value.setText('00,0000')
+        # Create a value box for displaying the overall decoded instruction
+        self._inst_value = QLineEdit(label_value)
+        self._inst_value.setReadOnly(True)
+        self._inst_value.setMaximumSize(65, 32)
+        self._inst_value.setText('TC0')
         font = QFont('Monospace')
         font.setStyleHint(QFont.TypeWriter)
         font.setPointSize(10)
-        self._addr_value.setFont(font)
-        self._addr_value.setAlignment(Qt.AlignCenter)
-        lv_layout.addWidget(self._addr_value)
+        self._inst_value.setFont(font)
+        self._inst_value.setAlignment(Qt.AlignCenter)
+        lv_layout.addWidget(self._inst_value)
         
-        # Create a label to show 'S'
-        label = QLabel('S', label_value)
+        # Create a label to show 'I'
+        label = QLabel('I', label_value)
         font = label.font()
         font.setPointSize(14)
         font.setBold(True)
@@ -99,14 +102,14 @@ class AddressRegister(QWidget):
         lv_layout.addWidget(label)
 
         # Add some spacing to account for lack of parity indicators
-        layout.addSpacing(42)
+        layout.addSpacing(35)
 
     def _update_addr_value(self):
         # Get the values of all tracked registers
-        s = self._s_value
-        eb = self._eb_value
-        fb = self._fb_value
-        fext = self._fext_value
+        s = int(self._s_value.text(), 8)
+        eb = int(self._eb_value.text(), 8)
+        fb = int(self._fb_value.text(), 8)
+        fext = int(self._fext_value.text(), 8)
 
         # Determine which class of memory is being addressed by looking at S,
         # and further decode the address based on that
@@ -215,3 +218,19 @@ class AddressRegister(QWidget):
         reg_layout.addWidget(bit_frame)
 
         return reg_widget, reg_value
+
+    def _create_status_light(self, name, parent, layout, col):
+        label = QLabel(name, parent)
+        label.setAlignment(Qt.AlignBottom | Qt.AlignCenter)
+        font = label.font()
+        font.setPointSize(8)
+        label.setFont(font)
+        layout.addWidget(label, 1, col)
+
+        # Add an indicator to show inhibit state
+        ind = Indicator(parent, QColor(0, 255, 255))
+        ind.setFixedSize(20, 20)
+        layout.addWidget(ind, 2, col)
+        layout.setAlignment(ind, Qt.AlignCenter)
+
+        return ind

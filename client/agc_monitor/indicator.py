@@ -12,7 +12,7 @@ class Indicator(QWidget):
     def set_on(self, on):
         # Set our state and redraw
         self._on = bool(on)
-        self.repaint()
+        self.update()
 
     def paintEvent(self, event):
         p = QPainter(self)

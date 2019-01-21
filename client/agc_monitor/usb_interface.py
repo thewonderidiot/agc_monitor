@@ -80,7 +80,9 @@ class USBInterface(QObject, threading.Thread):
             for msg in self._poll_msgs:
                 self.send(msg)
 
+        msgs = 0
         while not self._rx_queue.empty():
+            msgs += 1
             msg = self._rx_queue.get_nowait()
             self._publish(msg)
 
@@ -96,7 +98,7 @@ class USBInterface(QObject, threading.Thread):
                 return
 
         try:
-            self._rx_bytes += self._dev.read(256)
+            self._rx_bytes += self._dev.read(16)
         except:
             self._disconnect()
             return

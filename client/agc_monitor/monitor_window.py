@@ -3,6 +3,7 @@ from PySide2.QtGui import QColor
 from PySide2.QtCore import Qt
 from register import Register
 from address_register import AddressRegister
+from instruction_register import InstructionRegister
 from control import Control
 from comp_stop import CompStop
 from usb_interface import USBInterface
@@ -69,6 +70,10 @@ class MonitorWindow(QMainWindow):
         self._reg_s = AddressRegister(None, self._usbif, QColor(0, 255, 0))
         layout.addWidget(self._reg_s)
         layout.setAlignment(self._reg_s, Qt.AlignRight)
+
+        self._reg_i = InstructionRegister(None, self._usbif, QColor(0, 255, 0))
+        layout.addWidget(self._reg_i)
+        layout.setAlignment(self._reg_i, Qt.AlignRight)
 
         # Add the control panel
         self._ctrl_panel = Control(None, self._usbif)
