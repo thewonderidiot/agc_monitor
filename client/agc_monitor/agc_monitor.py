@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 from PySide2.QtWidgets import QApplication
 from monitor_window import MonitorWindow

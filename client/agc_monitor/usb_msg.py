@@ -127,6 +127,54 @@ ControlMNHNC = namedtuple('ControlMNHNC', ['mnhnc'])
 ControlMNHNC.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlMNHNC = namedtuple('WriteControlMNHNC', ['mnhnc'])
 WriteControlMNHNC.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlS1S = namedtuple('ReadControlS1S', [])
+ReadControlS1S.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlS1S = namedtuple('ControlS1S', ['s'])
+ControlS1S.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlS1S = namedtuple('WriteControlS1S', ['s'])
+WriteControlS1S.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlS1Bank = namedtuple('ReadControlS1Bank', [])
+ReadControlS1Bank.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlS1Bank = namedtuple('ControlS1Bank', ['eb', 'fext', 'fb'])
+ControlS1Bank.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlS1Bank = namedtuple('WriteControlS1Bank', ['eb', 'fext', 'fb'])
+WriteControlS1Bank.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlS1SIgnore = namedtuple('ReadControlS1SIgnore', [])
+ReadControlS1SIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlS1SIgnore = namedtuple('ControlS1SIgnore', ['s'])
+ControlS1SIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlS1SIgnore = namedtuple('WriteControlS1SIgnore', ['s'])
+WriteControlS1SIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlS1BankIgnore = namedtuple('ReadControlS1BankIgnore', [])
+ReadControlS1BankIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlS1BankIgnore = namedtuple('ControlS1BankIgnore', ['eb', 'fext', 'fb'])
+ControlS1BankIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlS1BankIgnore = namedtuple('WriteControlS1BankIgnore', ['eb', 'fext', 'fb'])
+WriteControlS1BankIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlS2S = namedtuple('ReadControlS2S', [])
+ReadControlS2S.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlS2S = namedtuple('ControlS2S', ['s'])
+ControlS2S.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlS2S = namedtuple('WriteControlS2S', ['s'])
+WriteControlS2S.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlS2Bank = namedtuple('ReadControlS2Bank', [])
+ReadControlS2Bank.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlS2Bank = namedtuple('ControlS2Bank', ['eb', 'fext', 'fb'])
+ControlS2Bank.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlS2Bank = namedtuple('WriteControlS2Bank', ['eb', 'fext', 'fb'])
+WriteControlS2Bank.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlS2SIgnore = namedtuple('ReadControlS2SIgnore', [])
+ReadControlS2SIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlS2SIgnore = namedtuple('ControlS2SIgnore', ['s'])
+ControlS2SIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlS2SIgnore = namedtuple('WriteControlS2SIgnore', ['s'])
+WriteControlS2SIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlS2BankIgnore = namedtuple('ReadControlS2BankIgnore', [])
+ReadControlS2BankIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlS2BankIgnore = namedtuple('ControlS2BankIgnore', ['eb', 'fext', 'fb'])
+ControlS2BankIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlS2BankIgnore = namedtuple('WriteControlS2BankIgnore', ['eb', 'fext', 'fb'])
+WriteControlS2BankIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlNHALGA = namedtuple('ReadControlNHALGA', [])
 ReadControlNHALGA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlNHALGA = namedtuple('ControlNHALGA', ['nhalga'])
@@ -179,6 +227,14 @@ class Control(object):
     Proceed = 0x0003
     MNHRPT = 0x0004
     MNHNC = 0x0005
+    S1S = 0x0006
+    S1Bank = 0x0007
+    S1SIgnore = 0x0008
+    S1BankIgnore = 0x0009
+    S2S = 0x000A
+    S2Bank = 0x000B
+    S2SIgnore = 0x000C
+    S2BankIgnore = 0x000D
     NHALGA = 0x0040
     STRT1 = 0x0041
     STRT2 = 0x0042
@@ -292,6 +348,78 @@ def _pack_WriteControlMNHNC(msg):
     data = 0x0000
     data |= (msg.mnhnc & 0x0001) << 0
     return _pack_write_msg(AddressGroup.Control, Control.MNHNC, data)
+
+def _pack_ReadControlS1S(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.S1S)
+
+def _pack_WriteControlS1S(msg):
+    data = 0x0000
+    data |= (msg.s & 0x0FFF) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.S1S, data)
+
+def _pack_ReadControlS1Bank(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.S1Bank)
+
+def _pack_WriteControlS1Bank(msg):
+    data = 0x0000
+    data |= (msg.eb & 0x0007) << 0
+    data |= (msg.fext & 0x0007) << 4
+    data |= (msg.fb & 0x001F) << 10
+    return _pack_write_msg(AddressGroup.Control, Control.S1Bank, data)
+
+def _pack_ReadControlS1SIgnore(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.S1SIgnore)
+
+def _pack_WriteControlS1SIgnore(msg):
+    data = 0x0000
+    data |= (msg.s & 0x0FFF) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.S1SIgnore, data)
+
+def _pack_ReadControlS1BankIgnore(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.S1BankIgnore)
+
+def _pack_WriteControlS1BankIgnore(msg):
+    data = 0x0000
+    data |= (msg.eb & 0x0007) << 0
+    data |= (msg.fext & 0x0007) << 4
+    data |= (msg.fb & 0x001F) << 10
+    return _pack_write_msg(AddressGroup.Control, Control.S1BankIgnore, data)
+
+def _pack_ReadControlS2S(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.S2S)
+
+def _pack_WriteControlS2S(msg):
+    data = 0x0000
+    data |= (msg.s & 0x0FFF) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.S2S, data)
+
+def _pack_ReadControlS2Bank(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.S2Bank)
+
+def _pack_WriteControlS2Bank(msg):
+    data = 0x0000
+    data |= (msg.eb & 0x0007) << 0
+    data |= (msg.fext & 0x0007) << 4
+    data |= (msg.fb & 0x001F) << 10
+    return _pack_write_msg(AddressGroup.Control, Control.S2Bank, data)
+
+def _pack_ReadControlS2SIgnore(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.S2SIgnore)
+
+def _pack_WriteControlS2SIgnore(msg):
+    data = 0x0000
+    data |= (msg.s & 0x0FFF) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.S2SIgnore, data)
+
+def _pack_ReadControlS2BankIgnore(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.S2BankIgnore)
+
+def _pack_WriteControlS2BankIgnore(msg):
+    data = 0x0000
+    data |= (msg.eb & 0x0007) << 0
+    data |= (msg.fext & 0x0007) << 4
+    data |= (msg.fb & 0x001F) << 10
+    return _pack_write_msg(AddressGroup.Control, Control.S2BankIgnore, data)
 
 def _pack_ReadControlNHALGA(msg):
     return _pack_read_msg(AddressGroup.Control, Control.NHALGA)
@@ -443,6 +571,54 @@ def _unpack_ControlMNHNC(data):
         mnhnc = (data >> 0) & 0x0001,
     )
 
+def _unpack_ControlS1S(data):
+    return ControlS1S(
+        s = (data >> 0) & 0x0FFF,
+    )
+
+def _unpack_ControlS1Bank(data):
+    return ControlS1Bank(
+        eb = (data >> 0) & 0x0007,
+        fext = (data >> 4) & 0x0007,
+        fb = (data >> 10) & 0x001F,
+    )
+
+def _unpack_ControlS1SIgnore(data):
+    return ControlS1SIgnore(
+        s = (data >> 0) & 0x0FFF,
+    )
+
+def _unpack_ControlS1BankIgnore(data):
+    return ControlS1BankIgnore(
+        eb = (data >> 0) & 0x0007,
+        fext = (data >> 4) & 0x0007,
+        fb = (data >> 10) & 0x001F,
+    )
+
+def _unpack_ControlS2S(data):
+    return ControlS2S(
+        s = (data >> 0) & 0x0FFF,
+    )
+
+def _unpack_ControlS2Bank(data):
+    return ControlS2Bank(
+        eb = (data >> 0) & 0x0007,
+        fext = (data >> 4) & 0x0007,
+        fb = (data >> 10) & 0x001F,
+    )
+
+def _unpack_ControlS2SIgnore(data):
+    return ControlS2SIgnore(
+        s = (data >> 0) & 0x0FFF,
+    )
+
+def _unpack_ControlS2BankIgnore(data):
+    return ControlS2BankIgnore(
+        eb = (data >> 0) & 0x0007,
+        fext = (data >> 4) & 0x0007,
+        fb = (data >> 10) & 0x001F,
+    )
+
 def _unpack_ControlNHALGA(data):
     return ControlNHALGA(
         nhalga = (data >> 0) & 0x0001,
@@ -478,6 +654,14 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.Control, Control.StopCause): _unpack_ControlStopCause,
     (DATA_FLAG | AddressGroup.Control, Control.MNHRPT): _unpack_ControlMNHRPT,
     (DATA_FLAG | AddressGroup.Control, Control.MNHNC): _unpack_ControlMNHNC,
+    (DATA_FLAG | AddressGroup.Control, Control.S1S): _unpack_ControlS1S,
+    (DATA_FLAG | AddressGroup.Control, Control.S1Bank): _unpack_ControlS1Bank,
+    (DATA_FLAG | AddressGroup.Control, Control.S1SIgnore): _unpack_ControlS1SIgnore,
+    (DATA_FLAG | AddressGroup.Control, Control.S1BankIgnore): _unpack_ControlS1BankIgnore,
+    (DATA_FLAG | AddressGroup.Control, Control.S2S): _unpack_ControlS2S,
+    (DATA_FLAG | AddressGroup.Control, Control.S2Bank): _unpack_ControlS2Bank,
+    (DATA_FLAG | AddressGroup.Control, Control.S2SIgnore): _unpack_ControlS2SIgnore,
+    (DATA_FLAG | AddressGroup.Control, Control.S2BankIgnore): _unpack_ControlS2BankIgnore,
     (DATA_FLAG | AddressGroup.Control, Control.NHALGA): _unpack_ControlNHALGA,
     (DATA_FLAG | AddressGroup.Control, Control.STRT1): _unpack_ControlSTRT1,
     (DATA_FLAG | AddressGroup.Control, Control.STRT2): _unpack_ControlSTRT2,

@@ -113,6 +113,158 @@
             ]
         },
         {
+            "addr": 6,
+            "name": "S1S",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "s",
+                    "width": 12
+                }
+            ]
+        },
+        {
+            "addr": 7,
+            "name": "S1Bank",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "eb",
+                    "width": 3
+                },
+                {
+                    "name": "spare",
+                    "width": 1
+                },
+                {
+                    "name": "fext",
+                    "width": 3
+                },
+                {
+                    "name": "spare",
+                    "width": 3
+                },
+                {
+                    "name": "fb",
+                    "width": 5
+                }
+            ]
+        },
+        {
+            "addr": 8,
+            "name": "S1SIgnore",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "s",
+                    "width": 12
+                }
+            ]
+        },
+        {
+            "addr": 9,
+            "name": "S1BankIgnore",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "eb",
+                    "width": 3
+                },
+                {
+                    "name": "spare",
+                    "width": 1
+                },
+                {
+                    "name": "fext",
+                    "width": 3
+                },
+                {
+                    "name": "spare",
+                    "width": 3
+                },
+                {
+                    "name": "fb",
+                    "width": 5
+                }
+            ]
+        },
+        {
+            "addr": 10,
+            "name": "S2S",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "s",
+                    "width": 12
+                }
+            ]
+        },
+        {
+            "addr": 11,
+            "name": "S2Bank",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "eb",
+                    "width": 3
+                },
+                {
+                    "name": "spare",
+                    "width": 1
+                },
+                {
+                    "name": "fext",
+                    "width": 3
+                },
+                {
+                    "name": "spare",
+                    "width": 3
+                },
+                {
+                    "name": "fb",
+                    "width": 5
+                }
+            ]
+        },
+        {
+            "addr": 12,
+            "name": "S2SIgnore",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "s",
+                    "width": 12
+                }
+            ]
+        },
+        {
+            "addr": 13,
+            "name": "S2BankIgnore",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "eb",
+                    "width": 3
+                },
+                {
+                    "name": "spare",
+                    "width": 1
+                },
+                {
+                    "name": "fext",
+                    "width": 3
+                },
+                {
+                    "name": "spare",
+                    "width": 3
+                },
+                {
+                    "name": "fb",
+                    "width": 5
+                }
+            ]
+        },
+        {
             "addr": 64,
             "name": "NHALGA",
             "type": "rw",

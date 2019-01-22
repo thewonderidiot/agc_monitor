@@ -72,6 +72,7 @@ class AddressRegister(QWidget):
 
         # Create a grouping widget for the S label and decoded octal value box
         label_value = QWidget(self)
+        label_value.setMinimumWidth(100)
         lv_layout = QHBoxLayout(label_value)
         lv_layout.setSpacing(3)
         lv_layout.setMargin(1)
@@ -83,7 +84,7 @@ class AddressRegister(QWidget):
         self._addr_value = QLineEdit(label_value)
         self._addr_value.setReadOnly(True)
         self._addr_value.setMaximumSize(65, 32)
-        self._addr_value.setText('00,0000')
+        self._addr_value.setText('0000')
         font = QFont('Monospace')
         font.setStyleHint(QFont.TypeWriter)
         font.setPointSize(10)
@@ -100,7 +101,7 @@ class AddressRegister(QWidget):
         lv_layout.addWidget(label)
 
         # Add some spacing to account for lack of parity indicators
-        layout.addSpacing(42)
+        layout.addSpacing(19)
 
     def _update_addr_value(self):
         # Get the values of all tracked registers

@@ -6,6 +6,7 @@ from address_register import AddressRegister
 from instruction_register import InstructionRegister
 from control import Control
 from comp_stop import CompStop
+from s_comparator import SComparator
 from usb_interface import USBInterface
 
 class MonitorWindow(QMainWindow):
@@ -47,17 +48,17 @@ class MonitorWindow(QMainWindow):
         layout.addWidget(self._reg_l)
         layout.setAlignment(self._reg_l, Qt.AlignRight)
 
-        self._reg_q = Register(None, self._usbif, 'Q', False, QColor(0,255,0))
-        layout.addWidget(self._reg_q)
-        layout.setAlignment(self._reg_q, Qt.AlignRight)
+        # self._reg_q = Register(None, self._usbif, 'Q', False, QColor(0,255,0))
+        # layout.addWidget(self._reg_q)
+        # layout.setAlignment(self._reg_q, Qt.AlignRight)
 
         self._reg_z = Register(None, self._usbif, 'Z', False, QColor(0,255,0))
         layout.addWidget(self._reg_z)
         layout.setAlignment(self._reg_z, Qt.AlignRight)
 
-        self._reg_b = Register(None, self._usbif, 'B', False, QColor(0,255,0))
-        layout.addWidget(self._reg_b)
-        layout.setAlignment(self._reg_b, Qt.AlignRight)
+        # self._reg_b = Register(None, self._usbif, 'B', False, QColor(0,255,0))
+        # layout.addWidget(self._reg_b)
+        # layout.setAlignment(self._reg_b, Qt.AlignRight)
 
         self._reg_g = Register(None, self._usbif, 'G', True, QColor(0,255,0))
         layout.addWidget(self._reg_g)
@@ -70,6 +71,14 @@ class MonitorWindow(QMainWindow):
         self._reg_s = AddressRegister(None, self._usbif, QColor(0, 255, 0))
         layout.addWidget(self._reg_s)
         layout.setAlignment(self._reg_s, Qt.AlignRight)
+
+        self._s1 = SComparator(None, self._usbif, 1)
+        layout.addWidget(self._s1)
+        layout.setAlignment(self._s1, Qt.AlignRight)
+
+        self._s2 = SComparator(None, self._usbif, 2)
+        layout.addWidget(self._s2)
+        layout.setAlignment(self._s2, Qt.AlignRight)
 
         self._reg_i = InstructionRegister(None, self._usbif, QColor(0, 255, 0))
         layout.addWidget(self._reg_i)
