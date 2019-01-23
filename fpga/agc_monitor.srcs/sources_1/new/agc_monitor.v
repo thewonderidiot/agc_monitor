@@ -226,6 +226,7 @@ monitor_regs mon_regs(
     .rst_n(rst_n),
 
     .mt02(mt[2]),
+    .monwt(monwt),
     .ct(ct),
     .mwl(mwl),
     .mwag(mwag),
@@ -251,6 +252,8 @@ monitor_regs mon_regs(
     .miip(miip),
     .minhl(minhl),
     .minkl(minkl),
+
+    .mstp(mstp),
 
     .l(l),
     .q(q),

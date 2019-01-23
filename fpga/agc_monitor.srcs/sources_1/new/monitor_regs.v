@@ -8,6 +8,7 @@ module monitor_regs(
     input wire rst_n,
 
     input wire mt02,
+    input wire monwt,
     input wire ct,
 
     input wire [16:1] mwl,
@@ -35,6 +36,8 @@ module monitor_regs(
     input wire miip,
     input wire minhl,
     input wire minkl,
+
+    input wire mstp,
 
     output wire [16:1] l,
     output wire [16:1] q,
@@ -166,6 +169,17 @@ register reg_y(
     .val(y)
 );
 
+// Register SQ
+reg [15:10] sq;
+always @(posedge clk) begin
+    if (~rst_n) begin
+        sq <= 6'o0;
+    end else if (~(mstp & monwt)) begin
+        // Filter out transient 0's caused by CSQG during MSTP
+        sq <= msq;
+    end
+end
+
 reg read_en_q;
 
 always @(posedge clk or negedge rst_n) begin
@@ -188,7 +202,7 @@ always @(*) begin
         `MON_REG_S:      data_out = {4'b0, s};
         `MON_REG_G:      data_out = g;
         `MON_REG_Y:      data_out = y;
-        `MON_REG_I:      data_out = {5'b0, mbr, mst, msqext, msq};
+        `MON_REG_I:      data_out = {5'b0, mbr, mst, msqext, sq};
         `MON_REG_STATUS: data_out = {11'b0, minkl, minhl, miip, mstpit_n, mgojam}; // FIXME: add OUTCOM
         default:         data_out = 16'b0;
         endcase
