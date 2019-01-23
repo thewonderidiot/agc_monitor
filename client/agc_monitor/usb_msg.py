@@ -105,13 +105,13 @@ WriteControlStart = namedtuple('WriteControlStart', ['start'])
 WriteControlStart.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlStop = namedtuple('ReadControlStop', [])
 ReadControlStop.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-ControlStop = namedtuple('ControlStop', ['t12', 'nisq', 's1', 's2', 'w', 's_w', 's_i', 'chan', 'par', 'i', 'prog_step'])
+ControlStop = namedtuple('ControlStop', ['t12', 'nisq', 's1', 's2', 'w', 's_w', 's_i', 'chan', 'par', 'i', 'prog_step', 's1_s2'])
 ControlStop.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-WriteControlStop = namedtuple('WriteControlStop', ['t12', 'nisq', 's1', 's2', 'w', 's_w', 's_i', 'chan', 'par', 'i', 'prog_step'])
+WriteControlStop = namedtuple('WriteControlStop', ['t12', 'nisq', 's1', 's2', 'w', 's_w', 's_i', 'chan', 'par', 'i', 'prog_step', 's1_s2'])
 WriteControlStop.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlStopCause = namedtuple('ReadControlStopCause', [])
 ReadControlStopCause.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-ControlStopCause = namedtuple('ControlStopCause', ['t12', 'nisq'])
+ControlStopCause = namedtuple('ControlStopCause', ['t12', 'nisq', 's1', 's2', 'w', 's_w', 's_i', 'chan', 'par', 'i', 'prog_step'])
 ControlStopCause.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlProceed = namedtuple('WriteControlProceed', ['proceed'])
 WriteControlProceed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
@@ -323,6 +323,7 @@ def _pack_WriteControlStop(msg):
     data |= (msg.par & 0x0001) << 8
     data |= (msg.i & 0x0001) << 9
     data |= (msg.prog_step & 0x0001) << 10
+    data |= (msg.s1_s2 & 0x0001) << 11
     return _pack_write_msg(AddressGroup.Control, Control.Stop, data)
 
 def _pack_ReadControlStopCause(msg):
@@ -553,12 +554,22 @@ def _unpack_ControlStop(data):
         par = (data >> 8) & 0x0001,
         i = (data >> 9) & 0x0001,
         prog_step = (data >> 10) & 0x0001,
+        s1_s2 = (data >> 11) & 0x0001,
     )
 
 def _unpack_ControlStopCause(data):
     return ControlStopCause(
         t12 = (data >> 0) & 0x0001,
         nisq = (data >> 1) & 0x0001,
+        s1 = (data >> 2) & 0x0001,
+        s2 = (data >> 3) & 0x0001,
+        w = (data >> 4) & 0x0001,
+        s_w = (data >> 5) & 0x0001,
+        s_i = (data >> 6) & 0x0001,
+        chan = (data >> 7) & 0x0001,
+        par = (data >> 8) & 0x0001,
+        i = (data >> 9) & 0x0001,
+        prog_step = (data >> 10) & 0x0001,
     )
 
 def _unpack_ControlMNHRPT(data):

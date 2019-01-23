@@ -12,6 +12,9 @@ import usb_msg as um
 STYX_VID = 0x2a19
 STYX_PID = 0x1007
 
+POLL_PERIOD_MS = 20
+POLL_DIVIDER = 2
+
 class USBInterface(QObject, threading.Thread):
     connected = Signal(bool)
 
@@ -37,10 +40,11 @@ class USBInterface(QObject, threading.Thread):
         self._poll_msgs = []
         self._subscriptions = {}
         self._rx_bytes = b''
+        self._poll_ctr = 0
 
         self._timer = QTimer(None)
         self._timer.timeout.connect(self._transmit_poll_msgs)
-        self._timer.start(20)
+        self._timer.start(POLL_PERIOD_MS)
 
     def run(self):
         # Main run loop. Try to connect if we're not connected, otherwise
@@ -76,13 +80,15 @@ class USBInterface(QObject, threading.Thread):
         threading.Thread.join(self, timeout)
 
     def _transmit_poll_msgs(self):
-        if self._connected.isSet():
-            for msg in self._poll_msgs:
-                self.send(msg)
+        self._poll_ctr += 1
+        if (self._poll_ctr >= POLL_DIVIDER):
+            self._poll_ctr = 0
 
-        msgs = 0
+            if self._connected.isSet():
+                for msg in self._poll_msgs:
+                    self.send(msg)
+
         while not self._rx_queue.empty():
-            msgs += 1
             msg = self._rx_queue.get_nowait()
             self._publish(msg)
 

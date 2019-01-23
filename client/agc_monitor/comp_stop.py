@@ -1,4 +1,5 @@
-from PySide2.QtWidgets import QWidget, QFrame, QHBoxLayout, QVBoxLayout, QGridLayout, QLabel, QGroupBox, QCheckBox, QPushButton
+from PySide2.QtWidgets import QWidget, QFrame, QHBoxLayout, QVBoxLayout, QGridLayout, \
+                              QLabel, QGroupBox, QCheckBox, QRadioButton
 from PySide2.QtGui import QFont, QColor
 from PySide2.QtCore import Qt
 from collections import OrderedDict
@@ -31,7 +32,7 @@ class CompStop(QFrame):
 
         usbif.poll(um.ReadControlStopCause())
         usbif.subscribe(self, um.ControlStopCause)
-        z = (0,)*len(STOP_CONDS)
+        z = (0,)*(len(STOP_CONDS) + 1)
         usbif.send(um.WriteControlStop(*z))
 
     def handle_msg(self, msg):
@@ -41,6 +42,7 @@ class CompStop(QFrame):
 
     def _set_stop_conds(self, on):
         settings = {s: self._stop_switches[s].isChecked() for s in STOP_CONDS.values()}
+        settings['s1_s2'] = self._s2.isChecked()
         self._usbif.send(um.WriteControlStop(**settings))
 
     def _setup_ui(self):
@@ -57,6 +59,7 @@ class CompStop(QFrame):
             self._create_stop_cond(l, n, layout, col)
             col += 1
 
+
         label = QLabel('COMP STOP', self)
         font = label.font()
         font.setPointSize(12)
@@ -64,6 +67,17 @@ class CompStop(QFrame):
         label.setFont(font)
         label.setAlignment(Qt.AlignCenter)
         layout.addWidget(label, 3, 0, 1, 4, Qt.AlignCenter)
+
+        self._s1 = QRadioButton('S1', self)
+        self._s1.setLayoutDirection(Qt.RightToLeft)
+        layout.addWidget(self._s1, 3, 5, 1, 2)
+        layout.setAlignment(self._s1, Qt.AlignCenter)
+        self._s1.setChecked(True)
+        self._s1.toggled.connect(self._set_stop_conds)
+
+        self._s2 = QRadioButton('S2', self)
+        layout.addWidget(self._s2, 3, 6, 1, 2)
+        layout.setAlignment(self._s2, Qt.AlignRight)
 
     def _create_stop_cond(self, label_text, name, layout, col):
         # Create an indicator to show stop status

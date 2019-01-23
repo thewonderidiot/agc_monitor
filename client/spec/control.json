@@ -61,6 +61,10 @@
                 {
                     "name": "prog_step",
                     "width": 1
+                },
+                {
+                    "name": "s1_s2",
+                    "width": 1
                 }
             ]
         },
@@ -75,6 +79,42 @@
                 },
                 {
                     "name": "nisq",
+                    "width": 1
+                },
+                {
+                    "name": "s1",
+                    "width": 1
+                },
+                {
+                    "name": "s2",
+                    "width": 1
+                },
+                {
+                    "name": "w",
+                    "width": 1
+                },
+                {
+                    "name": "s_w",
+                    "width": 1
+                },
+                {
+                    "name": "s_i",
+                    "width": 1
+                },
+                {
+                    "name": "chan",
+                    "width": 1
+                },
+                {
+                    "name": "par",
+                    "width": 1
+                },
+                {
+                    "name": "i",
+                    "width": 1
+                },
+                {
+                    "name": "prog_step",
                     "width": 1
                 }
             ]
