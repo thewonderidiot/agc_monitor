@@ -42,6 +42,8 @@ module monitor_regs(
     output wire [16:1] l,
     output wire [16:1] q,
     output wire [12:1] s,
+    output wire [11:9] eb,
+    output wire [15:11] fb,
 
     input wire read_en,
     input wire [15:0] addr,
@@ -80,7 +82,6 @@ register reg_q(
 );
 
 // Register EB
-wire [3:1] eb;
 register2 #(3) reg_eb(
     .clk(clk),
     .rst_n(rst_n),
@@ -93,7 +94,6 @@ register2 #(3) reg_eb(
 );
 
 // Register FB
-wire [5:1] fb;
 register #(5) reg_fb(
     .clk(clk),
     .rst_n(rst_n),

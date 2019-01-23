@@ -21,13 +21,21 @@
 `define ADDR_GROUP_MON_CHANNELS 7'h22
 
 // Control Registers
-`define CTRL_REG_START      16'h0
-`define CTRL_REG_STOP       16'h1
-`define CTRL_REG_STOP_CAUSE 16'h2
-`define CTRL_REG_PROCEED    16'h3
-`define CTRL_REG_MNHRPT     16'h4
-`define CTRL_REG_MNHNC      16'h5
-`define CTRL_REG_NHALGA     16'h40
+`define CTRL_REG_START       16'h0
+`define CTRL_REG_STOP        16'h1
+`define CTRL_REG_STOP_CAUSE  16'h2
+`define CTRL_REG_PROCEED     16'h3
+`define CTRL_REG_MNHRPT      16'h4
+`define CTRL_REG_MNHNC       16'h5
+`define CTRL_REG_S1_S        16'h6
+`define CTRL_REG_S1_BANK     16'h7
+`define CTRL_REG_S1_S_IGN    16'h8
+`define CTRL_REG_S1_BANK_IGN 16'h9
+`define CTRL_REG_S2_S        16'hA
+`define CTRL_REG_S2_BANK     16'hB
+`define CTRL_REG_S2_S_IGN    16'hC
+`define CTRL_REG_S2_BANK_IGN 16'hD
+`define CTRL_REG_NHALGA      16'h40
 
 // Monitor AGC Register Mirrors
 `define MON_REG_A      16'o00

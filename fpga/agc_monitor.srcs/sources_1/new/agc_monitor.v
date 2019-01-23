@@ -169,6 +169,26 @@ wire proceed_req;
 wire [10:0] stop_conds;
 wire [10:0] stop_cause;
 
+wire [12:1] s1_s;
+wire [11:9] s1_eb;
+wire [15:11] s1_fb;
+wire [7:5] s1_fext;
+
+wire [12:1] s1_s_ign;
+wire [11:9] s1_eb_ign;
+wire [15:11] s1_fb_ign;
+wire [7:5] s1_fext_ign;
+
+wire [12:1] s2_s;
+wire [11:9] s2_eb;
+wire [15:11] s2_fb;
+wire [7:5] s2_fext;
+
+wire [12:1] s2_s_ign;
+wire [11:9] s2_eb_ign;
+wire [15:11] s2_fb_ign;
+wire [7:5] s2_fext_ign;
+
 control_regs ctrl_regs(
     .clk(clk),
     .rst_n(rst_n),
@@ -183,12 +203,37 @@ control_regs ctrl_regs(
     .stop_cause(stop_cause),
     .mnhrpt(mnhrpt),
     .mnhnc(mnhnc),
-    .nhalga(nhalga)
+    .nhalga(nhalga),
+
+    .s1_s(s1_s),
+    .s1_eb(s1_eb),
+    .s1_fb(s1_fb),
+    .s1_fext(s1_fext),
+
+    .s1_s_ign(s1_s_ign),
+    .s1_eb_ign(s1_eb_ign),
+    .s1_fb_ign(s1_fb_ign),
+    .s1_fext_ign(s1_fext_ign),
+
+    .s2_s(s2_s),
+    .s2_eb(s2_eb),
+    .s2_fb(s2_fb),
+    .s2_fext(s2_fext),
+
+    .s2_s_ign(s2_s_ign),
+    .s2_eb_ign(s2_eb_ign),
+    .s2_fb_ign(s2_fb_ign),
+    .s2_fext_ign(s2_fext_ign)
 );
 
 /*******************************************************************************.
 * Start/Stop Logic                                                              *
 '*******************************************************************************/
+wire [12:1] s;
+wire [11:9] eb;
+wire [15:11] fb;
+wire [7:5] fext;
+
 start_stop strt_stp(
     .clk(clk),
     .rst_n(rst_n),
@@ -201,7 +246,32 @@ start_stop strt_stp(
     .mgojam(mgojam),
     .mnisq(mnisq),
     .mstrt(mstrt),
-    .mstp(mstp)
+    .mstp(mstp),
+
+    .s(s),
+    .eb(eb),
+    .fb(fb),
+    .fext(fext),
+
+    .s1_s(s1_s),
+    .s1_eb(s1_eb),
+    .s1_fb(s1_fb),
+    .s1_fext(s1_fext),
+
+    .s1_s_ign(s1_s_ign),
+    .s1_eb_ign(s1_eb_ign),
+    .s1_fb_ign(s1_fb_ign),
+    .s1_fext_ign(s1_fext_ign),
+
+    .s2_s(s2_s),
+    .s2_eb(s2_eb),
+    .s2_fb(s2_fb),
+    .s2_fext(s2_fext),
+
+    .s2_s_ign(s2_s_ign),
+    .s2_eb_ign(s2_eb_ign),
+    .s2_fb_ign(s2_fb_ign),
+    .s2_fext_ign(s2_fext_ign)
 );
 
 /*******************************************************************************.
@@ -220,7 +290,6 @@ clear_timer ctmr(
 '*******************************************************************************/
 wire [16:1] l;
 wire [16:1] q;
-wire [12:1] s;
 monitor_regs mon_regs(
     .clk(clk),
     .rst_n(rst_n),
@@ -258,6 +327,8 @@ monitor_regs mon_regs(
     .l(l),
     .q(q),
     .s(s),
+    .eb(eb),
+    .fb(fb),
 
     .read_en(mon_reg_read_en),
     .addr(cmd_addr),
@@ -281,6 +352,8 @@ monitor_channels mon_chans(
     .l({l[16], l[14:1]}),
     .q({q[16], q[14:1]}),
     .chan77(chan77),
+
+    .fext(fext),
 
     .read_en(mon_chan_read_en),
     .addr(cmd_addr),

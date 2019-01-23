@@ -16,6 +16,8 @@ module monitor_channels(
     input wire [15:1] q,
     input wire [9:1] chan77,
 
+    output wire [7:5] fext,
+
     input wire read_en,
     input wire [15:0] addr,
     output reg [15:0] data_out
@@ -69,7 +71,6 @@ channel #(6,8) chan_6(
     .val(rolljets)
 );
 
-wire [7:5] fext;
 channel #(7,3) chan_7(
     .clk(clk),
     .rst_n(rst_n),
