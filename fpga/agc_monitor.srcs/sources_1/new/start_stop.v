@@ -42,10 +42,11 @@ module start_stop(
     input wire [7:5] s2_fext_ign
 );
 
-`define STOP_T12  0
-`define STOP_NISQ 1
-`define STOP_S1   2
-`define STOP_S2   3
+`define STOP_T12       0
+`define STOP_NISQ      1
+`define STOP_S1        2
+`define STOP_S2        3
+`define STOP_PROG_STEP 10
 
 wire s1_s_match;
 wire s1_eb_match;
@@ -84,11 +85,13 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 reg proceeding;
+reg prog_step_match;
 
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         stop_cause <= 11'b0;
         proceeding <= 1'b0;
+        prog_step_match <= 1'b0;
     end else begin
         if (proceed_req) begin
             stop_cause <= 11'b0;
@@ -99,19 +102,22 @@ always @(posedge clk or negedge rst_n) begin
             end
         end else begin
             if (stop_conds[`STOP_T12] & mt12) begin
-                stop_cause[`STOP_T12] = 1'b1;
+                stop_cause[`STOP_T12] <= 1'b1;
             end
 
             if (stop_conds[`STOP_NISQ] & mnisq) begin
-                stop_cause[`STOP_NISQ] = 1'b1;
+                stop_cause[`STOP_NISQ] <= 1'b1;
             end
 
             if (stop_conds[`STOP_S1] & s1_match) begin
-                stop_cause[`STOP_S1] = 1'b1;
+                stop_cause[`STOP_S1] <= 1'b1;
             end
 
-            if (stop_conds[`STOP_S2] & s2_match) begin
-                stop_cause[`STOP_S2] = 1'b1;
+            if (stop_conds[`STOP_PROG_STEP] & s1_match) begin
+                prog_step_match <= 1'b1;
+            end
+            if (prog_step_match & mnisq) begin
+                stop_cause[`STOP_PROG_STEP] <= 1'b1;
             end
         end
     end
