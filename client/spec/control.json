@@ -305,6 +305,140 @@
             ]
         },
         {
+            "addr": 14,
+            "name": "WriteW",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "mode",
+                    "width": 3,
+                    "enum": {
+                        "ALL": 0,
+                        "S": 1,
+                        "I": 2,
+                        "S_I": 3,
+                        "P": 4,
+                        "P_I": 5,
+                        "P_S": 6
+                    }
+                },
+                {
+                    "name": "s1_s2",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 15,
+            "name": "TimeSwitches",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "t01",
+                    "width": 1
+                },
+                {
+                    "name": "t02",
+                    "width": 1
+                },
+                {
+                    "name": "t03",
+                    "width": 1
+                },
+                {
+                    "name": "t04",
+                    "width": 1
+                },
+                {
+                    "name": "t05",
+                    "width": 1
+                },
+                {
+                    "name": "t06",
+                    "width": 1
+                },
+                {
+                    "name": "t07",
+                    "width": 1
+                },
+                {
+                    "name": "t08",
+                    "width": 1
+                },
+                {
+                    "name": "t09",
+                    "width": 1
+                },
+                {
+                    "name": "t10",
+                    "width": 1
+                },
+                {
+                    "name": "t11",
+                    "width": 1
+                },
+                {
+                    "name": "t12",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 16,
+            "name": "PulseSwitches",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "a",
+                    "width": 1
+                },
+                {
+                    "name": "l",
+                    "width": 1
+                },
+                {
+                    "name": "q",
+                    "width": 1
+                },
+                {
+                    "name": "z",
+                    "width": 1
+                },
+                {
+                    "name": "rch",
+                    "width": 1
+                },
+                {
+                    "name": "wch",
+                    "width": 1
+                },
+                {
+                    "name": "g",
+                    "width": 1
+                },
+                {
+                    "name": "b",
+                    "width": 1
+                },
+                {
+                    "name": "y",
+                    "width": 1
+                },
+                {
+                    "name": "ru",
+                    "width": 1
+                },
+                {
+                    "name": "sp1",
+                    "width": 1
+                },
+                {
+                    "name": "sp2",
+                    "width": 1
+                }
+            ]
+        },
+        {
             "addr": 64,
             "name": "NHALGA",
             "type": "rw",

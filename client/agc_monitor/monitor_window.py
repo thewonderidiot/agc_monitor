@@ -1,6 +1,7 @@
-from PySide2.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QLabel
+from PySide2.QtWidgets import QMainWindow, QHBoxLayout, QVBoxLayout, QWidget, QLabel
 from PySide2.QtGui import QColor
 from PySide2.QtCore import Qt
+from write_w import WriteW
 from register import Register
 from address_register import AddressRegister
 from instruction_register import InstructionRegister
@@ -39,58 +40,80 @@ class MonitorWindow(QMainWindow):
         central.setLayout(layout)
         layout.setSpacing(2)
 
+        # Create a horizontal widget to hold the Write W settings on the left, and
+        # the computer register displays on the right
+        upper_displays = QWidget(central)
+        upper_layout = QHBoxLayout(upper_displays)
+        upper_displays.setLayout(upper_layout)
+        upper_layout.setMargin(0)
+        upper_layout.setSpacing(1)
+        layout.addWidget(upper_displays)
+
+        self._write_w = WriteW(upper_displays, self._usbif)
+        upper_layout.addWidget(self._write_w)
+        upper_layout.setAlignment(self._write_w, Qt.AlignTop)
+
+        regs = QWidget(upper_displays)
+        regs_layout = QVBoxLayout(regs)
+        regs.setLayout(regs_layout)
+        regs_layout.setSpacing(2)
+        regs_layout.setMargin(0)
+        regs_layout.addSpacing(25)
+        upper_layout.addWidget(regs)
+        upper_layout.setAlignment(regs, Qt.AlignTop)
+
         # Add all of the registers for display
-        self._reg_a = Register(None, self._usbif, 'A', False, QColor(0,255,0))
-        layout.addWidget(self._reg_a)
-        layout.setAlignment(self._reg_a, Qt.AlignRight)
+        self._reg_a = Register(regs, self._usbif, 'A', False, QColor(0,255,0))
+        regs_layout.addWidget(self._reg_a)
+        regs_layout.setAlignment(self._reg_a, Qt.AlignRight)
 
-        self._reg_l = Register(None, self._usbif, 'L', False, QColor(0,255,0))
-        layout.addWidget(self._reg_l)
-        layout.setAlignment(self._reg_l, Qt.AlignRight)
+        self._reg_l = Register(regs, self._usbif, 'L', False, QColor(0,255,0))
+        regs_layout.addWidget(self._reg_l)
+        regs_layout.setAlignment(self._reg_l, Qt.AlignRight)
 
-        # self._reg_q = Register(None, self._usbif, 'Q', False, QColor(0,255,0))
-        # layout.addWidget(self._reg_q)
-        # layout.setAlignment(self._reg_q, Qt.AlignRight)
+        # self._reg_q = Register(regs, self._usbif, 'Q', False, QColor(0,255,0))
+        # regs_layout.addWidget(self._reg_q)
+        # regs_layout.setAlignment(self._reg_q, Qt.AlignRight)
 
-        self._reg_z = Register(None, self._usbif, 'Z', False, QColor(0,255,0))
-        layout.addWidget(self._reg_z)
-        layout.setAlignment(self._reg_z, Qt.AlignRight)
+        self._reg_z = Register(regs, self._usbif, 'Z', False, QColor(0,255,0))
+        regs_layout.addWidget(self._reg_z)
+        regs_layout.setAlignment(self._reg_z, Qt.AlignRight)
 
-        # self._reg_b = Register(None, self._usbif, 'B', False, QColor(0,255,0))
-        # layout.addWidget(self._reg_b)
-        # layout.setAlignment(self._reg_b, Qt.AlignRight)
+        # self._reg_b = Register(regs, self._usbif, 'B', False, QColor(0,255,0))
+        # regs_layout.addWidget(self._reg_b)
+        # regs_layout.setAlignment(self._reg_b, Qt.AlignRight)
 
-        self._reg_g = Register(None, self._usbif, 'G', True, QColor(0,255,0))
-        layout.addWidget(self._reg_g)
-        layout.setAlignment(self._reg_g, Qt.AlignRight)
+        self._reg_g = Register(regs, self._usbif, 'G', True, QColor(0,255,0))
+        regs_layout.addWidget(self._reg_g)
+        regs_layout.setAlignment(self._reg_g, Qt.AlignRight)
 
-        self._reg_w = Register(None, self._usbif, 'W', True, QColor(0,255,0))
-        layout.addWidget(self._reg_w)
-        layout.setAlignment(self._reg_w, Qt.AlignRight)
+        self._reg_w = Register(regs, self._usbif, 'W', True, QColor(0,255,0))
+        regs_layout.addWidget(self._reg_w)
+        regs_layout.setAlignment(self._reg_w, Qt.AlignRight)
 
-        self._reg_s = AddressRegister(None, self._usbif, QColor(0, 255, 0))
+        self._reg_s = AddressRegister(central, self._usbif, QColor(0, 255, 0))
         layout.addWidget(self._reg_s)
         layout.setAlignment(self._reg_s, Qt.AlignRight)
 
-        self._s1 = SComparator(None, self._usbif, 1)
+        self._s1 = SComparator(central, self._usbif, 1)
         layout.addWidget(self._s1)
         layout.setAlignment(self._s1, Qt.AlignRight)
 
-        self._s2 = SComparator(None, self._usbif, 2)
+        self._s2 = SComparator(central, self._usbif, 2)
         layout.addWidget(self._s2)
         layout.setAlignment(self._s2, Qt.AlignRight)
 
-        self._reg_i = InstructionRegister(None, self._usbif, QColor(0, 255, 0))
+        self._reg_i = InstructionRegister(central, self._usbif, QColor(0, 255, 0))
         layout.addWidget(self._reg_i)
         layout.setAlignment(self._reg_i, Qt.AlignRight)
 
         # Add the control panel
-        self._ctrl_panel = Control(None, self._usbif)
+        self._ctrl_panel = Control(central, self._usbif)
         layout.addWidget(self._ctrl_panel)
         layout.setAlignment(self._ctrl_panel, Qt.AlignLeft)
 
         # Add the computer stop panel
-        self._comp_stop = CompStop(None, self._usbif)
+        self._comp_stop = CompStop(central, self._usbif)
         layout.addWidget(self._comp_stop)
         layout.setAlignment(self._comp_stop, Qt.AlignLeft)
 

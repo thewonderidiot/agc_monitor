@@ -39,6 +39,9 @@ GROUP_ENUM_TEMPLATE = '''class AddressGroup(object):
 REG_ENUM_TEMPLATE = '''class {group}(object):
 {regs}'''
 
+FIELD_ENUM_TEMPLATE = '''class {name}:
+{items}'''
+
 PACK_WRITE_REG_TEMPLATE = '''def _pack_Write{group}{reg}(msg):
     data = 0x0000
 {fields}    return _pack_write_msg(AddressGroup.{group}, {group}.{reg}, data)
@@ -151,6 +154,25 @@ def generate_reg_enums(specs):
 
     return output
 
+def generate_field_enum(reg_name, field):
+    items = ''
+    for e,v in field['enum'].items():
+        items += '    %s = %u\n' % (e, v)
+
+    return FIELD_ENUM_TEMPLATE.format(name=reg_name+field['name'].title(), items=items)
+
+def generate_field_enums(specs):
+    output = ''
+    for spec in specs.values():
+        if 'registers' in spec:
+            for reg in spec['registers']:
+                for field in reg['fields']:
+                    if 'enum' in field:
+                        output += generate_field_enum(reg['name'], field)
+
+    return output
+
+
 def generate_pack_fns(specs):
     output = ''
     for group, spec in specs.items():
@@ -234,6 +256,7 @@ def generate_interface(specs_dir, output_filename):
     output += generate_message_types(specs) + '\n'
     output += generate_group_enum(specs) + '\n'
     output += generate_reg_enums(specs) + '\n'
+    output += generate_field_enums(specs) + '\n'
     output += generate_pack_fns(specs) + '\n'
     output += generate_unpack_fns(specs) + '\n'
     output += generate_unpack_dicts(specs) + '\n'

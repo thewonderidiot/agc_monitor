@@ -175,6 +175,24 @@ ControlS2BankIgnore = namedtuple('ControlS2BankIgnore', ['eb', 'fext', 'fb'])
 ControlS2BankIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlS2BankIgnore = namedtuple('WriteControlS2BankIgnore', ['eb', 'fext', 'fb'])
 WriteControlS2BankIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlWriteW = namedtuple('ReadControlWriteW', [])
+ReadControlWriteW.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlWriteW = namedtuple('ControlWriteW', ['mode', 's1_s2'])
+ControlWriteW.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlWriteW = namedtuple('WriteControlWriteW', ['mode', 's1_s2'])
+WriteControlWriteW.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlTimeSwitches = namedtuple('ReadControlTimeSwitches', [])
+ReadControlTimeSwitches.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlTimeSwitches = namedtuple('ControlTimeSwitches', ['t01', 't02', 't03', 't04', 't05', 't06', 't07', 't08', 't09', 't10', 't11', 't12'])
+ControlTimeSwitches.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlTimeSwitches = namedtuple('WriteControlTimeSwitches', ['t01', 't02', 't03', 't04', 't05', 't06', 't07', 't08', 't09', 't10', 't11', 't12'])
+WriteControlTimeSwitches.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlPulseSwitches = namedtuple('ReadControlPulseSwitches', [])
+ReadControlPulseSwitches.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlPulseSwitches = namedtuple('ControlPulseSwitches', ['a', 'l', 'q', 'z', 'rch', 'wch', 'g', 'b', 'y', 'ru', 'sp1', 'sp2'])
+ControlPulseSwitches.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlPulseSwitches = namedtuple('WriteControlPulseSwitches', ['a', 'l', 'q', 'z', 'rch', 'wch', 'g', 'b', 'y', 'ru', 'sp1', 'sp2'])
+WriteControlPulseSwitches.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlNHALGA = namedtuple('ReadControlNHALGA', [])
 ReadControlNHALGA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlNHALGA = namedtuple('ControlNHALGA', ['nhalga'])
@@ -235,9 +253,21 @@ class Control(object):
     S2Bank = 0x000B
     S2SIgnore = 0x000C
     S2BankIgnore = 0x000D
+    WriteW = 0x000E
+    TimeSwitches = 0x000F
+    PulseSwitches = 0x0010
     NHALGA = 0x0040
     STRT1 = 0x0041
     STRT2 = 0x0042
+
+class WriteWMode:
+    ALL = 0
+    S = 1
+    I = 2
+    S_I = 3
+    P = 4
+    P_I = 5
+    P_S = 6
 
 def _pack_ReadSimErasable(msg):
     return _pack_read_msg(AddressGroup.SimErasable, msg.addr)
@@ -421,6 +451,53 @@ def _pack_WriteControlS2BankIgnore(msg):
     data |= (msg.fext & 0x0007) << 4
     data |= (msg.fb & 0x001F) << 10
     return _pack_write_msg(AddressGroup.Control, Control.S2BankIgnore, data)
+
+def _pack_ReadControlWriteW(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.WriteW)
+
+def _pack_WriteControlWriteW(msg):
+    data = 0x0000
+    data |= (msg.mode & 0x0007) << 0
+    data |= (msg.s1_s2 & 0x0001) << 3
+    return _pack_write_msg(AddressGroup.Control, Control.WriteW, data)
+
+def _pack_ReadControlTimeSwitches(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.TimeSwitches)
+
+def _pack_WriteControlTimeSwitches(msg):
+    data = 0x0000
+    data |= (msg.t01 & 0x0001) << 0
+    data |= (msg.t02 & 0x0001) << 1
+    data |= (msg.t03 & 0x0001) << 2
+    data |= (msg.t04 & 0x0001) << 3
+    data |= (msg.t05 & 0x0001) << 4
+    data |= (msg.t06 & 0x0001) << 5
+    data |= (msg.t07 & 0x0001) << 6
+    data |= (msg.t08 & 0x0001) << 7
+    data |= (msg.t09 & 0x0001) << 8
+    data |= (msg.t10 & 0x0001) << 9
+    data |= (msg.t11 & 0x0001) << 10
+    data |= (msg.t12 & 0x0001) << 11
+    return _pack_write_msg(AddressGroup.Control, Control.TimeSwitches, data)
+
+def _pack_ReadControlPulseSwitches(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.PulseSwitches)
+
+def _pack_WriteControlPulseSwitches(msg):
+    data = 0x0000
+    data |= (msg.a & 0x0001) << 0
+    data |= (msg.l & 0x0001) << 1
+    data |= (msg.q & 0x0001) << 2
+    data |= (msg.z & 0x0001) << 3
+    data |= (msg.rch & 0x0001) << 4
+    data |= (msg.wch & 0x0001) << 5
+    data |= (msg.g & 0x0001) << 6
+    data |= (msg.b & 0x0001) << 7
+    data |= (msg.y & 0x0001) << 8
+    data |= (msg.ru & 0x0001) << 9
+    data |= (msg.sp1 & 0x0001) << 10
+    data |= (msg.sp2 & 0x0001) << 11
+    return _pack_write_msg(AddressGroup.Control, Control.PulseSwitches, data)
 
 def _pack_ReadControlNHALGA(msg):
     return _pack_read_msg(AddressGroup.Control, Control.NHALGA)
@@ -630,6 +707,44 @@ def _unpack_ControlS2BankIgnore(data):
         fb = (data >> 10) & 0x001F,
     )
 
+def _unpack_ControlWriteW(data):
+    return ControlWriteW(
+        mode = (data >> 0) & 0x0007,
+        s1_s2 = (data >> 3) & 0x0001,
+    )
+
+def _unpack_ControlTimeSwitches(data):
+    return ControlTimeSwitches(
+        t01 = (data >> 0) & 0x0001,
+        t02 = (data >> 1) & 0x0001,
+        t03 = (data >> 2) & 0x0001,
+        t04 = (data >> 3) & 0x0001,
+        t05 = (data >> 4) & 0x0001,
+        t06 = (data >> 5) & 0x0001,
+        t07 = (data >> 6) & 0x0001,
+        t08 = (data >> 7) & 0x0001,
+        t09 = (data >> 8) & 0x0001,
+        t10 = (data >> 9) & 0x0001,
+        t11 = (data >> 10) & 0x0001,
+        t12 = (data >> 11) & 0x0001,
+    )
+
+def _unpack_ControlPulseSwitches(data):
+    return ControlPulseSwitches(
+        a = (data >> 0) & 0x0001,
+        l = (data >> 1) & 0x0001,
+        q = (data >> 2) & 0x0001,
+        z = (data >> 3) & 0x0001,
+        rch = (data >> 4) & 0x0001,
+        wch = (data >> 5) & 0x0001,
+        g = (data >> 6) & 0x0001,
+        b = (data >> 7) & 0x0001,
+        y = (data >> 8) & 0x0001,
+        ru = (data >> 9) & 0x0001,
+        sp1 = (data >> 10) & 0x0001,
+        sp2 = (data >> 11) & 0x0001,
+    )
+
 def _unpack_ControlNHALGA(data):
     return ControlNHALGA(
         nhalga = (data >> 0) & 0x0001,
@@ -673,6 +788,9 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.Control, Control.S2Bank): _unpack_ControlS2Bank,
     (DATA_FLAG | AddressGroup.Control, Control.S2SIgnore): _unpack_ControlS2SIgnore,
     (DATA_FLAG | AddressGroup.Control, Control.S2BankIgnore): _unpack_ControlS2BankIgnore,
+    (DATA_FLAG | AddressGroup.Control, Control.WriteW): _unpack_ControlWriteW,
+    (DATA_FLAG | AddressGroup.Control, Control.TimeSwitches): _unpack_ControlTimeSwitches,
+    (DATA_FLAG | AddressGroup.Control, Control.PulseSwitches): _unpack_ControlPulseSwitches,
     (DATA_FLAG | AddressGroup.Control, Control.NHALGA): _unpack_ControlNHALGA,
     (DATA_FLAG | AddressGroup.Control, Control.STRT1): _unpack_ControlSTRT1,
     (DATA_FLAG | AddressGroup.Control, Control.STRT2): _unpack_ControlSTRT2,
