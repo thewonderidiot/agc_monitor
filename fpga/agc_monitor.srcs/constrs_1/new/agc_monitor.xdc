@@ -222,3 +222,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports minhl]
 set_property IOSTANDARD LVCMOS33 [get_ports minkl]
 set_property IOSTANDARD LVCMOS33 [get_ports msqext]
 set_property IOSTANDARD LVCMOS33 [get_ports mstpit_n]
+
+set_property IOSTANDARD LVCMOS33 [get_ports mrulog]
+set_property PACKAGE_PIN D17 [get_ports mrulog]

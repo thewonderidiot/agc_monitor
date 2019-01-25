@@ -35,18 +35,30 @@
 `define CTRL_REG_S2_BANK     16'hB
 `define CTRL_REG_S2_S_IGN    16'hC
 `define CTRL_REG_S2_BANK_IGN 16'hD
+`define CTRL_REG_WRITE_W     16'hE
+`define CTRL_REG_W_TIMES     16'hF
+`define CTRL_REG_W_PULSES    16'h10
 `define CTRL_REG_NHALGA      16'h40
 
 // Monitor AGC Register Mirrors
-`define MON_REG_A      16'o00
-`define MON_REG_L      16'o01
-`define MON_REG_Q      16'o02
-`define MON_REG_Z      16'o03
-`define MON_REG_BB     16'o04
-`define MON_REG_B      16'o05
-`define MON_REG_S      16'o06
-`define MON_REG_G      16'o07
-`define MON_REG_Y      16'o10
-`define MON_REG_U      16'o11
-`define MON_REG_I      16'o12
-`define MON_REG_STATUS 16'o13
+`define MON_REG_A      16'h00
+`define MON_REG_L      16'h01
+`define MON_REG_Q      16'h02
+`define MON_REG_Z      16'h03
+`define MON_REG_BB     16'h04
+`define MON_REG_B      16'h05
+`define MON_REG_S      16'h06
+`define MON_REG_G      16'h07
+`define MON_REG_Y      16'h08
+`define MON_REG_U      16'h09
+`define MON_REG_I      16'h0A
+`define MON_REG_STATUS 16'h0B
+`define MON_REG_W      16'h40
+
+`define W_MODE_ALL 3'o0
+`define W_MODE_S   3'o1
+`define W_MODE_I   3'o2
+`define W_MODE_S_I 3'o3
+`define W_MODE_P   3'o4
+`define W_MODE_P_I 3'o5
+`define W_MODE_P_S 3'o6

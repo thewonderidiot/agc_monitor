@@ -7,7 +7,7 @@ module monitor_regs(
     input wire clk,
     input wire rst_n,
 
-    input wire mt02,
+    input wire [12:1] mt,
     input wire monwt,
     input wire ct,
 
@@ -24,7 +24,10 @@ module monitor_regs(
     input wire mwsg,
     input wire mwg,
     input wire mwyg,
+    input wire mrulog,
     input wire mrgg,
+    input wire mwch,
+    input wire mrch,
 
     input wire msqext,
     input wire [15:10] msq,
@@ -36,8 +39,17 @@ module monitor_regs(
     input wire miip,
     input wire minhl,
     input wire minkl,
+    input wire mnisq,
 
     input wire mstp,
+
+    input wire s1_match,
+    input wire s2_match,
+
+    input wire [2:0] w_mode,
+    input wire w_s1_s2,
+    input wire [12:1] w_times,
+    input wire [11:0] w_pulses,
 
     output wire [16:1] l,
     output wire [16:1] q,
@@ -140,7 +152,7 @@ wire [16:1] mwl_edited;
 edit editing(
     .clk(clk),
     .rst_n(rst_n),
-    .mt02(mt02),
+    .mt02(mt[2]),
     .s(s),
     .mwl(mwl),
     .mwl_edited(mwl_edited)
@@ -171,7 +183,7 @@ register reg_y(
 
 // Register SQ
 reg [15:10] sq;
-always @(posedge clk) begin
+always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         sq <= 6'o0;
     end else if (~(mstp & monwt)) begin
@@ -179,6 +191,69 @@ always @(posedge clk) begin
         sq <= msq;
     end
 end
+
+reg [2:1] br;
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        br <= 2'b0;
+    end else begin
+        if (mt & w_times) begin
+            br <= mbr;
+        end
+    end
+end
+
+// Register W
+wire [23:0] w_conds;
+wire [23:0] agc_pulses;
+
+assign w_conds = {w_times, w_pulses};
+assign agc_pulses = {mt, 1'b0, 1'b0, mrulog, mwyg, mwbg, (mwg | mrgg), mwch, mrch, mwzg, mwqg, mwlg, mwag};
+
+wire pulse_or_match;
+wire pulse_and_match;
+
+assign pulse_or_match = (w_conds & agc_pulses) != 24'b0;
+assign pulse_and_match = (~w_conds | agc_pulses) == 24'hFFFFFF;
+
+wire s_match;
+assign s_match = (w_s1_s2 ? s2_match : s1_match);
+
+reg p_match;
+
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        p_match <= 1'b0;
+    end else begin
+        if ((w_mode == `W_MODE_P) & s1_match) begin
+            p_match <= 1'b1;
+        end else if (mnisq) begin
+            p_match <= 1'b0;
+        end
+    end
+end
+
+
+reg mwwg;
+always @(*) begin
+    case (w_mode)
+    `W_MODE_ALL: mwwg = pulse_or_match;
+    `W_MODE_S:   mwwg = s_match & pulse_and_match;
+    `W_MODE_P:   mwwg = p_match & pulse_and_match;
+    `W_MODE_P_S: mwwg = p_match & s_match & pulse_and_match;
+    default:     mwwg = 1'b0;
+    endcase
+end
+
+wire [16:1] w;
+register reg_w(
+    .clk(clk),
+    .rst_n(rst_n),
+    .ct(ct),
+    .mwg(mwwg),
+    .mwl(mwl),
+    .val(w)
+);
 
 reg read_en_q;
 
@@ -202,7 +277,8 @@ always @(*) begin
         `MON_REG_S:      data_out = {4'b0, s};
         `MON_REG_G:      data_out = g;
         `MON_REG_Y:      data_out = y;
-        `MON_REG_I:      data_out = {5'b0, mbr, mst, msqext, sq};
+        `MON_REG_W:      data_out = w;
+        `MON_REG_I:      data_out = {5'b0, br, mst, msqext, sq};
         `MON_REG_STATUS: data_out = {11'b0, minkl, minhl, miip, mstpit_n, mgojam}; // FIXME: add OUTCOM
         default:         data_out = 16'b0;
         endcase

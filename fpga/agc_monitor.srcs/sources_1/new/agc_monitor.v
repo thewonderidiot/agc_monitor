@@ -42,6 +42,7 @@ module agc_monitor(
     input wire mwsg,
     input wire mwg,
     input wire mwyg,
+    input wire mrulog,
     input wire mrgg,
     input wire mrch,
     input wire mwch,
@@ -169,25 +170,18 @@ wire proceed_req;
 wire [10:0] stop_conds;
 wire [10:0] stop_cause;
 
-wire [12:1] s1_s;
-wire [11:9] s1_eb;
-wire [15:11] s1_fb;
-wire [7:5] s1_fext;
+wire [12:1] s;
+wire [11:9] eb;
+wire [15:11] fb;
+wire [7:5] fext;
 
-wire [12:1] s1_s_ign;
-wire [11:9] s1_eb_ign;
-wire [15:11] s1_fb_ign;
-wire [7:5] s1_fext_ign;
+wire s1_match;
+wire s2_match;
 
-wire [12:1] s2_s;
-wire [11:9] s2_eb;
-wire [15:11] s2_fb;
-wire [7:5] s2_fext;
-
-wire [12:1] s2_s_ign;
-wire [11:9] s2_eb_ign;
-wire [15:11] s2_fb_ign;
-wire [7:5] s2_fext_ign;
+wire [2:0] w_mode;
+wire w_s1_s2;
+wire [12:1] w_times;
+wire [11:0] w_pulses;
 
 control_regs ctrl_regs(
     .clk(clk),
@@ -205,35 +199,23 @@ control_regs ctrl_regs(
     .mnhnc(mnhnc),
     .nhalga(nhalga),
 
-    .s1_s(s1_s),
-    .s1_eb(s1_eb),
-    .s1_fb(s1_fb),
-    .s1_fext(s1_fext),
+    .s(s),
+    .eb(eb),
+    .fb(fb),
+    .fext(fext),
 
-    .s1_s_ign(s1_s_ign),
-    .s1_eb_ign(s1_eb_ign),
-    .s1_fb_ign(s1_fb_ign),
-    .s1_fext_ign(s1_fext_ign),
+    .s1_match(s1_match),
+    .s2_match(s2_match),
 
-    .s2_s(s2_s),
-    .s2_eb(s2_eb),
-    .s2_fb(s2_fb),
-    .s2_fext(s2_fext),
-
-    .s2_s_ign(s2_s_ign),
-    .s2_eb_ign(s2_eb_ign),
-    .s2_fb_ign(s2_fb_ign),
-    .s2_fext_ign(s2_fext_ign)
+    .w_mode(w_mode),
+    .w_s1_s2(w_s1_s2),
+    .w_times(w_times),
+    .w_pulses(w_pulses)
 );
 
 /*******************************************************************************.
 * Start/Stop Logic                                                              *
 '*******************************************************************************/
-wire [12:1] s;
-wire [11:9] eb;
-wire [15:11] fb;
-wire [7:5] fext;
-
 start_stop strt_stp(
     .clk(clk),
     .rst_n(rst_n),
@@ -248,30 +230,8 @@ start_stop strt_stp(
     .mstrt(mstrt),
     .mstp(mstp),
 
-    .s(s),
-    .eb(eb),
-    .fb(fb),
-    .fext(fext),
-
-    .s1_s(s1_s),
-    .s1_eb(s1_eb),
-    .s1_fb(s1_fb),
-    .s1_fext(s1_fext),
-
-    .s1_s_ign(s1_s_ign),
-    .s1_eb_ign(s1_eb_ign),
-    .s1_fb_ign(s1_fb_ign),
-    .s1_fext_ign(s1_fext_ign),
-
-    .s2_s(s2_s),
-    .s2_eb(s2_eb),
-    .s2_fb(s2_fb),
-    .s2_fext(s2_fext),
-
-    .s2_s_ign(s2_s_ign),
-    .s2_eb_ign(s2_eb_ign),
-    .s2_fb_ign(s2_fb_ign),
-    .s2_fext_ign(s2_fext_ign)
+    .s1_match(s1_match),
+    .s2_match(s2_match)
 );
 
 /*******************************************************************************.
@@ -286,7 +246,7 @@ clear_timer ctmr(
 );
 
 /*******************************************************************************.
-* Monitor AGC Register Mirrors                                                  *
+* Monitor Registers                                                             *
 '*******************************************************************************/
 wire [16:1] l;
 wire [16:1] q;
@@ -294,7 +254,7 @@ monitor_regs mon_regs(
     .clk(clk),
     .rst_n(rst_n),
 
-    .mt02(mt[2]),
+    .mt(mt),
     .monwt(monwt),
     .ct(ct),
     .mwl(mwl),
@@ -309,7 +269,10 @@ monitor_regs mon_regs(
     .mwsg(mwsg),
     .mwg(mwg),
     .mwyg(mwyg),
+    .mrulog(mrulog),
     .mrgg(mrgg),
+    .mwch(mwch),
+    .mrch(mrch),
 
     .msqext(msqext),
     .msq(msq),
@@ -321,8 +284,17 @@ monitor_regs mon_regs(
     .miip(miip),
     .minhl(minhl),
     .minkl(minkl),
+    .mnisq(mnisq),
 
     .mstp(mstp),
+
+    .s1_match(s1_match),
+    .s2_match(s2_match),
+
+    .w_mode(w_mode),
+    .w_s1_s2(w_s1_s2),
+    .w_times(w_times),
+    .w_pulses(w_pulses),
 
     .l(l),
     .q(q),
