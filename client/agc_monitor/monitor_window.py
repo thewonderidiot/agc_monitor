@@ -8,6 +8,7 @@ from instruction_register import InstructionRegister
 from control import Control
 from comp_stop import CompStop
 from s_comparator import SComparator
+from w_comparator import WComparator
 from usb_interface import USBInterface
 
 class MonitorWindow(QMainWindow):
@@ -90,6 +91,10 @@ class MonitorWindow(QMainWindow):
         self._reg_w = Register(regs, self._usbif, 'W', True, QColor(0,255,0))
         regs_layout.addWidget(self._reg_w)
         regs_layout.setAlignment(self._reg_w, Qt.AlignRight)
+
+        self._w_cmp = WComparator(regs, self._usbif)
+        regs_layout.addWidget(self._w_cmp)
+        regs_layout.setAlignment(self._w_cmp, Qt.AlignRight)
 
         self._reg_s = AddressRegister(central, self._usbif, QColor(0, 255, 0))
         layout.addWidget(self._reg_s)

@@ -439,6 +439,43 @@
             ]
         },
         {
+            "addr": 17,
+            "name": "WCompVal",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "val",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 18,
+            "name": "WCompIgnore",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "ignore",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 19,
+            "name": "WCompParity",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "parity",
+                    "width": 2
+                },
+                {
+                    "name": "ignore",
+                    "width": 2
+                }
+            ]
+        },
+        {
             "addr": 64,
             "name": "NHALGA",
             "type": "rw",

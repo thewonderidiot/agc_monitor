@@ -193,6 +193,24 @@ ControlPulseSwitches = namedtuple('ControlPulseSwitches', ['a', 'l', 'q', 'z', '
 ControlPulseSwitches.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlPulseSwitches = namedtuple('WriteControlPulseSwitches', ['a', 'l', 'q', 'z', 'rch', 'wch', 'g', 'b', 'y', 'ru', 'sp1', 'sp2'])
 WriteControlPulseSwitches.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlWCompVal = namedtuple('ReadControlWCompVal', [])
+ReadControlWCompVal.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlWCompVal = namedtuple('ControlWCompVal', ['val'])
+ControlWCompVal.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlWCompVal = namedtuple('WriteControlWCompVal', ['val'])
+WriteControlWCompVal.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlWCompIgnore = namedtuple('ReadControlWCompIgnore', [])
+ReadControlWCompIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlWCompIgnore = namedtuple('ControlWCompIgnore', ['ignore'])
+ControlWCompIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlWCompIgnore = namedtuple('WriteControlWCompIgnore', ['ignore'])
+WriteControlWCompIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlWCompParity = namedtuple('ReadControlWCompParity', [])
+ReadControlWCompParity.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlWCompParity = namedtuple('ControlWCompParity', ['parity', 'ignore'])
+ControlWCompParity.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlWCompParity = namedtuple('WriteControlWCompParity', ['parity', 'ignore'])
+WriteControlWCompParity.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlNHALGA = namedtuple('ReadControlNHALGA', [])
 ReadControlNHALGA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlNHALGA = namedtuple('ControlNHALGA', ['nhalga'])
@@ -256,6 +274,9 @@ class Control(object):
     WriteW = 0x000E
     TimeSwitches = 0x000F
     PulseSwitches = 0x0010
+    WCompVal = 0x0011
+    WCompIgnore = 0x0012
+    WCompParity = 0x0013
     NHALGA = 0x0040
     STRT1 = 0x0041
     STRT2 = 0x0042
@@ -498,6 +519,31 @@ def _pack_WriteControlPulseSwitches(msg):
     data |= (msg.sp1 & 0x0001) << 10
     data |= (msg.sp2 & 0x0001) << 11
     return _pack_write_msg(AddressGroup.Control, Control.PulseSwitches, data)
+
+def _pack_ReadControlWCompVal(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.WCompVal)
+
+def _pack_WriteControlWCompVal(msg):
+    data = 0x0000
+    data |= (msg.val & 0xFFFF) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.WCompVal, data)
+
+def _pack_ReadControlWCompIgnore(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.WCompIgnore)
+
+def _pack_WriteControlWCompIgnore(msg):
+    data = 0x0000
+    data |= (msg.ignore & 0xFFFF) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.WCompIgnore, data)
+
+def _pack_ReadControlWCompParity(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.WCompParity)
+
+def _pack_WriteControlWCompParity(msg):
+    data = 0x0000
+    data |= (msg.parity & 0x0003) << 0
+    data |= (msg.ignore & 0x0003) << 2
+    return _pack_write_msg(AddressGroup.Control, Control.WCompParity, data)
 
 def _pack_ReadControlNHALGA(msg):
     return _pack_read_msg(AddressGroup.Control, Control.NHALGA)
@@ -745,6 +791,22 @@ def _unpack_ControlPulseSwitches(data):
         sp2 = (data >> 11) & 0x0001,
     )
 
+def _unpack_ControlWCompVal(data):
+    return ControlWCompVal(
+        val = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_ControlWCompIgnore(data):
+    return ControlWCompIgnore(
+        ignore = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_ControlWCompParity(data):
+    return ControlWCompParity(
+        parity = (data >> 0) & 0x0003,
+        ignore = (data >> 2) & 0x0003,
+    )
+
 def _unpack_ControlNHALGA(data):
     return ControlNHALGA(
         nhalga = (data >> 0) & 0x0001,
@@ -791,6 +853,9 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.Control, Control.WriteW): _unpack_ControlWriteW,
     (DATA_FLAG | AddressGroup.Control, Control.TimeSwitches): _unpack_ControlTimeSwitches,
     (DATA_FLAG | AddressGroup.Control, Control.PulseSwitches): _unpack_ControlPulseSwitches,
+    (DATA_FLAG | AddressGroup.Control, Control.WCompVal): _unpack_ControlWCompVal,
+    (DATA_FLAG | AddressGroup.Control, Control.WCompIgnore): _unpack_ControlWCompIgnore,
+    (DATA_FLAG | AddressGroup.Control, Control.WCompParity): _unpack_ControlWCompParity,
     (DATA_FLAG | AddressGroup.Control, Control.NHALGA): _unpack_ControlNHALGA,
     (DATA_FLAG | AddressGroup.Control, Control.STRT1): _unpack_ControlSTRT1,
     (DATA_FLAG | AddressGroup.Control, Control.STRT2): _unpack_ControlSTRT2,

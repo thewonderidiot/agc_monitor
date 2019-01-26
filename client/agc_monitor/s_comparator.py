@@ -1,26 +1,10 @@
 from PySide2.QtWidgets import QWidget, QFrame, QVBoxLayout, QHBoxLayout, QGridLayout, QLineEdit, QLabel, QCheckBox
-from PySide2.QtGui import QFont, QValidator
+from PySide2.QtGui import QFont
 from PySide2.QtCore import Qt
+from reg_validator import RegValidator
 import re
 import usb_msg as um
 import agc
-
-class RegValidator(QValidator):
-    def __init__(self, max_value):
-        super().__init__()
-        self.max_value = max_value
-
-    def validate(self, text, pos):
-        if text == '':
-            return QValidator.Acceptable
-        try:
-            value = int(text, 8)
-            if value <= self.max_value:
-                return QValidator.Acceptable
-            else:
-                return QValidator.Invalid
-        except:
-            return QValidator.Invalid
 
 class SComparator(QWidget):
     def __init__(self, parent, usbif, num):
