@@ -38,6 +38,9 @@
 `define CTRL_REG_WRITE_W     16'hE
 `define CTRL_REG_W_TIMES     16'hF
 `define CTRL_REG_W_PULSES    16'h10
+`define CTRL_REG_W_COMP_VAL  16'h11
+`define CTRL_REG_W_COMP_IGN  16'h12
+`define CTRL_REG_W_COMP_PAR  16'h13
 `define CTRL_REG_NHALGA      16'h40
 
 // Monitor AGC Register Mirrors
@@ -53,6 +56,7 @@
 `define MON_REG_U      16'h09
 `define MON_REG_I      16'h0A
 `define MON_REG_STATUS 16'h0B
+`define MON_REG_PAR    16'h0C
 `define MON_REG_W      16'h40
 
 `define W_MODE_ALL 3'o0
@@ -62,3 +66,14 @@
 `define W_MODE_P   3'o4
 `define W_MODE_P_I 3'o5
 `define W_MODE_P_S 3'o6
+
+`define W_PULSE_A   0
+`define W_PULSE_L   1
+`define W_PULSE_Q   2
+`define W_PULSE_Z   3
+`define W_PULSE_RCH 4
+`define W_PULSE_WCH 5
+`define W_PULSE_G   6
+`define W_PULSE_B   7
+`define W_PULSE_Y   8
+`define W_PULSE_U   9

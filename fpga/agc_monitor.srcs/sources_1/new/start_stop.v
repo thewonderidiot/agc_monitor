@@ -8,25 +8,40 @@ module start_stop(
     input wire start_req,
     input wire proceed_req,
     input wire [10:0] stop_conds,
+    input wire stop_s1_s2,
     output reg [10:0] stop_cause,
     input wire mt01,
     input wire mt12,
     input wire mgojam,
     input wire mnisq,
-    output reg mstrt,
-    output wire mstp,
+    input wire mpal_n,
+    input wire mrch,
+    input wire mwch,
 
     input wire s1_match,
-    input wire s2_match
+    input wire s2_match,
+    input wire w_match,
+
+    output reg mstrt,
+    output wire mstp
 );
 
 `define STOP_T12       0
 `define STOP_NISQ      1
 `define STOP_S1        2
 `define STOP_S2        3
+`define STOP_W         4
+`define STOP_S_W       5
+`define STOP_S_I       6
+`define STOP_CHAN      7
+`define STOP_PAR       8
+`define STOP_I         9
 `define STOP_PROG_STEP 10
 
 assign mstp = (stop_cause != 11'b0);
+
+wire s_match;
+assign s_match = stop_s1_s2 ? s2_match : s1_match;
 
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
@@ -73,9 +88,26 @@ always @(posedge clk or negedge rst_n) begin
                 stop_cause[`STOP_S2] <= 1'b1;
             end
 
+            if (stop_conds[`STOP_W] & w_match) begin
+                stop_cause[`STOP_W] <= 1'b1;
+            end
+
+            if (stop_conds[`STOP_S_W] & s_match & w_match) begin
+                stop_cause[`STOP_S_W] <= 1'b1;
+            end
+
+            if (stop_conds[`STOP_CHAN] & s_match & (mrch | mwch)) begin
+                stop_cause[`STOP_CHAN] <= 1'b1;
+            end
+
+            if (stop_conds[`STOP_PAR] & ~mpal_n) begin
+                stop_cause[`STOP_PAR] <= 1'b1;
+            end
+
             if (stop_conds[`STOP_PROG_STEP] & s1_match) begin
                 prog_step_match <= 1'b1;
             end
+
             if (prog_step_match & mnisq) begin
                 stop_cause[`STOP_PROG_STEP] <= 1'b1;
                 prog_step_match <= 1'b0;
@@ -83,7 +115,6 @@ always @(posedge clk or negedge rst_n) begin
         end
     end
 end
-
 
 endmodule
 `default_nettype wire

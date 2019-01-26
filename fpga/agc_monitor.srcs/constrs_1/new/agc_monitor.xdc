@@ -225,3 +225,8 @@ set_property IOSTANDARD LVCMOS33 [get_ports mstpit_n]
 
 set_property IOSTANDARD LVCMOS33 [get_ports mrulog]
 set_property PACKAGE_PIN D17 [get_ports mrulog]
+
+set_property IOSTANDARD LVCMOS33 [get_ports msp]
+set_property PACKAGE_PIN U5 [get_ports msp]
+set_property PACKAGE_PIN V8 [get_ports mgp_n]
+set_property IOSTANDARD LVCMOS33 [get_ports mgp_n]

@@ -40,6 +40,8 @@ module monitor_regs(
     input wire minhl,
     input wire minkl,
     input wire mnisq,
+    input wire msp,
+    input wire mgp_n,
 
     input wire mstp,
 
@@ -56,6 +58,9 @@ module monitor_regs(
     output wire [12:1] s,
     output wire [11:9] eb,
     output wire [15:11] fb,
+
+    output wire [16:1] w,
+    output reg [1:0] wp,
 
     input wire read_en,
     input wire [15:0] addr,
@@ -170,6 +175,15 @@ register2 reg_g(
     .val(g)
 );
 
+reg [1:0] gp;
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        gp <= 2'b0;
+    end else if (mrgg) begin
+        gp <= {msp, ~mgp_n};
+    end
+end
+
 // Register Y
 wire [16:1] y;
 register reg_y(
@@ -245,7 +259,6 @@ always @(*) begin
     endcase
 end
 
-wire [16:1] w;
 register reg_w(
     .clk(clk),
     .rst_n(rst_n),
@@ -254,6 +267,14 @@ register reg_w(
     .mwl(mwl),
     .val(w)
 );
+
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        wp <= 2'b0;
+    end else if (mrgg & w_pulses[`W_PULSE_G]) begin
+        wp <= {msp, ~mgp_n};
+    end
+end
 
 reg read_en_q;
 
@@ -280,6 +301,7 @@ always @(*) begin
         `MON_REG_W:      data_out = w;
         `MON_REG_I:      data_out = {5'b0, br, mst, msqext, sq};
         `MON_REG_STATUS: data_out = {11'b0, minkl, minhl, miip, mstpit_n, mgojam}; // FIXME: add OUTCOM
+        `MON_REG_PAR:    data_out = {12'b0, wp, gp};
         default:         data_out = 16'b0;
         endcase
     end else begin

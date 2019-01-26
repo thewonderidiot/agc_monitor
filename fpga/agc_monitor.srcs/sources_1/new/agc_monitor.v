@@ -47,6 +47,8 @@ module agc_monitor(
     input wire mrch,
     input wire mwch,
     input wire mnisq,
+    input wire msp,
+    input wire mgp_n,
 
     input wire mpal_n,
     input wire mtcal_n,
@@ -168,6 +170,7 @@ cmd_controller cmd_ctrl(
 wire start_req;
 wire proceed_req;
 wire [10:0] stop_conds;
+wire stop_s1_s2;
 wire [10:0] stop_cause;
 
 wire [12:1] s;
@@ -177,11 +180,15 @@ wire [7:5] fext;
 
 wire s1_match;
 wire s2_match;
+wire w_match;
 
 wire [2:0] w_mode;
 wire w_s1_s2;
 wire [12:1] w_times;
 wire [11:0] w_pulses;
+
+wire [16:1] w;
+wire [1:0] wp;
 
 control_regs ctrl_regs(
     .clk(clk),
@@ -194,6 +201,7 @@ control_regs ctrl_regs(
     .start_req(start_req),
     .proceed_req(proceed_req),
     .stop_conds(stop_conds),
+    .stop_s1_s2(stop_s1_s2),
     .stop_cause(stop_cause),
     .mnhrpt(mnhrpt),
     .mnhnc(mnhnc),
@@ -204,8 +212,12 @@ control_regs ctrl_regs(
     .fb(fb),
     .fext(fext),
 
+    .w(w),
+    .wp(wp),
+
     .s1_match(s1_match),
     .s2_match(s2_match),
+    .w_match(w_match),
 
     .w_mode(w_mode),
     .w_s1_s2(w_s1_s2),
@@ -222,16 +234,22 @@ start_stop strt_stp(
     .start_req(start_req),
     .proceed_req(proceed_req),
     .stop_conds(stop_conds),
+    .stop_s1_s2(stop_s1_s2),
     .stop_cause(stop_cause),
     .mt01(mt[1]),
     .mt12(mt[12]),
     .mgojam(mgojam),
     .mnisq(mnisq),
-    .mstrt(mstrt),
-    .mstp(mstp),
+    .mpal_n(mpal_n),
+    .mrch(mrch),
+    .mwch(mwch),
 
     .s1_match(s1_match),
-    .s2_match(s2_match)
+    .s2_match(s2_match),
+    .w_match(w_match),
+
+    .mstrt(mstrt),
+    .mstp(mstp)
 );
 
 /*******************************************************************************.
@@ -285,6 +303,8 @@ monitor_regs mon_regs(
     .minhl(minhl),
     .minkl(minkl),
     .mnisq(mnisq),
+    .msp(msp),
+    .mgp_n(mgp_n),
 
     .mstp(mstp),
 
@@ -301,6 +321,9 @@ monitor_regs mon_regs(
     .s(s),
     .eb(eb),
     .fb(fb),
+
+    .w(w),
+    .wp(wp),
 
     .read_en(mon_reg_read_en),
     .addr(cmd_addr),

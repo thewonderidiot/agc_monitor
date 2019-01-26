@@ -14,6 +14,7 @@ module control_regs(
     output reg start_req,
     output reg proceed_req,
     output reg [10:0] stop_conds,
+    output reg stop_s1_s2,
     input wire [10:0] stop_cause,
     output reg mnhrpt,
     output reg mnhnc,
@@ -24,8 +25,12 @@ module control_regs(
     input wire [15:11] fb,
     input wire [7:5] fext,
 
+    input wire [16:1] w,
+    input wire [1:0] wp,
+
     output wire s1_match,
     output wire s2_match,
+    output wire w_match,
 
     output reg [2:0] w_mode,
     output reg w_s1_s2,
@@ -73,6 +78,17 @@ assign s2_fb_match = ((s2_fb ^ fb) & ~s2_fb_ign) == 5'b0;
 assign s2_fext_match = ((s2_fext ^ fext) & ~s2_fext_ign) == 3'b0;
 assign s2_match = s2_s_match & s2_eb_match & s2_fb_match & s2_fext_match;
 
+reg [16:1] w_comp_val;
+reg [16:1] w_comp_val_ign;
+reg [1:0] w_comp_par;
+reg [1:0] w_comp_par_ign;
+
+wire w_val_match;
+wire w_par_match;
+assign w_val_match = ((w ^ w_comp_val) & ~w_comp_val_ign) == 16'b0;
+assign w_par_match = ((wp ^ w_comp_par) & ~w_comp_par_ign) == 2'b0;
+assign w_match = w_val_match & w_par_match;
+
 reg [15:0] read_data;
 reg read_done;
 
@@ -83,6 +99,7 @@ always @(posedge clk or negedge rst_n) begin
         proceed_req <= 1'b0;
         start_req <= 1'b0;
         stop_conds <= 11'b0;
+        stop_s1_s2 <= 1'b0;
         mnhrpt <= 1'b0;
         mnhnc <= 1'b0;
         nhalga <= 1'b0;
@@ -104,6 +121,11 @@ always @(posedge clk or negedge rst_n) begin
         s2_fb_ign <= 5'b0;
         s2_fext_ign <= 3'b0;
 
+        w_comp_val <= 16'b0;
+        w_comp_val_ign <= 16'b0;
+        w_comp_par <= 2'b0;
+        w_comp_par_ign <= 2'b0;
+
         w_mode <= `W_MODE_ALL;
         w_s1_s2 <= 1'b0;
         w_times <= 12'b0;
@@ -115,7 +137,10 @@ always @(posedge clk or negedge rst_n) begin
         if (write_en) begin
             case (addr)
             `CTRL_REG_START:    start_req <= 1'b1;
-            `CTRL_REG_STOP:     stop_conds <= data_in[10:0];
+            `CTRL_REG_STOP: begin
+                stop_conds <= data_in[10:0];
+                stop_s1_s2 <= data_in[11];
+            end
             `CTRL_REG_PROCEED:  proceed_req <= 1'b1;
             `CTRL_REG_MNHRPT:   mnhrpt <= data_in[0];
             `CTRL_REG_MNHNC:    mnhnc <= data_in[0];
@@ -150,6 +175,12 @@ always @(posedge clk or negedge rst_n) begin
             end
             `CTRL_REG_W_TIMES:  w_times <= data_in[11:0];
             `CTRL_REG_W_PULSES: w_pulses <= data_in[11:0];
+            `CTRL_REG_W_COMP_VAL: w_comp_val <= data_in;
+            `CTRL_REG_W_COMP_IGN:  w_comp_val_ign <= data_in;
+            `CTRL_REG_W_COMP_PAR: begin
+                w_comp_par <= data_in[1:0];
+                w_comp_par_ign <= data_in[3:2];
+            end
 
             endcase
         end
@@ -163,7 +194,7 @@ always @(posedge clk or negedge rst_n) begin
     end else if (read_en) begin
         read_done <= 1'b1;
         case (addr)
-        `CTRL_REG_STOP:         read_data <= {5'b0, stop_conds};
+        `CTRL_REG_STOP:         read_data <= {4'b0, stop_s1_s2, stop_conds};
         `CTRL_REG_STOP_CAUSE:   read_data <= {5'b0, stop_cause};
         `CTRL_REG_MNHRPT:       read_data <= {15'b0, mnhrpt};
         `CTRL_REG_MNHNC:        read_data <= {15'b0, mnhnc};
@@ -179,6 +210,9 @@ always @(posedge clk or negedge rst_n) begin
         `CTRL_REG_WRITE_W:      read_data <= {12'b0, w_s1_s2, w_mode};
         `CTRL_REG_W_TIMES:      read_data <= {4'b0, w_times};
         `CTRL_REG_W_PULSES:     read_data <= {4'b0, w_pulses};
+        `CTRL_REG_W_COMP_VAL:   read_data <= w_comp_val;
+        `CTRL_REG_W_COMP_IGN:   read_data <= w_comp_val_ign;
+        `CTRL_REG_W_COMP_PAR:   read_data <= {12'b0, w_comp_par_ign, w_comp_par};
         endcase
     end else begin
         read_done <= 1'b0;
