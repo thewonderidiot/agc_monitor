@@ -34,7 +34,7 @@ class InstructionRegister(QWidget):
 
     def handle_msg(self, msg):
         if isinstance(msg, um.MonRegI):
-            self.set_i_values(msg.br, msg.st, msg.sqext, msg.sqr)
+            self.set_i_values(msg.br, msg.st, msg.sqext, msg.sq)
         elif isinstance(msg, um.MonRegStatus):
             self._status_inds['iip'].set_on(msg.iip)
             self._status_inds['inhl'].set_on(msg.inhl)
@@ -64,8 +64,8 @@ class InstructionRegister(QWidget):
         stat_group = QWidget(self)
         layout.addWidget(stat_group)
         stat_layout = QGridLayout(stat_group)
-        stat_layout.setMargin(3)
-        stat_layout.setSpacing(3)
+        stat_layout.setMargin(0)
+        stat_layout.setSpacing(0)
 
         col = 0
         for name, label in STATUS_INDS.items():
@@ -103,43 +103,6 @@ class InstructionRegister(QWidget):
 
         # Add some spacing to account for lack of parity indicators
         layout.addSpacing(35)
-
-    def _update_addr_value(self):
-        # Get the values of all tracked registers
-        s = int(self._s_value.text(), 8)
-        eb = int(self._eb_value.text(), 8)
-        fb = int(self._fb_value.text(), 8)
-        fext = int(self._fext_value.text(), 8)
-
-        # Determine which class of memory is being addressed by looking at S,
-        # and further decode the address based on that
-        if s < 0o1400:
-            # Fixed-erasable memory addresses use only the value of S
-            value_text = '%04o' % s
-        elif s < 0o2000:
-            # Switched-erasable memory addresses display as EN,XXXX where N
-            # is the EB number, *unless* the switched bank is also one of the
-            # fixed banks, in which case the fixed-erasable notation is used
-            if (eb < 3):
-                value_text = '%04o' % ((s-0o1400) + 0o400*eb)
-            else:
-                value_text = 'E%o,%04o' % (eb, s)
-        elif s < 0o4000:
-            # Switched-fixed memory displays as NN,XXXX where NN is the FB
-            # number, with the same fixed-fixed caveat as above.
-            if fb in [0o2, 0o3]:
-                value_text = '%04o' % (0o4000 + (fb-0o3)*0o2000 + s)
-            else:
-                if (fb < 0o30) or (fext < 0o4):
-                    bank = fb
-                else:
-                    bank = fb + (fext - 0o3)*0o10
-                value_text = '%02o,%04o' % (bank, s)
-        else:
-            # Fixed-fixed addresses also use only the value of S
-            value_text = '%04o' % s
-
-        self._addr_value.setText(value_text)
 
     def _set_reg_value(self, inds, value_box, x):
         # Generic function to display in octal the value of a register, with the
@@ -222,10 +185,12 @@ class InstructionRegister(QWidget):
     def _create_status_light(self, name, parent, layout, col):
         label = QLabel(name, parent)
         label.setAlignment(Qt.AlignBottom | Qt.AlignCenter)
+        label.setFixedSize(30,20)
         font = label.font()
         font.setPointSize(8)
         label.setFont(font)
         layout.addWidget(label, 1, col)
+        layout.setAlignment(label, Qt.AlignBottom)
 
         # Add an indicator to show inhibit state
         ind = Indicator(parent, QColor(0, 255, 255))

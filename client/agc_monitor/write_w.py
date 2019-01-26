@@ -146,6 +146,7 @@ class WriteW(QWidget):
         for v,l in switches.items():
             check = QCheckBox(switch_frame)
             check.setFixedSize(20,20)
+            check.setStyleSheet('QCheckBox::indicator{subcontrol-position:center;}')
             check.stateChanged.connect(switch_fn)
             switch_dict[v] = check
             switch_layout.addWidget(check, row, col)

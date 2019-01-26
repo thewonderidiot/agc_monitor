@@ -126,7 +126,7 @@
             "type": "r",
             "fields": [
                 {
-                    "name": "sqr",
+                    "name": "sq",
                     "width": 6
                 },
                 {

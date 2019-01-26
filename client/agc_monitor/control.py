@@ -122,6 +122,7 @@ class Control(QFrame):
         # Add a switch to control the inhibit state
         check = QCheckBox(parent)
         check.setFixedSize(20,20)
+        check.setStyleSheet('QCheckBox::indicator{subcontrol-position:center;}')
         layout.addWidget(check, 2, col)
         layout.setAlignment(check, Qt.AlignCenter)
         layout.setColumnMinimumWidth(col, 25)

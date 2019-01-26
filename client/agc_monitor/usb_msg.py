@@ -69,7 +69,7 @@ MonRegU = namedtuple('MonRegU', ['u'])
 MonRegU.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadMonRegI = namedtuple('ReadMonRegI', [])
 ReadMonRegI.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-MonRegI = namedtuple('MonRegI', ['sqr', 'sqext', 'st', 'br'])
+MonRegI = namedtuple('MonRegI', ['sq', 'sqext', 'st', 'br'])
 MonRegI.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadMonRegStatus = namedtuple('ReadMonRegStatus', [])
 ReadMonRegStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
@@ -211,6 +211,24 @@ ControlWCompParity = namedtuple('ControlWCompParity', ['parity', 'ignore'])
 ControlWCompParity.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlWCompParity = namedtuple('WriteControlWCompParity', ['parity', 'ignore'])
 WriteControlWCompParity.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlICompVal = namedtuple('ReadControlICompVal', [])
+ReadControlICompVal.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlICompVal = namedtuple('ControlICompVal', ['sq', 'sqext', 'st', 'br'])
+ControlICompVal.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlICompVal = namedtuple('WriteControlICompVal', ['sq', 'sqext', 'st', 'br'])
+WriteControlICompVal.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlICompIgnore = namedtuple('ReadControlICompIgnore', [])
+ReadControlICompIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlICompIgnore = namedtuple('ControlICompIgnore', ['sq', 'sqext', 'st', 'br'])
+ControlICompIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlICompIgnore = namedtuple('WriteControlICompIgnore', ['sq', 'sqext', 'st', 'br'])
+WriteControlICompIgnore.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlICompStatus = namedtuple('ReadControlICompStatus', [])
+ReadControlICompStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlICompStatus = namedtuple('ControlICompStatus', ['iip', 'inhl', 'inkl', 'ld', 'chld', 'rd', 'chrd', 'iip_ign', 'inhl_ign', 'inkl_ign', 'ld_ign', 'chld_ign', 'rd_ign', 'chrd_ign'])
+ControlICompStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlICompStatus = namedtuple('WriteControlICompStatus', ['iip', 'inhl', 'inkl', 'ld', 'chld', 'rd', 'chrd', 'iip_ign', 'inhl_ign', 'inkl_ign', 'ld_ign', 'chld_ign', 'rd_ign', 'chrd_ign'])
+WriteControlICompStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlNHALGA = namedtuple('ReadControlNHALGA', [])
 ReadControlNHALGA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlNHALGA = namedtuple('ControlNHALGA', ['nhalga'])
@@ -277,6 +295,9 @@ class Control(object):
     WCompVal = 0x0011
     WCompIgnore = 0x0012
     WCompParity = 0x0013
+    ICompVal = 0x0014
+    ICompIgnore = 0x0015
+    ICompStatus = 0x0016
     NHALGA = 0x0040
     STRT1 = 0x0041
     STRT2 = 0x0042
@@ -545,6 +566,49 @@ def _pack_WriteControlWCompParity(msg):
     data |= (msg.ignore & 0x0003) << 2
     return _pack_write_msg(AddressGroup.Control, Control.WCompParity, data)
 
+def _pack_ReadControlICompVal(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.ICompVal)
+
+def _pack_WriteControlICompVal(msg):
+    data = 0x0000
+    data |= (msg.sq & 0x003F) << 0
+    data |= (msg.sqext & 0x0001) << 6
+    data |= (msg.st & 0x0007) << 7
+    data |= (msg.br & 0x0003) << 10
+    return _pack_write_msg(AddressGroup.Control, Control.ICompVal, data)
+
+def _pack_ReadControlICompIgnore(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.ICompIgnore)
+
+def _pack_WriteControlICompIgnore(msg):
+    data = 0x0000
+    data |= (msg.sq & 0x003F) << 0
+    data |= (msg.sqext & 0x0001) << 6
+    data |= (msg.st & 0x0007) << 7
+    data |= (msg.br & 0x0003) << 10
+    return _pack_write_msg(AddressGroup.Control, Control.ICompIgnore, data)
+
+def _pack_ReadControlICompStatus(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.ICompStatus)
+
+def _pack_WriteControlICompStatus(msg):
+    data = 0x0000
+    data |= (msg.iip & 0x0001) << 0
+    data |= (msg.inhl & 0x0001) << 1
+    data |= (msg.inkl & 0x0001) << 2
+    data |= (msg.ld & 0x0001) << 3
+    data |= (msg.chld & 0x0001) << 4
+    data |= (msg.rd & 0x0001) << 5
+    data |= (msg.chrd & 0x0001) << 6
+    data |= (msg.iip_ign & 0x0001) << 7
+    data |= (msg.inhl_ign & 0x0001) << 8
+    data |= (msg.inkl_ign & 0x0001) << 9
+    data |= (msg.ld_ign & 0x0001) << 10
+    data |= (msg.chld_ign & 0x0001) << 11
+    data |= (msg.rd_ign & 0x0001) << 12
+    data |= (msg.chrd_ign & 0x0001) << 13
+    return _pack_write_msg(AddressGroup.Control, Control.ICompStatus, data)
+
 def _pack_ReadControlNHALGA(msg):
     return _pack_read_msg(AddressGroup.Control, Control.NHALGA)
 
@@ -626,7 +690,7 @@ def _unpack_MonRegU(data):
 
 def _unpack_MonRegI(data):
     return MonRegI(
-        sqr = (data >> 0) & 0x003F,
+        sq = (data >> 0) & 0x003F,
         sqext = (data >> 6) & 0x0001,
         st = (data >> 7) & 0x0007,
         br = (data >> 10) & 0x0003,
@@ -807,6 +871,40 @@ def _unpack_ControlWCompParity(data):
         ignore = (data >> 2) & 0x0003,
     )
 
+def _unpack_ControlICompVal(data):
+    return ControlICompVal(
+        sq = (data >> 0) & 0x003F,
+        sqext = (data >> 6) & 0x0001,
+        st = (data >> 7) & 0x0007,
+        br = (data >> 10) & 0x0003,
+    )
+
+def _unpack_ControlICompIgnore(data):
+    return ControlICompIgnore(
+        sq = (data >> 0) & 0x003F,
+        sqext = (data >> 6) & 0x0001,
+        st = (data >> 7) & 0x0007,
+        br = (data >> 10) & 0x0003,
+    )
+
+def _unpack_ControlICompStatus(data):
+    return ControlICompStatus(
+        iip = (data >> 0) & 0x0001,
+        inhl = (data >> 1) & 0x0001,
+        inkl = (data >> 2) & 0x0001,
+        ld = (data >> 3) & 0x0001,
+        chld = (data >> 4) & 0x0001,
+        rd = (data >> 5) & 0x0001,
+        chrd = (data >> 6) & 0x0001,
+        iip_ign = (data >> 7) & 0x0001,
+        inhl_ign = (data >> 8) & 0x0001,
+        inkl_ign = (data >> 9) & 0x0001,
+        ld_ign = (data >> 10) & 0x0001,
+        chld_ign = (data >> 11) & 0x0001,
+        rd_ign = (data >> 12) & 0x0001,
+        chrd_ign = (data >> 13) & 0x0001,
+    )
+
 def _unpack_ControlNHALGA(data):
     return ControlNHALGA(
         nhalga = (data >> 0) & 0x0001,
@@ -856,6 +954,9 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.Control, Control.WCompVal): _unpack_ControlWCompVal,
     (DATA_FLAG | AddressGroup.Control, Control.WCompIgnore): _unpack_ControlWCompIgnore,
     (DATA_FLAG | AddressGroup.Control, Control.WCompParity): _unpack_ControlWCompParity,
+    (DATA_FLAG | AddressGroup.Control, Control.ICompVal): _unpack_ControlICompVal,
+    (DATA_FLAG | AddressGroup.Control, Control.ICompIgnore): _unpack_ControlICompIgnore,
+    (DATA_FLAG | AddressGroup.Control, Control.ICompStatus): _unpack_ControlICompStatus,
     (DATA_FLAG | AddressGroup.Control, Control.NHALGA): _unpack_ControlNHALGA,
     (DATA_FLAG | AddressGroup.Control, Control.STRT1): _unpack_ControlSTRT1,
     (DATA_FLAG | AddressGroup.Control, Control.STRT2): _unpack_ControlSTRT2,

@@ -223,6 +223,7 @@ class SComparator(QWidget):
         for i in range(width, 0, -1):
             check = QCheckBox(bit_frame)
             check.setFixedSize(20,20)
+            check.setStyleSheet('QCheckBox::indicator{subcontrol-position:center;}')
             check.stateChanged.connect(lambda state, b=reg_value, s=cmp_switches: self._update_reg_box(state, b, s))
             bit_layout.addWidget(check, 0, col)
             bit_layout.setAlignment(check, Qt.AlignCenter)
@@ -230,6 +231,7 @@ class SComparator(QWidget):
 
             check = QCheckBox(bit_frame)
             check.setFixedSize(20,20)
+            check.setStyleSheet('QCheckBox::indicator{subcontrol-position:center;}')
             check.stateChanged.connect(lambda state, b=ign_value, s=ign_switches: self._update_reg_box(state, b, s))
             bit_layout.addWidget(check, 1, col)
             bit_layout.setAlignment(check, Qt.AlignCenter)

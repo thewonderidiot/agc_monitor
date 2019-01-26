@@ -90,6 +90,7 @@ class CompStop(QFrame):
         # Add a switch to control the stop control state
         check = QCheckBox(self)
         check.setFixedSize(20,20)
+        check.setStyleSheet('QCheckBox::indicator{subcontrol-position:center;}')
         layout.addWidget(check, 1, col)
         layout.setAlignment(check, Qt.AlignCenter)
         check.stateChanged.connect(self._set_stop_conds)

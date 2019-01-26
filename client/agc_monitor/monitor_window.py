@@ -9,6 +9,7 @@ from control import Control
 from comp_stop import CompStop
 from s_comparator import SComparator
 from w_comparator import WComparator
+from i_comparator import IComparator
 from usb_interface import USBInterface
 
 class MonitorWindow(QMainWindow):
@@ -111,6 +112,10 @@ class MonitorWindow(QMainWindow):
         self._reg_i = InstructionRegister(central, self._usbif, QColor(0, 255, 0))
         layout.addWidget(self._reg_i)
         layout.setAlignment(self._reg_i, Qt.AlignRight)
+
+        self._i_comp = IComparator(central, self._usbif)
+        layout.addWidget(self._i_comp)
+        layout.setAlignment(self._i_comp, Qt.AlignRight)
 
         # Add the control panel
         self._ctrl_panel = Control(central, self._usbif)

@@ -476,6 +476,115 @@
             ]
         },
         {
+            "addr": 20,
+            "name": "ICompVal",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "sq",
+                    "width": 6
+                },
+                {
+                    "name": "sqext",
+                    "width": 1
+                },
+                {
+                    "name": "st",
+                    "width": 3
+                },
+                {
+                    "name": "br",
+                    "width": 2
+                }
+            ]
+        },
+        {
+            "addr": 21,
+            "name": "ICompIgnore",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "sq",
+                    "width": 6
+                },
+                {
+                    "name": "sqext",
+                    "width": 1
+                },
+                {
+                    "name": "st",
+                    "width": 3
+                },
+                {
+                    "name": "br",
+                    "width": 2
+                }
+            ]
+        },
+        {
+            "addr": 22,
+            "name": "ICompStatus",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "iip",
+                    "width": 1
+                },
+                {
+                    "name": "inhl",
+                    "width": 1
+                },
+                {
+                    "name": "inkl",
+                    "width": 1
+                },
+                {
+                    "name": "ld",
+                    "width": 1
+                },
+                {
+                    "name": "chld",
+                    "width": 1
+                },
+                {
+                    "name": "rd",
+                    "width": 1
+                },
+                {
+                    "name": "chrd",
+                    "width": 1
+                },
+                {
+                    "name": "iip_ign",
+                    "width": 1
+                },
+                {
+                    "name": "inhl_ign",
+                    "width": 1
+                },
+                {
+                    "name": "inkl_ign",
+                    "width": 1
+                },
+                {
+                    "name": "ld_ign",
+                    "width": 1
+                },
+                {
+                    "name": "chld_ign",
+                    "width": 1
+                },
+                {
+                    "name": "rd_ign",
+                    "width": 1
+                },
+                {
+                    "name": "chrd_ign",
+                    "width": 1
+                }
+            ]
+        },
+        {
             "addr": 64,
             "name": "NHALGA",
             "type": "rw",

@@ -117,6 +117,7 @@ class WComparator(QWidget):
         for i in range(width, 0, -1):
             check = QCheckBox(frame)
             check.setFixedSize(20,20)
+            check.setStyleSheet('QCheckBox::indicator{subcontrol-position:center;}')
             check.stateChanged.connect(cmp_fn)
             layout.addWidget(check, 0, col)
             layout.setAlignment(check, Qt.AlignCenter)
@@ -124,6 +125,7 @@ class WComparator(QWidget):
 
             check = QCheckBox(frame)
             check.setFixedSize(20,20)
+            check.setStyleSheet('QCheckBox::indicator{subcontrol-position:center;}')
             check.stateChanged.connect(ign_fn)
             layout.addWidget(check, 1, col)
             layout.setAlignment(check, Qt.AlignCenter)
