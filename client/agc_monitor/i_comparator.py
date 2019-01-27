@@ -35,7 +35,10 @@ class IComparator(QWidget):
 
         self._setup_ui()
 
-        # SEND INIT
+        usbif.send(um.WriteControlICompVal(0, 0, 0, 0))
+        usbif.send(um.WriteControlICompIgnore(0, 0, 0, 0))
+        z = (0,)*(len(STATUS_INDS) * 2)
+        self._usbif.send(um.WriteControlICompStatus(*z))
 
     def _setup_ui(self):
         # Set up our basic layout
