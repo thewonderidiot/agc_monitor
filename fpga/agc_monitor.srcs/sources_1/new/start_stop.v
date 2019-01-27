@@ -21,6 +21,7 @@ module start_stop(
     input wire s1_match,
     input wire s2_match,
     input wire w_match,
+    input wire i_match,
 
     output reg mstrt,
     output wire mstp
@@ -96,12 +97,20 @@ always @(posedge clk or negedge rst_n) begin
                 stop_cause[`STOP_S_W] <= 1'b1;
             end
 
+            if (stop_conds[`STOP_S_I] & s_match & i_match) begin
+                stop_cause[`STOP_S_I] <= 1'b1;
+            end
+
             if (stop_conds[`STOP_CHAN] & s_match & (mrch | mwch)) begin
                 stop_cause[`STOP_CHAN] <= 1'b1;
             end
 
             if (stop_conds[`STOP_PAR] & ~mpal_n) begin
                 stop_cause[`STOP_PAR] <= 1'b1;
+            end
+
+            if (stop_conds[`STOP_I] & i_match) begin
+                stop_cause[`STOP_I] <= 1'b1;
             end
 
             if (stop_conds[`STOP_PROG_STEP] & s1_match) begin

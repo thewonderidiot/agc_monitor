@@ -47,6 +47,7 @@ module monitor_regs(
 
     input wire s1_match,
     input wire s2_match,
+    input wire i_match,
 
     input wire [2:0] w_mode,
     input wire w_s1_s2,
@@ -61,6 +62,7 @@ module monitor_regs(
 
     output wire [16:1] w,
     output reg [1:0] wp,
+    output wire [12:1] i,
 
     input wire read_en,
     input wire [15:0] addr,
@@ -217,6 +219,19 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
+reg [3:1] st;
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        st <= 3'b0;
+    end else begin
+        if (~mt[12]) begin
+            st <= mst;
+        end
+    end
+end
+
+assign i = {br, st, msqext, sq};
+
 // Register W
 wire [23:0] w_conds;
 wire [23:0] agc_pulses;
@@ -253,7 +268,10 @@ always @(*) begin
     case (w_mode)
     `W_MODE_ALL: mwwg = pulse_or_match;
     `W_MODE_S:   mwwg = s_match & pulse_and_match;
+    `W_MODE_I:   mwwg = i_match & pulse_and_match;
+    `W_MODE_S_I: mwwg = s_match & i_match & pulse_and_match;
     `W_MODE_P:   mwwg = p_match & pulse_and_match;
+    `W_MODE_P_I: mwwg = p_match & i_match & pulse_and_match;
     `W_MODE_P_S: mwwg = p_match & s_match & pulse_and_match;
     default:     mwwg = 1'b0;
     endcase
@@ -299,7 +317,7 @@ always @(*) begin
         `MON_REG_G:      data_out = g;
         `MON_REG_Y:      data_out = y;
         `MON_REG_W:      data_out = w;
-        `MON_REG_I:      data_out = {5'b0, br, mst, msqext, sq};
+        `MON_REG_I:      data_out = {4'b0, i};
         `MON_REG_STATUS: data_out = {11'b0, minkl, minhl, miip, mstpit_n, mgojam}; // FIXME: add OUTCOM
         `MON_REG_PAR:    data_out = {12'b0, wp, gp};
         default:         data_out = 16'b0;

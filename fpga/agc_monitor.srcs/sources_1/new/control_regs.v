@@ -24,13 +24,18 @@ module control_regs(
     input wire [11:9] eb,
     input wire [15:11] fb,
     input wire [7:5] fext,
+    input wire minkl,
+    input wire minhl,
+    input wire miip,
 
     input wire [16:1] w,
     input wire [1:0] wp,
+    input wire [12:1] i,
 
     output wire s1_match,
     output wire s2_match,
     output wire w_match,
+    output wire i_match,
 
     output reg [2:0] w_mode,
     output reg w_s1_s2,
@@ -89,6 +94,20 @@ assign w_val_match = ((w ^ w_comp_val) & ~w_comp_val_ign) == 16'b0;
 assign w_par_match = ((wp ^ w_comp_par) & ~w_comp_par_ign) == 2'b0;
 assign w_match = w_val_match & w_par_match;
 
+reg [12:1] i_comp_val;
+reg [12:1] i_comp_val_ign;
+reg [6:0] i_comp_stat;
+reg [6:0] i_comp_stat_ign;
+
+wire [6:0] stat;
+assign stat = {1'b0, 1'b0, 1'b0, 1'b0, minkl, minhl, miip}; // FIXME: Add LD/RD status bits
+
+wire i_val_match;
+wire i_stat_match;
+assign i_val_match = ((i ^ i_comp_val) & ~i_comp_val_ign) == 12'b0;
+assign i_stat_match = ((stat ^ i_comp_stat) & ~i_comp_stat_ign) == 7'b0;
+assign i_match = i_val_match & i_stat_match;
+
 reg [15:0] read_data;
 reg read_done;
 
@@ -125,6 +144,11 @@ always @(posedge clk or negedge rst_n) begin
         w_comp_val_ign <= 16'b0;
         w_comp_par <= 2'b0;
         w_comp_par_ign <= 2'b0;
+
+        i_comp_val <= 12'b0;
+        i_comp_val_ign <= 12'b0;
+        i_comp_stat <= 7'b0;
+        i_comp_stat_ign <= 7'b0;
 
         w_mode <= `W_MODE_ALL;
         w_s1_s2 <= 1'b0;
@@ -181,6 +205,12 @@ always @(posedge clk or negedge rst_n) begin
                 w_comp_par <= data_in[1:0];
                 w_comp_par_ign <= data_in[3:2];
             end
+            `CTRL_REG_I_COMP_VAL: i_comp_val <= data_in[11:0];
+            `CTRL_REG_I_COMP_IGN: i_comp_val_ign <= data_in[11:0];
+            `CTRL_REG_I_COMP_STAT: begin
+                i_comp_stat <= data_in[6:0];
+                i_comp_stat_ign <= data_in[13:7];
+            end
 
             endcase
         end
@@ -213,6 +243,9 @@ always @(posedge clk or negedge rst_n) begin
         `CTRL_REG_W_COMP_VAL:   read_data <= w_comp_val;
         `CTRL_REG_W_COMP_IGN:   read_data <= w_comp_val_ign;
         `CTRL_REG_W_COMP_PAR:   read_data <= {12'b0, w_comp_par_ign, w_comp_par};
+        `CTRL_REG_I_COMP_VAL:   read_data <= {4'b0, i_comp_val};
+        `CTRL_REG_I_COMP_IGN:   read_data <= {4'b0, i_comp_val_ign};
+        `CTRL_REG_I_COMP_STAT:  read_data <= {2'b0, i_comp_stat_ign, i_comp_stat};
         endcase
     end else begin
         read_done <= 1'b0;

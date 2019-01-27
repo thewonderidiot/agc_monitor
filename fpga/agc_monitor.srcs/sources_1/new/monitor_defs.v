@@ -41,6 +41,9 @@
 `define CTRL_REG_W_COMP_VAL  16'h11
 `define CTRL_REG_W_COMP_IGN  16'h12
 `define CTRL_REG_W_COMP_PAR  16'h13
+`define CTRL_REG_I_COMP_VAL  16'h14
+`define CTRL_REG_I_COMP_IGN  16'h15
+`define CTRL_REG_I_COMP_STAT 16'h16
 `define CTRL_REG_NHALGA      16'h40
 
 // Monitor AGC Register Mirrors

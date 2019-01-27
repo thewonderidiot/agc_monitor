@@ -181,6 +181,7 @@ wire [7:5] fext;
 wire s1_match;
 wire s2_match;
 wire w_match;
+wire i_match;
 
 wire [2:0] w_mode;
 wire w_s1_s2;
@@ -189,6 +190,8 @@ wire [11:0] w_pulses;
 
 wire [16:1] w;
 wire [1:0] wp;
+
+wire [12:1] i;
 
 control_regs ctrl_regs(
     .clk(clk),
@@ -211,13 +214,18 @@ control_regs ctrl_regs(
     .eb(eb),
     .fb(fb),
     .fext(fext),
+    .minkl(minkl),
+    .minhl(minhl),
+    .miip(miip),
 
     .w(w),
     .wp(wp),
+    .i(i),
 
     .s1_match(s1_match),
     .s2_match(s2_match),
     .w_match(w_match),
+    .i_match(i_match),
 
     .w_mode(w_mode),
     .w_s1_s2(w_s1_s2),
@@ -247,6 +255,7 @@ start_stop strt_stp(
     .s1_match(s1_match),
     .s2_match(s2_match),
     .w_match(w_match),
+    .i_match(i_match),
 
     .mstrt(mstrt),
     .mstp(mstp)
@@ -310,6 +319,7 @@ monitor_regs mon_regs(
 
     .s1_match(s1_match),
     .s2_match(s2_match),
+    .i_match(i_match),
 
     .w_mode(w_mode),
     .w_s1_s2(w_s1_s2),
@@ -324,6 +334,7 @@ monitor_regs mon_regs(
 
     .w(w),
     .wp(wp),
+    .i(i),
 
     .read_en(mon_reg_read_en),
     .addr(cmd_addr),
