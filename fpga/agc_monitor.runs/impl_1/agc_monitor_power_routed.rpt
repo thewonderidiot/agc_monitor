@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date             : Sun Jan 20 14:17:48 2019
+| Date             : Sun Jan 27 22:24:03 2019
 | Host             : luminary running 64-bit unknown
 | Command          : report_power -file agc_monitor_power_routed.rpt -pb agc_monitor_power_summary_routed.pb -rpx agc_monitor_power_routed.rpx
 | Design           : agc_monitor
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.430        |
+| Total On-Chip Power (W)  | 1.434        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.293        |
+| Dynamic (W)              | 1.297        |
 | Device Static (W)        | 0.137        |
 | Effective TJA (C/W)      | 11.5         |
 | Max Ambient (C)          | 68.5         |
@@ -52,18 +52,20 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.005 |        5 |       --- |             --- |
-| Slice Logic    |     0.001 |     2247 |       --- |             --- |
-|   LUT as Logic |     0.001 |      797 |     53200 |            1.50 |
-|   Register     |    <0.001 |      976 |    106400 |            0.92 |
+| Clocks         |     0.006 |        5 |       --- |             --- |
+| Slice Logic    |     0.002 |     2882 |       --- |             --- |
+|   LUT as Logic |     0.001 |     1058 |     53200 |            1.99 |
+|   Register     |    <0.001 |     1324 |    106400 |            1.24 |
+|   F7/F8 Muxes  |    <0.001 |       31 |     53200 |            0.06 |
 |   CARRY4       |    <0.001 |        8 |     13300 |            0.06 |
-|   Others       |     0.000 |      204 |       --- |             --- |
-| Signals        |     0.002 |     1809 |       --- |             --- |
+|   Others       |     0.000 |      206 |       --- |             --- |
+| Signals        |     0.002 |     2279 |       --- |             --- |
 | Block RAM      |     0.002 |      2.5 |       140 |            1.79 |
-| I/O            |     0.003 |       99 |       200 |           49.50 |
+| I/O            |     0.003 |      116 |       200 |           58.00 |
+| XADC           |     0.002 |        1 |       --- |             --- |
 | PS7            |     1.280 |        1 |       --- |             --- |
 | Static Power   |     0.137 |          |           |                 |
-| Total          |     1.430 |          |           |                 |
+| Total          |     1.434 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -73,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.023 |       0.010 |      0.013 |
+| Vccint    |       1.000 |     0.026 |       0.012 |      0.013 |
 | Vccaux    |       1.800 |     0.014 |       0.000 |      0.014 |
 | Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -92,7 +94,7 @@ Table of Contents
 | Vcco_ddr  |       1.500 |     0.356 |       0.354 |      0.002 |
 | Vcco_mio0 |       1.800 |     0.004 |       0.003 |      0.001 |
 | Vcco_mio1 |       1.800 |     0.002 |       0.001 |      0.001 |
-| Vccadc    |       1.800 |     0.020 |       0.000 |      0.020 |
+| Vccadc    |       1.800 |     0.021 |       0.001 |      0.020 |
 +-----------+-------------+-----------+-------------+------------+
 
 
@@ -150,15 +152,17 @@ Table of Contents
 +----------------------------+-----------+
 | Name                       | Power (W) |
 +----------------------------+-----------+
-| agc_monitor                |     1.293 |
+| agc_monitor                |     1.297 |
+|   ctrl_regs                |     0.004 |
+|     adc                    |     0.002 |
 |   mon_chans                |     0.001 |
-|   mon_regs                 |     0.001 |
+|   mon_regs                 |     0.002 |
 |   monitor_ps               |     1.280 |
 |     monitor_ps_i           |     1.280 |
 |       processing_system7_0 |     1.280 |
 |   usb_if                   |     0.005 |
-|     cmd_queue              |     0.002 |
-|       U0                   |     0.002 |
+|     cmd_queue              |     0.001 |
+|       U0                   |     0.001 |
 |     read_byte_queue        |     0.002 |
 |       U0                   |     0.002 |
 +----------------------------+-----------+

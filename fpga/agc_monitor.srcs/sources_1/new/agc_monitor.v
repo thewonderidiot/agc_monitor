@@ -16,6 +16,13 @@ module agc_monitor(
     output wire siwu,
 
     // AGC signals
+    input wire bplssw_p,
+    input wire bplssw_n,
+    input wire p4sw_p,
+    input wire p4sw_n,
+    input wire mtemp_p,
+    input wire mtemp_n,
+
     input wire mgojam,
     input wire mstpit_n,
     input wire monwt,
@@ -196,6 +203,14 @@ wire [12:1] i;
 control_regs ctrl_regs(
     .clk(clk),
     .rst_n(rst_n),
+
+    .bplssw_p(bplssw_p),
+    .bplssw_n(bplssw_n),
+    .mtemp_p(mtemp_p),
+    .mtemp_n(mtemp_n),
+    .p4sw_p(p4sw_p),
+    .p4sw_n(p4sw_n),
+
     .addr(cmd_addr),
     .data_in(cmd_data),
     .read_en(ctrl_read_en),

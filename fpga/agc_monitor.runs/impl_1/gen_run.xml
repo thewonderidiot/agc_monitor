@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="impl_1" LaunchPart="xc7z020clg484-1" LaunchTime="1548022550">
+<GenRun Id="impl_1" LaunchPart="xc7z020clg484-1" LaunchTime="1548656567">
   <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
   <File Type="BG-DRC" Name="agc_monitor.drc"/>
   <File Type="BG-BGN" Name="agc_monitor.bgn"/>
@@ -227,6 +227,7 @@
     <Step Id="post_route_phys_opt_design"/>
     <Step Id="write_bitstream"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="mon_adc"/>
   <BlockFileSet Type="BlockSrcs" Name="read_byte_fifo"/>
   <BlockFileSet Type="BlockSrcs" Name="read_fifo"/>
   <BlockFileSet Type="BlockSrcs" Name="cmd_fifo"/>

@@ -45,6 +45,12 @@
 `define CTRL_REG_I_COMP_IGN  16'h15
 `define CTRL_REG_I_COMP_STAT 16'h16
 `define CTRL_REG_NHALGA      16'h40
+`define CTRL_REG_MON_TEMP    16'h60
+`define CTRL_REG_MON_VCCINT  16'h61
+`define CTRL_REG_MON_VCCAUX  16'h62
+`define CTRL_REG_AGC_BPLSSW  16'h63
+`define CTRL_REG_AGC_P4SW    16'h64
+`define CTRL_REG_AGC_MTEMP   16'h65
 
 // Monitor AGC Register Mirrors
 `define MON_REG_A      16'h00
@@ -80,3 +86,10 @@
 `define W_PULSE_B   7
 `define W_PULSE_Y   8
 `define W_PULSE_U   9
+
+`define ADC_CHAN_TEMP   5'h00
+`define ADC_CHAN_VCCINT 5'h01
+`define ADC_CHAN_VCCAUX 5'h02
+`define ADC_CHAN_VAUX7  5'h17
+`define ADC_CHAN_VAUX14 5'h1E
+`define ADC_CHAN_VAUX15 5'h1F

@@ -8,6 +8,14 @@ module control_regs(
     input wire rst_n,
     input wire [15:0] addr,
     input wire [15:0] data_in,
+
+    input wire bplssw_p,
+    input wire bplssw_n,
+    input wire p4sw_p,
+    input wire p4sw_n,
+    input wire mtemp_p,
+    input wire mtemp_n,
+
     input wire read_en,
     input wire write_en,
     output wire [15:0] data_out,
@@ -108,6 +116,65 @@ assign i_val_match = ((i ^ i_comp_val) & ~i_comp_val_ign) == 12'b0;
 assign i_stat_match = ((stat ^ i_comp_stat) & ~i_comp_stat_ign) == 7'b0;
 assign i_match = i_val_match & i_stat_match;
 
+
+wire [4:0] adc_channel;
+wire [6:0] adc_daddr;
+assign adc_daddr = {2'b0, adc_channel};
+wire adc_eoc;
+wire [15:0] adc_do;
+wire adc_drdy;
+
+mon_adc adc(
+    .daddr_in(adc_daddr),
+    .dclk_in(clk),
+    .den_in(adc_eoc),
+    .di_in(16'b0),
+    .dwe_in(1'b0),
+    .reset_in(~rst_n),
+    .vauxp7(p4sw_p),
+    .vauxn7(p4sw_n),
+    .vauxp14(mtemp_p),
+    .vauxn14(mtemp_n),
+    .vauxp15(bplssw_p),
+    .vauxn15(bplssw_n),
+    .busy_out(),
+    .channel_out(adc_channel),
+    .do_out(adc_do),
+    .drdy_out(adc_drdy),
+    .eoc_out(adc_eoc),
+    .eos_out(),
+    .alarm_out(),
+    .vp_in(1'b0),
+    .vn_in(1'b0)
+);
+
+reg [15:0] adc_temp;
+reg [15:0] adc_vccint;
+reg [15:0] adc_vccaux;
+reg [15:0] adc_bplssw;
+reg [15:0] adc_p4sw;
+reg [15:0] adc_mtemp;
+
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        adc_temp <= 16'b0;
+        adc_vccint <= 16'b0;
+        adc_vccaux <= 16'b0;
+        adc_bplssw <= 16'b0;
+        adc_p4sw <= 16'b0;
+        adc_mtemp <= 16'b0;
+    end else if (adc_drdy) begin
+        case (adc_channel)
+        `ADC_CHAN_TEMP:   adc_temp <= adc_do;
+        `ADC_CHAN_VCCINT: adc_vccint <= adc_do;
+        `ADC_CHAN_VCCAUX: adc_vccaux <= adc_do;
+        `ADC_CHAN_VAUX7:  adc_p4sw <= adc_do;
+        `ADC_CHAN_VAUX14: adc_mtemp <= adc_do;
+        `ADC_CHAN_VAUX15: adc_bplssw <= adc_do;
+        endcase
+    end
+end
+
 reg [15:0] read_data;
 reg read_done;
 
@@ -168,7 +235,6 @@ always @(posedge clk or negedge rst_n) begin
             `CTRL_REG_PROCEED:  proceed_req <= 1'b1;
             `CTRL_REG_MNHRPT:   mnhrpt <= data_in[0];
             `CTRL_REG_MNHNC:    mnhnc <= data_in[0];
-            `CTRL_REG_NHALGA:   nhalga <= data_in[0];
             `CTRL_REG_S1_S:     s1_s <= data_in[11:0];
             `CTRL_REG_S1_BANK: begin
                 s1_eb <= data_in[2:0];
@@ -211,6 +277,7 @@ always @(posedge clk or negedge rst_n) begin
                 i_comp_stat <= data_in[6:0];
                 i_comp_stat_ign <= data_in[13:7];
             end
+            `CTRL_REG_NHALGA:   nhalga <= data_in[0];
 
             endcase
         end
@@ -228,7 +295,6 @@ always @(posedge clk or negedge rst_n) begin
         `CTRL_REG_STOP_CAUSE:   read_data <= {5'b0, stop_cause};
         `CTRL_REG_MNHRPT:       read_data <= {15'b0, mnhrpt};
         `CTRL_REG_MNHNC:        read_data <= {15'b0, mnhnc};
-        `CTRL_REG_NHALGA:       read_data <= {15'b0, nhalga};
         `CTRL_REG_S1_S:         read_data <= {4'b0, s1_s};
         `CTRL_REG_S1_BANK:      read_data <= {1'b0, s1_fb, 3'b0, s1_fext, 1'b0, s1_eb};
         `CTRL_REG_S1_S_IGN:     read_data <= {4'b0, s1_s_ign};
@@ -246,6 +312,13 @@ always @(posedge clk or negedge rst_n) begin
         `CTRL_REG_I_COMP_VAL:   read_data <= {4'b0, i_comp_val};
         `CTRL_REG_I_COMP_IGN:   read_data <= {4'b0, i_comp_val_ign};
         `CTRL_REG_I_COMP_STAT:  read_data <= {2'b0, i_comp_stat_ign, i_comp_stat};
+        `CTRL_REG_NHALGA:       read_data <= {15'b0, nhalga};
+        `CTRL_REG_MON_TEMP:     read_data <= adc_temp;
+        `CTRL_REG_MON_VCCINT:   read_data <= adc_vccint;
+        `CTRL_REG_MON_VCCAUX:   read_data <= adc_vccaux;
+        `CTRL_REG_AGC_BPLSSW:   read_data <= adc_bplssw;
+        `CTRL_REG_AGC_P4SW:     read_data <= adc_p4sw;
+        `CTRL_REG_AGC_MTEMP:    read_data <= adc_mtemp;
         endcase
     end else begin
         read_done <= 1'b0;

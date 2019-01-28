@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1548022550">
+<GenRun Id="synth_1" LaunchPart="xc7z020clg484-1" LaunchTime="1548656560">
   <File Type="VDS-TIMING-PB" Name="agc_monitor_timing_summary_synth.pb"/>
   <File Type="VDS-TIMINGSUMMARY" Name="agc_monitor_timing_summary_synth.rpt"/>
   <File Type="RDS-DCP" Name="agc_monitor.dcp"/>
@@ -159,6 +159,7 @@
     <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2018"/>
     <Step Id="synth_design"/>
   </Strategy>
+  <BlockFileSet Type="BlockSrcs" Name="mon_adc"/>
   <BlockFileSet Type="BlockSrcs" Name="read_byte_fifo"/>
   <BlockFileSet Type="BlockSrcs" Name="read_fifo"/>
   <BlockFileSet Type="BlockSrcs" Name="cmd_fifo"/>
