@@ -1,0 +1,165 @@
+{
+    "name": "DSKY",
+    "id": 35,
+    "registers": [
+        {
+            "addr": 0,
+            "name": "Prog",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "digit2",
+                    "width": 5
+                },
+                {
+                    "name": "digit1",
+                    "width": 5
+                }
+            ]
+        },
+        {
+            "addr": 1,
+            "name": "Verb",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "digit2",
+                    "width": 5
+                },
+                {
+                    "name": "digit1",
+                    "width": 5
+                }
+            ]
+        },
+        {
+            "addr": 2,
+            "name": "Noun",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "digit2",
+                    "width": 5
+                },
+                {
+                    "name": "digit1",
+                    "width": 5
+                }
+            ]
+        },
+        {
+            "addr": 3,
+            "name": "Reg1L",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "digit5",
+                    "width": 5
+                },
+                {
+                    "name": "digit4",
+                    "width": 5
+                },
+                {
+                    "name": "digit3",
+                    "width": 5
+                }
+            ]
+        },
+        {
+            "addr": 4,
+            "name": "Reg1H",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "digit2",
+                    "width": 5
+                },
+                {
+                    "name": "digit1",
+                    "width": 5
+                },
+                {
+                    "name": "sign",
+                    "width": 2
+                }
+            ]
+        },
+        {
+            "addr": 5,
+            "name": "Reg2L",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "digit5",
+                    "width": 5
+                },
+                {
+                    "name": "digit4",
+                    "width": 5
+                },
+                {
+                    "name": "digit3",
+                    "width": 5
+                }
+            ]
+        },
+        {
+            "addr": 6,
+            "name": "Reg2H",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "digit2",
+                    "width": 5
+                },
+                {
+                    "name": "digit1",
+                    "width": 5
+                },
+                {
+                    "name": "sign",
+                    "width": 2
+                }
+            ]
+        },
+        {
+            "addr": 7,
+            "name": "Reg3L",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "digit5",
+                    "width": 5
+                },
+                {
+                    "name": "digit4",
+                    "width": 5
+                },
+                {
+                    "name": "digit3",
+                    "width": 5
+                }
+            ]
+        },
+        {
+            "addr": 8,
+            "name": "Reg3H",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "digit2",
+                    "width": 5
+                },
+                {
+                    "name": "digit1",
+                    "width": 5
+                },
+                {
+                    "name": "sign",
+                    "width": 2
+                }
+            ]
+        }
+    ]
+}
