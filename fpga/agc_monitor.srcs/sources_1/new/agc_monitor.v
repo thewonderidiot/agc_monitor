@@ -149,9 +149,12 @@ wire [15:0] mon_reg_data;
 wire mon_chan_read_en;
 wire [15:0] mon_chan_data;
 
+wire mon_dsky_read_en;
+wire [15:0] mon_dsky_data;
+
 // Resulting data from the active read command
 wire [15:0] read_data;
-assign read_data = ctrl_data | mon_reg_data | mon_chan_data;
+assign read_data = ctrl_data | mon_reg_data | mon_chan_data | mon_dsky_data;
 
 // Command controller 
 cmd_controller cmd_ctrl(
@@ -168,7 +171,8 @@ cmd_controller cmd_ctrl(
     .ctrl_read_en(ctrl_read_en),
     .ctrl_write_en(ctrl_write_en),
     .mon_reg_read_en(mon_reg_read_en),
-    .mon_chan_read_en(mon_chan_read_en)
+    .mon_chan_read_en(mon_chan_read_en),
+    .mon_dsky_read_en(mon_dsky_read_en)
 );
 
 /*******************************************************************************.
@@ -360,6 +364,7 @@ monitor_regs mon_regs(
 * Monitor AGC Channel Mirrors                                                   *
 '*******************************************************************************/
 wire [9:1] chan77;
+wire [15:1] out0;
 monitor_channels mon_chans(
     .clk(clk),
     .rst_n(rst_n),
@@ -375,6 +380,7 @@ monitor_channels mon_chans(
     .chan77(chan77),
 
     .fext(fext),
+    .out0(out0),
 
     .read_en(mon_chan_read_en),
     .addr(cmd_addr),
@@ -407,6 +413,20 @@ restart_monitor restart_mon(
 );
 
 assign mdt = mdt_chan77;
+
+/*******************************************************************************.
+* DSKY                                                                          *
+'*******************************************************************************/
+monitor_dsky mon_dsky(
+    .clk(clk),
+    .rst_n(rst_n),
+    
+    .read_en(mon_dsky_read_en),
+    .addr(cmd_addr),
+    .data_out(mon_dsky_data),
+
+    .out0(out0)
+);
 
 /*******************************************************************************.
 * Zync Processor Subsystem                                                      *

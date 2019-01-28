@@ -29,7 +29,8 @@ module cmd_controller(
 
     // Monitor registers control signals
     output reg mon_reg_read_en,
-    output reg mon_chan_read_en
+    output reg mon_chan_read_en,
+    output reg mon_dsky_read_en
 );
 
 /*******************************************************************************.
@@ -44,6 +45,7 @@ localparam IDLE          = 0,
            CONTROL       = 6,
            MON_REGS      = 7,
            MON_CHANNELS  = 8,
+           MON_DSKY      = 9,
            SEND_READ_MSG = 15;
 
 reg [3:0] state;
@@ -93,6 +95,7 @@ always @(*) begin
     ctrl_write_en = 1'b0;
     mon_reg_read_en = 1'b0;
     mon_chan_read_en = 1'b0;
+    mon_dsky_read_en = 1'b0;
 
     case (state)
     IDLE: begin
@@ -110,6 +113,7 @@ always @(*) begin
             `ADDR_GROUP_CONTROL:      next_state = CONTROL;
             `ADDR_GROUP_MON_REGS:     next_state = MON_REGS;
             `ADDR_GROUP_MON_CHANNELS: next_state = MON_CHANNELS;
+            `ADDR_GROUP_MON_DSKY:     next_state = MON_DSKY;
             default:                  next_state = IDLE;
             endcase
         end
@@ -159,6 +163,15 @@ always @(*) begin
     MON_CHANNELS: begin
         if (~cmd_write_flag) begin
             mon_chan_read_en = 1'b1;
+            next_state = SEND_READ_MSG;
+        end else begin
+            next_state = IDLE;
+        end
+    end
+
+    MON_DSKY: begin
+        if (~cmd_write_flag) begin
+            mon_dsky_read_en = 1'b1;
             next_state = SEND_READ_MSG;
         end else begin
             next_state = IDLE;

@@ -17,6 +17,7 @@ module monitor_channels(
     input wire [9:1] chan77,
 
     output wire [7:5] fext,
+    output wire [15:1] out0,
 
     input wire read_en,
     input wire [15:0] addr,
@@ -24,7 +25,7 @@ module monitor_channels(
 );
 
 wire [15:1] hiscalar;
-channel #(3,15) chan_3(
+channel #(9'o3,15) chan_3(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -36,7 +37,7 @@ channel #(3,15) chan_3(
 );
 
 wire [15:1] loscalar;
-channel #(4,15) chan_4(
+channel #(9'o4,15) chan_4(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -48,7 +49,7 @@ channel #(4,15) chan_4(
 );
 
 wire [8:1] pyjets;
-channel #(5,8) chan_5(
+channel #(9'o5,8) chan_5(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -60,7 +61,7 @@ channel #(5,8) chan_5(
 );
 
 wire [8:1] rolljets;
-channel #(6,8) chan_6(
+channel #(9'o6,8) chan_6(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -71,7 +72,7 @@ channel #(6,8) chan_6(
     .val(rolljets)
 );
 
-channel #(7,3) chan_7(
+channel #(9'o7,3) chan_7(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -82,8 +83,7 @@ channel #(7,3) chan_7(
     .val(fext)
 );
 
-wire [15:1] out0;
-channel #(10,15) chan_10(
+channel #(9'o10,15) chan_10(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -95,7 +95,7 @@ channel #(10,15) chan_10(
 );
 
 wire [15:1] dsalmout;
-channel #(11,15) chan_11(
+channel #(9'o11,15) chan_11(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -107,7 +107,7 @@ channel #(11,15) chan_11(
 );
 
 wire [15:1] chan12;
-channel #(12,15) chan_12(
+channel #(9'o12,15) chan_12(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -119,7 +119,7 @@ channel #(12,15) chan_12(
 );
 
 wire [15:1] chan13;
-channel #(13,15) chan_13(
+channel #(9'o13,15) chan_13(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -131,7 +131,7 @@ channel #(13,15) chan_13(
 );
 
 wire [15:1] chan14;
-channel #(14,15) chan_14(
+channel #(9'o14,15) chan_14(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -143,7 +143,7 @@ channel #(14,15) chan_14(
 );
 
 wire [5:1] mkeyin;
-channel #(15,5) chan_15(
+channel #(9'o15,5) chan_15(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -155,7 +155,7 @@ channel #(15,5) chan_15(
 );
 
 wire [7:1] navkeyin;
-channel #(16,7) chan_16(
+channel #(9'o16,7) chan_16(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -167,7 +167,7 @@ channel #(16,7) chan_16(
 );
 
 wire [15:1] chan30;
-channel #(30,15) chan_30(
+channel #(9'o30,15) chan_30(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -179,7 +179,7 @@ channel #(30,15) chan_30(
 );
 
 wire [15:1] chan31;
-channel #(31,15) chan_31(
+channel #(9'o31,15) chan_31(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -191,7 +191,7 @@ channel #(31,15) chan_31(
 );
 
 wire [15:1] chan32;
-channel #(32,15) chan_32(
+channel #(9'o32,15) chan_32(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -203,7 +203,7 @@ channel #(32,15) chan_32(
 );
 
 wire [15:1] chan33;
-channel #(33,15) chan_33(
+channel #(9'o33,15) chan_33(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -215,7 +215,7 @@ channel #(33,15) chan_33(
 );
 
 wire [15:1] dntm1;
-channel #(34,15) chan_34(
+channel #(9'o34,15) chan_34(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
@@ -227,7 +227,7 @@ channel #(34,15) chan_34(
 );
 
 wire [15:1] dntm2;
-channel #(35,15) chan_35(
+channel #(9'o35,15) chan_35(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),

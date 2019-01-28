@@ -19,6 +19,7 @@
 `define ADDR_GROUP_CONTROL      7'h20
 `define ADDR_GROUP_MON_REGS     7'h21
 `define ADDR_GROUP_MON_CHANNELS 7'h22
+`define ADDR_GROUP_MON_DSKY     7'h23
 
 // Control Registers
 `define CTRL_REG_START       16'h0
@@ -67,6 +68,16 @@
 `define MON_REG_STATUS 16'h0B
 `define MON_REG_PAR    16'h0C
 `define MON_REG_W      16'h40
+
+`define DSKY_REG_PROG   16'h00
+`define DSKY_REG_VERB   16'h01
+`define DSKY_REG_NOUN   16'h02
+`define DSKY_REG_REG1_L 16'h03
+`define DSKY_REG_REG1_H 16'h04
+`define DSKY_REG_REG2_L 16'h05
+`define DSKY_REG_REG2_H 16'h06
+`define DSKY_REG_REG3_L 16'h07
+`define DSKY_REG_REG3_H 16'h08
 
 `define W_MODE_ALL 3'o0
 `define W_MODE_S   3'o1

@@ -231,10 +231,6 @@ set_property PACKAGE_PIN U5 [get_ports msp]
 set_property PACKAGE_PIN V8 [get_ports mgp_n]
 set_property IOSTANDARD LVCMOS33 [get_ports mgp_n]
 
-set_property PACKAGE_PIN G22 [get_ports bplus_n]
-set_property IOSTANDARD LVCMOS33 [get_ports bplus_n]
-set_property IOSTANDARD LVCMOS33 [get_ports bplus_p]
-
 set_property PACKAGE_PIN G22 [get_ports bplssw_n]
 set_property IOSTANDARD LVCMOS33 [get_ports bplssw_n]
 set_property IOSTANDARD LVCMOS33 [get_ports bplssw_p]
