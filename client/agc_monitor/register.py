@@ -114,4 +114,6 @@ class Register(QWidget):
 
         # If parity was not included, fill up the equivalent space
         if not self._has_parity:
-            layout.addSpacing(45)
+            layout.addSpacing(62)
+        else:
+            layout.addSpacing(17)

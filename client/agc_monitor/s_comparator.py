@@ -91,7 +91,7 @@ class SComparator(QWidget):
         lv_layout.addWidget(label)
 
         # Add some spacing to account for lack of parity indicators
-        layout.addSpacing(19)
+        #layout.addSpacing(19)
 
     def _get_switch_value(self, switches):
         val = 0

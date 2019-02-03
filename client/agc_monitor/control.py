@@ -109,7 +109,8 @@ class Control(QFrame):
         label = QLabel(name, parent)
         label.setAlignment(Qt.AlignCenter)
         font = label.font()
-        font.setPointSize(8)
+        font.setPointSize(7)
+        font.setBold(True)
         label.setFont(font)
         layout.addWidget(label, 0, col)
 
@@ -134,7 +135,8 @@ class Control(QFrame):
         label = QLabel(name, parent)
         label.setAlignment(Qt.AlignCenter)
         font = label.font()
-        font.setPointSize(8)
+        font.setPointSize(7)
+        font.setBold(True)
         label.setFont(font)
         layout.addWidget(label, 1, col)
 

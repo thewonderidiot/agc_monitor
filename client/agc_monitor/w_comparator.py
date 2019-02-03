@@ -58,7 +58,7 @@ class WComparator(QWidget):
         self._val_box.setAlignment(Qt.AlignCenter)
         
         # Add some spacing to account for lack of parity indicators
-        layout.addSpacing(23)
+        layout.addSpacing(40)
 
     def _send_cmp_val(self):
         val = self._get_switch_value(self._w_cmp_switches, False)

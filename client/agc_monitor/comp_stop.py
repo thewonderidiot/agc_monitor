@@ -66,12 +66,12 @@ class CompStop(QFrame):
         font.setBold(True)
         label.setFont(font)
         label.setAlignment(Qt.AlignCenter)
-        layout.addWidget(label, 3, 0, 1, 4, Qt.AlignCenter)
+        layout.addWidget(label, 3, 0, 1, 4, Qt.AlignRight)
 
         self._s1 = QRadioButton('S1', self)
         self._s1.setLayoutDirection(Qt.RightToLeft)
         layout.addWidget(self._s1, 3, 5, 1, 2)
-        layout.setAlignment(self._s1, Qt.AlignCenter)
+        layout.setAlignment(self._s1, Qt.AlignRight)
         self._s1.setChecked(True)
         self._s1.toggled.connect(self._set_stop_conds)
 
@@ -79,10 +79,14 @@ class CompStop(QFrame):
         layout.addWidget(self._s2, 3, 6, 1, 2)
         layout.setAlignment(self._s2, Qt.AlignRight)
 
+        font.setPointSize(7)
+        self._s1.setFont(font)
+        self._s2.setFont(font)
+
     def _create_stop_cond(self, label_text, name, layout, col):
         # Create an indicator to show stop status
         ind = Indicator(self, QColor(255, 0, 0))
-        ind.setFixedSize(30, 20)
+        ind.setFixedSize(25, 20)
         layout.addWidget(ind, 0, col)
         layout.setAlignment(ind, Qt.AlignCenter)
         self._stop_inds[name] = ind
@@ -100,7 +104,8 @@ class CompStop(QFrame):
         label = QLabel(label_text, self)
         label.setAlignment(Qt.AlignCenter)
         font = label.font()
-        font.setPointSize(8)
+        font.setPointSize(7)
+        font.setBold(True)
         label.setFont(font)
         label_height = 2 if '\n' in label_text else 1
         layout.addWidget(label, 2, col, label_height, 1)

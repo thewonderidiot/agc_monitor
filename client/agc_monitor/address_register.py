@@ -101,7 +101,7 @@ class AddressRegister(QWidget):
         lv_layout.addWidget(label)
 
         # Add some spacing to account for lack of parity indicators
-        layout.addSpacing(19)
+        layout.addSpacing(36)
 
     def _update_addr_value(self):
         # Get the values of all tracked registers

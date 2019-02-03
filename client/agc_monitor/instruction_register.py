@@ -102,7 +102,7 @@ class InstructionRegister(QWidget):
         lv_layout.addWidget(label)
 
         # Add some spacing to account for lack of parity indicators
-        layout.addSpacing(35)
+        layout.addSpacing(52)
 
     def _set_reg_value(self, inds, value_box, x):
         # Generic function to display in octal the value of a register, with the

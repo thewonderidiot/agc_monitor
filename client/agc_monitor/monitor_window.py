@@ -10,6 +10,8 @@ from comp_stop import CompStop
 from s_comparator import SComparator
 from w_comparator import WComparator
 from i_comparator import IComparator
+from read_load import ReadLoad
+from bank_s import BankS
 from usb_interface import USBInterface
 
 class MonitorWindow(QMainWindow):
@@ -53,7 +55,7 @@ class MonitorWindow(QMainWindow):
 
         self._write_w = WriteW(upper_displays, self._usbif)
         upper_layout.addWidget(self._write_w)
-        upper_layout.setAlignment(self._write_w, Qt.AlignTop)
+        upper_layout.setAlignment(self._write_w, Qt.AlignRight)
 
         regs = QWidget(upper_displays)
         regs_layout = QVBoxLayout(regs)
@@ -101,13 +103,31 @@ class MonitorWindow(QMainWindow):
         layout.addWidget(self._reg_s)
         layout.setAlignment(self._reg_s, Qt.AlignRight)
 
-        self._s1 = SComparator(central, self._usbif, 1)
-        layout.addWidget(self._s1)
-        layout.setAlignment(self._s1, Qt.AlignRight)
+        s_comp_widget = QWidget(central)
+        layout.addWidget(s_comp_widget)
+        layout.setAlignment(s_comp_widget, Qt.AlignRight)
+        s_comp_layout = QHBoxLayout(s_comp_widget)
+        s_comp_layout.setMargin(0)
+        s_comp_layout.setSpacing(1)
 
-        self._s2 = SComparator(central, self._usbif, 2)
-        layout.addWidget(self._s2)
-        layout.setAlignment(self._s2, Qt.AlignRight)
+        s1_s2_widget = QWidget(s_comp_widget)
+        s_comp_layout.addWidget(s1_s2_widget)
+        s_comp_layout.setAlignment(s1_s2_widget, Qt.AlignRight)
+        s1_s2_layout = QVBoxLayout(s1_s2_widget)
+        s1_s2_layout.setMargin(0)
+        s1_s2_layout.setSpacing(1)
+
+        self._s1 = SComparator(s1_s2_widget, self._usbif, 1)
+        s1_s2_layout.addWidget(self._s1)
+        s1_s2_layout.setAlignment(self._s1, Qt.AlignRight)
+
+        self._s2 = SComparator(s1_s2_widget, self._usbif, 2)
+        s1_s2_layout.addWidget(self._s2)
+        s1_s2_layout.setAlignment(self._s2, Qt.AlignRight)
+
+        self._bank_s = BankS(s_comp_widget)
+        s_comp_layout.addWidget(self._bank_s)
+        s_comp_layout.setAlignment(self._bank_s, Qt.AlignTop | Qt.AlignRight)
 
         self._reg_i = InstructionRegister(central, self._usbif, QColor(0, 255, 0))
         layout.addWidget(self._reg_i)
@@ -117,15 +137,33 @@ class MonitorWindow(QMainWindow):
         layout.addWidget(self._i_comp)
         layout.setAlignment(self._i_comp, Qt.AlignRight)
 
+        lower_controls = QWidget(central)
+        lower_layout = QHBoxLayout(lower_controls)
+        lower_controls.setLayout(lower_layout)
+        lower_layout.setMargin(0)
+        lower_layout.setSpacing(1)
+        layout.addWidget(lower_controls)
+
+        control_stop = QWidget(lower_controls)
+        control_stop_layout = QVBoxLayout(control_stop)
+        control_stop.setLayout(control_stop_layout)
+        control_stop_layout.setSpacing(2)
+        control_stop_layout.setMargin(0)
+        lower_layout.addWidget(control_stop, Qt.AlignTop)
+
         # Add the control panel
-        self._ctrl_panel = Control(central, self._usbif)
-        layout.addWidget(self._ctrl_panel)
-        layout.setAlignment(self._ctrl_panel, Qt.AlignLeft)
+        self._ctrl_panel = Control(control_stop, self._usbif)
+        control_stop_layout.addWidget(self._ctrl_panel)
+        control_stop_layout.setAlignment(self._ctrl_panel, Qt.AlignRight)
 
         # Add the computer stop panel
-        self._comp_stop = CompStop(central, self._usbif)
-        layout.addWidget(self._comp_stop)
-        layout.setAlignment(self._comp_stop, Qt.AlignLeft)
+        self._comp_stop = CompStop(control_stop, self._usbif)
+        control_stop_layout.addWidget(self._comp_stop)
+        control_stop_layout.setAlignment(self._comp_stop, Qt.AlignRight)
+
+        self._read_load = ReadLoad(central, self._usbif)
+        lower_layout.addWidget(self._read_load)
+        lower_layout.setAlignment(self._read_load, Qt.AlignTop)
 
     def connected(self, connected):
         if connected:

@@ -76,7 +76,7 @@ class IComparator(QWidget):
         inst_layout.setAlignment(Qt.AlignLeft)
 
         # Add some spacing to account for lack of parity indicators
-        layout.addSpacing(6)
+        layout.addSpacing(23)
 
     def _get_switch_value(self, switches):
         val = 0

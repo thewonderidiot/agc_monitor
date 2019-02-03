@@ -79,6 +79,42 @@ ReadMonRegW = namedtuple('ReadMonRegW', [])
 ReadMonRegW.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 MonRegW = namedtuple('MonRegW', ['w'])
 MonRegW.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadDSKYProg = namedtuple('ReadDSKYProg', [])
+ReadDSKYProg.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+DSKYProg = namedtuple('DSKYProg', ['digit2', 'digit1'])
+DSKYProg.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadDSKYVerb = namedtuple('ReadDSKYVerb', [])
+ReadDSKYVerb.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+DSKYVerb = namedtuple('DSKYVerb', ['digit2', 'digit1'])
+DSKYVerb.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadDSKYNoun = namedtuple('ReadDSKYNoun', [])
+ReadDSKYNoun.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+DSKYNoun = namedtuple('DSKYNoun', ['digit2', 'digit1'])
+DSKYNoun.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadDSKYReg1L = namedtuple('ReadDSKYReg1L', [])
+ReadDSKYReg1L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+DSKYReg1L = namedtuple('DSKYReg1L', ['digit5', 'digit4', 'digit3'])
+DSKYReg1L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadDSKYReg1H = namedtuple('ReadDSKYReg1H', [])
+ReadDSKYReg1H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+DSKYReg1H = namedtuple('DSKYReg1H', ['digit2', 'digit1', 'sign'])
+DSKYReg1H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadDSKYReg2L = namedtuple('ReadDSKYReg2L', [])
+ReadDSKYReg2L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+DSKYReg2L = namedtuple('DSKYReg2L', ['digit5', 'digit4', 'digit3'])
+DSKYReg2L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadDSKYReg2H = namedtuple('ReadDSKYReg2H', [])
+ReadDSKYReg2H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+DSKYReg2H = namedtuple('DSKYReg2H', ['digit2', 'digit1', 'sign'])
+DSKYReg2H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadDSKYReg3L = namedtuple('ReadDSKYReg3L', [])
+ReadDSKYReg3L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+DSKYReg3L = namedtuple('DSKYReg3L', ['digit5', 'digit4', 'digit3'])
+DSKYReg3L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadDSKYReg3H = namedtuple('ReadDSKYReg3H', [])
+ReadDSKYReg3H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+DSKYReg3H = namedtuple('DSKYReg3H', ['digit2', 'digit1', 'sign'])
+DSKYReg3H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadFixed = namedtuple('ReadFixed', ['addr'])
 ReadFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Fixed = namedtuple('Fixed', ['addr', 'data'])
@@ -251,6 +287,7 @@ WriteControlSTRT2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tup
 class AddressGroup(object):
     SimErasable = 0x10
     MonReg = 0x21
+    DSKY = 0x23
     Fixed = 0x01
     MonChan = 0x22
     SimFixed = 0x11
@@ -272,6 +309,16 @@ class MonReg(object):
     I = 0x000A
     Status = 0x000B
     W = 0x0040
+class DSKY(object):
+    Prog = 0x0000
+    Verb = 0x0001
+    Noun = 0x0002
+    Reg1L = 0x0003
+    Reg1H = 0x0004
+    Reg2L = 0x0005
+    Reg2H = 0x0006
+    Reg3L = 0x0007
+    Reg3H = 0x0008
 class MonChan(object):
     FEXT = 0x0007
 class Control(object):
@@ -355,6 +402,33 @@ def _pack_ReadMonRegStatus(msg):
 
 def _pack_ReadMonRegW(msg):
     return _pack_read_msg(AddressGroup.MonReg, MonReg.W)
+
+def _pack_ReadDSKYProg(msg):
+    return _pack_read_msg(AddressGroup.DSKY, DSKY.Prog)
+
+def _pack_ReadDSKYVerb(msg):
+    return _pack_read_msg(AddressGroup.DSKY, DSKY.Verb)
+
+def _pack_ReadDSKYNoun(msg):
+    return _pack_read_msg(AddressGroup.DSKY, DSKY.Noun)
+
+def _pack_ReadDSKYReg1L(msg):
+    return _pack_read_msg(AddressGroup.DSKY, DSKY.Reg1L)
+
+def _pack_ReadDSKYReg1H(msg):
+    return _pack_read_msg(AddressGroup.DSKY, DSKY.Reg1H)
+
+def _pack_ReadDSKYReg2L(msg):
+    return _pack_read_msg(AddressGroup.DSKY, DSKY.Reg2L)
+
+def _pack_ReadDSKYReg2H(msg):
+    return _pack_read_msg(AddressGroup.DSKY, DSKY.Reg2H)
+
+def _pack_ReadDSKYReg3L(msg):
+    return _pack_read_msg(AddressGroup.DSKY, DSKY.Reg3L)
+
+def _pack_ReadDSKYReg3H(msg):
+    return _pack_read_msg(AddressGroup.DSKY, DSKY.Reg3H)
 
 def _pack_ReadFixed(msg):
     return _pack_read_msg(AddressGroup.Fixed, msg.addr)
@@ -711,6 +785,66 @@ def _unpack_MonRegW(data):
         w = (data >> 0) & 0xFFFF,
     )
 
+def _unpack_DSKYProg(data):
+    return DSKYProg(
+        digit2 = (data >> 0) & 0x001F,
+        digit1 = (data >> 5) & 0x001F,
+    )
+
+def _unpack_DSKYVerb(data):
+    return DSKYVerb(
+        digit2 = (data >> 0) & 0x001F,
+        digit1 = (data >> 5) & 0x001F,
+    )
+
+def _unpack_DSKYNoun(data):
+    return DSKYNoun(
+        digit2 = (data >> 0) & 0x001F,
+        digit1 = (data >> 5) & 0x001F,
+    )
+
+def _unpack_DSKYReg1L(data):
+    return DSKYReg1L(
+        digit5 = (data >> 0) & 0x001F,
+        digit4 = (data >> 5) & 0x001F,
+        digit3 = (data >> 10) & 0x001F,
+    )
+
+def _unpack_DSKYReg1H(data):
+    return DSKYReg1H(
+        digit2 = (data >> 0) & 0x001F,
+        digit1 = (data >> 5) & 0x001F,
+        sign = (data >> 10) & 0x0003,
+    )
+
+def _unpack_DSKYReg2L(data):
+    return DSKYReg2L(
+        digit5 = (data >> 0) & 0x001F,
+        digit4 = (data >> 5) & 0x001F,
+        digit3 = (data >> 10) & 0x001F,
+    )
+
+def _unpack_DSKYReg2H(data):
+    return DSKYReg2H(
+        digit2 = (data >> 0) & 0x001F,
+        digit1 = (data >> 5) & 0x001F,
+        sign = (data >> 10) & 0x0003,
+    )
+
+def _unpack_DSKYReg3L(data):
+    return DSKYReg3L(
+        digit5 = (data >> 0) & 0x001F,
+        digit4 = (data >> 5) & 0x001F,
+        digit3 = (data >> 10) & 0x001F,
+    )
+
+def _unpack_DSKYReg3H(data):
+    return DSKYReg3H(
+        digit2 = (data >> 0) & 0x001F,
+        digit1 = (data >> 5) & 0x001F,
+        sign = (data >> 10) & 0x0003,
+    )
+
 def _unpack_Fixed(addr, data):
     return Fixed(addr=addr, data=data)
 
@@ -935,6 +1069,15 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.MonReg, MonReg.I): _unpack_MonRegI,
     (DATA_FLAG | AddressGroup.MonReg, MonReg.Status): _unpack_MonRegStatus,
     (DATA_FLAG | AddressGroup.MonReg, MonReg.W): _unpack_MonRegW,
+    (DATA_FLAG | AddressGroup.DSKY, DSKY.Prog): _unpack_DSKYProg,
+    (DATA_FLAG | AddressGroup.DSKY, DSKY.Verb): _unpack_DSKYVerb,
+    (DATA_FLAG | AddressGroup.DSKY, DSKY.Noun): _unpack_DSKYNoun,
+    (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg1L): _unpack_DSKYReg1L,
+    (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg1H): _unpack_DSKYReg1H,
+    (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg2L): _unpack_DSKYReg2L,
+    (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg2H): _unpack_DSKYReg2H,
+    (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg3L): _unpack_DSKYReg3L,
+    (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg3H): _unpack_DSKYReg3H,
     (DATA_FLAG | AddressGroup.MonChan, MonChan.FEXT): _unpack_MonChanFEXT,
     (DATA_FLAG | AddressGroup.Control, Control.Stop): _unpack_ControlStop,
     (DATA_FLAG | AddressGroup.Control, Control.StopCause): _unpack_ControlStopCause,

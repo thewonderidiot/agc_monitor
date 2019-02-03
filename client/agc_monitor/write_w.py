@@ -90,9 +90,14 @@ class WriteW(QWidget):
         s1_s2_layout.setMargin(1)
         s1_s2_layout.setSpacing(0)
         self._s1 = QRadioButton('S1', s1_s2)
+        font = self._s1.font()
+        font.setPointSize(7)
+        font.setBold(True)
+        self._s1.setFont(font)
         self._s1.setLayoutDirection(Qt.RightToLeft)
         self._s1.setChecked(True)
         self._s2 = QRadioButton('S2', s1_s2)
+        self._s2.setFont(font)
         self._s2.toggled.connect(lambda s: self._send_mode(s))
         s1_s2_layout.addWidget(self._s1)
         s1_s2_layout.setAlignment(self._s1, Qt.AlignLeft)
@@ -112,6 +117,7 @@ class WriteW(QWidget):
         col = 0
         for label, mode in WRITE_W_POSITIONS.items():
             pos = QRadioButton(label, write_w_box)
+            pos.setFont(font)
             if label == 'ALL':
                 pos.setChecked(True)
             pos.pressed.connect(lambda m=mode: self._update_mode(m))
@@ -154,7 +160,8 @@ class WriteW(QWidget):
 
             label = QLabel(l, switch_frame)
             font = label.font()
-            font.setPointSize(8)
+            font.setPointSize(7)
+            font.setBold(True)
             label.setFont(font)
             switch_layout.addWidget(label, row+1, col)
             switch_layout.setAlignment(label, Qt.AlignCenter)
