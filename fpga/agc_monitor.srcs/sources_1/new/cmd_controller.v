@@ -26,6 +26,7 @@ module cmd_controller(
     // Control registers control signals
     output reg ctrl_read_en,
     output reg ctrl_write_en,
+    input wire ctrl_write_done,
 
     // Monitor registers control signals
     output reg mon_reg_read_en,
@@ -143,8 +144,11 @@ always @(*) begin
         // Control register actions are instant, so toggle the appropriate
         // signal and move on
         if (cmd_write_flag) begin
-            ctrl_write_en = 1'b1;
-            next_state = IDLE;
+            if (ctrl_write_done) begin
+                next_state = IDLE;
+            end else begin
+                ctrl_write_en = 1'b1;
+            end
         end else begin
             ctrl_read_en = 1'b1;
             next_state = SEND_READ_MSG;

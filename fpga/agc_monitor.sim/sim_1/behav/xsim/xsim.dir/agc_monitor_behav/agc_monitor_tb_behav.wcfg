@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="929142166fs"></ZoomStartTime>
-      <ZoomEndTime time="6503995167fs"></ZoomEndTime>
-      <Cursor1Time time="1890886000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="350000000001fs"></ZoomEndTime>
+      <Cursor1Time time="33205000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="98"></ValueColumnWidth>
+      <ValueColumnWidth column_width="94"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="25" />
+   <WVObjectSize size="32" />
    <wvobject type="logic" fp_name="/agc_monitor_tb/rxf_n">
       <obj_property name="ElementShortName">rxf_n</obj_property>
       <obj_property name="ObjectShortName">rxf_n</obj_property>
@@ -119,5 +119,33 @@
    <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/proceed_req">
       <obj_property name="ElementShortName">proceed_req</obj_property>
       <obj_property name="ObjectShortName">proceed_req</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/mt">
+      <obj_property name="ElementShortName">mt[12:1]</obj_property>
+      <obj_property name="ObjectShortName">mt[12:1]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/mload">
+      <obj_property name="ElementShortName">mload</obj_property>
+      <obj_property name="ObjectShortName">mload</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/mreqin">
+      <obj_property name="ElementShortName">mreqin</obj_property>
+      <obj_property name="ObjectShortName">mreqin</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/periph_insts/complete">
+      <obj_property name="ElementShortName">complete</obj_property>
+      <obj_property name="ObjectShortName">complete</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/cmd_ctrl/state">
+      <obj_property name="ElementShortName">state[3:0]</obj_property>
+      <obj_property name="ObjectShortName">state[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/ctrl_regs/periph_load">
+      <obj_property name="ElementShortName">periph_load</obj_property>
+      <obj_property name="ObjectShortName">periph_load</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/periph_insts/state">
+      <obj_property name="ElementShortName">state[2:0]</obj_property>
+      <obj_property name="ObjectShortName">state[2:0]</obj_property>
    </wvobject>
 </wave_config>

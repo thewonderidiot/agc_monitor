@@ -40,9 +40,11 @@ read_verilog -library xil_defaultlib {
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/edit.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_channels.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_dsky.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_regs.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/peripheral_instructions.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/restart_monitor.v

@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date             : Sun Jan 27 22:24:03 2019
+| Date             : Sun Feb  3 20:21:07 2019
 | Host             : luminary running 64-bit unknown
 | Command          : report_power -file agc_monitor_power_routed.rpt -pb agc_monitor_power_summary_routed.pb -rpx agc_monitor_power_routed.rpx
 | Design           : agc_monitor
@@ -30,14 +30,14 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 1.434        |
+| Total On-Chip Power (W)  | 1.437        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 1.297        |
+| Dynamic (W)              | 1.300        |
 | Device Static (W)        | 0.137        |
 | Effective TJA (C/W)      | 11.5         |
-| Max Ambient (C)          | 68.5         |
-| Junction Temperature (C) | 41.5         |
+| Max Ambient (C)          | 68.4         |
+| Junction Temperature (C) | 41.6         |
 | Confidence Level         | Low          |
 | Setting File             | ---          |
 | Simulation Activity File | ---          |
@@ -52,20 +52,20 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.006 |        5 |       --- |             --- |
-| Slice Logic    |     0.002 |     2882 |       --- |             --- |
-|   LUT as Logic |     0.001 |     1058 |     53200 |            1.99 |
-|   Register     |    <0.001 |     1324 |    106400 |            1.24 |
-|   F7/F8 Muxes  |    <0.001 |       31 |     53200 |            0.06 |
-|   CARRY4       |    <0.001 |        8 |     13300 |            0.06 |
-|   Others       |     0.000 |      206 |       --- |             --- |
-| Signals        |     0.002 |     2279 |       --- |             --- |
+| Clocks         |     0.007 |        5 |       --- |             --- |
+| Slice Logic    |     0.002 |     3383 |       --- |             --- |
+|   LUT as Logic |     0.002 |     1217 |     53200 |            2.29 |
+|   Register     |    <0.001 |     1570 |    106400 |            1.48 |
+|   F7/F8 Muxes  |    <0.001 |       69 |     53200 |            0.13 |
+|   CARRY4       |    <0.001 |       13 |     13300 |            0.10 |
+|   Others       |     0.000 |      210 |       --- |             --- |
+| Signals        |     0.003 |     2729 |       --- |             --- |
 | Block RAM      |     0.002 |      2.5 |       140 |            1.79 |
-| I/O            |     0.003 |      116 |       200 |           58.00 |
+| I/O            |     0.005 |      124 |       200 |           62.00 |
 | XADC           |     0.002 |        1 |       --- |             --- |
 | PS7            |     1.280 |        1 |       --- |             --- |
 | Static Power   |     0.137 |          |           |                 |
-| Total          |     1.434 |          |           |                 |
+| Total          |     1.437 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,7 +75,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.026 |       0.012 |      0.013 |
+| Vccint    |       1.000 |     0.027 |       0.014 |      0.013 |
 | Vccaux    |       1.800 |     0.014 |       0.000 |      0.014 |
 | Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
@@ -152,17 +152,17 @@ Table of Contents
 +----------------------------+-----------+
 | Name                       | Power (W) |
 +----------------------------+-----------+
-| agc_monitor                |     1.297 |
+| agc_monitor                |     1.300 |
 |   ctrl_regs                |     0.004 |
 |     adc                    |     0.002 |
 |   mon_chans                |     0.001 |
-|   mon_regs                 |     0.002 |
+|   mon_regs                 |     0.001 |
 |   monitor_ps               |     1.280 |
 |     monitor_ps_i           |     1.280 |
 |       processing_system7_0 |     1.280 |
 |   usb_if                   |     0.005 |
-|     cmd_queue              |     0.001 |
-|       U0                   |     0.001 |
+|     cmd_queue              |     0.002 |
+|       U0                   |     0.002 |
 |     read_byte_queue        |     0.002 |
 |       U0                   |     0.002 |
 +----------------------------+-----------+

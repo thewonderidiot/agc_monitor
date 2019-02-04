@@ -74,6 +74,15 @@ module agc_monitor(
     output wire mnhrpt,
     output wire mnhnc,
     output wire nhalga,
+
+    output wire mread,
+    output wire mload,
+    output wire mrdch,
+    output wire mldch,
+    output wire mtcsai,
+    output wire monwbk,
+    input wire mreqin,
+    input wire mtcsa_n,
     
     // Zynq PS I/O
     inout wire [14:0] DDR_addr,
@@ -141,6 +150,7 @@ wire [15:0] cmd_data;
 // Control Registers control signals
 wire ctrl_read_en;
 wire ctrl_write_en;
+wire ctrl_write_done;
 wire [15:0] ctrl_data;
 
 wire mon_reg_read_en;
@@ -170,6 +180,7 @@ cmd_controller cmd_ctrl(
     .read_msg_ready(read_msg_ready),
     .ctrl_read_en(ctrl_read_en),
     .ctrl_write_en(ctrl_write_en),
+    .ctrl_write_done(ctrl_write_done),
     .mon_reg_read_en(mon_reg_read_en),
     .mon_chan_read_en(mon_chan_read_en),
     .mon_dsky_read_en(mon_dsky_read_en)
@@ -204,6 +215,16 @@ wire [1:0] wp;
 
 wire [12:1] i;
 
+wire ctrl_periph_load;
+wire ctrl_periph_read;
+wire ctrl_periph_loadch;
+wire ctrl_periph_readch;
+wire ctrl_periph_tcsaj;
+wire [12:1] ctrl_periph_s;
+wire [15:1] ctrl_periph_bb;
+wire [16:1] ctrl_periph_data;
+wire periph_complete;
+
 control_regs ctrl_regs(
     .clk(clk),
     .rst_n(rst_n),
@@ -219,6 +240,7 @@ control_regs ctrl_regs(
     .data_in(cmd_data),
     .read_en(ctrl_read_en),
     .write_en(ctrl_write_en),
+    .write_done(ctrl_write_done),
     .data_out(ctrl_data),
     .start_req(start_req),
     .proceed_req(proceed_req),
@@ -249,12 +271,25 @@ control_regs ctrl_regs(
     .w_mode(w_mode),
     .w_s1_s2(w_s1_s2),
     .w_times(w_times),
-    .w_pulses(w_pulses)
+    .w_pulses(w_pulses),
+
+    .periph_load(ctrl_periph_load),
+    .periph_read(ctrl_periph_read),
+    .periph_loadch(ctrl_periph_loadch),
+    .periph_readch(ctrl_periph_readch),
+    .periph_tcsaj(ctrl_periph_tcsaj),
+    .periph_s(ctrl_periph_s),
+    .periph_bb(ctrl_periph_bb),
+    .periph_data(ctrl_periph_data),
+    .periph_complete(periph_complete)
 );
 
 /*******************************************************************************.
 * Start/Stop Logic                                                              *
 '*******************************************************************************/
+wire ss_mstp;
+wire inhibit_mstp;
+assign mstp = ss_mstp & ~inhibit_mstp;
 start_stop strt_stp(
     .clk(clk),
     .rst_n(rst_n),
@@ -277,7 +312,7 @@ start_stop strt_stp(
     .i_match(i_match),
 
     .mstrt(mstrt),
-    .mstp(mstp)
+    .mstp(ss_mstp)
 );
 
 /*******************************************************************************.
@@ -296,6 +331,8 @@ clear_timer ctmr(
 '*******************************************************************************/
 wire [16:1] l;
 wire [16:1] q;
+wire inhibit_ws;
+wire rbbk;
 monitor_regs mon_regs(
     .clk(clk),
     .rst_n(rst_n),
@@ -319,6 +356,9 @@ monitor_regs mon_regs(
     .mrgg(mrgg),
     .mwch(mwch),
     .mrch(mrch),
+
+    .inhibit_ws(inhibit_ws),
+    .rbbk(rbbk),
 
     .msqext(msqext),
     .msq(msq),
@@ -412,7 +452,67 @@ restart_monitor restart_mon(
     .mdt(mdt_chan77)
 );
 
-assign mdt = mdt_chan77;
+/*******************************************************************************.
+* Peripheral Instructions                                                       *
+'*******************************************************************************/
+wire periph_load;
+assign periph_load = ctrl_periph_load;
+wire periph_read;
+assign periph_read = ctrl_periph_read;
+wire periph_loadch;
+assign periph_loadch = ctrl_periph_loadch;
+wire periph_readch;
+assign periph_readch = ctrl_periph_readch;
+wire periph_tcsaj;
+assign periph_tcsaj = ctrl_periph_tcsaj;
+wire [15:1] periph_bb;
+assign periph_bb = ctrl_periph_bb;
+wire [12:1] periph_s;
+assign periph_s = ctrl_periph_s;
+wire [16:1] periph_data;
+assign periph_data = ctrl_periph_data;
+wire [16:1] mdt_periph;
+wire [16:1] periph_read_data;
+peripheral_instructions periph_insts(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .monwt(monwt),
+    .mt(mt),
+    .mst(mst),
+    .mwl(mwl),
+
+    .inhibit_mstp(inhibit_mstp),
+    .inhibit_ws(inhibit_ws),
+    .rbbk(rbbk),
+
+    .mreqin(mreqin),
+    .mtcsa_n(mtcsa_n),
+
+    .load(periph_load),
+    .read(periph_read),
+    .loadch(periph_loadch),
+    .readch(periph_readch),
+    .tcsaj(periph_tcsaj),
+
+    .bb(periph_bb),
+    .s(periph_s),
+    .data(periph_data),
+
+    .read_data(periph_read_data),
+    .complete(periph_complete),
+
+    .mtcsai(mtcsai),
+    .mread(mread),
+    .mload(mload),
+    .mrdch(mrdch),
+    .mldch(mldch),
+    .monwbk(monwbk),
+
+    .mdt(mdt_periph)
+);
+
+assign mdt = mdt_chan77 | mdt_periph;
 
 /*******************************************************************************.
 * DSKY                                                                          *

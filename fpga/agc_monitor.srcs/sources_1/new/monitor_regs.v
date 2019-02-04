@@ -29,6 +29,9 @@ module monitor_regs(
     input wire mwch,
     input wire mrch,
 
+    input wire inhibit_ws,
+    input wire rbbk,
+
     input wire msqext,
     input wire [15:10] msq,
     input wire [3:1] mst,
@@ -107,7 +110,7 @@ register2 #(3) reg_eb(
     .ct(ct),
     .mwg1(mwebg),
     .mwl1(mwl[11:9]),
-    .mwg2(mwbbeg),
+    .mwg2(mwbbeg | rbbk),
     .mwl2(mwl[3:1]),
     .val(eb)
 );
@@ -117,7 +120,7 @@ register #(5) reg_fb(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mwg(mwfbg),
+    .mwg(mwfbg | rbbk),
     .mwl({mwl[16], mwl[14:11]}),
     .val(fb)
 );
@@ -149,7 +152,7 @@ register #(12) reg_s(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mwg(mwsg),
+    .mwg(mwsg & ~inhibit_ws),
     .mwl(mwl[12:1]),
     .val(s)
 );

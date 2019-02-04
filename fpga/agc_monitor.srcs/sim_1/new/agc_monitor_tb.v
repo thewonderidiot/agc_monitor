@@ -29,8 +29,12 @@ reg [16:1] mwl;
 reg mwag;
 reg mnisq;
 reg [12:1] mt;
+always #976.5625 mt = {mt[11:1], mt[12]};
 wire mnhnc;
 wire mstp;
+reg [3:1] mst;
+reg mreqin;
+wire mload;
 
 agc_monitor agc_mon(
     .clk(clk),
@@ -48,10 +52,13 @@ agc_monitor agc_mon(
     .monwt(monwt),
     .mt(mt),
     .mwl(mwl),
+    .mst(mst),
     .mwag(mwag),
     .mnisq(mnisq),
     .mstp(mstp),
-    .mnhnc(mnhnc)
+    .mnhnc(mnhnc),
+    .mreqin(mreqin),
+    .mload(mload)
 );
 
 initial begin
@@ -64,10 +71,12 @@ initial begin
     data_in = 8'h00;
     
     monwt = 1'b0;
-    mt = 12'b0;
+    mt = 12'b1;
     mwl = 16'o0;
     mwag = 1'b0;
     mnisq = 1'b0;
+    mreqin = 1'b0;
+    mst = 3'b0;
     
     #20 rst_n = 1'b1;
     #100 rxf_n = 1'b0;
@@ -169,6 +178,22 @@ initial begin
     
     #100 mnisq = 1'b1;
     #100 mnisq = 1'b0;
+
+    #100 rxf_n = 1'b0;
+    @(negedge oe_n) data_in = 8'hC0;
+    @(negedge rd_n);
+    @(posedge clkout) data_in = 8'hA0;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h70;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'hC0;
+    rxf_n = 1'b1;
+
+    @(posedge mload);
+    @(posedge mt[12]) mreqin = 1'b1;
+    @(posedge mt[12]) mst = 3'b1;
+    @(posedge mt[12]) mreqin = 1'b0;
 
     #1000 $finish;
 end

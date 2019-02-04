@@ -18,6 +18,7 @@ module control_regs(
 
     input wire read_en,
     input wire write_en,
+    output reg write_done,
     output wire [15:0] data_out,
     output reg start_req,
     output reg proceed_req,
@@ -48,7 +49,17 @@ module control_regs(
     output reg [2:0] w_mode,
     output reg w_s1_s2,
     output reg [12:1] w_times,
-    output reg [11:0] w_pulses
+    output reg [11:0] w_pulses,
+
+    output reg periph_load,
+    output reg periph_read,
+    output reg periph_loadch,
+    output reg periph_readch,
+    output reg periph_tcsaj,
+    output reg [12:1] periph_s,
+    output reg [15:1] periph_bb,
+    output reg [16:1] periph_data,
+    input wire periph_complete
 );
 
 reg [12:1] s1_s;
@@ -116,6 +127,22 @@ assign i_val_match = ((i ^ i_comp_val) & ~i_comp_val_ign) == 12'b0;
 assign i_stat_match = ((stat ^ i_comp_stat) & ~i_comp_stat_ign) == 7'b0;
 assign i_match = i_val_match & i_stat_match;
 
+reg [4:0] ldrd_s1_s2;
+wire [12:1] load_preset_s;
+wire [12:1] load_chan_s;
+wire [12:1] read_preset_s;
+wire [12:1] read_chan_s;
+wire [12:1] start_preset_s;
+wire [15:1] read_preset_bb;
+wire [15:1] load_preset_bb;
+
+assign load_preset_s = ldrd_s1_s2[0] ? s2_s : s1_s;
+assign load_preset_bb = ldrd_s1_s2[0] ? {s2_fb, 7'b0, s2_eb} : {s1_fb, 7'b0, s1_eb};
+assign load_chan_s = ldrd_s1_s2[1] ? s2_s : s1_s;
+assign read_preset_s = ldrd_s1_s2[2] ? s2_s : s1_s;
+assign read_preset_bb = ldrd_s1_s2[2] ? {s2_fb, 7'b0, s2_eb} : {s1_fb, 7'b0, s1_eb};
+assign read_chan_s = ldrd_s1_s2[3] ? s2_s : s1_s;
+assign start_preset_s = ldrd_s1_s2[4] ? s2_s : s1_s;
 
 wire [4:0] adc_channel;
 wire [6:0] adc_daddr;
@@ -182,6 +209,7 @@ assign data_out = read_done ? read_data : 16'b0;
 
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
+        write_done <= 1'b0;
         proceed_req <= 1'b0;
         start_req <= 1'b0;
         stop_conds <= 11'b0;
@@ -221,65 +249,135 @@ always @(posedge clk or negedge rst_n) begin
         w_s1_s2 <= 1'b0;
         w_times <= 12'b0;
         w_pulses <= 12'b0;
+
+        ldrd_s1_s2 <= 5'b0;
+        periph_load <= 1'b0;
+        periph_loadch <= 1'b0;
+        periph_read <= 1'b0;
+        periph_readch <= 1'b0;
+        periph_tcsaj <= 1'b0;
+        periph_s <= 12'b0;
+        periph_bb <= 15'b0;
+        periph_data <= 16'b0;
     end else begin
+        write_done <= 1'b0;
         start_req <= 1'b0;
         proceed_req <= 1'b0;
+        periph_load <= 1'b0;
+        periph_loadch <= 1'b0;
+        periph_read <= 1'b0;
+        periph_readch <= 1'b0;
+        periph_tcsaj <= 1'b0;
+        periph_s <= 12'b0;
+        periph_bb <= 15'b0;
+        periph_data <= 16'b0;
 
         if (write_en) begin
-            case (addr)
-            `CTRL_REG_START:    start_req <= 1'b1;
-            `CTRL_REG_STOP: begin
-                stop_conds <= data_in[10:0];
-                stop_s1_s2 <= data_in[11];
+            if (addr < `CTRL_REG_LOAD_S) begin
+                write_done <= 1'b1;
+                case (addr)
+                `CTRL_REG_START:    start_req <= 1'b1;
+                `CTRL_REG_STOP: begin
+                    stop_conds <= data_in[10:0];
+                    stop_s1_s2 <= data_in[11];
+                end
+                `CTRL_REG_PROCEED:  proceed_req <= 1'b1;
+                `CTRL_REG_MNHRPT:   mnhrpt <= data_in[0];
+                `CTRL_REG_MNHNC:    mnhnc <= data_in[0];
+                `CTRL_REG_S1_S:     s1_s <= data_in[11:0];
+                `CTRL_REG_S1_BANK: begin
+                    s1_eb <= data_in[2:0];
+                    s1_fext <= data_in[6:4];
+                    s1_fb <= data_in[14:10];
+                end
+                `CTRL_REG_S1_S_IGN: s1_s_ign <= data_in[11:0];
+                `CTRL_REG_S1_BANK_IGN: begin
+                    s1_eb_ign <= data_in[2:0];
+                    s1_fext_ign <= data_in[6:4];
+                    s1_fb_ign <= data_in[14:10];
+                end
+                `CTRL_REG_S2_S:     s2_s <= data_in[11:0];
+                `CTRL_REG_S2_BANK: begin
+                    s2_eb <= data_in[2:0];
+                    s2_fext <= data_in[6:4];
+                    s2_fb <= data_in[14:10];
+                end
+                `CTRL_REG_S2_S_IGN: s2_s_ign <= data_in[11:0];
+                `CTRL_REG_S2_BANK_IGN: begin
+                    s2_eb_ign <= data_in[2:0];
+                    s2_fext_ign <= data_in[6:4];
+                    s2_fb_ign <= data_in[14:10];
+                end
+                `CTRL_REG_WRITE_W: begin
+                    w_mode <= data_in[2:0];
+                    w_s1_s2 <= data_in[3];
+                end
+                `CTRL_REG_W_TIMES:  w_times <= data_in[11:0];
+                `CTRL_REG_W_PULSES: w_pulses <= data_in[11:0];
+                `CTRL_REG_W_COMP_VAL: w_comp_val <= data_in;
+                `CTRL_REG_W_COMP_IGN:  w_comp_val_ign <= data_in;
+                `CTRL_REG_W_COMP_PAR: begin
+                    w_comp_par <= data_in[1:0];
+                    w_comp_par_ign <= data_in[3:2];
+                end
+                `CTRL_REG_I_COMP_VAL: i_comp_val <= data_in[11:0];
+                `CTRL_REG_I_COMP_IGN: i_comp_val_ign <= data_in[11:0];
+                `CTRL_REG_I_COMP_STAT: begin
+                    i_comp_stat <= data_in[6:0];
+                    i_comp_stat_ign <= data_in[13:7];
+                end
+                `CTRL_REG_NHALGA:   nhalga <= data_in[0];
+                `CTRL_REG_LDRD_S1_S2: ldrd_s1_s2 <= data_in[4:0];
+                endcase
+            end else begin
+                if (periph_complete) begin
+                    write_done <= 1'b1;
+                end else begin
+                    case (addr)
+                    `CTRL_REG_LOAD_S: begin
+                        periph_load <= 1'b1;
+                        periph_bb <= {fb, 7'b0, eb};
+                        periph_s <= s;
+                        periph_data <= w;
+                    end
+                    `CTRL_REG_LOAD_PRESET: begin
+                        periph_load <= 1'b1;
+                        periph_bb <= load_preset_bb;
+                        periph_s <= load_preset_s;
+                        periph_data <= w;
+                    end
+                    `CTRL_REG_LOAD_CHAN: begin
+                        periph_loadch <= 1'b1;
+                        periph_s <= load_chan_s;
+                        periph_data <= w;
+                    end
+                    `CTRL_REG_READ_S: begin
+                        periph_read <= 1'b1;
+                        periph_bb <= {fb, 7'b0, eb};
+                        periph_s <= s;
+                    end
+                    `CTRL_REG_READ_PRESET: begin
+                        periph_read <= 1'b1;
+                        periph_bb <= read_preset_bb;
+                        periph_s <= read_preset_s;
+                        periph_data <= w;
+                    end
+                    `CTRL_REG_READ_CHAN: begin
+                        periph_read <= 1'b1;
+                        periph_s <= read_chan_s;
+                        periph_data <= w;
+                    end
+                    `CTRL_REG_START_S: begin
+                        periph_tcsaj <= 1'b1;
+                        periph_s <= s;
+                    end
+                    `CTRL_REG_START_PRESET: begin
+                        periph_tcsaj <= 1'b1;
+                        periph_s <= start_preset_s;
+                    end
+                    endcase
+                end
             end
-            `CTRL_REG_PROCEED:  proceed_req <= 1'b1;
-            `CTRL_REG_MNHRPT:   mnhrpt <= data_in[0];
-            `CTRL_REG_MNHNC:    mnhnc <= data_in[0];
-            `CTRL_REG_S1_S:     s1_s <= data_in[11:0];
-            `CTRL_REG_S1_BANK: begin
-                s1_eb <= data_in[2:0];
-                s1_fext <= data_in[6:4];
-                s1_fb <= data_in[14:10];
-            end
-            `CTRL_REG_S1_S_IGN: s1_s_ign <= data_in[11:0];
-            `CTRL_REG_S1_BANK_IGN: begin
-                s1_eb_ign <= data_in[2:0];
-                s1_fext_ign <= data_in[6:4];
-                s1_fb_ign <= data_in[14:10];
-            end
-            `CTRL_REG_S2_S:     s2_s <= data_in[11:0];
-            `CTRL_REG_S2_BANK: begin
-                s2_eb <= data_in[2:0];
-                s2_fext <= data_in[6:4];
-                s2_fb <= data_in[14:10];
-            end
-            `CTRL_REG_S2_S_IGN: s2_s_ign <= data_in[11:0];
-            `CTRL_REG_S2_BANK_IGN: begin
-                s2_eb_ign <= data_in[2:0];
-                s2_fext_ign <= data_in[6:4];
-                s2_fb_ign <= data_in[14:10];
-            end
-            `CTRL_REG_WRITE_W: begin
-                w_mode <= data_in[2:0];
-                w_s1_s2 <= data_in[3];
-            end
-            `CTRL_REG_W_TIMES:  w_times <= data_in[11:0];
-            `CTRL_REG_W_PULSES: w_pulses <= data_in[11:0];
-            `CTRL_REG_W_COMP_VAL: w_comp_val <= data_in;
-            `CTRL_REG_W_COMP_IGN:  w_comp_val_ign <= data_in;
-            `CTRL_REG_W_COMP_PAR: begin
-                w_comp_par <= data_in[1:0];
-                w_comp_par_ign <= data_in[3:2];
-            end
-            `CTRL_REG_I_COMP_VAL: i_comp_val <= data_in[11:0];
-            `CTRL_REG_I_COMP_IGN: i_comp_val_ign <= data_in[11:0];
-            `CTRL_REG_I_COMP_STAT: begin
-                i_comp_stat <= data_in[6:0];
-                i_comp_stat_ign <= data_in[13:7];
-            end
-            `CTRL_REG_NHALGA:   nhalga <= data_in[0];
-
-            endcase
         end
     end
 end
@@ -313,6 +411,7 @@ always @(posedge clk or negedge rst_n) begin
         `CTRL_REG_I_COMP_IGN:   read_data <= {4'b0, i_comp_val_ign};
         `CTRL_REG_I_COMP_STAT:  read_data <= {2'b0, i_comp_stat_ign, i_comp_stat};
         `CTRL_REG_NHALGA:       read_data <= {15'b0, nhalga};
+        `CTRL_REG_LDRD_S1_S2:   read_data <= {11'b0, ldrd_s1_s2};
         `CTRL_REG_MON_TEMP:     read_data <= adc_temp;
         `CTRL_REG_MON_VCCINT:   read_data <= adc_vccint;
         `CTRL_REG_MON_VCCAUX:   read_data <= adc_vccaux;
