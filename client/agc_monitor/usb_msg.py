@@ -149,7 +149,7 @@ ReadControlStopCause = namedtuple('ReadControlStopCause', [])
 ReadControlStopCause.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlStopCause = namedtuple('ControlStopCause', ['t12', 'nisq', 's1', 's2', 'w', 's_w', 's_i', 'chan', 'par', 'i', 'prog_step'])
 ControlStopCause.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-WriteControlProceed = namedtuple('WriteControlProceed', ['proceed'])
+WriteControlProceed = namedtuple('WriteControlProceed', [])
 WriteControlProceed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlMNHRPT = namedtuple('ReadControlMNHRPT', [])
 ReadControlMNHRPT.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
@@ -265,6 +265,12 @@ ControlICompStatus = namedtuple('ControlICompStatus', ['iip', 'inhl', 'inkl', 'l
 ControlICompStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlICompStatus = namedtuple('WriteControlICompStatus', ['iip', 'inhl', 'inkl', 'ld', 'chld', 'rd', 'chrd', 'iip_ign', 'inhl_ign', 'inkl_ign', 'ld_ign', 'chld_ign', 'rd_ign', 'chrd_ign'])
 WriteControlICompStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlLoadReadS1S2 = namedtuple('ReadControlLoadReadS1S2', [])
+ReadControlLoadReadS1S2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlLoadReadS1S2 = namedtuple('ControlLoadReadS1S2', ['load_preset', 'load_chan', 'read_preset', 'read_chan', 'start_preset'])
+ControlLoadReadS1S2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlLoadReadS1S2 = namedtuple('WriteControlLoadReadS1S2', ['load_preset', 'load_chan', 'read_preset', 'read_chan', 'start_preset'])
+WriteControlLoadReadS1S2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlNHALGA = namedtuple('ReadControlNHALGA', [])
 ReadControlNHALGA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlNHALGA = namedtuple('ControlNHALGA', ['nhalga'])
@@ -283,6 +289,22 @@ ControlSTRT2 = namedtuple('ControlSTRT2', ['strt2'])
 ControlSTRT2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlSTRT2 = namedtuple('WriteControlSTRT2', ['strt2'])
 WriteControlSTRT2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlLoadS = namedtuple('WriteControlLoadS', [])
+WriteControlLoadS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlLoadPreset = namedtuple('WriteControlLoadPreset', [])
+WriteControlLoadPreset.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlLoadChan = namedtuple('WriteControlLoadChan', [])
+WriteControlLoadChan.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlReadS = namedtuple('WriteControlReadS', [])
+WriteControlReadS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlReadPreset = namedtuple('WriteControlReadPreset', [])
+WriteControlReadPreset.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlReadChan = namedtuple('WriteControlReadChan', [])
+WriteControlReadChan.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlStartS = namedtuple('WriteControlStartS', [])
+WriteControlStartS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlStartPreset = namedtuple('WriteControlStartPreset', [])
+WriteControlStartPreset.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 
 class AddressGroup(object):
     SimErasable = 0x10
@@ -345,9 +367,18 @@ class Control(object):
     ICompVal = 0x0014
     ICompIgnore = 0x0015
     ICompStatus = 0x0016
+    LoadReadS1S2 = 0x0017
     NHALGA = 0x0040
     STRT1 = 0x0041
     STRT2 = 0x0042
+    LoadS = 0x0070
+    LoadPreset = 0x0071
+    LoadChan = 0x0072
+    ReadS = 0x0073
+    ReadPreset = 0x0074
+    ReadChan = 0x0075
+    StartS = 0x0076
+    StartPreset = 0x0077
 
 class WriteWMode:
     ALL = 0
@@ -477,7 +508,6 @@ def _pack_ReadControlStopCause(msg):
 
 def _pack_WriteControlProceed(msg):
     data = 0x0000
-    data |= (msg.proceed & 0x0001) << 0
     return _pack_write_msg(AddressGroup.Control, Control.Proceed, data)
 
 def _pack_ReadControlMNHRPT(msg):
@@ -683,6 +713,18 @@ def _pack_WriteControlICompStatus(msg):
     data |= (msg.chrd_ign & 0x0001) << 13
     return _pack_write_msg(AddressGroup.Control, Control.ICompStatus, data)
 
+def _pack_ReadControlLoadReadS1S2(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.LoadReadS1S2)
+
+def _pack_WriteControlLoadReadS1S2(msg):
+    data = 0x0000
+    data |= (msg.load_preset & 0x0001) << 0
+    data |= (msg.load_chan & 0x0001) << 1
+    data |= (msg.read_preset & 0x0001) << 2
+    data |= (msg.read_chan & 0x0001) << 3
+    data |= (msg.start_preset & 0x0001) << 4
+    return _pack_write_msg(AddressGroup.Control, Control.LoadReadS1S2, data)
+
 def _pack_ReadControlNHALGA(msg):
     return _pack_read_msg(AddressGroup.Control, Control.NHALGA)
 
@@ -706,6 +748,38 @@ def _pack_WriteControlSTRT2(msg):
     data = 0x0000
     data |= (msg.strt2 & 0x0001) << 0
     return _pack_write_msg(AddressGroup.Control, Control.STRT2, data)
+
+def _pack_WriteControlLoadS(msg):
+    data = 0x0000
+    return _pack_write_msg(AddressGroup.Control, Control.LoadS, data)
+
+def _pack_WriteControlLoadPreset(msg):
+    data = 0x0000
+    return _pack_write_msg(AddressGroup.Control, Control.LoadPreset, data)
+
+def _pack_WriteControlLoadChan(msg):
+    data = 0x0000
+    return _pack_write_msg(AddressGroup.Control, Control.LoadChan, data)
+
+def _pack_WriteControlReadS(msg):
+    data = 0x0000
+    return _pack_write_msg(AddressGroup.Control, Control.ReadS, data)
+
+def _pack_WriteControlReadPreset(msg):
+    data = 0x0000
+    return _pack_write_msg(AddressGroup.Control, Control.ReadPreset, data)
+
+def _pack_WriteControlReadChan(msg):
+    data = 0x0000
+    return _pack_write_msg(AddressGroup.Control, Control.ReadChan, data)
+
+def _pack_WriteControlStartS(msg):
+    data = 0x0000
+    return _pack_write_msg(AddressGroup.Control, Control.StartS, data)
+
+def _pack_WriteControlStartPreset(msg):
+    data = 0x0000
+    return _pack_write_msg(AddressGroup.Control, Control.StartPreset, data)
 
 
 def _unpack_SimErasable(addr, data):
@@ -1039,6 +1113,15 @@ def _unpack_ControlICompStatus(data):
         chrd_ign = (data >> 13) & 0x0001,
     )
 
+def _unpack_ControlLoadReadS1S2(data):
+    return ControlLoadReadS1S2(
+        load_preset = (data >> 0) & 0x0001,
+        load_chan = (data >> 1) & 0x0001,
+        read_preset = (data >> 2) & 0x0001,
+        read_chan = (data >> 3) & 0x0001,
+        start_preset = (data >> 4) & 0x0001,
+    )
+
 def _unpack_ControlNHALGA(data):
     return ControlNHALGA(
         nhalga = (data >> 0) & 0x0001,
@@ -1100,6 +1183,7 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.Control, Control.ICompVal): _unpack_ControlICompVal,
     (DATA_FLAG | AddressGroup.Control, Control.ICompIgnore): _unpack_ControlICompIgnore,
     (DATA_FLAG | AddressGroup.Control, Control.ICompStatus): _unpack_ControlICompStatus,
+    (DATA_FLAG | AddressGroup.Control, Control.LoadReadS1S2): _unpack_ControlLoadReadS1S2,
     (DATA_FLAG | AddressGroup.Control, Control.NHALGA): _unpack_ControlNHALGA,
     (DATA_FLAG | AddressGroup.Control, Control.STRT1): _unpack_ControlSTRT1,
     (DATA_FLAG | AddressGroup.Control, Control.STRT2): _unpack_ControlSTRT2,

@@ -8,9 +8,16 @@ class ReadLoad(QFrame):
     def __init__(self, parent, usbif):
         super().__init__(parent)
         
+        self._s1_s2_switches = {}
         self._usbif = usbif
 
         self._setup_ui()
+
+        usbif.send(um.WriteControlLoadReadS1S2(0, 0, 0, 0, 0))
+
+    def _update_s1_s2_switches(self, state):
+        switch_states = {switch: self._s1_s2_switches[switch].isChecked() for switch in self._s1_s2_switches.keys()}
+        self._usbif.send(um.WriteControlLoadReadS1S2(**switch_states))
 
     def _setup_ui(self):
         self.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
@@ -42,9 +49,33 @@ class ReadLoad(QFrame):
         l.setAlignment(Qt.AlignCenter)
         adv_layout.addWidget(l, Qt.AlignCenter)
 
-        self._create_switch_group(layout, 'LOAD', 'PRESET\nCHAN', ['ODD', 'EVEN'], ['S1', 'S2'], ['S1', 'S2'])
-        self._create_switch_group(layout, 'READ', 'PRESET\nCHAN', None, ['S1', 'S2'], ['S1', 'S2'])
-        self._create_switch_group(layout, 'START', '\nRESTART', None, ['S1', 'S2'], None)
+        b1, b2, b3, s1, s2, s3 = self._create_switch_group(layout, 'LOAD', 'PRESET\nCHAN',
+                                                           ['ODD', 'EVEN'], ['S1', 'S2'], ['S1', 'S2'])
+        b1.pressed.connect(lambda: self._usbif.send(um.WriteControlLoadS()))
+        b2.pressed.connect(lambda: self._usbif.send(um.WriteControlLoadPreset()))
+        b3.pressed.connect(lambda: self._usbif.send(um.WriteControlLoadChan()))
+        self._s1_s2_switches['load_preset'] = s2
+        self._s1_s2_switches['load_chan'] = s3
+        s2.toggled.connect(self._update_s1_s2_switches)
+        s3.toggled.connect(self._update_s1_s2_switches)
+
+        b1, b2, b3, s1, s2, s3 = self._create_switch_group(layout, 'READ', 'PRESET\nCHAN',
+                                                           None, ['S1', 'S2'], ['S1', 'S2'])
+        b1.pressed.connect(lambda: self._usbif.send(um.WriteControlReadS()))
+        b2.pressed.connect(lambda: self._usbif.send(um.WriteControlReadPreset()))
+        b3.pressed.connect(lambda: self._usbif.send(um.WriteControlReadChan()))
+        self._s1_s2_switches['read_preset'] = s2
+        self._s1_s2_switches['read_chan'] = s3
+        s2.toggled.connect(self._update_s1_s2_switches)
+        s3.toggled.connect(self._update_s1_s2_switches)
+
+        b1, b2, b3, s1, s2, s3 = self._create_switch_group(layout, 'START', '\nRESTART',
+                                                           None, ['S1', 'S2'], None)
+        b1.pressed.connect(lambda: self._usbif.send(um.WriteControlStartS()))
+        b2.pressed.connect(lambda: self._usbif.send(um.WriteControlStartPreset()))
+        #b3.pressed.connect(lambda: self._usbif.send(um.WriteControlRestart()))
+        self._s1_s2_switches['start_preset'] = s2
+        s2.toggled.connect(self._update_s1_s2_switches)
 
         pro_widget = QWidget(self)
         layout.addWidget(pro_widget)
@@ -60,6 +91,7 @@ class ReadLoad(QFrame):
         b.setFixedSize(20,20)
         pro_layout.addWidget(b)
         pro_layout.setAlignment(b, Qt.AlignCenter | Qt.AlignTop)
+        b.pressed.connect(lambda: self._usbif.send(um.WriteControlProceed()))
 
         l = QLabel('RESET\nERROR', pro_widget)
         l.setAlignment(Qt.AlignCenter)

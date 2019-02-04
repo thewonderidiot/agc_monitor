@@ -123,12 +123,7 @@
             "addr": 3,
             "name": "Proceed",
             "type": "w",
-            "fields": [
-                {
-                    "name": "proceed",
-                    "width": 1
-                }
-            ]
+            "fields": []
         },
         {
             "addr": 4,
@@ -585,6 +580,33 @@
             ]
         },
         {
+            "addr": 23,
+            "name": "LoadReadS1S2",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "load_preset",
+                    "width": 1
+                },
+                {
+                    "name": "load_chan",
+                    "width": 1
+                },
+                {
+                    "name": "read_preset",
+                    "width": 1
+                },
+                {
+                    "name": "read_chan",
+                    "width": 1
+                },
+                {
+                    "name": "start_preset",
+                    "width": 1
+                }
+            ]
+        },
+        {
             "addr": 64,
             "name": "NHALGA",
             "type": "rw",
@@ -616,6 +638,54 @@
                     "width": 1
                 }
             ]
+        },
+        {
+            "addr": 112,
+            "name": "LoadS",
+            "type": "w",
+            "fields": []
+        },
+        {
+            "addr": 113,
+            "name": "LoadPreset",
+            "type": "w",
+            "fields": []
+        },
+        {
+            "addr": 114,
+            "name": "LoadChan",
+            "type": "w",
+            "fields": []
+        },
+        {
+            "addr": 115,
+            "name": "ReadS",
+            "type": "w",
+            "fields": []
+        },
+        {
+            "addr": 116,
+            "name": "ReadPreset",
+            "type": "w",
+            "fields": []
+        },
+        {
+            "addr": 117,
+            "name": "ReadChan",
+            "type": "w",
+            "fields": []
+        },
+        {
+            "addr": 118,
+            "name": "StartS",
+            "type": "w",
+            "fields": []
+        },
+        {
+            "addr": 119,
+            "name": "StartPreset",
+            "type": "w",
+            "fields": []
         }
     ]
 }
