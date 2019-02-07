@@ -215,6 +215,8 @@ wire [1:0] wp;
 
 wire [12:1] i;
 
+wire s_only;
+wire adv_s;
 wire ctrl_periph_load;
 wire ctrl_periph_read;
 wire ctrl_periph_loadch;
@@ -273,6 +275,8 @@ control_regs ctrl_regs(
     .w_times(w_times),
     .w_pulses(w_pulses),
 
+    .s_only(s_only),
+    .adv_s(adv_s),
     .periph_load(ctrl_periph_load),
     .periph_read(ctrl_periph_read),
     .periph_loadch(ctrl_periph_loadch),
@@ -359,6 +363,8 @@ monitor_regs mon_regs(
 
     .inhibit_ws(inhibit_ws),
     .rbbk(rbbk),
+    .s_only(s_only),
+    .adv_s(adv_s),
 
     .msqext(msqext),
     .msq(msq),

@@ -51,6 +51,8 @@ module control_regs(
     output reg [12:1] w_times,
     output reg [11:0] w_pulses,
 
+    output reg s_only,
+    output reg adv_s,
     output reg periph_load,
     output reg periph_read,
     output reg periph_loadch,
@@ -250,6 +252,8 @@ always @(posedge clk or negedge rst_n) begin
         w_times <= 12'b0;
         w_pulses <= 12'b0;
 
+        s_only <= 1'b0;
+        adv_s <= 1'b0;
         ldrd_s1_s2 <= 5'b0;
         periph_load <= 1'b0;
         periph_loadch <= 1'b0;
@@ -262,6 +266,7 @@ always @(posedge clk or negedge rst_n) begin
     end else begin
         write_done <= 1'b0;
         start_req <= 1'b0;
+        adv_s <= 1'b0;
         proceed_req <= 1'b0;
         periph_load <= 1'b0;
         periph_loadch <= 1'b0;
@@ -328,6 +333,8 @@ always @(posedge clk or negedge rst_n) begin
                 end
                 `CTRL_REG_NHALGA:   nhalga <= data_in[0];
                 `CTRL_REG_LDRD_S1_S2: ldrd_s1_s2 <= data_in[4:0];
+                `CTRL_REG_BANK_S: s_only <= data_in[0];
+                `CTRL_REG_ADVANCE_S: adv_s <= 1'b1;
                 endcase
             end else begin
                 if (periph_complete) begin
@@ -412,6 +419,7 @@ always @(posedge clk or negedge rst_n) begin
         `CTRL_REG_I_COMP_STAT:  read_data <= {2'b0, i_comp_stat_ign, i_comp_stat};
         `CTRL_REG_NHALGA:       read_data <= {15'b0, nhalga};
         `CTRL_REG_LDRD_S1_S2:   read_data <= {11'b0, ldrd_s1_s2};
+        `CTRL_REG_BANK_S:       read_data <= {15'b0, s_only};
         `CTRL_REG_MON_TEMP:     read_data <= adc_temp;
         `CTRL_REG_MON_VCCINT:   read_data <= adc_vccint;
         `CTRL_REG_MON_VCCAUX:   read_data <= adc_vccaux;

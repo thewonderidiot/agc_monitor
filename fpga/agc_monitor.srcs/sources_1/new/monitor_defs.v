@@ -46,6 +46,8 @@
 `define CTRL_REG_I_COMP_IGN   16'h15
 `define CTRL_REG_I_COMP_STAT  16'h16
 `define CTRL_REG_LDRD_S1_S2   16'h17
+`define CTRL_REG_BANK_S       16'h18
+`define CTRL_REG_ADVANCE_S    16'h19
 `define CTRL_REG_NHALGA       16'h40
 `define CTRL_REG_MON_TEMP     16'h60
 `define CTRL_REG_MON_VCCINT   16'h61

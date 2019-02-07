@@ -31,6 +31,8 @@ module monitor_regs(
 
     input wire inhibit_ws,
     input wire rbbk,
+    input wire s_only,
+    input wire adv_s,
 
     input wire msqext,
     input wire [15:10] msq,
@@ -110,7 +112,7 @@ register2 #(3) reg_eb(
     .ct(ct),
     .mwg1(mwebg),
     .mwl1(mwl[11:9]),
-    .mwg2(mwbbeg | rbbk),
+    .mwg2(mwbbeg | (rbbk & s_only)),
     .mwl2(mwl[3:1]),
     .val(eb)
 );
@@ -120,7 +122,7 @@ register #(5) reg_fb(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mwg(mwfbg | rbbk),
+    .mwg(mwfbg | (rbbk & s_only)),
     .mwl({mwl[16], mwl[14:11]}),
     .val(fb)
 );
@@ -147,13 +149,42 @@ register reg_b(
     .val(b)
 );
 
+reg s_adv_pending;
+reg [1:0] monwt_sr;
+reg mws_adv;
+reg [12:1] next_s;
+
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        s_adv_pending <= 1'b0;
+        monwt_sr <= 2'b0;
+        mws_adv <= 1'b0;
+        next_s <= 12'b0;
+    end else begin
+        monwt_sr <= {monwt_sr[0], monwt};
+        if (adv_s) begin
+            s_adv_pending <= 1'b1;
+            next_s <= s + 1;
+        end else if (s_adv_pending) begin
+            if (monwt_sr == 1'b01) begin
+                mws_adv <= 1'b1;
+            end else if ((monwt_sr == 1'b10) & mws_adv) begin
+                mws_adv <= 1'b0;
+                s_adv_pending <= 1'b0;
+            end
+        end
+    end
+end
+
 // Register S
-register #(12) reg_s(
+register2 #(12) reg_s(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mwg(mwsg & ~inhibit_ws),
-    .mwl(mwl[12:1]),
+    .mwg1(mwsg & ~inhibit_ws),
+    .mwl1(mwl[12:1]),
+    .mwg2(mws_adv),
+    .mwl2(next_s),
     .val(s)
 );
 
