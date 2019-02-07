@@ -924,7 +924,7 @@ def _unpack_Fixed(addr, data):
 
 def _unpack_MonChanFEXT(data):
     return MonChanFEXT(
-        fext = (data >> 0) & 0x0007,
+        fext = (data >> 4) & 0x0007,
     )
 
 def _unpack_SimFixed(addr, data):

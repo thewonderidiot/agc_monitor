@@ -8,6 +8,10 @@
             "type": "r",
             "fields": [
                 {
+                    "name": "spare",
+                    "width": 4
+                },
+                {
                     "name": "fext",
                     "width": 3
                 }
