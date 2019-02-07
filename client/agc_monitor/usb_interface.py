@@ -128,7 +128,7 @@ class USBInterface(QObject, threading.Thread):
 
         try:
             # Attempt to construct an FTDI Device
-            self._dev = Device()
+            self._dev = Device('MON001')
 
             # Reset the mode, then switch into serial FIFO
             self._dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x00)
