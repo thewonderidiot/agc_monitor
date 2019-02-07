@@ -344,12 +344,12 @@ always @(posedge clk or negedge rst_n) begin
                         periph_load <= 1'b1;
                         periph_bb <= load_preset_bb;
                         periph_s <= load_preset_s;
-                        periph_data <= w;
+                        periph_data <= w_comp_val;
                     end
                     `CTRL_REG_LOAD_CHAN: begin
                         periph_loadch <= 1'b1;
                         periph_s <= load_chan_s;
-                        periph_data <= w;
+                        periph_data <= w_comp_val;
                     end
                     `CTRL_REG_READ_S: begin
                         periph_read <= 1'b1;
@@ -363,7 +363,7 @@ always @(posedge clk or negedge rst_n) begin
                         periph_data <= w;
                     end
                     `CTRL_REG_READ_CHAN: begin
-                        periph_read <= 1'b1;
+                        periph_readch <= 1'b1;
                         periph_s <= read_chan_s;
                         periph_data <= w;
                     end

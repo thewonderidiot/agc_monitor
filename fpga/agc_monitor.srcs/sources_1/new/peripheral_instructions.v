@@ -73,7 +73,7 @@ assign mldch = request[2];
 assign mread = request[3];
 assign mload = request[4];
 
-assign inhibit_mstp = (state != IDLE) & (state != REQUEST);
+assign inhibit_mstp = (state != IDLE);
 assign monwbk = (state == LOAD) & ((req_s == `EB) | (req_s == `FB) | (req_s == `BB));
 assign rbbk = ((state == LOAD) | (state == READ)) & mt[10];
 
@@ -101,8 +101,8 @@ always @(*) begin
             if (mt[4]) mdt = {req_bb[15], req_bb};
             if (mt[8]) mdt = {4'b0, req_s};
         end else begin
-            if ((state == READ) & (mt[4] | mt[9])) mdt = req_data;
-            if ((state == LOAD) & mt[7]) read_data_q = mwl;
+            if ((state == READ) & mt[7]) read_data_q = mwl;
+            if ((state == LOAD) & (mt[4] | mt[9])) mdt = req_data;
         end
     end
 
@@ -137,7 +137,7 @@ always @(*) begin
 
     REQUEST: begin
         request_q = request;
-        if (mreqin & monwt & mt[12]) begin
+        if (mreqin & mt[1]) begin
             if (mread) begin
                 next_state = READ;
             end else if (mload) begin
