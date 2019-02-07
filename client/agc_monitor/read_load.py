@@ -41,6 +41,7 @@ class ReadLoad(QFrame):
 
         b = QPushButton(adv_widget)
         b.setFixedSize(20,20)
+        b.pressed.connect(lambda: self._usbif.send(um.WriteControlAdvanceS()))
         adv_layout.addWidget(b)
         adv_layout.setAlignment(b, Qt.AlignCenter)
 
@@ -73,7 +74,7 @@ class ReadLoad(QFrame):
                                                            None, ['S1', 'S2'], None)
         b1.pressed.connect(lambda: self._usbif.send(um.WriteControlStartS()))
         b2.pressed.connect(lambda: self._usbif.send(um.WriteControlStartPreset()))
-        #b3.pressed.connect(lambda: self._usbif.send(um.WriteControlRestart()))
+        b3.pressed.connect(lambda: self._usbif.send(um.WriteControlStart()))
         self._s1_s2_switches['start_preset'] = s2
         s2.toggled.connect(self._update_s1_s2_switches)
 

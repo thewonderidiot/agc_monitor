@@ -175,6 +175,29 @@
             ]
         },
         {
+            "addr": 12,
+            "name": "Parity",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "g_gp",
+                    "width": 1
+                },
+                {
+                    "name": "g_sp",
+                    "width": 1
+                },
+                {
+                    "name": "w_gp",
+                    "width": 1
+                },
+                {
+                    "name": "w_sp",
+                    "width": 1
+                }
+            ]
+        },
+        {
             "addr": 64,
             "name": "W",
             "type": "r",

@@ -125,7 +125,7 @@ class MonitorWindow(QMainWindow):
         s1_s2_layout.addWidget(self._s2)
         s1_s2_layout.setAlignment(self._s2, Qt.AlignRight)
 
-        self._bank_s = BankS(s_comp_widget)
+        self._bank_s = BankS(s_comp_widget, self._usbif)
         s_comp_layout.addWidget(self._bank_s)
         s_comp_layout.setAlignment(self._bank_s, Qt.AlignTop | Qt.AlignRight)
 

@@ -19,10 +19,21 @@ class Register(QWidget):
         self._data_msg = getattr(um, 'MonReg' + name)
         usbif.poll(read_cmd())
         usbif.subscribe(self, self._data_msg)
+        if has_parity:
+            usbif.poll(um.ReadMonRegParity())
+            usbif.subscribe(self, um.MonRegParity)
+            self._gp = name.lower() + '_gp'
+            self._sp = name.lower() + '_sp'
+            self._parity_inds[0].set_on(1)
 
     def handle_msg(self, msg):
         if isinstance(msg, self._data_msg):
             self.set_value(msg[0])
+        elif isinstance(msg, um.MonRegParity):
+            gp = getattr(msg, self._gp)
+            sp = getattr(msg, self._sp)
+            self._parity_inds[0].set_on(gp)
+            self._parity_inds[1].set_on(sp)
 
     def set_value(self, x):
         # Toggle each of the 16 value indicators to match the new value
@@ -83,7 +94,7 @@ class Register(QWidget):
             bit_layout.addWidget(sep)
 
             for i in range(2, 0, -1):
-                ind = Indicator(bit_frame, QColor(255,255,0))
+                ind = Indicator(bit_frame, QColor(220,240,0))
                 ind.setFixedSize(20, 32)
                 bit_layout.addWidget(ind)
                 self._parity_inds.insert(0, ind)

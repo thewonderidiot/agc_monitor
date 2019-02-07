@@ -75,6 +75,10 @@ ReadMonRegStatus = namedtuple('ReadMonRegStatus', [])
 ReadMonRegStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 MonRegStatus = namedtuple('MonRegStatus', ['gojam', 'run', 'iip', 'inhl', 'inkl', 'outcom'])
 MonRegStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonRegParity = namedtuple('ReadMonRegParity', [])
+ReadMonRegParity.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonRegParity = namedtuple('MonRegParity', ['g_gp', 'g_sp', 'w_gp', 'w_sp'])
+MonRegParity.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadMonRegW = namedtuple('ReadMonRegW', [])
 ReadMonRegW.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 MonRegW = namedtuple('MonRegW', ['w'])
@@ -137,7 +141,7 @@ ReadErasable = namedtuple('ReadErasable', ['addr'])
 ReadErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Erasable = namedtuple('Erasable', ['addr', 'data'])
 Erasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-WriteControlStart = namedtuple('WriteControlStart', ['start'])
+WriteControlStart = namedtuple('WriteControlStart', [])
 WriteControlStart.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlStop = namedtuple('ReadControlStop', [])
 ReadControlStop.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
@@ -271,6 +275,14 @@ ControlLoadReadS1S2 = namedtuple('ControlLoadReadS1S2', ['load_preset', 'load_ch
 ControlLoadReadS1S2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlLoadReadS1S2 = namedtuple('WriteControlLoadReadS1S2', ['load_preset', 'load_chan', 'read_preset', 'read_chan', 'start_preset'])
 WriteControlLoadReadS1S2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlBankS = namedtuple('ReadControlBankS', [])
+ReadControlBankS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlBankS = namedtuple('ControlBankS', ['s_only'])
+ControlBankS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlBankS = namedtuple('WriteControlBankS', ['s_only'])
+WriteControlBankS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlAdvanceS = namedtuple('WriteControlAdvanceS', [])
+WriteControlAdvanceS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlNHALGA = namedtuple('ReadControlNHALGA', [])
 ReadControlNHALGA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlNHALGA = namedtuple('ControlNHALGA', ['nhalga'])
@@ -330,6 +342,7 @@ class MonReg(object):
     U = 0x0009
     I = 0x000A
     Status = 0x000B
+    Parity = 0x000C
     W = 0x0040
 class DSKY(object):
     Prog = 0x0000
@@ -368,6 +381,8 @@ class Control(object):
     ICompIgnore = 0x0015
     ICompStatus = 0x0016
     LoadReadS1S2 = 0x0017
+    BankS = 0x0018
+    AdvanceS = 0x0019
     NHALGA = 0x0040
     STRT1 = 0x0041
     STRT2 = 0x0042
@@ -431,6 +446,9 @@ def _pack_ReadMonRegI(msg):
 def _pack_ReadMonRegStatus(msg):
     return _pack_read_msg(AddressGroup.MonReg, MonReg.Status)
 
+def _pack_ReadMonRegParity(msg):
+    return _pack_read_msg(AddressGroup.MonReg, MonReg.Parity)
+
 def _pack_ReadMonRegW(msg):
     return _pack_read_msg(AddressGroup.MonReg, MonReg.W)
 
@@ -481,7 +499,6 @@ def _pack_ReadErasable(msg):
 
 def _pack_WriteControlStart(msg):
     data = 0x0000
-    data |= (msg.start & 0x0001) << 0
     return _pack_write_msg(AddressGroup.Control, Control.Start, data)
 
 def _pack_ReadControlStop(msg):
@@ -725,6 +742,18 @@ def _pack_WriteControlLoadReadS1S2(msg):
     data |= (msg.start_preset & 0x0001) << 4
     return _pack_write_msg(AddressGroup.Control, Control.LoadReadS1S2, data)
 
+def _pack_ReadControlBankS(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.BankS)
+
+def _pack_WriteControlBankS(msg):
+    data = 0x0000
+    data |= (msg.s_only & 0x0001) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.BankS, data)
+
+def _pack_WriteControlAdvanceS(msg):
+    data = 0x0000
+    return _pack_write_msg(AddressGroup.Control, Control.AdvanceS, data)
+
 def _pack_ReadControlNHALGA(msg):
     return _pack_read_msg(AddressGroup.Control, Control.NHALGA)
 
@@ -852,6 +881,14 @@ def _unpack_MonRegStatus(data):
         inhl = (data >> 3) & 0x0001,
         inkl = (data >> 4) & 0x0001,
         outcom = (data >> 5) & 0x0001,
+    )
+
+def _unpack_MonRegParity(data):
+    return MonRegParity(
+        g_gp = (data >> 0) & 0x0001,
+        g_sp = (data >> 1) & 0x0001,
+        w_gp = (data >> 2) & 0x0001,
+        w_sp = (data >> 3) & 0x0001,
     )
 
 def _unpack_MonRegW(data):
@@ -1122,6 +1159,11 @@ def _unpack_ControlLoadReadS1S2(data):
         start_preset = (data >> 4) & 0x0001,
     )
 
+def _unpack_ControlBankS(data):
+    return ControlBankS(
+        s_only = (data >> 0) & 0x0001,
+    )
+
 def _unpack_ControlNHALGA(data):
     return ControlNHALGA(
         nhalga = (data >> 0) & 0x0001,
@@ -1151,6 +1193,7 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.MonReg, MonReg.U): _unpack_MonRegU,
     (DATA_FLAG | AddressGroup.MonReg, MonReg.I): _unpack_MonRegI,
     (DATA_FLAG | AddressGroup.MonReg, MonReg.Status): _unpack_MonRegStatus,
+    (DATA_FLAG | AddressGroup.MonReg, MonReg.Parity): _unpack_MonRegParity,
     (DATA_FLAG | AddressGroup.MonReg, MonReg.W): _unpack_MonRegW,
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Prog): _unpack_DSKYProg,
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Verb): _unpack_DSKYVerb,
@@ -1184,6 +1227,7 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.Control, Control.ICompIgnore): _unpack_ControlICompIgnore,
     (DATA_FLAG | AddressGroup.Control, Control.ICompStatus): _unpack_ControlICompStatus,
     (DATA_FLAG | AddressGroup.Control, Control.LoadReadS1S2): _unpack_ControlLoadReadS1S2,
+    (DATA_FLAG | AddressGroup.Control, Control.BankS): _unpack_ControlBankS,
     (DATA_FLAG | AddressGroup.Control, Control.NHALGA): _unpack_ControlNHALGA,
     (DATA_FLAG | AddressGroup.Control, Control.STRT1): _unpack_ControlSTRT1,
     (DATA_FLAG | AddressGroup.Control, Control.STRT2): _unpack_ControlSTRT2,

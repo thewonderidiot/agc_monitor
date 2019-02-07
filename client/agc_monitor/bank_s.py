@@ -4,8 +4,9 @@ from PySide2.QtCore import Qt
 import usb_msg as um
 
 class BankS(QWidget):
-    def __init__(self, parent):
+    def __init__(self, parent, usbif):
         super().__init__(parent)
+        self._usbif = usbif
         self._setup_ui()
 
     def _setup_ui(self):
@@ -32,6 +33,7 @@ class BankS(QWidget):
 
         s_only = QRadioButton(self)
         s_only.setStyleSheet('QRadioButton::indicator{subcontrol-position:center;}')
+        s_only.toggled.connect(lambda s: self._usbif.send(um.WriteControlBankS(s)))
         layout.addWidget(s_only, Qt.AlignTop | Qt.AlignCenter)
 
         l = QLabel('S ONLY', self)

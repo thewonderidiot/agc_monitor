@@ -6,12 +6,7 @@
             "addr": 0,
             "name": "Start",
             "type": "w",
-            "fields": [
-                {
-                    "name": "start",
-                    "width": 1
-                }
-            ]
+            "fields": []
         },
         {
             "addr": 1,
@@ -605,6 +600,23 @@
                     "width": 1
                 }
             ]
+        },
+        {
+            "addr": 24,
+            "name": "BankS",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "s_only",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 25,
+            "name": "AdvanceS",
+            "type": "w",
+            "fields": []
         },
         {
             "addr": 64,
