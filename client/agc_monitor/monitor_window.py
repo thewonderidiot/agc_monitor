@@ -13,6 +13,8 @@ from i_comparator import IComparator
 from read_load import ReadLoad
 from bank_s import BankS
 from usb_interface import USBInterface
+from dsky import DSKY
+import resources
 
 class MonitorWindow(QMainWindow):
     def __init__(self, parent):
@@ -26,6 +28,7 @@ class MonitorWindow(QMainWindow):
 
         # Set up the UI
         self._setup_ui()
+        self._dsky = DSKY(self, self._usbif)
 
         # Kick off the UI thread and try to connect to the device
         self._usbif.start()

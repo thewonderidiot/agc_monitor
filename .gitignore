@@ -89,6 +89,8 @@
 #########
 !*.py
 !*.json
+!*.qrc
+!*.png
 
 #########
 #KiCAD-files
