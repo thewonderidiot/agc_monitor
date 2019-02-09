@@ -24,7 +24,6 @@ class Register(QWidget):
             usbif.subscribe(self, um.MonRegParity)
             self._gp = name.lower() + '_gp'
             self._sp = name.lower() + '_sp'
-            self._parity_inds[0].set_on(1)
 
     def handle_msg(self, msg):
         if isinstance(msg, self._data_msg):
