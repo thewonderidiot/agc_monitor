@@ -6,6 +6,8 @@ from el_segment import ELSegment
 from seven_segment import SevenSegment
 from sign import Sign
 
+import usb_msg as um
+
 class DSKY(QWidget):
     def __init__(self, parent, usbif):
         super().__init__(parent)
@@ -13,6 +15,61 @@ class DSKY(QWidget):
         self._usbif = usbif
 
         self._setup_ui()
+
+        usbif.poll(um.ReadDSKYProg())
+        usbif.poll(um.ReadDSKYVerb())
+        usbif.poll(um.ReadDSKYNoun())
+        usbif.poll(um.ReadDSKYReg1L())
+        usbif.poll(um.ReadDSKYReg1H())
+        usbif.poll(um.ReadDSKYReg2L())
+        usbif.poll(um.ReadDSKYReg2H())
+        usbif.poll(um.ReadDSKYReg3L())
+        usbif.poll(um.ReadDSKYReg3H())
+
+        usbif.subscribe(self, um.DSKYProg)
+        usbif.subscribe(self, um.DSKYVerb)
+        usbif.subscribe(self, um.DSKYNoun)
+        usbif.subscribe(self, um.DSKYReg1L)
+        usbif.subscribe(self, um.DSKYReg1H)
+        usbif.subscribe(self, um.DSKYReg2L)
+        usbif.subscribe(self, um.DSKYReg2H)
+        usbif.subscribe(self, um.DSKYReg3L)
+        usbif.subscribe(self, um.DSKYReg3H)
+
+    def handle_msg(self, msg):
+        if isinstance(msg, um.DSKYProg):
+            self._prog[0].set_relay_bits(msg.digit1)
+            self._prog[1].set_relay_bits(msg.digit2)
+        elif isinstance(msg, um.DSKYVerb):
+            self._verb[0].set_relay_bits(msg.digit1)
+            self._verb[1].set_relay_bits(msg.digit2)
+        elif isinstance(msg, um.DSKYNoun):
+            self._noun[0].set_relay_bits(msg.digit1)
+            self._noun[1].set_relay_bits(msg.digit2)
+        elif isinstance(msg, um.DSKYReg1L):
+            self._reg1[2].set_relay_bits(msg.digit3)
+            self._reg1[3].set_relay_bits(msg.digit4)
+            self._reg1[4].set_relay_bits(msg.digit5)
+        elif isinstance(msg, um.DSKYReg1H):
+            self._sign1.set_relay_bits(msg.sign)
+            self._reg1[0].set_relay_bits(msg.digit1)
+            self._reg1[1].set_relay_bits(msg.digit2)
+        elif isinstance(msg, um.DSKYReg2L):
+            self._reg2[2].set_relay_bits(msg.digit3)
+            self._reg2[3].set_relay_bits(msg.digit4)
+            self._reg2[4].set_relay_bits(msg.digit5)
+        elif isinstance(msg, um.DSKYReg2H):
+            self._sign2.set_relay_bits(msg.sign)
+            self._reg2[0].set_relay_bits(msg.digit1)
+            self._reg2[1].set_relay_bits(msg.digit2)
+        elif isinstance(msg, um.DSKYReg3L):
+            self._reg3[2].set_relay_bits(msg.digit3)
+            self._reg3[3].set_relay_bits(msg.digit4)
+            self._reg3[4].set_relay_bits(msg.digit5)
+        elif isinstance(msg, um.DSKYReg3H):
+            self._sign3.set_relay_bits(msg.sign)
+            self._reg3[0].set_relay_bits(msg.digit1)
+            self._reg3[1].set_relay_bits(msg.digit2)
 
     def _setup_ui(self):
         self.setObjectName('#DSKY')
@@ -45,7 +102,7 @@ class DSKY(QWidget):
         for i in range(5):
             ss = SevenSegment(self, el_pix)
             ss.move(col + 18 + 30*i, row)
-            digits.insert(0, ss)
+            digits.append(ss)
 
         return sign, digits
 
@@ -54,7 +111,7 @@ class DSKY(QWidget):
         for i in range(2):
             ss = SevenSegment(self, el_pix)
             ss.move(col + 30*i, row)
-            digits.insert(0, ss)
+            digits.append(ss)
 
         return digits
 

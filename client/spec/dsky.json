@@ -8,11 +8,11 @@
             "type": "r",
             "fields": [
                 {
-                    "name": "digit2",
+                    "name": "digit1",
                     "width": 5
                 },
                 {
-                    "name": "digit1",
+                    "name": "digit2",
                     "width": 5
                 }
             ]
@@ -23,11 +23,11 @@
             "type": "r",
             "fields": [
                 {
-                    "name": "digit2",
+                    "name": "digit1",
                     "width": 5
                 },
                 {
-                    "name": "digit1",
+                    "name": "digit2",
                     "width": 5
                 }
             ]
@@ -38,11 +38,11 @@
             "type": "r",
             "fields": [
                 {
-                    "name": "digit2",
+                    "name": "digit1",
                     "width": 5
                 },
                 {
-                    "name": "digit1",
+                    "name": "digit2",
                     "width": 5
                 }
             ]
@@ -53,11 +53,11 @@
             "type": "r",
             "fields": [
                 {
-                    "name": "digit5",
+                    "name": "digit1",
                     "width": 5
                 },
                 {
-                    "name": "digit4",
+                    "name": "digit2",
                     "width": 5
                 },
                 {
@@ -72,11 +72,11 @@
             "type": "r",
             "fields": [
                 {
-                    "name": "digit2",
+                    "name": "digit4",
                     "width": 5
                 },
                 {
-                    "name": "digit1",
+                    "name": "digit5",
                     "width": 5
                 },
                 {
@@ -91,11 +91,11 @@
             "type": "r",
             "fields": [
                 {
-                    "name": "digit5",
+                    "name": "digit1",
                     "width": 5
                 },
                 {
-                    "name": "digit4",
+                    "name": "digit2",
                     "width": 5
                 },
                 {
@@ -110,11 +110,11 @@
             "type": "r",
             "fields": [
                 {
-                    "name": "digit2",
+                    "name": "digit4",
                     "width": 5
                 },
                 {
-                    "name": "digit1",
+                    "name": "digit5",
                     "width": 5
                 },
                 {
@@ -129,11 +129,11 @@
             "type": "r",
             "fields": [
                 {
-                    "name": "digit5",
+                    "name": "digit1",
                     "width": 5
                 },
                 {
-                    "name": "digit4",
+                    "name": "digit2",
                     "width": 5
                 },
                 {
@@ -148,11 +148,11 @@
             "type": "r",
             "fields": [
                 {
-                    "name": "digit2",
+                    "name": "digit4",
                     "width": 5
                 },
                 {
-                    "name": "digit1",
+                    "name": "digit5",
                     "width": 5
                 },
                 {
