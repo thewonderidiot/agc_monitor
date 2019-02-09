@@ -62,7 +62,6 @@ class USBInterface(QObject, threading.Thread):
             self._dev.close()
 
     def send(self, msg):
-        print(msg)
         self._tx_queue.put(msg)
 
     def poll(self, msg):
