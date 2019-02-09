@@ -160,6 +160,23 @@
                     "width": 2
                 }
             ]
+        },
+        {
+            "addr": 9,
+            "name": "Button",
+            "type": "w",
+            "fields": [
+                {
+                    "name": "keycode",
+                    "width": 5
+                }
+            ]
+        },
+        {
+            "addr": 10,
+            "name": "Proceed",
+            "type": "w",
+            "fields": []
         }
     ]
 }

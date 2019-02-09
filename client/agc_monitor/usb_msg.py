@@ -85,40 +85,44 @@ MonRegW = namedtuple('MonRegW', ['w'])
 MonRegW.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadDSKYProg = namedtuple('ReadDSKYProg', [])
 ReadDSKYProg.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-DSKYProg = namedtuple('DSKYProg', ['digit2', 'digit1'])
+DSKYProg = namedtuple('DSKYProg', ['digit1', 'digit2'])
 DSKYProg.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadDSKYVerb = namedtuple('ReadDSKYVerb', [])
 ReadDSKYVerb.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-DSKYVerb = namedtuple('DSKYVerb', ['digit2', 'digit1'])
+DSKYVerb = namedtuple('DSKYVerb', ['digit1', 'digit2'])
 DSKYVerb.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadDSKYNoun = namedtuple('ReadDSKYNoun', [])
 ReadDSKYNoun.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-DSKYNoun = namedtuple('DSKYNoun', ['digit2', 'digit1'])
+DSKYNoun = namedtuple('DSKYNoun', ['digit1', 'digit2'])
 DSKYNoun.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadDSKYReg1L = namedtuple('ReadDSKYReg1L', [])
 ReadDSKYReg1L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-DSKYReg1L = namedtuple('DSKYReg1L', ['digit5', 'digit4', 'digit3'])
+DSKYReg1L = namedtuple('DSKYReg1L', ['digit1', 'digit2', 'digit3'])
 DSKYReg1L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadDSKYReg1H = namedtuple('ReadDSKYReg1H', [])
 ReadDSKYReg1H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-DSKYReg1H = namedtuple('DSKYReg1H', ['digit2', 'digit1', 'sign'])
+DSKYReg1H = namedtuple('DSKYReg1H', ['digit4', 'digit5', 'sign'])
 DSKYReg1H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadDSKYReg2L = namedtuple('ReadDSKYReg2L', [])
 ReadDSKYReg2L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-DSKYReg2L = namedtuple('DSKYReg2L', ['digit5', 'digit4', 'digit3'])
+DSKYReg2L = namedtuple('DSKYReg2L', ['digit1', 'digit2', 'digit3'])
 DSKYReg2L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadDSKYReg2H = namedtuple('ReadDSKYReg2H', [])
 ReadDSKYReg2H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-DSKYReg2H = namedtuple('DSKYReg2H', ['digit2', 'digit1', 'sign'])
+DSKYReg2H = namedtuple('DSKYReg2H', ['digit4', 'digit5', 'sign'])
 DSKYReg2H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadDSKYReg3L = namedtuple('ReadDSKYReg3L', [])
 ReadDSKYReg3L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-DSKYReg3L = namedtuple('DSKYReg3L', ['digit5', 'digit4', 'digit3'])
+DSKYReg3L = namedtuple('DSKYReg3L', ['digit1', 'digit2', 'digit3'])
 DSKYReg3L.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadDSKYReg3H = namedtuple('ReadDSKYReg3H', [])
 ReadDSKYReg3H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-DSKYReg3H = namedtuple('DSKYReg3H', ['digit2', 'digit1', 'sign'])
+DSKYReg3H = namedtuple('DSKYReg3H', ['digit4', 'digit5', 'sign'])
 DSKYReg3H.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteDSKYButton = namedtuple('WriteDSKYButton', ['keycode'])
+WriteDSKYButton.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteDSKYProceed = namedtuple('WriteDSKYProceed', [])
+WriteDSKYProceed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadFixed = namedtuple('ReadFixed', ['addr'])
 ReadFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Fixed = namedtuple('Fixed', ['addr', 'data'])
@@ -354,6 +358,8 @@ class DSKY(object):
     Reg2H = 0x0006
     Reg3L = 0x0007
     Reg3H = 0x0008
+    Button = 0x0009
+    Proceed = 0x000A
 class MonChan(object):
     FEXT = 0x0007
 class Control(object):
@@ -478,6 +484,15 @@ def _pack_ReadDSKYReg3L(msg):
 
 def _pack_ReadDSKYReg3H(msg):
     return _pack_read_msg(AddressGroup.DSKY, DSKY.Reg3H)
+
+def _pack_WriteDSKYButton(msg):
+    data = 0x0000
+    data |= (msg.keycode & 0x001F) << 0
+    return _pack_write_msg(AddressGroup.DSKY, DSKY.Button, data)
+
+def _pack_WriteDSKYProceed(msg):
+    data = 0x0000
+    return _pack_write_msg(AddressGroup.DSKY, DSKY.Proceed, data)
 
 def _pack_ReadFixed(msg):
     return _pack_read_msg(AddressGroup.Fixed, msg.addr)
@@ -898,61 +913,61 @@ def _unpack_MonRegW(data):
 
 def _unpack_DSKYProg(data):
     return DSKYProg(
-        digit2 = (data >> 0) & 0x001F,
-        digit1 = (data >> 5) & 0x001F,
+        digit1 = (data >> 0) & 0x001F,
+        digit2 = (data >> 5) & 0x001F,
     )
 
 def _unpack_DSKYVerb(data):
     return DSKYVerb(
-        digit2 = (data >> 0) & 0x001F,
-        digit1 = (data >> 5) & 0x001F,
+        digit1 = (data >> 0) & 0x001F,
+        digit2 = (data >> 5) & 0x001F,
     )
 
 def _unpack_DSKYNoun(data):
     return DSKYNoun(
-        digit2 = (data >> 0) & 0x001F,
-        digit1 = (data >> 5) & 0x001F,
+        digit1 = (data >> 0) & 0x001F,
+        digit2 = (data >> 5) & 0x001F,
     )
 
 def _unpack_DSKYReg1L(data):
     return DSKYReg1L(
-        digit5 = (data >> 0) & 0x001F,
-        digit4 = (data >> 5) & 0x001F,
+        digit1 = (data >> 0) & 0x001F,
+        digit2 = (data >> 5) & 0x001F,
         digit3 = (data >> 10) & 0x001F,
     )
 
 def _unpack_DSKYReg1H(data):
     return DSKYReg1H(
-        digit2 = (data >> 0) & 0x001F,
-        digit1 = (data >> 5) & 0x001F,
+        digit4 = (data >> 0) & 0x001F,
+        digit5 = (data >> 5) & 0x001F,
         sign = (data >> 10) & 0x0003,
     )
 
 def _unpack_DSKYReg2L(data):
     return DSKYReg2L(
-        digit5 = (data >> 0) & 0x001F,
-        digit4 = (data >> 5) & 0x001F,
+        digit1 = (data >> 0) & 0x001F,
+        digit2 = (data >> 5) & 0x001F,
         digit3 = (data >> 10) & 0x001F,
     )
 
 def _unpack_DSKYReg2H(data):
     return DSKYReg2H(
-        digit2 = (data >> 0) & 0x001F,
-        digit1 = (data >> 5) & 0x001F,
+        digit4 = (data >> 0) & 0x001F,
+        digit5 = (data >> 5) & 0x001F,
         sign = (data >> 10) & 0x0003,
     )
 
 def _unpack_DSKYReg3L(data):
     return DSKYReg3L(
-        digit5 = (data >> 0) & 0x001F,
-        digit4 = (data >> 5) & 0x001F,
+        digit1 = (data >> 0) & 0x001F,
+        digit2 = (data >> 5) & 0x001F,
         digit3 = (data >> 10) & 0x001F,
     )
 
 def _unpack_DSKYReg3H(data):
     return DSKYReg3H(
-        digit2 = (data >> 0) & 0x001F,
-        digit1 = (data >> 5) & 0x001F,
+        digit4 = (data >> 0) & 0x001F,
+        digit5 = (data >> 5) & 0x001F,
         sign = (data >> 10) & 0x0003,
     )
 

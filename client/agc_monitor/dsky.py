@@ -1,4 +1,4 @@
-from PySide2.QtWidgets import QWidget, QStyleOption, QStyle
+from PySide2.QtWidgets import QWidget, QStyleOption, QStyle, QPushButton
 from PySide2.QtGui import QPainter, QPixmap
 from PySide2.QtCore import Qt
 
@@ -90,6 +90,26 @@ class DSKY(QWidget):
         self._sign2, self._reg2 = self._create_reg(el_pix, 287, 239)
         self._sign3, self._reg3 = self._create_reg(el_pix, 287, 294)
 
+        self._create_button(8,   404, 0b10001) # VERB
+        self._create_button(8,   474, 0b11111) # NOUN
+        self._create_button(78,  369, 0b11010) # +
+        self._create_button(78,  439, 0b11011) # -
+        self._create_button(78,  509, 0b10000) # 0
+        self._create_button(148, 369, 0b00111) # 7
+        self._create_button(148, 439, 0b00100) # 4
+        self._create_button(148, 509, 0b00001) # 1
+        self._create_button(218, 369, 0b01000) # 8
+        self._create_button(218, 439, 0b00101) # 5
+        self._create_button(218, 509, 0b00010) # 2
+        self._create_button(288, 369, 0b01001) # 9
+        self._create_button(288, 439, 0b00110) # 6
+        self._create_button(288, 509, 0b00011) # 3
+        self._create_button(359, 369, 0b11110) # CLR
+        self._create_button(359, 439, None)    # PRO
+        self._create_button(359, 509, 0b11001) # KEY REL
+        self._create_button(429, 404, 0b11100) # ENTER
+        self._create_button(429, 474, 0b10010) # RESET
+
         self.show()
 
 
@@ -137,6 +157,17 @@ class DSKY(QWidget):
             el = ELSegment(self, el_pix, 0, 63, 142, 5, True)
             el.move(305, 170+i*55)
             perms.append(el)
+
+    def _create_button(self, x, y, keycode):
+        b = QPushButton(self)
+        b.setFixedSize(63, 63)
+        b.move(x, y)
+        b.setStyleSheet('QPushButton{background-color: rgba(0,0,0,0);}')
+        b.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        if keycode is None:
+            b.pressed.connect(lambda k=keycode: self._usbif.send(um.WriteDSKYProceed()))
+        else:
+            b.pressed.connect(lambda k=keycode: self._usbif.send(um.WriteDSKYButton(k)))
 
     def paintEvent(self, event):
         opt = QStyleOption()
