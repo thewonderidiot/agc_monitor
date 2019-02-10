@@ -66,7 +66,9 @@ module agc_monitor(
     input wire mscafl_n,
     input wire mscdbl_n,
 
+    output wire mnhsbf,
     output wire [16:1] mdt,
+    output wire monpar,
 
     output wire mstrt,
     output wire mstp,
@@ -160,6 +162,7 @@ wire mon_chan_read_en;
 wire [15:0] mon_chan_data;
 
 wire mon_dsky_read_en;
+wire mon_dsky_write_en;
 wire [15:0] mon_dsky_data;
 
 // Resulting data from the active read command
@@ -183,7 +186,8 @@ cmd_controller cmd_ctrl(
     .ctrl_write_done(ctrl_write_done),
     .mon_reg_read_en(mon_reg_read_en),
     .mon_chan_read_en(mon_chan_read_en),
-    .mon_dsky_read_en(mon_dsky_read_en)
+    .mon_dsky_read_en(mon_dsky_read_en),
+    .mon_dsky_write_en(mon_dsky_write_en)
 );
 
 /*******************************************************************************.
@@ -411,6 +415,8 @@ monitor_regs mon_regs(
 '*******************************************************************************/
 wire [9:1] chan77;
 wire [15:1] out0;
+wire [15:1] dsalmout;
+wire [15:1] chan13;
 monitor_channels mon_chans(
     .clk(clk),
     .rst_n(rst_n),
@@ -427,6 +433,8 @@ monitor_channels mon_chans(
 
     .fext(fext),
     .out0(out0),
+    .dsalmout(dsalmout),
+    .chan13(chan13),
 
     .read_en(mon_chan_read_en),
     .addr(cmd_addr),
@@ -518,21 +526,42 @@ peripheral_instructions periph_insts(
     .mdt(mdt_periph)
 );
 
-assign mdt = mdt_chan77 | mdt_periph;
-
 /*******************************************************************************.
 * DSKY                                                                          *
 '*******************************************************************************/
+wire [16:1] mdt_dsky;
+
 monitor_dsky mon_dsky(
     .clk(clk),
     .rst_n(rst_n),
-    
+
     .read_en(mon_dsky_read_en),
+    .write_en(mon_dsky_write_en),
     .addr(cmd_addr),
+    .data_in(cmd_data),
     .data_out(mon_dsky_data),
 
-    .out0(out0)
+    .mgojam(mgojam),
+    .mt(mt),
+    .mst(mst),
+    .miip(miip),
+    .mrgg(mrgg),
+    .mrch(mrch),
+    .mwbg(mwbg),
+    .mwsg(mwsg),
+    .ch(s[9:1]),
+    .mwl(mwl),
+
+    .out0(out0),
+    .dsalmout(dsalmout),
+    .chan13(chan13),
+
+    .mnhsbf(mnhsbf),
+    .mdt(mdt_dsky),
+    .monpar(monpar)
 );
+
+assign mdt = mdt_chan77 | mdt_periph | mdt_dsky;
 
 /*******************************************************************************.
 * Zync Processor Subsystem                                                      *

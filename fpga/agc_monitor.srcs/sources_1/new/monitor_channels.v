@@ -18,6 +18,8 @@ module monitor_channels(
 
     output wire [7:5] fext,
     output wire [15:1] out0,
+    output wire [15:1] dsalmout,
+    output wire [15:1] chan13,
 
     input wire read_en,
     input wire [15:0] addr,
@@ -94,7 +96,6 @@ channel #(9'o10,15) chan_10(
     .val(out0)
 );
 
-wire [15:1] dsalmout;
 channel #(9'o11,15) chan_11(
     .clk(clk),
     .rst_n(rst_n),
@@ -118,7 +119,6 @@ channel #(9'o12,15) chan_12(
     .val(chan12)
 );
 
-wire [15:1] chan13;
 channel #(9'o13,15) chan_13(
     .clk(clk),
     .rst_n(rst_n),

@@ -80,15 +80,18 @@
 `define MON_REG_PAR    16'h0C
 `define MON_REG_W      16'h40
 
-`define DSKY_REG_PROG   16'h00
-`define DSKY_REG_VERB   16'h01
-`define DSKY_REG_NOUN   16'h02
-`define DSKY_REG_REG1_L 16'h03
-`define DSKY_REG_REG1_H 16'h04
-`define DSKY_REG_REG2_L 16'h05
-`define DSKY_REG_REG2_H 16'h06
-`define DSKY_REG_REG3_L 16'h07
-`define DSKY_REG_REG3_H 16'h08
+`define DSKY_REG_PROG    16'h00
+`define DSKY_REG_VERB    16'h01
+`define DSKY_REG_NOUN    16'h02
+`define DSKY_REG_REG1_L  16'h03
+`define DSKY_REG_REG1_H  16'h04
+`define DSKY_REG_REG2_L  16'h05
+`define DSKY_REG_REG2_H  16'h06
+`define DSKY_REG_REG3_L  16'h07
+`define DSKY_REG_REG3_H  16'h08
+`define DSKY_REG_BUTTON  16'h09
+`define DSKY_REG_PROCEED 16'h0A
+`define DSKY_REG_STATUS  16'h0B
 
 `define W_MODE_ALL 3'o0
 `define W_MODE_S   3'o1
@@ -119,3 +122,5 @@
 `define EB 12'o0003
 `define FB 12'o0004
 `define BB 12'o0006
+
+`define TCF_KEYRUPT1 16'o14024

@@ -31,7 +31,9 @@ module cmd_controller(
     // Monitor registers control signals
     output reg mon_reg_read_en,
     output reg mon_chan_read_en,
-    output reg mon_dsky_read_en
+
+    output reg mon_dsky_read_en,
+    output reg mon_dsky_write_en
 );
 
 /*******************************************************************************.
@@ -97,6 +99,7 @@ always @(*) begin
     mon_reg_read_en = 1'b0;
     mon_chan_read_en = 1'b0;
     mon_dsky_read_en = 1'b0;
+    mon_dsky_write_en = 1'b0;
 
     case (state)
     IDLE: begin
@@ -178,6 +181,7 @@ always @(*) begin
             mon_dsky_read_en = 1'b1;
             next_state = SEND_READ_MSG;
         end else begin
+            mon_dsky_write_en = 1'b1;
             next_state = IDLE;
         end
     end

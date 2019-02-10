@@ -166,9 +166,9 @@ always @(posedge clk or negedge rst_n) begin
             s_adv_pending <= 1'b1;
             next_s <= s + 1;
         end else if (s_adv_pending) begin
-            if (monwt_sr == 1'b01) begin
+            if (monwt_sr == 2'b01) begin
                 mws_adv <= 1'b1;
-            end else if ((monwt_sr == 1'b10) & mws_adv) begin
+            end else if ((monwt_sr == 2'b10) & mws_adv) begin
                 mws_adv <= 1'b0;
                 s_adv_pending <= 1'b0;
             end
