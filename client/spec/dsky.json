@@ -177,6 +177,77 @@
             "name": "Proceed",
             "type": "w",
             "fields": []
+        },
+        {
+            "addr": 11,
+            "name": "Status",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "vel",
+                    "width": 1
+                },
+                {
+                    "name": "alt",
+                    "width": 1
+                },
+                {
+                    "name": "tracker",
+                    "width": 1
+                },
+                {
+                    "name": "restart",
+                    "width": 1
+                },
+                {
+                    "name": "prog",
+                    "width": 1
+                },
+                {
+                    "name": "gimbal_lock",
+                    "width": 1
+                },
+                {
+                    "name": "temp",
+                    "width": 1
+                },
+                {
+                    "name": "prio_disp",
+                    "width": 1
+                },
+                {
+                    "name": "no_dap",
+                    "width": 1
+                },
+                {
+                    "name": "opr_err",
+                    "width": 1
+                },
+                {
+                    "name": "key_rel",
+                    "width": 1
+                },
+                {
+                    "name": "stby",
+                    "width": 1
+                },
+                {
+                    "name": "no_att",
+                    "width": 1
+                },
+                {
+                    "name": "uplink_acty",
+                    "width": 1
+                },
+                {
+                    "name": "comp_acty",
+                    "width": 1
+                },
+                {
+                    "name": "vnflash",
+                    "width": 1
+                }
+            ]
         }
     ]
 }

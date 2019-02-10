@@ -123,6 +123,10 @@ WriteDSKYButton = namedtuple('WriteDSKYButton', ['keycode'])
 WriteDSKYButton.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteDSKYProceed = namedtuple('WriteDSKYProceed', [])
 WriteDSKYProceed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadDSKYStatus = namedtuple('ReadDSKYStatus', [])
+ReadDSKYStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+DSKYStatus = namedtuple('DSKYStatus', ['vel', 'alt', 'tracker', 'restart', 'prog', 'gimbal_lock', 'temp', 'prio_disp', 'no_dap', 'opr_err', 'key_rel', 'stby', 'no_att', 'uplink_acty', 'comp_acty', 'vnflash'])
+DSKYStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadFixed = namedtuple('ReadFixed', ['addr'])
 ReadFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Fixed = namedtuple('Fixed', ['addr', 'data'])
@@ -360,6 +364,7 @@ class DSKY(object):
     Reg3H = 0x0008
     Button = 0x0009
     Proceed = 0x000A
+    Status = 0x000B
 class MonChan(object):
     FEXT = 0x0007
 class Control(object):
@@ -493,6 +498,9 @@ def _pack_WriteDSKYButton(msg):
 def _pack_WriteDSKYProceed(msg):
     data = 0x0000
     return _pack_write_msg(AddressGroup.DSKY, DSKY.Proceed, data)
+
+def _pack_ReadDSKYStatus(msg):
+    return _pack_read_msg(AddressGroup.DSKY, DSKY.Status)
 
 def _pack_ReadFixed(msg):
     return _pack_read_msg(AddressGroup.Fixed, msg.addr)
@@ -971,6 +979,26 @@ def _unpack_DSKYReg3H(data):
         sign = (data >> 10) & 0x0003,
     )
 
+def _unpack_DSKYStatus(data):
+    return DSKYStatus(
+        vel = (data >> 0) & 0x0001,
+        alt = (data >> 1) & 0x0001,
+        tracker = (data >> 2) & 0x0001,
+        restart = (data >> 3) & 0x0001,
+        prog = (data >> 4) & 0x0001,
+        gimbal_lock = (data >> 5) & 0x0001,
+        temp = (data >> 6) & 0x0001,
+        prio_disp = (data >> 7) & 0x0001,
+        no_dap = (data >> 8) & 0x0001,
+        opr_err = (data >> 9) & 0x0001,
+        key_rel = (data >> 10) & 0x0001,
+        stby = (data >> 11) & 0x0001,
+        no_att = (data >> 12) & 0x0001,
+        uplink_acty = (data >> 13) & 0x0001,
+        comp_acty = (data >> 14) & 0x0001,
+        vnflash = (data >> 15) & 0x0001,
+    )
+
 def _unpack_Fixed(addr, data):
     return Fixed(addr=addr, data=data)
 
@@ -1219,6 +1247,7 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg2H): _unpack_DSKYReg2H,
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg3L): _unpack_DSKYReg3L,
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg3H): _unpack_DSKYReg3H,
+    (DATA_FLAG | AddressGroup.DSKY, DSKY.Status): _unpack_DSKYStatus,
     (DATA_FLAG | AddressGroup.MonChan, MonChan.FEXT): _unpack_MonChanFEXT,
     (DATA_FLAG | AddressGroup.Control, Control.Stop): _unpack_ControlStop,
     (DATA_FLAG | AddressGroup.Control, Control.StopCause): _unpack_ControlStopCause,

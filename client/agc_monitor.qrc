@@ -2,5 +2,6 @@
 <qresource>
    <file>resources/dsky.png</file>
    <file>resources/el.png</file>
+   <file>resources/lamps.png</file>
 </qresource>
 </RCC>
