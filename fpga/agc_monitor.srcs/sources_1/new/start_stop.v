@@ -15,8 +15,8 @@ module start_stop(
     input wire mgojam,
     input wire mnisq,
     input wire mpal_n,
-    input wire mrch,
-    input wire mwch,
+    input wire mrchg,
+    input wire mwchg,
 
     input wire s1_match,
     input wire s2_match,
@@ -101,7 +101,7 @@ always @(posedge clk or negedge rst_n) begin
                 stop_cause[`STOP_S_I] <= 1'b1;
             end
 
-            if (stop_conds[`STOP_CHAN] & s_match & (mrch | mwch)) begin
+            if (stop_conds[`STOP_CHAN] & s_match & (mrchg | mwchg)) begin
                 stop_cause[`STOP_CHAN] <= 1'b1;
             end
 

@@ -26,8 +26,8 @@ module monitor_regs(
     input wire mwyg,
     input wire mrulog,
     input wire mrgg,
-    input wire mwch,
-    input wire mrch,
+    input wire mwchg,
+    input wire mrchg,
 
     input wire inhibit_ws,
     input wire rbbk,
@@ -59,6 +59,7 @@ module monitor_regs(
     input wire [12:1] w_times,
     input wire [11:0] w_pulses,
 
+    output reg [15:10] sq,
     output wire [16:1] l,
     output wire [16:1] q,
     output wire [12:1] s,
@@ -232,7 +233,6 @@ register reg_y(
 );
 
 // Register SQ
-reg [15:10] sq;
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         sq <= 6'o0;
@@ -271,7 +271,7 @@ wire [23:0] w_conds;
 wire [23:0] agc_pulses;
 
 assign w_conds = {w_times, w_pulses};
-assign agc_pulses = {mt, 1'b0, 1'b0, mrulog, mwyg, mwbg, (mwg | mrgg), mwch, mrch, mwzg, mwqg, mwlg, mwag};
+assign agc_pulses = {mt, 1'b0, 1'b0, mrulog, mwyg, mwbg, (mwg | mrgg), mwchg, mrchg, mwzg, mwqg, mwlg, mwag};
 
 wire pulse_or_match;
 wire pulse_and_match;

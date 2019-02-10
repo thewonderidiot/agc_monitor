@@ -295,6 +295,8 @@ control_regs ctrl_regs(
 /*******************************************************************************.
 * Start/Stop Logic                                                              *
 '*******************************************************************************/
+wire mrchg;
+wire mwchg;
 wire ss_mstp;
 wire inhibit_mstp;
 assign mstp = ss_mstp & ~inhibit_mstp;
@@ -311,8 +313,8 @@ start_stop strt_stp(
     .mgojam(mgojam),
     .mnisq(mnisq),
     .mpal_n(mpal_n),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
 
     .s1_match(s1_match),
     .s2_match(s2_match),
@@ -337,6 +339,7 @@ clear_timer ctmr(
 /*******************************************************************************.
 * Monitor Registers                                                             *
 '*******************************************************************************/
+wire [15:10] sq;
 wire [16:1] l;
 wire [16:1] q;
 wire inhibit_ws;
@@ -362,8 +365,8 @@ monitor_regs mon_regs(
     .mwyg(mwyg),
     .mrulog(mrulog),
     .mrgg(mrgg),
-    .mwch(mwch),
-    .mrch(mrch),
+    .mwchg(mwchg),
+    .mrchg(mrchg),
 
     .inhibit_ws(inhibit_ws),
     .rbbk(rbbk),
@@ -395,6 +398,7 @@ monitor_regs mon_regs(
     .w_times(w_times),
     .w_pulses(w_pulses),
 
+    .sq(sq),
     .l(l),
     .q(q),
     .s(s),
@@ -421,6 +425,7 @@ monitor_channels mon_chans(
     .clk(clk),
     .rst_n(rst_n),
 
+    .monwt(monwt),
     .ct(ct),
 
     .mrch(mrch),
@@ -431,6 +436,8 @@ monitor_channels mon_chans(
     .q({q[16], q[14:1]}),
     .chan77(chan77),
 
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .fext(fext),
     .out0(out0),
     .dsalmout(dsalmout),
@@ -450,8 +457,8 @@ restart_monitor restart_mon(
     .rst_n(rst_n),
 
     .mt05(mt[5]),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(s[9:1]),
     .mpal_n(mpal_n),
     .mtcal_n(mtcal_n),
@@ -544,9 +551,11 @@ monitor_dsky mon_dsky(
     .mgojam(mgojam),
     .mt(mt),
     .mst(mst),
+    .msqext(msqext),
+    .sq(sq),
     .miip(miip),
     .mrgg(mrgg),
-    .mrch(mrch),
+    .mrchg(mrchg),
     .mwbg(mwbg),
     .mwsg(mwsg),
     .ch(s[9:1]),

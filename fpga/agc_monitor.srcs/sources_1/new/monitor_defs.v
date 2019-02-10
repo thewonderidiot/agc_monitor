@@ -124,3 +124,5 @@
 `define BB 12'o0006
 
 `define TCF_KEYRUPT1 16'o14024
+`define RESUME 16'o150017
+`define RXOR 6'o06

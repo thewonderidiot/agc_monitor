@@ -6,8 +6,8 @@ module channel(
     input wire rst_n,
 
     input wire ct,
-    input wire mrch,
-    input wire mwch,
+    input wire mrchg,
+    input wire mwchg,
     input wire [9:1] ch,
     input wire [WIDTH:1] mwl,
     output reg [WIDTH:1] val
@@ -19,7 +19,7 @@ parameter WIDTH = 15;
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         val <= {WIDTH{1'b0}};
-    end else if ((mwch | mrch) & (ch == CHAN)) begin
+    end else if ((mwchg | mrchg) & (ch == CHAN)) begin
         val <= mwl | (ct ? {WIDTH{1'b0}} : val);
     end
 end

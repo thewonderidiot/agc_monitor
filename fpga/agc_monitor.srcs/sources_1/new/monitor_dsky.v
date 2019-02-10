@@ -15,9 +15,11 @@ module monitor_dsky(
     input wire mgojam,
     input wire [12:1] mt,
     input wire [3:1] mst,
+    input wire msqext,
+    input wire [15:10] sq,
     input wire miip,
     input wire mrgg,
-    input wire mrch,
+    input wire mrchg,
     input wire mwbg,
     input wire mwsg,
     input wire [9:1] ch,
@@ -28,11 +30,15 @@ module monitor_dsky(
     input wire [15:1] chan13,
 
     output reg mnhsbf,
-    output reg [16:1] mdt,
+    output wire [16:1] mdt,
     output reg monpar
 );
 
 `define RYWD_5MS_COUNT 19'd500000
+
+reg [16:1] mdt_key;
+wire [16:1] mdt_pro;
+assign mdt = mdt_key | mdt_pro;
 
 wire [15:12] rywd;
 assign rywd = out0[15:12];
@@ -202,7 +208,7 @@ reg [2:0] state;
 reg [2:0] next_state;
 
 wire ch15_read;
-assign ch15_read = (mrch & (ch == 9'o15));
+assign ch15_read = (mrchg & (ch == 9'o15));
 
 reg [1:0] ch15_read_sr;
 always @(posedge clk or negedge rst_n) begin
@@ -216,28 +222,28 @@ end
 reg [4:0] keycode;
 
 always @(*) begin
-    mdt = 16'o0;
+    mdt_key = 16'o0;
     monpar = 1'b0;
     mnhsbf = 1'b0;
     case (state)
     BREAK_RSM: begin
-        mdt = 16'o20;
+        mdt_key = 16'o20;
     end
 
     FORCE_TCF: begin
         mnhsbf = 1'b1;
         if (mt[2]) begin
-            mdt = `TCF_KEYRUPT1;
+            mdt_key = `TCF_KEYRUPT1;
             monpar = 1'b1;
         end
         if (mt[5]) begin
-            mdt = 16'o177777;
+            mdt_key = 16'o177777;
         end
     end
 
     INJECT_KEY: begin
         if (ch15_read) begin
-            mdt = {11'b0, keycode};
+            mdt_key = {11'b0, keycode};
         end
     end
 
@@ -246,7 +252,7 @@ end
 
 always @(*) begin
     next_state = state;
-    if (mgojam | (write_en & (addr == `DSKY_REG_BUTTON))) begin
+    if (mgojam) begin
         next_state = IDLE;
     end else begin
         case (state)
@@ -257,7 +263,7 @@ always @(*) begin
         end
 
         WAIT_FOR_RSM: begin
-            if (miip & mt[8] & mrgg & mwbg & mwsg & (mwl == 16'o150017)) begin
+            if (miip & mt[8] & mrgg & ~mwbg & (mwl == `RESUME)) begin
                 next_state = BREAK_RSM;
             end
         end
@@ -269,8 +275,12 @@ always @(*) begin
         end
 
         WAIT_FOR_NDX1: begin
-            if (mst == 3'd1) begin
-                next_state = FORCE_TCF;
+            if (mst == 3'd1 & mt[1]) begin
+                if (~msqext & (sq == 6'o50)) begin
+                    next_state = FORCE_TCF;
+                end else begin
+                    next_state = WAIT_FOR_RSM;
+                end
             end
         end
 
@@ -305,17 +315,44 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
+reg proceed;
+
+wire rxor_start;
+assign rxor_start = msqext & (sq == `RXOR) & (ch == 9'o32) & mt[2];
+
+reg rxor_32;
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        rxor_32 <= 1'b0;
+    end else begin
+        if (rxor_start) begin
+            rxor_32 <= 1'b1;
+        end else if (mt[12]) begin
+            rxor_32 <= 1'b0;
+        end
+    end
+end
+
+assign mdt_pro = (proceed & rxor_32 & mt[9]) ? 16'o20000 : 16'o0;
+
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         keycode <= 5'b0;
+        proceed <= 1'b0;
     end else begin
         if (state == COMPLETE) begin
             keycode <= 5'b0;
+        end
+        if (rxor_32 & mt[11]) begin
+            proceed <= 1'b0;
         end
         if (write_en) begin
             case (addr)
             `DSKY_REG_BUTTON: begin
                 keycode <= data_in[4:0];
+            end
+            `DSKY_REG_PROCEED: begin
+                proceed <= 1'b1;
             end
             endcase
         end

@@ -7,8 +7,8 @@ module restart_monitor(
 
     input wire mt05,
 
-    input wire mrch,
-    input wire mwch,
+    input wire mrchg,
+    input wire mwchg,
     input wire [9:1] ch,
 
     input wire mpal_n,
@@ -24,13 +24,13 @@ module restart_monitor(
     output wire [16:1] mdt
 );
 
-assign mdt = (mrch & (ch == 9'o77)) ? {7'b0, chan77} : 16'b0;
+assign mdt = (mrchg & (ch == 9'o77)) ? {7'b0, chan77} : 16'b0;
 
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         chan77 <= 9'b0;
     end else begin
-        if (mwch & (ch == 9'o77)) begin
+        if (mwchg & (ch == 9'o77)) begin
             chan77 <= 9'b0;
         end else begin
             if (~mpal_n) begin 

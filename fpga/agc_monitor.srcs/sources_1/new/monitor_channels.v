@@ -5,6 +5,7 @@ module monitor_channels(
     input wire clk,
     input wire rst_n,
 
+    input wire monwt,
     input wire ct,
 
     input wire mrch,
@@ -16,6 +17,8 @@ module monitor_channels(
     input wire [15:1] q,
     input wire [9:1] chan77,
 
+    output wire mwchg,
+    output wire mrchg,
     output wire [7:5] fext,
     output wire [15:1] out0,
     output wire [15:1] dsalmout,
@@ -26,13 +29,16 @@ module monitor_channels(
     output reg [15:0] data_out
 );
 
+assign mwchg = mwch & monwt;
+assign mrchg = mrch & monwt;
+
 wire [15:1] hiscalar;
 channel #(9'o3,15) chan_3(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(hiscalar)
@@ -43,8 +49,8 @@ channel #(9'o4,15) chan_4(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(loscalar)
@@ -55,8 +61,8 @@ channel #(9'o5,8) chan_5(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl[8:1]),
     .val(pyjets)
@@ -67,8 +73,8 @@ channel #(9'o6,8) chan_6(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl[8:1]),
     .val(rolljets)
@@ -78,8 +84,8 @@ channel #(9'o7,3) chan_7(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl[7:5]),
     .val(fext)
@@ -89,8 +95,8 @@ channel #(9'o10,15) chan_10(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(out0)
@@ -100,8 +106,8 @@ channel #(9'o11,15) chan_11(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(dsalmout)
@@ -112,8 +118,8 @@ channel #(9'o12,15) chan_12(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(chan12)
@@ -123,8 +129,8 @@ channel #(9'o13,15) chan_13(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(chan13)
@@ -135,8 +141,8 @@ channel #(9'o14,15) chan_14(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(chan14)
@@ -147,8 +153,8 @@ channel #(9'o15,5) chan_15(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl[5:1]),
     .val(mkeyin)
@@ -159,8 +165,8 @@ channel #(9'o16,7) chan_16(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl[7:1]),
     .val(navkeyin)
@@ -171,8 +177,8 @@ channel #(9'o30,15) chan_30(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(chan30)
@@ -183,8 +189,8 @@ channel #(9'o31,15) chan_31(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(chan31)
@@ -195,8 +201,8 @@ channel #(9'o32,15) chan_32(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(chan32)
@@ -207,8 +213,8 @@ channel #(9'o33,15) chan_33(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(chan33)
@@ -219,8 +225,8 @@ channel #(9'o34,15) chan_34(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(dntm1)
@@ -231,8 +237,8 @@ channel #(9'o35,15) chan_35(
     .clk(clk),
     .rst_n(rst_n),
     .ct(ct),
-    .mrch(mrch),
-    .mwch(mwch),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
     .ch(ch),
     .mwl(mwl),
     .val(dntm2)
