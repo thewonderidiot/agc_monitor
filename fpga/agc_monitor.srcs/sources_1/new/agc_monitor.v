@@ -165,9 +165,13 @@ wire mon_dsky_read_en;
 wire mon_dsky_write_en;
 wire [15:0] mon_dsky_data;
 
+wire agc_fixed_read_en;
+wire agc_fixed_read_done;
+wire [15:0] agc_fixed_data;
+
 // Resulting data from the active read command
 wire [15:0] read_data;
-assign read_data = ctrl_data | mon_reg_data | mon_chan_data | mon_dsky_data;
+assign read_data = ctrl_data | mon_reg_data | mon_chan_data | agc_fixed_data | mon_dsky_data;
 
 // Command controller 
 cmd_controller cmd_ctrl(
@@ -186,6 +190,8 @@ cmd_controller cmd_ctrl(
     .ctrl_write_done(ctrl_write_done),
     .mon_reg_read_en(mon_reg_read_en),
     .mon_chan_read_en(mon_chan_read_en),
+    .agc_fixed_read_en(agc_fixed_read_en),
+    .agc_fixed_read_done(agc_fixed_read_done),
     .mon_dsky_read_en(mon_dsky_read_en),
     .mon_dsky_write_en(mon_dsky_write_en)
 );
@@ -476,22 +482,28 @@ restart_monitor restart_mon(
 /*******************************************************************************.
 * Peripheral Instructions                                                       *
 '*******************************************************************************/
+wire agc_fixed_periph_read;
+wire agc_fixed_periph_loadch;
+wire [12:1] agc_fixed_periph_s;
+wire [15:1] agc_fixed_periph_bb;
+wire [16:1] agc_fixed_periph_data;
+
 wire periph_load;
 assign periph_load = ctrl_periph_load;
 wire periph_read;
-assign periph_read = ctrl_periph_read;
+assign periph_read = ctrl_periph_read | agc_fixed_periph_read;
 wire periph_loadch;
-assign periph_loadch = ctrl_periph_loadch;
+assign periph_loadch = ctrl_periph_loadch | agc_fixed_periph_loadch;
 wire periph_readch;
 assign periph_readch = ctrl_periph_readch;
 wire periph_tcsaj;
 assign periph_tcsaj = ctrl_periph_tcsaj;
 wire [15:1] periph_bb;
-assign periph_bb = ctrl_periph_bb;
+assign periph_bb = ctrl_periph_bb | agc_fixed_periph_bb;
 wire [12:1] periph_s;
-assign periph_s = ctrl_periph_s;
+assign periph_s = ctrl_periph_s | agc_fixed_periph_s;
 wire [16:1] periph_data;
-assign periph_data = ctrl_periph_data;
+assign periph_data = ctrl_periph_data | agc_fixed_periph_data;
 wire [16:1] mdt_periph;
 wire [16:1] periph_read_data;
 peripheral_instructions periph_insts(
@@ -531,6 +543,29 @@ peripheral_instructions periph_insts(
     .monwbk(monwbk),
 
     .mdt(mdt_periph)
+);
+
+/*******************************************************************************.
+* AGC Fixed Memory Reader                                                       *
+'*******************************************************************************/
+agc_fixed fixed_reader(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .read_en(agc_fixed_read_en),
+    .read_done(agc_fixed_read_done),
+    .addr(cmd_addr),
+    .data_out(agc_fixed_data),
+
+    .periph_read(agc_fixed_periph_read),
+    .periph_loadch(agc_fixed_periph_loadch),
+    .periph_s(agc_fixed_periph_s),
+    .periph_bb(agc_fixed_periph_bb),
+    .periph_data(agc_fixed_periph_data),
+    .periph_read_data(periph_read_data),
+    .periph_complete(periph_complete),
+
+    .fext(fext)
 );
 
 /*******************************************************************************.

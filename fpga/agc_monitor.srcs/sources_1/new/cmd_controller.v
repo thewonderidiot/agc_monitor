@@ -32,6 +32,11 @@ module cmd_controller(
     output reg mon_reg_read_en,
     output reg mon_chan_read_en,
 
+    // Fixed memory control signals
+    output reg agc_fixed_read_en,
+    input wire agc_fixed_read_done,
+
+    // DSKY control signals
     output reg mon_dsky_read_en,
     output reg mon_dsky_write_en
 );
@@ -98,6 +103,7 @@ always @(*) begin
     ctrl_write_en = 1'b0;
     mon_reg_read_en = 1'b0;
     mon_chan_read_en = 1'b0;
+    agc_fixed_read_en = 1'b0;
     mon_dsky_read_en = 1'b0;
     mon_dsky_write_en = 1'b0;
 
@@ -128,7 +134,15 @@ always @(*) begin
     end
 
     FIXED: begin
-        next_state = IDLE;
+        if (~cmd_write_flag) begin
+            if (agc_fixed_read_done) begin
+                next_state = SEND_READ_MSG;
+            end else begin
+                agc_fixed_read_en = 1'b1;
+            end
+        end else begin
+            next_state = IDLE;
+        end
     end
 
     CHANNELS: begin
