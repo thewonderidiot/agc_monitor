@@ -111,21 +111,79 @@ module agc_monitor(
 );
 
 /*******************************************************************************.
-* USB Interface                                                                 *
+* Interface Circuits                                                            *
 '*******************************************************************************/
-// Incoming command from USB, associated validity flag, and read signal
-wire [39:0] cmd;
-wire cmd_ready;
-wire cmd_read_en;
+wire mstpit_n_db;
+debounce #(1,3) db1(clk, rst_n, mstpit_n, mstpit_n_db);
+wire monwt_db;
+debounce #(1,3) db2(clk, rst_n, monwt, monwt_db);
+wire [12:1] mt_db;
+debounce #(12,3) db3(clk, rst_n, mt, mt_db);
+wire [16:1] mwl_db;
+debounce #(16,3) db4(clk, rst_n, mwl, mwl_db);
+wire miip_db;
+debounce #(1,3) db5(clk, rst_n, miip, miip_db);
+wire minhl_db;
+debounce #(1,3) db6(clk, rst_n, minhl, minhl_db);
+wire minkl_db;
+debounce #(1,3) db7(clk, rst_n, minkl, minkl_db);
+wire msqext_db;
+debounce #(1,3) db8(clk, rst_n, msqext, msqext_db);
+wire [15:10] msq_db;
+debounce #(6,3) db9(clk, rst_n, msq, msq_db);
+wire [3:1] mst_db;
+debounce #(3,3) db10(clk, rst_n, mst, mst_db);
+wire [2:1] mbr_db;
+debounce #(2,3) db11(clk, rst_n, mbr, mbr_db);
+wire mwag_db;
+debounce #(1,3) db12(clk, rst_n, mwag, mwag_db);
+wire mwlg_db;
+debounce #(1,3) db13(clk, rst_n, mwlg, mwlg_db);
+wire mwqg_db;
+debounce #(1,3) db14(clk, rst_n, mwqg, mwqg_db);
+wire mwebg_db;
+debounce #(1,3) db15(clk, rst_n, mwebg, mwebg_db);
+wire mwfbg_db;
+debounce #(1,3) db16(clk, rst_n, mwfbg, mwfbg_db);
+wire mwbbeg_db;
+debounce #(1,3) db17(clk, rst_n, mwbbeg, mwbbeg_db);
+wire mwzg_db;
+debounce #(1,3) db18(clk, rst_n, mwzg, mwzg_db);
+wire mwbg_db;
+debounce #(1,3) db19(clk, rst_n, mwbg, mwbg_db);
+wire mwsg_db;
+debounce #(1,3) db20(clk, rst_n, mwsg, mwsg_db);
+wire mwg_db;
+debounce #(1,3) db21(clk, rst_n, mwg, mwg_db);
+wire mwyg_db;
+debounce #(1,3) db22(clk, rst_n, mwyg, mwyg_db);
+wire mrulog_db;
+debounce #(1,3) db23(clk, rst_n, mrulog, mrulog_db);
+wire mrgg_db;
+debounce #(1,3) db24(clk, rst_n, mrgg, mrgg_db);
+wire mrch_db;
+debounce #(1,3) db25(clk, rst_n, mrch, mrch_db);
+wire mwch_db;
+debounce #(1,3) db26(clk, rst_n, mwch, mwch_db);
+wire mnisq_db;
+debounce #(1,3) db27(clk, rst_n, mnisq, mnisq_db);
+wire msp_db;
+debounce #(1,3) db28(clk, rst_n, msp, msp_db);
+wire mgp_n_db;
+debounce #(1,3) db29(clk, rst_n, mgp_n, mgp_n_db);
+wire mreqin_db;
+debounce #(1,3) db30(clk, rst_n, mreqin, mreqin_db);
+wire mtcsa_n_db;
+debounce #(1,3) db31(clk, rst_n, mtcsa_n, mtcsa_n_db);
 
-// Read response message for sending back over USB, and its validity flag
-wire [39:0] read_msg;
-wire read_msg_ready;
-
-// USB interface
-usb_interface usb_if(
+/*******************************************************************************.
+* Monitor                                                                       *
+'*******************************************************************************/
+monitor mon(
     .clk(clk),
     .rst_n(rst_n),
+
+    // FT232 FIFO interface
     .clkout(clkout),
     .data(data),
     .rxf_n(rxf_n),
@@ -134,338 +192,49 @@ usb_interface usb_if(
     .wr_n(wr_n),
     .oe_n(oe_n),
     .siwu(siwu),
-    .cmd(cmd),
-    .cmd_ready(cmd_ready),
-    .cmd_read_en(cmd_read_en),
-    .read_msg(read_msg),
-    .read_msg_ready(read_msg_ready)
-);
 
-/*******************************************************************************.
-* Command Controller                                                            *
-'*******************************************************************************/
-// Address and (if applicable) data associated with the command currently
-// being processed
-wire [15:0] cmd_addr;
-wire [15:0] cmd_data;
-
-// Control Registers control signals
-wire ctrl_read_en;
-wire ctrl_write_en;
-wire ctrl_write_done;
-wire [15:0] ctrl_data;
-
-wire mon_reg_read_en;
-wire [15:0] mon_reg_data;
-
-wire mon_chan_read_en;
-wire [15:0] mon_chan_data;
-
-wire mon_dsky_read_en;
-wire mon_dsky_write_en;
-wire [15:0] mon_dsky_data;
-
-wire agc_fixed_read_en;
-wire agc_fixed_read_done;
-wire [15:0] agc_fixed_data;
-
-// Resulting data from the active read command
-wire [15:0] read_data;
-assign read_data = ctrl_data | mon_reg_data | mon_chan_data | agc_fixed_data | mon_dsky_data;
-
-// Command controller 
-cmd_controller cmd_ctrl(
-    .clk(clk),
-    .rst_n(rst_n),
-    .cmd(cmd),
-    .cmd_ready(cmd_ready),
-    .cmd_read_en(cmd_read_en),
-    .cmd_addr(cmd_addr),
-    .cmd_data(cmd_data),
-    .read_data(read_data),
-    .read_msg(read_msg),
-    .read_msg_ready(read_msg_ready),
-    .ctrl_read_en(ctrl_read_en),
-    .ctrl_write_en(ctrl_write_en),
-    .ctrl_write_done(ctrl_write_done),
-    .mon_reg_read_en(mon_reg_read_en),
-    .mon_chan_read_en(mon_chan_read_en),
-    .agc_fixed_read_en(agc_fixed_read_en),
-    .agc_fixed_read_done(agc_fixed_read_done),
-    .mon_dsky_read_en(mon_dsky_read_en),
-    .mon_dsky_write_en(mon_dsky_write_en)
-);
-
-/*******************************************************************************.
-* Control Registers                                                             *
-'*******************************************************************************/
-wire start_req;
-wire proceed_req;
-wire [10:0] stop_conds;
-wire stop_s1_s2;
-wire [10:0] stop_cause;
-
-wire [12:1] s;
-wire [11:9] eb;
-wire [15:11] fb;
-wire [7:5] fext;
-
-wire s1_match;
-wire s2_match;
-wire w_match;
-wire i_match;
-
-wire [2:0] w_mode;
-wire w_s1_s2;
-wire [12:1] w_times;
-wire [11:0] w_pulses;
-
-wire [16:1] w;
-wire [1:0] wp;
-
-wire [12:1] i;
-
-wire s_only;
-wire adv_s;
-wire ctrl_periph_load;
-wire ctrl_periph_read;
-wire ctrl_periph_loadch;
-wire ctrl_periph_readch;
-wire ctrl_periph_tcsaj;
-wire [12:1] ctrl_periph_s;
-wire [15:1] ctrl_periph_bb;
-wire [16:1] ctrl_periph_data;
-wire periph_complete;
-
-control_regs ctrl_regs(
-    .clk(clk),
-    .rst_n(rst_n),
-
+    // AGC signals
     .bplssw_p(bplssw_p),
     .bplssw_n(bplssw_n),
-    .mtemp_p(mtemp_p),
-    .mtemp_n(mtemp_n),
     .p4sw_p(p4sw_p),
     .p4sw_n(p4sw_n),
-
-    .addr(cmd_addr),
-    .data_in(cmd_data),
-    .read_en(ctrl_read_en),
-    .write_en(ctrl_write_en),
-    .write_done(ctrl_write_done),
-    .data_out(ctrl_data),
-    .start_req(start_req),
-    .proceed_req(proceed_req),
-    .stop_conds(stop_conds),
-    .stop_s1_s2(stop_s1_s2),
-    .stop_cause(stop_cause),
-    .mnhrpt(mnhrpt),
-    .mnhnc(mnhnc),
-    .nhalga(nhalga),
-
-    .s(s),
-    .eb(eb),
-    .fb(fb),
-    .fext(fext),
-    .minkl(minkl),
-    .minhl(minhl),
-    .miip(miip),
-
-    .w(w),
-    .wp(wp),
-    .i(i),
-
-    .s1_match(s1_match),
-    .s2_match(s2_match),
-    .w_match(w_match),
-    .i_match(i_match),
-
-    .w_mode(w_mode),
-    .w_s1_s2(w_s1_s2),
-    .w_times(w_times),
-    .w_pulses(w_pulses),
-
-    .s_only(s_only),
-    .adv_s(adv_s),
-    .periph_load(ctrl_periph_load),
-    .periph_read(ctrl_periph_read),
-    .periph_loadch(ctrl_periph_loadch),
-    .periph_readch(ctrl_periph_readch),
-    .periph_tcsaj(ctrl_periph_tcsaj),
-    .periph_s(ctrl_periph_s),
-    .periph_bb(ctrl_periph_bb),
-    .periph_data(ctrl_periph_data),
-    .periph_complete(periph_complete)
-);
-
-/*******************************************************************************.
-* Start/Stop Logic                                                              *
-'*******************************************************************************/
-wire mrchg;
-wire mwchg;
-wire ss_mstp;
-wire inhibit_mstp;
-assign mstp = ss_mstp & ~inhibit_mstp;
-start_stop strt_stp(
-    .clk(clk),
-    .rst_n(rst_n),
-    .start_req(start_req),
-    .proceed_req(proceed_req),
-    .stop_conds(stop_conds),
-    .stop_s1_s2(stop_s1_s2),
-    .stop_cause(stop_cause),
-    .mt01(mt[1]),
-    .mt12(mt[12]),
-    .mgojam(mgojam),
-    .mnisq(mnisq),
-    .mpal_n(mpal_n),
-    .mrchg(mrchg),
-    .mwchg(mwchg),
-
-    .s1_match(s1_match),
-    .s2_match(s2_match),
-    .w_match(w_match),
-    .i_match(i_match),
-
-    .mstrt(mstrt),
-    .mstp(ss_mstp)
-);
-
-/*******************************************************************************.
-* Clear Timer                                                                   *
-'*******************************************************************************/
-wire ct;
-clear_timer ctmr(
-    .clk(clk),
-    .rst_n(rst_n),
-    .monwt(monwt),
-    .ct(ct)
-);
-
-/*******************************************************************************.
-* Monitor Registers                                                             *
-'*******************************************************************************/
-wire [15:10] sq;
-wire [16:1] l;
-wire [16:1] q;
-wire inhibit_ws;
-wire rbbk;
-monitor_regs mon_regs(
-    .clk(clk),
-    .rst_n(rst_n),
-
-    .mt(mt),
-    .monwt(monwt),
-    .ct(ct),
-    .mwl(mwl),
-    .mwag(mwag),
-    .mwlg(mwlg),
-    .mwqg(mwqg),
-    .mwebg(mwebg),
-    .mwfbg(mwfbg),
-    .mwbbeg(mwbbeg),
-    .mwzg(mwzg),
-    .mwbg(mwbg),
-    .mwsg(mwsg),
-    .mwg(mwg),
-    .mwyg(mwyg),
-    .mrulog(mrulog),
-    .mrgg(mrgg),
-    .mwchg(mwchg),
-    .mrchg(mrchg),
-
-    .inhibit_ws(inhibit_ws),
-    .rbbk(rbbk),
-    .s_only(s_only),
-    .adv_s(adv_s),
-
-    .msqext(msqext),
-    .msq(msq),
-    .mst(mst),
-    .mbr(mbr),
+    .mtemp_p(mtemp_p),
+    .mtemp_n(mtemp_n),
 
     .mgojam(mgojam),
-    .mstpit_n(mstpit_n),
-    .miip(miip),
-    .minhl(minhl),
-    .minkl(minkl),
-    .mnisq(mnisq),
-    .msp(msp),
-    .mgp_n(mgp_n),
+    .mstpit_n(mstpit_n_db),
+    .monwt(monwt_db),
+    .mt(mt_db),
+    .mwl(mwl_db),
 
-    .mstp(mstp),
+    .miip(miip_db),
+    .minhl(minhl_db),
+    .minkl(minkl_db),
 
-    .s1_match(s1_match),
-    .s2_match(s2_match),
-    .i_match(i_match),
+    .msqext(msqext_db),
+    .msq(msq_db),
+    .mst(mst_db),
+    .mbr(mbr_db),
 
-    .w_mode(w_mode),
-    .w_s1_s2(w_s1_s2),
-    .w_times(w_times),
-    .w_pulses(w_pulses),
+    .mwag(mwag_db),
+    .mwlg(mwlg_db),
+    .mwqg(mwqg_db),
+    .mwebg(mwebg_db),
+    .mwfbg(mwfbg_db),
+    .mwbbeg(mwbbeg_db),
+    .mwzg(mwzg_db),
+    .mwbg(mwbg_db),
+    .mwsg(mwsg_db),
+    .mwg(mwg_db),
+    .mwyg(mwyg_db),
+    .mrulog(mrulog_db),
+    .mrgg(mrgg_db),
+    .mrch(mrch_db),
+    .mwch(mwch_db),
+    .mnisq(mnisq_db),
+    .msp(msp_db),
+    .mgp_n(mgp_n_db),
 
-    .sq(sq),
-    .l(l),
-    .q(q),
-    .s(s),
-    .eb(eb),
-    .fb(fb),
-
-    .w(w),
-    .wp(wp),
-    .i(i),
-
-    .read_en(mon_reg_read_en),
-    .addr(cmd_addr),
-    .data_out(mon_reg_data)
-);
-
-/*******************************************************************************.
-* Monitor AGC Channel Mirrors                                                   *
-'*******************************************************************************/
-wire [9:1] chan77;
-wire [15:1] out0;
-wire [15:1] dsalmout;
-wire [15:1] chan13;
-monitor_channels mon_chans(
-    .clk(clk),
-    .rst_n(rst_n),
-
-    .monwt(monwt),
-    .ct(ct),
-
-    .mrch(mrch),
-    .mwch(mwch),
-    .ch(s[9:1]),
-    .mwl({mwl[16], mwl[14:1]}),
-    .l({l[16], l[14:1]}),
-    .q({q[16], q[14:1]}),
-    .chan77(chan77),
-
-    .mrchg(mrchg),
-    .mwchg(mwchg),
-    .fext(fext),
-    .out0(out0),
-    .dsalmout(dsalmout),
-    .chan13(chan13),
-
-    .read_en(mon_chan_read_en),
-    .addr(cmd_addr),
-    .data_out(mon_chan_data)
-);
-
-/*******************************************************************************.
-* Restart Monitor                                                               *
-'*******************************************************************************/
-wire [16:1] mdt_chan77;
-restart_monitor restart_mon(
-    .clk(clk),
-    .rst_n(rst_n),
-
-    .mt05(mt[5]),
-    .mrchg(mrchg),
-    .mwchg(mwchg),
-    .ch(s[9:1]),
     .mpal_n(mpal_n),
     .mtcal_n(mtcal_n),
     .mrptal_n(mrptal_n),
@@ -475,137 +244,26 @@ restart_monitor restart_mon(
     .mscafl_n(mscafl_n),
     .mscdbl_n(mscdbl_n),
 
-    .chan77(chan77),
-    .mdt(mdt_chan77)
-);
+    .mnhsbf(mnhsbf),
+    .mdt(mdt),
+    .monpar(monpar),
 
-/*******************************************************************************.
-* Peripheral Instructions                                                       *
-'*******************************************************************************/
-wire agc_fixed_periph_read;
-wire agc_fixed_periph_loadch;
-wire [12:1] agc_fixed_periph_s;
-wire [15:1] agc_fixed_periph_bb;
-wire [16:1] agc_fixed_periph_data;
+    .mstrt(mstrt),
+    .mstp(mstp),
 
-wire periph_load;
-assign periph_load = ctrl_periph_load;
-wire periph_read;
-assign periph_read = ctrl_periph_read | agc_fixed_periph_read;
-wire periph_loadch;
-assign periph_loadch = ctrl_periph_loadch | agc_fixed_periph_loadch;
-wire periph_readch;
-assign periph_readch = ctrl_periph_readch;
-wire periph_tcsaj;
-assign periph_tcsaj = ctrl_periph_tcsaj;
-wire [15:1] periph_bb;
-assign periph_bb = ctrl_periph_bb | agc_fixed_periph_bb;
-wire [12:1] periph_s;
-assign periph_s = ctrl_periph_s | agc_fixed_periph_s;
-wire [16:1] periph_data;
-assign periph_data = ctrl_periph_data | agc_fixed_periph_data;
-wire [16:1] mdt_periph;
-wire [16:1] periph_read_data;
-peripheral_instructions periph_insts(
-    .clk(clk),
-    .rst_n(rst_n),
+    .mnhrpt(mnhrpt),
+    .mnhnc(mnhnc),
+    .nhalga(nhalga),
 
-    .monwt(monwt),
-    .mt(mt),
-    .mst(mst),
-    .mwl(mwl),
-
-    .inhibit_mstp(inhibit_mstp),
-    .inhibit_ws(inhibit_ws),
-    .rbbk(rbbk),
-
-    .mreqin(mreqin),
-    .mtcsa_n(mtcsa_n),
-
-    .load(periph_load),
-    .read(periph_read),
-    .loadch(periph_loadch),
-    .readch(periph_readch),
-    .tcsaj(periph_tcsaj),
-
-    .bb(periph_bb),
-    .s(periph_s),
-    .data(periph_data),
-
-    .read_data(periph_read_data),
-    .complete(periph_complete),
-
-    .mtcsai(mtcsai),
     .mread(mread),
     .mload(mload),
     .mrdch(mrdch),
     .mldch(mldch),
+    .mtcsai(mtcsai),
     .monwbk(monwbk),
-
-    .mdt(mdt_periph)
+    .mreqin(mreqin_db),
+    .mtcsa_n(mtcsa_n_db)
 );
-
-/*******************************************************************************.
-* AGC Fixed Memory Reader                                                       *
-'*******************************************************************************/
-agc_fixed fixed_reader(
-    .clk(clk),
-    .rst_n(rst_n),
-
-    .read_en(agc_fixed_read_en),
-    .read_done(agc_fixed_read_done),
-    .addr(cmd_addr),
-    .data_out(agc_fixed_data),
-
-    .periph_read(agc_fixed_periph_read),
-    .periph_loadch(agc_fixed_periph_loadch),
-    .periph_s(agc_fixed_periph_s),
-    .periph_bb(agc_fixed_periph_bb),
-    .periph_data(agc_fixed_periph_data),
-    .periph_read_data(periph_read_data),
-    .periph_complete(periph_complete),
-
-    .fext(fext)
-);
-
-/*******************************************************************************.
-* DSKY                                                                          *
-'*******************************************************************************/
-wire [16:1] mdt_dsky;
-
-monitor_dsky mon_dsky(
-    .clk(clk),
-    .rst_n(rst_n),
-
-    .read_en(mon_dsky_read_en),
-    .write_en(mon_dsky_write_en),
-    .addr(cmd_addr),
-    .data_in(cmd_data),
-    .data_out(mon_dsky_data),
-
-    .mgojam(mgojam),
-    .mt(mt),
-    .mst(mst),
-    .msqext(msqext),
-    .sq(sq),
-    .miip(miip),
-    .mrgg(mrgg),
-    .mrchg(mrchg),
-    .mwbg(mwbg),
-    .mwsg(mwsg),
-    .ch(s[9:1]),
-    .mwl(mwl),
-
-    .out0(out0),
-    .dsalmout(dsalmout),
-    .chan13(chan13),
-
-    .mnhsbf(mnhsbf),
-    .mdt(mdt_dsky),
-    .monpar(monpar)
-);
-
-assign mdt = mdt_chan77 | mdt_periph | mdt_dsky;
 
 /*******************************************************************************.
 * Zync Processor Subsystem                                                      *

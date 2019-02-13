@@ -4,6 +4,7 @@ verilog xil_defaultlib  --include "../../../../agc_monitor.srcs/sources_1/bd/mon
 "../../../../agc_monitor.srcs/sources_1/ip/read_byte_fifo/sim/read_byte_fifo.v" \
 "../../../../agc_monitor.srcs/sources_1/ip/read_fifo/sim/read_fifo.v" \
 "../../../../agc_monitor.srcs/sources_1/ip/cmd_fifo/sim/cmd_fifo.v" \
+"../../../../agc_monitor.srcs/sources_1/new/agc_fixed.v" \
 "../../../../agc_monitor.srcs/sources_1/new/agc_monitor.v" \
 "../../../../agc_monitor.srcs/sources_1/new/channel.v" \
 "../../../../agc_monitor.srcs/sources_1/new/clear_timer.v" \
@@ -11,6 +12,7 @@ verilog xil_defaultlib  --include "../../../../agc_monitor.srcs/sources_1/bd/mon
 "../../../../agc_monitor.srcs/sources_1/new/cmd_receiver.v" \
 "../../../../agc_monitor.srcs/sources_1/new/control_regs.v" \
 "../../../../agc_monitor.srcs/sources_1/new/edit.v" \
+"../../../../agc_monitor.srcs/sources_1/new/fixed_addr_encoder.v" \
 "../../../../agc_monitor.srcs/sources_1/new/monitor_channels.v" \
 "../../../../agc_monitor.srcs/sources_1/new/monitor_dsky.v" \
 "../../../../agc_monitor.srcs/sources_1/new/monitor_regs.v" \

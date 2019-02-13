@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Sun Feb  3 20:21:05 2019
+| Date         : Tue Feb 12 21:20:46 2019
 | Host         : luminary running 64-bit unknown
 | Command      : report_methodology -file agc_monitor_methodology_drc_routed.rpt -pb agc_monitor_methodology_drc_routed.pb -rpx agc_monitor_methodology_drc_routed.rpx
 | Design       : agc_monitor
@@ -23,11 +23,11 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 114
+             Violations found: 117
 +-----------+----------+-------------------------------+------------+
 | Rule      | Severity | Description                   | Violations |
 +-----------+----------+-------------------------------+------------+
-| TIMING-18 | Warning  | Missing input or output delay | 114        |
+| TIMING-18 | Warning  | Missing input or output delay | 117        |
 +-----------+----------+-------------------------------+------------+
 
 2. REPORT DETAILS
@@ -559,45 +559,60 @@ Related violations: <none>
 
 TIMING-18#106 Warning
 Missing input or output delay  
-An output delay is missing on monwbk relative to clock(s) clk
+An output delay is missing on mnhsbf relative to clock(s) clk
 Related violations: <none>
 
 TIMING-18#107 Warning
 Missing input or output delay  
-An output delay is missing on mread relative to clock(s) clk
+An output delay is missing on monpar relative to clock(s) clk
 Related violations: <none>
 
 TIMING-18#108 Warning
 Missing input or output delay  
-An output delay is missing on mstp relative to clock(s) clk
+An output delay is missing on monwbk relative to clock(s) clk
 Related violations: <none>
 
 TIMING-18#109 Warning
 Missing input or output delay  
-An output delay is missing on mstrt relative to clock(s) clk
+An output delay is missing on mrdch relative to clock(s) clk
 Related violations: <none>
 
 TIMING-18#110 Warning
 Missing input or output delay  
-An output delay is missing on mtcsai relative to clock(s) clk
+An output delay is missing on mread relative to clock(s) clk
 Related violations: <none>
 
 TIMING-18#111 Warning
 Missing input or output delay  
-An output delay is missing on nhalga relative to clock(s) clk
+An output delay is missing on mstp relative to clock(s) clk
 Related violations: <none>
 
 TIMING-18#112 Warning
 Missing input or output delay  
-An output delay is missing on oe_n relative to clock(s) clkout
+An output delay is missing on mstrt relative to clock(s) clk
 Related violations: <none>
 
 TIMING-18#113 Warning
 Missing input or output delay  
-An output delay is missing on rd_n relative to clock(s) clkout
+An output delay is missing on mtcsai relative to clock(s) clk
 Related violations: <none>
 
 TIMING-18#114 Warning
+Missing input or output delay  
+An output delay is missing on nhalga relative to clock(s) clk
+Related violations: <none>
+
+TIMING-18#115 Warning
+Missing input or output delay  
+An output delay is missing on oe_n relative to clock(s) clkout
+Related violations: <none>
+
+TIMING-18#116 Warning
+Missing input or output delay  
+An output delay is missing on rd_n relative to clock(s) clkout
+Related violations: <none>
+
+TIMING-18#117 Warning
 Missing input or output delay  
 An output delay is missing on wr_n relative to clock(s) clkout
 Related violations: <none>

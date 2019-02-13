@@ -12,17 +12,21 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="350000000001fs"></ZoomEndTime>
-      <Cursor1Time time="33205000000fs"></Cursor1Time>
+      <ZoomEndTime time="79335973001fs"></ZoomEndTime>
+      <Cursor1Time time="43014800000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="94"></ValueColumnWidth>
+      <ValueColumnWidth column_width="90"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="32" />
+   <WVObjectSize size="40" />
    <wvobject type="logic" fp_name="/agc_monitor_tb/rxf_n">
       <obj_property name="ElementShortName">rxf_n</obj_property>
       <obj_property name="ObjectShortName">rxf_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/usb_if/oe_n">
+      <obj_property name="ElementShortName">oe_n</obj_property>
+      <obj_property name="ObjectShortName">oe_n</obj_property>
    </wvobject>
    <wvobject type="logic" fp_name="/agc_monitor_tb/rd_n">
       <obj_property name="ElementShortName">rd_n</obj_property>
@@ -144,8 +148,36 @@
       <obj_property name="ElementShortName">periph_load</obj_property>
       <obj_property name="ObjectShortName">periph_load</obj_property>
    </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/periph_insts/readch">
+      <obj_property name="ElementShortName">readch</obj_property>
+      <obj_property name="ObjectShortName">readch</obj_property>
+   </wvobject>
    <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/periph_insts/state">
       <obj_property name="ElementShortName">state[2:0]</obj_property>
       <obj_property name="ObjectShortName">state[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/ctrl_regs/s1_s">
+      <obj_property name="ElementShortName">s1_s[12:1]</obj_property>
+      <obj_property name="ObjectShortName">s1_s[12:1]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/ctrl_regs/w_comp_val">
+      <obj_property name="ElementShortName">w_comp_val[16:1]</obj_property>
+      <obj_property name="ObjectShortName">w_comp_val[16:1]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/mdt">
+      <obj_property name="ElementShortName">mdt[16:1]</obj_property>
+      <obj_property name="ObjectShortName">mdt[16:1]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/periph_insts/request">
+      <obj_property name="ElementShortName">request[4:0]</obj_property>
+      <obj_property name="ObjectShortName">request[4:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/agc_monitor_tb/agc_mon/periph_insts/state">
+      <obj_property name="ElementShortName">state[2:0]</obj_property>
+      <obj_property name="ObjectShortName">state[2:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/agc_monitor_tb/agc_mon/periph_insts/monwt">
+      <obj_property name="ElementShortName">monwt</obj_property>
+      <obj_property name="ObjectShortName">monwt</obj_property>
    </wvobject>
 </wave_config>

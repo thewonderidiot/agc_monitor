@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Thu Jan  3 22:27:49 2019
+| Date         : Tue Feb 12 21:15:33 2019
 | Host         : luminary running 64-bit unknown
 | Command      : report_utilization -file cmd_fifo_utilization_synth.rpt -pb cmd_fifo_utilization_synth.pb
 | Design       : cmd_fifo
@@ -30,11 +30,11 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             |   57 |     0 |     53200 |  0.11 |
-|   LUT as Logic          |   57 |     0 |     53200 |  0.11 |
+| Slice LUTs*             |   85 |     0 |     53200 |  0.16 |
+|   LUT as Logic          |   85 |     0 |     53200 |  0.16 |
 |   LUT as Memory         |    0 |     0 |     17400 |  0.00 |
-| Slice Registers         |  167 |     0 |    106400 |  0.16 |
-|   Register as Flip Flop |  167 |     0 |    106400 |  0.16 |
+| Slice Registers         |  219 |     0 |    106400 |  0.21 |
+|   Register as Flip Flop |  219 |     0 |    106400 |  0.21 |
 |   Register as Latch     |    0 |     0 |    106400 |  0.00 |
 | F7 Muxes                |    0 |     0 |     26600 |  0.00 |
 | F8 Muxes                |    0 |     0 |     13300 |  0.00 |
@@ -55,9 +55,9 @@ Table of Contents
 | 0     |            _ |       Reset |            - |
 | 0     |          Yes |           - |            - |
 | 22    |          Yes |           - |          Set |
-| 41    |          Yes |           - |        Reset |
+| 61    |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
-| 104   |          Yes |       Reset |            - |
+| 136   |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -67,10 +67,11 @@ Table of Contents
 +-------------------+------+-------+-----------+-------+
 |     Site Type     | Used | Fixed | Available | Util% |
 +-------------------+------+-------+-----------+-------+
-| Block RAM Tile    |    1 |     0 |       140 |  0.71 |
-|   RAMB36/FIFO*    |    1 |     0 |       140 |  0.71 |
-|     RAMB36E1 only |    1 |       |           |       |
-|   RAMB18          |    0 |     0 |       280 |  0.00 |
+| Block RAM Tile    |  2.5 |     0 |       140 |  1.79 |
+|   RAMB36/FIFO*    |    2 |     0 |       140 |  1.43 |
+|     RAMB36E1 only |    2 |       |           |       |
+|   RAMB18          |    1 |     0 |       280 |  0.36 |
+|     RAMB18E1 only |    1 |       |           |       |
 +-------------------+------+-------+-----------+-------+
 * Note: Each Block RAM Tile only has one FIFO logic available and therefore can accommodate only one FIFO36E1 or one FIFO18E1. However, if a FIFO18E1 occupies a Block RAM Tile, that tile can still accommodate a RAMB18E1
 
@@ -147,16 +148,18 @@ Table of Contents
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |  104 |        Flop & Latch |
-| FDCE     |   41 |        Flop & Latch |
+| FDRE     |  136 |        Flop & Latch |
+| FDCE     |   61 |        Flop & Latch |
+| LUT2     |   35 |                 LUT |
+| LUT4     |   32 |                 LUT |
 | FDPE     |   22 |        Flop & Latch |
-| LUT2     |   21 |                 LUT |
-| LUT6     |   13 |                 LUT |
-| LUT4     |   12 |                 LUT |
-| LUT5     |   10 |                 LUT |
-| LUT3     |    9 |                 LUT |
+| LUT5     |   12 |                 LUT |
+| LUT6     |   11 |                 LUT |
+| LUT3     |   11 |                 LUT |
+| CARRY4   |    8 |          CarryLogic |
+| RAMB36E1 |    2 |        Block Memory |
 | LUT1     |    2 |                 LUT |
-| RAMB36E1 |    1 |        Block Memory |
+| RAMB18E1 |    1 |        Block Memory |
 +----------+------+---------------------+
 
 

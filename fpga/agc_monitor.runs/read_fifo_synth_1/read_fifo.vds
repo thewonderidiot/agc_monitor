@@ -2,8 +2,8 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Tue Jan  1 11:58:57 2019
-# Process ID: 1677
+# Start of session at: Mon Feb 11 22:09:18 2019
+# Process ID: 12718
 # Current directory: /home/mike/agc_monitor/fpga/agc_monitor.runs/read_fifo_synth_1
 # Command line: vivado -log read_fifo.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source read_fifo.tcl
 # Log file: /home/mike/agc_monitor/fpga/agc_monitor.runs/read_fifo_synth_1/read_fifo.vds
@@ -15,15 +15,15 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 1755 
+INFO: Helper process launched with PID 12805 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:10 . Memory (MB): peak = 1345.156 ; gain = 0.000 ; free physical = 11639 ; free virtual = 22227
+Starting RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:22 . Memory (MB): peak = 1336.281 ; gain = 36.660 ; free physical = 580 ; free virtual = 17429
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'read_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/read_fifo/synth/read_fifo.vhd:72]
 	Parameter C_COMMON_CLOCK bound to: 1 - type: integer 
 	Parameter C_SELECT_XPM bound to: 0 - type: integer 
 	Parameter C_COUNT_TYPE bound to: 0 - type: integer 
-	Parameter C_DATA_COUNT_WIDTH bound to: 8 - type: integer 
+	Parameter C_DATA_COUNT_WIDTH bound to: 12 - type: integer 
 	Parameter C_DEFAULT_VALUE bound to: BlankString - type: string 
 	Parameter C_DIN_WIDTH bound to: 40 - type: integer 
 	Parameter C_DOUT_RST_VAL bound to: 0 - type: string 
@@ -55,17 +55,17 @@ INFO: [Synth 8-638] synthesizing module 'read_fifo' [/home/mike/agc_monitor/fpga
 	Parameter C_OVERFLOW_LOW bound to: 0 - type: integer 
 	Parameter C_PRELOAD_LATENCY bound to: 0 - type: integer 
 	Parameter C_PRELOAD_REGS bound to: 1 - type: integer 
-	Parameter C_PRIM_FIFO_TYPE bound to: 512x72 - type: string 
+	Parameter C_PRIM_FIFO_TYPE bound to: 2kx18 - type: string 
 	Parameter C_PROG_EMPTY_THRESH_ASSERT_VAL bound to: 4 - type: integer 
 	Parameter C_PROG_EMPTY_THRESH_NEGATE_VAL bound to: 5 - type: integer 
 	Parameter C_PROG_EMPTY_TYPE bound to: 0 - type: integer 
-	Parameter C_PROG_FULL_THRESH_ASSERT_VAL bound to: 127 - type: integer 
-	Parameter C_PROG_FULL_THRESH_NEGATE_VAL bound to: 126 - type: integer 
+	Parameter C_PROG_FULL_THRESH_ASSERT_VAL bound to: 2047 - type: integer 
+	Parameter C_PROG_FULL_THRESH_NEGATE_VAL bound to: 2046 - type: integer 
 	Parameter C_PROG_FULL_TYPE bound to: 0 - type: integer 
-	Parameter C_RD_DATA_COUNT_WIDTH bound to: 8 - type: integer 
-	Parameter C_RD_DEPTH bound to: 128 - type: integer 
+	Parameter C_RD_DATA_COUNT_WIDTH bound to: 12 - type: integer 
+	Parameter C_RD_DEPTH bound to: 2048 - type: integer 
 	Parameter C_RD_FREQ bound to: 1 - type: integer 
-	Parameter C_RD_PNTR_WIDTH bound to: 7 - type: integer 
+	Parameter C_RD_PNTR_WIDTH bound to: 11 - type: integer 
 	Parameter C_UNDERFLOW_LOW bound to: 0 - type: integer 
 	Parameter C_USE_DOUT_RST bound to: 1 - type: integer 
 	Parameter C_USE_ECC bound to: 0 - type: integer 
@@ -76,10 +76,10 @@ INFO: [Synth 8-638] synthesizing module 'read_fifo' [/home/mike/agc_monitor/fpga
 	Parameter C_USE_FWFT_DATA_COUNT bound to: 1 - type: integer 
 	Parameter C_VALID_LOW bound to: 0 - type: integer 
 	Parameter C_WR_ACK_LOW bound to: 0 - type: integer 
-	Parameter C_WR_DATA_COUNT_WIDTH bound to: 8 - type: integer 
-	Parameter C_WR_DEPTH bound to: 128 - type: integer 
+	Parameter C_WR_DATA_COUNT_WIDTH bound to: 12 - type: integer 
+	Parameter C_WR_DEPTH bound to: 2048 - type: integer 
 	Parameter C_WR_FREQ bound to: 1 - type: integer 
-	Parameter C_WR_PNTR_WIDTH bound to: 7 - type: integer 
+	Parameter C_WR_PNTR_WIDTH bound to: 11 - type: integer 
 	Parameter C_WR_RESPONSE_LATENCY bound to: 1 - type: integer 
 	Parameter C_MSGON_VAL bound to: 1 - type: integer 
 	Parameter C_ENABLE_RST_SYNC bound to: 1 - type: integer 
@@ -228,6 +228,10 @@ WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port RST_FULL_
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_RST
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port SRST
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port SAFETY_CKT_WR_RST
+WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS2[10]
+WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS2[9]
+WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS2[8]
+WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS2[7]
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS2[6]
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS2[5]
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS2[4]
@@ -235,6 +239,10 @@ WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_P
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS2[2]
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS2[1]
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS2[0]
+WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS3[10]
+WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS3[9]
+WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS3[8]
+WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS3[7]
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS3[6]
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS3[5]
 WARNING: [Synth 8-3331] design wr_status_flags_ss has unconnected port WR_PNTR_PLUS3[4]
@@ -249,6 +257,10 @@ WARNING: [Synth 8-3331] design wr_logic has unconnected port RD_EN
 WARNING: [Synth 8-3331] design wr_logic has unconnected port WR_RST_BUSY
 WARNING: [Synth 8-3331] design wr_logic has unconnected port EMPTY
 WARNING: [Synth 8-3331] design wr_logic has unconnected port ALMOST_EMPTY
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[10]
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[9]
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[8]
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[7]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[6]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[5]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[4]
@@ -256,6 +268,10 @@ WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[3]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[2]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[1]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH[0]
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[10]
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[9]
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[8]
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[7]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[6]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[5]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[4]
@@ -263,6 +279,10 @@ WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_AS
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[2]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[1]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_ASSERT[0]
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_NEGATE[10]
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_NEGATE[9]
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_NEGATE[8]
+WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_NEGATE[7]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_NEGATE[6]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_NEGATE[5]
 WARNING: [Synth 8-3331] design wr_logic has unconnected port PROG_FULL_THRESH_NEGATE[4]
@@ -275,6 +295,10 @@ WARNING: [Synth 8-3331] design rd_fwft has unconnected port SAFETY_CKT_RD_RST
 WARNING: [Synth 8-3331] design rd_fwft has unconnected port RAM_ALMOST_EMPTY
 WARNING: [Synth 8-3331] design rd_status_flags_ss has unconnected port RD_RST
 WARNING: [Synth 8-3331] design rd_status_flags_ss has unconnected port SAFETY_CKT_RD_RST
+WARNING: [Synth 8-3331] design rd_status_flags_ss has unconnected port RD_PNTR_PLUS2[10]
+WARNING: [Synth 8-3331] design rd_status_flags_ss has unconnected port RD_PNTR_PLUS2[9]
+WARNING: [Synth 8-3331] design rd_status_flags_ss has unconnected port RD_PNTR_PLUS2[8]
+WARNING: [Synth 8-3331] design rd_status_flags_ss has unconnected port RD_PNTR_PLUS2[7]
 WARNING: [Synth 8-3331] design rd_status_flags_ss has unconnected port RD_PNTR_PLUS2[6]
 WARNING: [Synth 8-3331] design rd_status_flags_ss has unconnected port RD_PNTR_PLUS2[5]
 WARNING: [Synth 8-3331] design rd_status_flags_ss has unconnected port RD_PNTR_PLUS2[4]
@@ -289,6 +313,10 @@ WARNING: [Synth 8-3331] design rd_logic has unconnected port RD_RST_BUSY
 WARNING: [Synth 8-3331] design rd_logic has unconnected port RST_FULL_FF
 WARNING: [Synth 8-3331] design rd_logic has unconnected port ALMOST_FULL_FB
 WARNING: [Synth 8-3331] design rd_logic has unconnected port FULL
+WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[10]
+WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[9]
+WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[8]
+WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[7]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[6]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[5]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[4]
@@ -296,37 +324,9 @@ WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[3]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[2]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[1]
 WARNING: [Synth 8-3331] design rd_logic has unconnected port WR_PNTR_PLUS1_RD[0]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH[6]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH[5]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH[4]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH[3]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH[2]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH[1]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH[0]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_ASSERT[6]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_ASSERT[5]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_ASSERT[4]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_ASSERT[3]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_ASSERT[2]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_ASSERT[1]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_ASSERT[0]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_NEGATE[6]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_NEGATE[5]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_NEGATE[4]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_NEGATE[3]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_NEGATE[2]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_NEGATE[1]
-WARNING: [Synth 8-3331] design rd_logic has unconnected port PROG_EMPTY_THRESH_NEGATE[0]
-WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper has unconnected port SSRA
-WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper has unconnected port REGCEA
-WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper has unconnected port SSRB
-WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper has unconnected port WEB[0]
-WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper has unconnected port DINB[71]
-WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper has unconnected port DINB[70]
-WARNING: [Synth 8-3331] design blk_mem_gen_prim_wrapper has unconnected port DINB[69]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:46 ; elapsed = 00:00:57 . Memory (MB): peak = 1563.711 ; gain = 218.555 ; free physical = 11611 ; free virtual = 22201
+Finished RTL Elaboration : Time (s): cpu = 00:01:53 ; elapsed = 00:02:20 . Memory (MB): peak = 1561.734 ; gain = 262.113 ; free physical = 966 ; free virtual = 17328
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -339,12 +339,12 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:47 ; elapsed = 00:00:57 . Memory (MB): peak = 1563.711 ; gain = 218.555 ; free physical = 11620 ; free virtual = 22209
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:53 ; elapsed = 00:02:21 . Memory (MB): peak = 1561.734 ; gain = 262.113 ; free physical = 975 ; free virtual = 17336
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:47 ; elapsed = 00:00:57 . Memory (MB): peak = 1563.711 ; gain = 218.555 ; free physical = 11620 ; free virtual = 22209
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:01:53 ; elapsed = 00:02:21 . Memory (MB): peak = 1561.734 ; gain = 262.113 ; free physical = 975 ; free virtual = 17336
 ---------------------------------------------------------------------------------
-INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 27 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -359,32 +359,32 @@ Parsing XDC File [/home/mike/agc_monitor/fpga/agc_monitor.runs/read_fifo_synth_1
 Finished Parsing XDC File [/home/mike/agc_monitor/fpga/agc_monitor.runs/read_fifo_synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1708.750 ; gain = 0.000 ; free physical = 11317 ; free virtual = 21949
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1708.773 ; gain = 0.000 ; free physical = 825 ; free virtual = 17187
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1708.750 ; gain = 0.000 ; free physical = 11317 ; free virtual = 21949
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.03 . Memory (MB): peak = 1708.750 ; gain = 0.000 ; free physical = 11318 ; free virtual = 21950
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1708.773 ; gain = 0.000 ; free physical = 824 ; free virtual = 17187
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.03 ; elapsed = 00:00:00.05 . Memory (MB): peak = 1708.773 ; gain = 0.000 ; free physical = 824 ; free virtual = 17187
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:52 ; elapsed = 00:01:03 . Memory (MB): peak = 1708.750 ; gain = 363.594 ; free physical = 11398 ; free virtual = 22030
+Finished Constraint Validation : Time (s): cpu = 00:02:05 ; elapsed = 00:02:34 . Memory (MB): peak = 1708.773 ; gain = 409.152 ; free physical = 926 ; free virtual = 17290
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:52 ; elapsed = 00:01:03 . Memory (MB): peak = 1708.750 ; gain = 363.594 ; free physical = 11398 ; free virtual = 22030
+Finished Loading Part and Timing Information : Time (s): cpu = 00:02:05 ; elapsed = 00:02:34 . Memory (MB): peak = 1708.773 ; gain = 409.152 ; free physical = 926 ; free virtual = 17290
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property DONT_TOUCH = true for U0. (constraint file  /home/mike/agc_monitor/fpga/agc_monitor.runs/read_fifo_synth_1/dont_touch.xdc, line 9).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:52 ; elapsed = 00:01:03 . Memory (MB): peak = 1708.750 ; gain = 363.594 ; free physical = 11400 ; free virtual = 22033
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:02:05 ; elapsed = 00:02:34 . Memory (MB): peak = 1708.773 ; gain = 409.152 ; free physical = 928 ; free virtual = 17292
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-5544] ROM "leaving_empty_fwft" won't be mapped to Block RAM because address size (2) smaller than threshold (5)
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:52 ; elapsed = 00:01:04 . Memory (MB): peak = 1708.750 ; gain = 363.594 ; free physical = 11390 ; free virtual = 22023
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:02:06 ; elapsed = 00:02:36 . Memory (MB): peak = 1708.773 ; gain = 409.152 ; free physical = 914 ; free virtual = 17278
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -397,12 +397,12 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input      7 Bit       Adders := 2     
+	   2 Input     11 Bit       Adders := 2     
 +---XORs : 
-	   2 Input      1 Bit         XORs := 28    
+	   2 Input      1 Bit         XORs := 44    
 +---Registers : 
 	               40 Bit    Registers := 1     
-	                7 Bit    Registers := 4     
+	               11 Bit    Registers := 4     
 	                2 Bit    Registers := 1     
 	                1 Bit    Registers := 10    
 +---Muxes : 
@@ -425,13 +425,13 @@ Detailed RTL Component Info :
 Module rd_bin_cntr 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input      7 Bit       Adders := 1     
+	   2 Input     11 Bit       Adders := 1     
 +---Registers : 
-	                7 Bit    Registers := 2     
+	               11 Bit    Registers := 2     
 Module compare 
 Detailed RTL Component Info : 
 +---XORs : 
-	   2 Input      1 Bit         XORs := 7     
+	   2 Input      1 Bit         XORs := 11    
 Module rd_status_flags_ss 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -452,9 +452,9 @@ Detailed RTL Component Info :
 Module wr_bin_cntr 
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input      7 Bit       Adders := 1     
+	   2 Input     11 Bit       Adders := 1     
 +---Registers : 
-	                7 Bit    Registers := 2     
+	               11 Bit    Registers := 2     
 Module wr_status_flags_ss 
 Detailed RTL Component Info : 
 +---Registers : 
@@ -476,7 +476,7 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 Warning: Parallel synthesis criteria is not met 
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:53 ; elapsed = 00:01:04 . Memory (MB): peak = 1708.750 ; gain = 363.594 ; free physical = 11373 ; free virtual = 22014
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:02:06 ; elapsed = 00:02:36 . Memory (MB): peak = 1708.773 ; gain = 409.152 ; free physical = 899 ; free virtual = 17269
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -488,13 +488,13 @@ Report RTL Partitions:
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:57 ; elapsed = 00:01:08 . Memory (MB): peak = 1708.750 ; gain = 363.594 ; free physical = 11234 ; free virtual = 21883
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:02:16 ; elapsed = 00:02:46 . Memory (MB): peak = 1708.773 ; gain = 409.152 ; free physical = 715 ; free virtual = 17087
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:57 ; elapsed = 00:01:08 . Memory (MB): peak = 1708.750 ; gain = 363.594 ; free physical = 11234 ; free virtual = 21883
+Finished Timing Optimization : Time (s): cpu = 00:02:16 ; elapsed = 00:02:46 . Memory (MB): peak = 1708.773 ; gain = 409.152 ; free physical = 711 ; free virtual = 17082
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -506,7 +506,7 @@ Report RTL Partitions:
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:57 ; elapsed = 00:01:08 . Memory (MB): peak = 1714.758 ; gain = 369.602 ; free physical = 11233 ; free virtual = 21881
+Finished Technology Mapping : Time (s): cpu = 00:02:16 ; elapsed = 00:02:46 . Memory (MB): peak = 1713.797 ; gain = 414.176 ; free physical = 708 ; free virtual = 17080
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -530,7 +530,7 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:57 ; elapsed = 00:01:09 . Memory (MB): peak = 1714.758 ; gain = 369.602 ; free physical = 11232 ; free virtual = 21881
+Finished IO Insertion : Time (s): cpu = 00:02:17 ; elapsed = 00:02:47 . Memory (MB): peak = 1713.797 ; gain = 414.176 ; free physical = 710 ; free virtual = 17082
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -543,7 +543,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:57 ; elapsed = 00:01:09 . Memory (MB): peak = 1714.758 ; gain = 369.602 ; free physical = 11232 ; free virtual = 21881
+Finished Renaming Generated Instances : Time (s): cpu = 00:02:17 ; elapsed = 00:02:47 . Memory (MB): peak = 1713.797 ; gain = 414.176 ; free physical = 710 ; free virtual = 17082
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -555,25 +555,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:57 ; elapsed = 00:01:09 . Memory (MB): peak = 1714.758 ; gain = 369.602 ; free physical = 11232 ; free virtual = 21881
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:17 ; elapsed = 00:02:47 . Memory (MB): peak = 1713.797 ; gain = 414.176 ; free physical = 709 ; free virtual = 17081
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:57 ; elapsed = 00:01:09 . Memory (MB): peak = 1714.758 ; gain = 369.602 ; free physical = 11232 ; free virtual = 21881
+Finished Renaming Generated Ports : Time (s): cpu = 00:02:17 ; elapsed = 00:02:47 . Memory (MB): peak = 1713.797 ; gain = 414.176 ; free physical = 709 ; free virtual = 17081
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:57 ; elapsed = 00:01:09 . Memory (MB): peak = 1714.758 ; gain = 369.602 ; free physical = 11232 ; free virtual = 21881
+Finished Handling Custom Attributes : Time (s): cpu = 00:02:17 ; elapsed = 00:02:47 . Memory (MB): peak = 1713.797 ; gain = 414.176 ; free physical = 709 ; free virtual = 17081
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:57 ; elapsed = 00:01:09 . Memory (MB): peak = 1714.758 ; gain = 369.602 ; free physical = 11232 ; free virtual = 21881
+Finished Renaming Generated Nets : Time (s): cpu = 00:02:17 ; elapsed = 00:02:47 . Memory (MB): peak = 1713.797 ; gain = 414.176 ; free physical = 709 ; free virtual = 17081
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -590,68 +590,79 @@ Report Cell Usage:
 |      |Cell     |Count |
 +------+---------+------+
 |1     |LUT1     |     4|
-|2     |LUT2     |     3|
+|2     |LUT2     |     9|
 |3     |LUT3     |     6|
-|4     |LUT4     |     9|
+|4     |LUT4     |    28|
 |5     |LUT5     |     7|
-|6     |LUT6     |     9|
-|7     |RAMB36E1 |     1|
-|8     |FDRE     |    71|
-|9     |FDSE     |     9|
+|6     |LUT6     |     7|
+|7     |MUXCY    |    24|
+|8     |RAMB18E1 |     1|
+|9     |RAMB36E1 |     2|
+|10    |FDRE     |    87|
+|11    |FDSE     |     9|
 +------+---------+------+
 
 Report Instance Areas: 
-+------+-------------------------------------------------------+-----------------------------+------+
-|      |Instance                                               |Module                       |Cells |
-+------+-------------------------------------------------------+-----------------------------+------+
-|1     |top                                                    |                             |   119|
-|2     |  U0                                                   |fifo_generator_v13_2_3       |   119|
-|3     |    inst_fifo_gen                                      |fifo_generator_v13_2_3_synth |   119|
-|4     |      \gconvfifo.rf                                    |fifo_generator_top           |   119|
-|5     |        \grf.rf                                        |fifo_generator_ramfifo       |   119|
-|6     |          \gntv_or_sync_fifo.gl0.rd                    |rd_logic                     |    51|
-|7     |            \gr1.gr1_int.rfwft                         |rd_fwft                      |    16|
-|8     |            \grss.rsts                                 |rd_status_flags_ss           |     2|
-|9     |            rpntr                                      |rd_bin_cntr                  |    33|
-|10    |          \gntv_or_sync_fifo.gl0.wr                    |wr_logic                     |    27|
-|11    |            \gwss.wsts                                 |wr_status_flags_ss           |     5|
-|12    |            wpntr                                      |wr_bin_cntr                  |    22|
-|13    |          \gntv_or_sync_fifo.mem                       |memory                       |    41|
-|14    |            \gbm.gbmg.gbmga.ngecc.bmg                  |blk_mem_gen_v8_4_2           |     1|
-|15    |              inst_blk_mem_gen                         |blk_mem_gen_v8_4_2_synth     |     1|
-|16    |                \gnbram.gnativebmg.native_blk_mem_gen  |blk_mem_gen_top              |     1|
-|17    |                  \valid.cstr                          |blk_mem_gen_generic_cstr     |     1|
-|18    |                    \ramloop[0].ram.r                  |blk_mem_gen_prim_width       |     1|
-|19    |                      \prim_noinit.ram                 |blk_mem_gen_prim_wrapper     |     1|
-+------+-------------------------------------------------------+-----------------------------+------+
++------+-------------------------------------------------------+-----------------------------------------+------+
+|      |Instance                                               |Module                                   |Cells |
++------+-------------------------------------------------------+-----------------------------------------+------+
+|1     |top                                                    |                                         |   184|
+|2     |  U0                                                   |fifo_generator_v13_2_3                   |   184|
+|3     |    inst_fifo_gen                                      |fifo_generator_v13_2_3_synth             |   184|
+|4     |      \gconvfifo.rf                                    |fifo_generator_top                       |   184|
+|5     |        \grf.rf                                        |fifo_generator_ramfifo                   |   184|
+|6     |          \gntv_or_sync_fifo.gl0.rd                    |rd_logic                                 |    85|
+|7     |            \gr1.gr1_int.rfwft                         |rd_fwft                                  |    16|
+|8     |            \grss.rsts                                 |rd_status_flags_ss                       |    15|
+|9     |              c1                                       |compare_1                                |     6|
+|10    |              c2                                       |compare_2                                |     7|
+|11    |            rpntr                                      |rd_bin_cntr                              |    54|
+|12    |          \gntv_or_sync_fifo.gl0.wr                    |wr_logic                                 |    56|
+|13    |            \gwss.wsts                                 |wr_status_flags_ss                       |    18|
+|14    |              c0                                       |compare                                  |     6|
+|15    |              c1                                       |compare_0                                |     7|
+|16    |            wpntr                                      |wr_bin_cntr                              |    38|
+|17    |          \gntv_or_sync_fifo.mem                       |memory                                   |    43|
+|18    |            \gbm.gbmg.gbmga.ngecc.bmg                  |blk_mem_gen_v8_4_2                       |     3|
+|19    |              inst_blk_mem_gen                         |blk_mem_gen_v8_4_2_synth                 |     3|
+|20    |                \gnbram.gnativebmg.native_blk_mem_gen  |blk_mem_gen_top                          |     3|
+|21    |                  \valid.cstr                          |blk_mem_gen_generic_cstr                 |     3|
+|22    |                    \ramloop[0].ram.r                  |blk_mem_gen_prim_width                   |     1|
+|23    |                      \prim_noinit.ram                 |blk_mem_gen_prim_wrapper                 |     1|
+|24    |                    \ramloop[1].ram.r                  |blk_mem_gen_prim_width__parameterized0   |     1|
+|25    |                      \prim_noinit.ram                 |blk_mem_gen_prim_wrapper__parameterized0 |     1|
+|26    |                    \ramloop[2].ram.r                  |blk_mem_gen_prim_width__parameterized1   |     1|
+|27    |                      \prim_noinit.ram                 |blk_mem_gen_prim_wrapper__parameterized1 |     1|
++------+-------------------------------------------------------+-----------------------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:57 ; elapsed = 00:01:09 . Memory (MB): peak = 1714.758 ; gain = 369.602 ; free physical = 11232 ; free virtual = 21881
+Finished Writing Synthesis Report : Time (s): cpu = 00:02:17 ; elapsed = 00:02:47 . Memory (MB): peak = 1713.797 ; gain = 414.176 ; free physical = 709 ; free virtual = 17081
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 457 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:54 ; elapsed = 00:01:05 . Memory (MB): peak = 1714.758 ; gain = 224.562 ; free physical = 11289 ; free virtual = 21938
-Synthesis Optimization Complete : Time (s): cpu = 00:00:58 ; elapsed = 00:01:09 . Memory (MB): peak = 1714.766 ; gain = 369.602 ; free physical = 11289 ; free virtual = 21938
+Synthesis finished with 0 errors, 0 critical warnings and 481 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:02:09 ; elapsed = 00:02:38 . Memory (MB): peak = 1713.797 ; gain = 267.137 ; free physical = 764 ; free virtual = 17136
+Synthesis Optimization Complete : Time (s): cpu = 00:02:17 ; elapsed = 00:02:47 . Memory (MB): peak = 1713.805 ; gain = 414.176 ; free physical = 764 ; free virtual = 17136
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 1 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 27 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1752.773 ; gain = 0.000 ; free physical = 11228 ; free virtual = 21877
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1752.812 ; gain = 0.000 ; free physical = 702 ; free virtual = 17074
 INFO: [Project 1-111] Unisim Transformation Summary:
-No Unisim elements were transformed.
+  A total of 8 instances were transformed.
+  (MUXCY,XORCY) => CARRY4: 8 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
 18 Infos, 100 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:59 ; elapsed = 00:01:10 . Memory (MB): peak = 1752.773 ; gain = 407.961 ; free physical = 11285 ; free virtual = 21934
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1752.773 ; gain = 0.000 ; free physical = 11285 ; free virtual = 21934
+synth_design: Time (s): cpu = 00:02:20 ; elapsed = 00:02:49 . Memory (MB): peak = 1752.812 ; gain = 453.531 ; free physical = 760 ; free virtual = 17132
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1752.812 ; gain = 0.000 ; free physical = 760 ; free virtual = 17132
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/mike/agc_monitor/fpga/agc_monitor.runs/read_fifo_synth_1/read_fifo.dcp' has been generated.
-INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP read_fifo, cache-ID = 8d86994f0f7245f6
-INFO: [Coretcl 2-1174] Renamed 18 cell refs.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1776.785 ; gain = 0.000 ; free physical = 11285 ; free virtual = 21935
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP read_fifo, cache-ID = 00be409a776636d5
+INFO: [Coretcl 2-1174] Renamed 26 cell refs.
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1776.824 ; gain = 0.000 ; free physical = 759 ; free virtual = 17131
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/mike/agc_monitor/fpga/agc_monitor.runs/read_fifo_synth_1/read_fifo.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file read_fifo_utilization_synth.rpt -pb read_fifo_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Tue Jan  1 12:00:16 2019...
+INFO: [Common 17-206] Exiting Vivado at Mon Feb 11 22:12:28 2019...

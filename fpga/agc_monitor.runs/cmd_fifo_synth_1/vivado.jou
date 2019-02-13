@@ -2,8 +2,8 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Thu Jan  3 22:26:06 2019
-# Process ID: 25503
+# Start of session at: Tue Feb 12 21:13:19 2019
+# Process ID: 5517
 # Current directory: /home/mike/agc_monitor/fpga/agc_monitor.runs/cmd_fifo_synth_1
 # Command line: vivado -log cmd_fifo.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source cmd_fifo.tcl
 # Log file: /home/mike/agc_monitor/fpga/agc_monitor.runs/cmd_fifo_synth_1/cmd_fifo.vds
