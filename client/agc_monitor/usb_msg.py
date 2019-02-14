@@ -135,6 +135,10 @@ ReadMonChanFEXT = namedtuple('ReadMonChanFEXT', [])
 ReadMonChanFEXT.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 MonChanFEXT = namedtuple('MonChanFEXT', ['fext'])
 MonChanFEXT.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadMonChanRestart = namedtuple('ReadMonChanRestart', [])
+ReadMonChanRestart.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+MonChanRestart = namedtuple('MonChanRestart', ['parity_fail', 'parity_erasable', 'tc_trap', 'rupt_lock', 'night_watchman', 'voltage_fail', 'counter_fail', 'scaler_fail', 'scaler_double'])
+MonChanRestart.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadSimFixed = namedtuple('ReadSimFixed', ['addr'])
 ReadSimFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 SimFixed = namedtuple('SimFixed', ['addr', 'data'])
@@ -367,6 +371,7 @@ class DSKY(object):
     Status = 0x000B
 class MonChan(object):
     FEXT = 0x0007
+    Restart = 0x003F
 class Control(object):
     Start = 0x0000
     Stop = 0x0001
@@ -507,6 +512,9 @@ def _pack_ReadFixed(msg):
 
 def _pack_ReadMonChanFEXT(msg):
     return _pack_read_msg(AddressGroup.MonChan, MonChan.FEXT)
+
+def _pack_ReadMonChanRestart(msg):
+    return _pack_read_msg(AddressGroup.MonChan, MonChan.Restart)
 
 def _pack_ReadSimFixed(msg):
     return _pack_read_msg(AddressGroup.SimFixed, msg.addr)
@@ -1007,6 +1015,19 @@ def _unpack_MonChanFEXT(data):
         fext = (data >> 4) & 0x0007,
     )
 
+def _unpack_MonChanRestart(data):
+    return MonChanRestart(
+        parity_fail = (data >> 0) & 0x0001,
+        parity_erasable = (data >> 1) & 0x0001,
+        tc_trap = (data >> 2) & 0x0001,
+        rupt_lock = (data >> 3) & 0x0001,
+        night_watchman = (data >> 4) & 0x0001,
+        voltage_fail = (data >> 5) & 0x0001,
+        counter_fail = (data >> 6) & 0x0001,
+        scaler_fail = (data >> 7) & 0x0001,
+        scaler_double = (data >> 8) & 0x0001,
+    )
+
 def _unpack_SimFixed(addr, data):
     return SimFixed(addr=addr, data=data)
 
@@ -1249,6 +1270,7 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg3H): _unpack_DSKYReg3H,
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Status): _unpack_DSKYStatus,
     (DATA_FLAG | AddressGroup.MonChan, MonChan.FEXT): _unpack_MonChanFEXT,
+    (DATA_FLAG | AddressGroup.MonChan, MonChan.Restart): _unpack_MonChanRestart,
     (DATA_FLAG | AddressGroup.Control, Control.Stop): _unpack_ControlStop,
     (DATA_FLAG | AddressGroup.Control, Control.StopCause): _unpack_ControlStopCause,
     (DATA_FLAG | AddressGroup.Control, Control.MNHRPT): _unpack_ControlMNHRPT,
