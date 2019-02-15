@@ -18,6 +18,7 @@ module agc_fixed(
     output reg [15:1] periph_bb,
     output reg [16:1] periph_data,
     input wire [16:1] periph_read_data,
+    input wire periph_read_parity,
     input wire periph_complete,
 
     input wire [7:5] fext
@@ -32,7 +33,7 @@ reg [1:0] state;
 reg [1:0] next_state;
 
 assign read_done = (state == READ_FIXED) & periph_complete;;
-assign data_out = (state == COMPLETE) ? periph_read_data : 16'b0;
+assign data_out = (state == COMPLETE) ? {periph_read_data[16], periph_read_data[14:1], periph_read_parity} : 16'b0;
 
 wire [7:5] cmd_fext;
 wire [15:11] cmd_fb;

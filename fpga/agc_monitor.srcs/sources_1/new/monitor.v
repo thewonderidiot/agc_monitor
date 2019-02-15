@@ -483,6 +483,7 @@ wire [16:1] periph_data;
 assign periph_data = ctrl_periph_data | agc_fixed_periph_data;
 wire [16:1] mdt_periph;
 wire [16:1] periph_read_data;
+wire periph_read_parity;
 peripheral_instructions periph_insts(
     .clk(clk),
     .rst_n(rst_n),
@@ -491,6 +492,7 @@ peripheral_instructions periph_insts(
     .mt(mt),
     .mst(mst),
     .mwl(mwl),
+    .msp(msp),
 
     .inhibit_mstp(inhibit_mstp),
     .inhibit_ws(inhibit_ws),
@@ -510,6 +512,7 @@ peripheral_instructions periph_insts(
     .data(periph_data),
 
     .read_data(periph_read_data),
+    .read_parity(periph_read_parity),
     .complete(periph_complete),
 
     .mtcsai(mtcsai),
@@ -540,6 +543,7 @@ agc_fixed fixed_reader(
     .periph_bb(agc_fixed_periph_bb),
     .periph_data(agc_fixed_periph_data),
     .periph_read_data(periph_read_data),
+    .periph_read_parity(periph_read_parity),
     .periph_complete(periph_complete),
 
     .fext(fext)

@@ -10,6 +10,7 @@ module peripheral_instructions(
     input wire [12:1] mt,
     input wire [3:1] mst,
     input wire [16:1] mwl,
+    input wire msp,
 
     output wire inhibit_mstp,
     output reg inhibit_ws,
@@ -29,6 +30,7 @@ module peripheral_instructions(
     input wire [15:0] data,
 
     output reg [16:1] read_data,
+    output reg read_parity,
     output wire complete,
 
     output wire mtcsai,
@@ -66,6 +68,7 @@ reg [15:0] req_data;
 reg [15:0] req_data_q;
 
 reg [15:0] read_data_q;
+reg read_parity_q;
 
 assign mtcsai = request[0];
 assign mrdch = request[1];
@@ -95,13 +98,17 @@ end
 always @(*) begin
     mdt = 16'b0;
     read_data_q = read_data;
+    read_parity_q = read_parity;
     case (state)
     READ,LOAD: begin
         if (mst == 3'd0) begin
             if (mt[4]) mdt = {req_bb[15], req_bb};
             if (mt[8]) mdt = {4'b0, req_s};
         end else begin
-            if ((state == READ) & mt[7]) read_data_q = mwl;
+            if ((state == READ) & mt[7]) begin
+                read_data_q = mwl;
+                read_parity_q = msp;
+            end
             if ((state == LOAD) & (mt[4] | mt[9])) mdt = req_data;
         end
     end
@@ -178,12 +185,14 @@ always @(posedge clk or negedge rst_n) begin
         req_s <= 12'b0;
         read_data <= 16'b0;
         req_data <= 16'b0;
+        read_parity <= 1'b0;
     end else begin
         state <= next_state;
         request <= request_q;
         req_bb <= req_bb_q;
         req_s <= req_s_q;
         read_data <= read_data_q;
+        read_parity <= read_parity_q;
         req_data <= req_data_q;
     end
 end
