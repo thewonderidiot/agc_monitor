@@ -33,16 +33,7 @@ class DSKY(QWidget):
         usbif.poll(um.ReadDSKYReg3H())
         usbif.poll(um.ReadDSKYStatus())
 
-        usbif.subscribe(self, um.DSKYProg)
-        usbif.subscribe(self, um.DSKYVerb)
-        usbif.subscribe(self, um.DSKYNoun)
-        usbif.subscribe(self, um.DSKYReg1L)
-        usbif.subscribe(self, um.DSKYReg1H)
-        usbif.subscribe(self, um.DSKYReg2L)
-        usbif.subscribe(self, um.DSKYReg2H)
-        usbif.subscribe(self, um.DSKYReg3L)
-        usbif.subscribe(self, um.DSKYReg3H)
-        usbif.subscribe(self, um.DSKYStatus)
+        usbif.listen(self)
 
     def handle_msg(self, msg):
         if isinstance(msg, um.DSKYProg):

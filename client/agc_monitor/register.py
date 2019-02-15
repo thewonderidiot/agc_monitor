@@ -18,17 +18,19 @@ class Register(QWidget):
         read_cmd = getattr(um, 'ReadMonReg' + name)
         self._data_msg = getattr(um, 'MonReg' + name)
         usbif.poll(read_cmd())
-        usbif.subscribe(self, self._data_msg)
+        usbif.listen(self)
         if has_parity:
             usbif.poll(um.ReadMonRegParity())
-            usbif.subscribe(self, um.MonRegParity)
             self._gp = name.lower() + '_gp'
             self._sp = name.lower() + '_sp'
+        else:
+            self._gp = None
+            self._sp = None
 
     def handle_msg(self, msg):
         if isinstance(msg, self._data_msg):
             self.set_value(msg[0])
-        elif isinstance(msg, um.MonRegParity):
+        elif isinstance(msg, um.MonRegParity) and self._gp is not None:
             gp = getattr(msg, self._gp)
             sp = getattr(msg, self._sp)
             self._parity_inds[0].set_on(gp)

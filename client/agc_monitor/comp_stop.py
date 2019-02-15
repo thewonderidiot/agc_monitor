@@ -31,7 +31,7 @@ class CompStop(QFrame):
         self._setup_ui()
 
         usbif.poll(um.ReadControlStopCause())
-        usbif.subscribe(self, um.ControlStopCause)
+        usbif.listen(self)
         z = (0,)*(len(STOP_CONDS) + 1)
         usbif.send(um.WriteControlStop(*z))
 

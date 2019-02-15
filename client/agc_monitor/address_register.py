@@ -24,9 +24,7 @@ class AddressRegister(QWidget):
         usbif.poll(um.ReadMonRegBB())
         usbif.poll(um.ReadMonChanFEXT())
 
-        usbif.subscribe(self, um.MonRegS)
-        usbif.subscribe(self, um.MonRegBB)
-        usbif.subscribe(self, um.MonChanFEXT)
+        usbif.listen(self)
 
     def handle_msg(self, msg):
         if isinstance(msg, um.MonRegS):

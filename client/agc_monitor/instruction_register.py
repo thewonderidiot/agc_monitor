@@ -29,8 +29,7 @@ class InstructionRegister(QWidget):
         usbif.poll(um.ReadMonRegI())
         usbif.poll(um.ReadMonRegStatus())
 
-        usbif.subscribe(self, um.MonRegI)
-        usbif.subscribe(self, um.MonRegStatus)
+        usbif.listen(self)
 
     def handle_msg(self, msg):
         if isinstance(msg, um.MonRegI):

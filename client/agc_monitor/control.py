@@ -30,8 +30,7 @@ class Control(QFrame):
 
         usbif.poll(um.ReadMonRegStatus())
         usbif.poll(um.ReadControlStopCause())
-        usbif.subscribe(self, um.MonRegStatus)
-        usbif.subscribe(self, um.ControlStopCause)
+        usbif.listen(self)
 
         for msg in INH_SWITCHES.values():
             usbif.send(msg(0))
