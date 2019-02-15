@@ -1,5 +1,15 @@
 {
     "name": "SimErasable",
     "id": 16,
-    "type": "rw"
+    "type": "rw",
+    "fields": [
+        {
+            "name": "parity",
+            "width": 1
+        },
+        {
+            "name": "data",
+            "width": 15
+        }
+    ]
 }

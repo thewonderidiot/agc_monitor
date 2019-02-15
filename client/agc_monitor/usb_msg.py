@@ -23,9 +23,9 @@ def unpack(msg_bytes):
 
 ReadSimErasable = namedtuple('ReadSimErasable', ['addr'])
 ReadSimErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-SimErasable = namedtuple('SimErasable', ['addr', 'data'])
+SimErasable = namedtuple('SimErasable', ['addr', 'parity', 'data'])
 SimErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-WriteSimErasable = namedtuple('WriteSimErasable', ['addr', 'data'])
+WriteSimErasable = namedtuple('WriteSimErasable', ['addr', 'parity', 'data'])
 WriteSimErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadMonRegA = namedtuple('ReadMonRegA', [])
 ReadMonRegA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
@@ -129,7 +129,7 @@ DSKYStatus = namedtuple('DSKYStatus', ['vel', 'alt', 'tracker', 'restart', 'prog
 DSKYStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadFixed = namedtuple('ReadFixed', ['addr'])
 ReadFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-Fixed = namedtuple('Fixed', ['addr', 'data'])
+Fixed = namedtuple('Fixed', ['addr', 'parity', 'data'])
 Fixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadMonChanFEXT = namedtuple('ReadMonChanFEXT', [])
 ReadMonChanFEXT.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
@@ -141,9 +141,9 @@ MonChanRestart = namedtuple('MonChanRestart', ['parity_fail', 'parity_erasable',
 MonChanRestart.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadSimFixed = namedtuple('ReadSimFixed', ['addr'])
 ReadSimFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-SimFixed = namedtuple('SimFixed', ['addr', 'data'])
+SimFixed = namedtuple('SimFixed', ['addr', 'parity', 'data'])
 SimFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-WriteSimFixed = namedtuple('WriteSimFixed', ['addr', 'data'])
+WriteSimFixed = namedtuple('WriteSimFixed', ['addr', 'parity', 'data'])
 WriteSimFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadChannels = namedtuple('ReadChannels', ['addr'])
 ReadChannels.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
@@ -151,7 +151,7 @@ Channels = namedtuple('Channels', ['addr', 'data'])
 Channels.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadErasable = namedtuple('ReadErasable', ['addr'])
 ReadErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-Erasable = namedtuple('Erasable', ['addr', 'data'])
+Erasable = namedtuple('Erasable', ['addr', 'parity', 'data'])
 Erasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlStart = namedtuple('WriteControlStart', [])
 WriteControlStart.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
@@ -424,7 +424,10 @@ def _pack_ReadSimErasable(msg):
     return _pack_read_msg(AddressGroup.SimErasable, msg.addr)
 
 def _pack_WriteSimErasable(msg):
-    return _pack_write_msg(AddressGroup.SimErasable, msg.addr, msg.data)
+    data = 0x0000
+    data |= (msg.parity & 0x0001) << 0
+    data |= (msg.data & 0x7FFF) << 1
+    return _pack_write_msg(AddressGroup.SimErasable, msg.addr, data)
 
 def _pack_ReadMonRegA(msg):
     return _pack_read_msg(AddressGroup.MonReg, MonReg.A)
@@ -520,7 +523,10 @@ def _pack_ReadSimFixed(msg):
     return _pack_read_msg(AddressGroup.SimFixed, msg.addr)
 
 def _pack_WriteSimFixed(msg):
-    return _pack_write_msg(AddressGroup.SimFixed, msg.addr, msg.data)
+    data = 0x0000
+    data |= (msg.parity & 0x0001) << 0
+    data |= (msg.data & 0x7FFF) << 1
+    return _pack_write_msg(AddressGroup.SimFixed, msg.addr, data)
 
 def _pack_ReadChannels(msg):
     return _pack_read_msg(AddressGroup.Channels, msg.addr)
@@ -843,7 +849,11 @@ def _pack_WriteControlStartPreset(msg):
 
 
 def _unpack_SimErasable(addr, data):
-    return SimErasable(addr=addr, data=data)
+    return SimErasable(
+        addr = addr,
+        parity = (data >> 0) & 0x0001,
+        data = (data >> 1) & 0x7FFF,
+    )
 
 def _unpack_MonRegA(data):
     return MonRegA(
@@ -1008,7 +1018,11 @@ def _unpack_DSKYStatus(data):
     )
 
 def _unpack_Fixed(addr, data):
-    return Fixed(addr=addr, data=data)
+    return Fixed(
+        addr = addr,
+        parity = (data >> 0) & 0x0001,
+        data = (data >> 1) & 0x7FFF,
+    )
 
 def _unpack_MonChanFEXT(data):
     return MonChanFEXT(
@@ -1029,13 +1043,24 @@ def _unpack_MonChanRestart(data):
     )
 
 def _unpack_SimFixed(addr, data):
-    return SimFixed(addr=addr, data=data)
+    return SimFixed(
+        addr = addr,
+        parity = (data >> 0) & 0x0001,
+        data = (data >> 1) & 0x7FFF,
+    )
 
 def _unpack_Channels(addr, data):
-    return Channels(addr=addr, data=data)
+    return Channels(
+        addr = addr,
+        data = (data >> 0) & 0xFFFF,
+    )
 
 def _unpack_Erasable(addr, data):
-    return Erasable(addr=addr, data=data)
+    return Erasable(
+        addr = addr,
+        parity = (data >> 0) & 0x0001,
+        data = (data >> 1) & 0x7FFF,
+    )
 
 def _unpack_ControlStop(data):
     return ControlStop(

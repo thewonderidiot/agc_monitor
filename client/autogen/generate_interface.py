@@ -52,7 +52,8 @@ PACK_READ_REG_TEMPLATE = '''def _pack_Read{group}{reg}(msg):
 '''
 
 PACK_WRITE_MEM_TEMPLATE = '''def _pack_Write{group}(msg):
-    return _pack_write_msg(AddressGroup.{group}, msg.addr, msg.data)
+    data = 0x0000
+{fields}    return _pack_write_msg(AddressGroup.{group}, msg.addr, data)
 '''
 
 PACK_READ_MEM_TEMPLATE = '''def _pack_Read{group}(msg):
@@ -79,7 +80,9 @@ UNPACK_REG_TEMPLATE = '''def _unpack_{group}{reg}(data):
 '''
 
 UNPACK_MEM_TEMPLATE = '''def _unpack_{group}(addr, data):
-    return {group}(addr=addr, data=data)
+    return {group}(
+        addr = addr,
+{fields}    )
 
 '''
 
@@ -102,14 +105,13 @@ def load_specs(specs_dir):
 
     return specs
 
-def generate_message_type(name, reg, include_fields):
+def generate_message_type(name, spec, include_fields, include_addr):
     fields = []
-    if reg is None:
+    if include_addr:
         fields.append('addr')
-        if include_fields:
-            fields.append('data')
-    elif include_fields:
-        for field in reg['fields']:
+
+    if include_fields:
+        for field in spec['fields']:
             if field['name'] != 'spare':
                 fields.append(field['name'])
 
@@ -123,16 +125,16 @@ def generate_message_types(specs):
                 name = reg['name']
                 msg_suffix = group + name
                 if 'r' in reg['type']:
-                    output += generate_message_type('Read' + msg_suffix, reg, False)
-                    output += generate_message_type(msg_suffix, reg, True)
+                    output += generate_message_type('Read' + msg_suffix, reg, False, False)
+                    output += generate_message_type(msg_suffix, reg, True, False)
                 if 'w' in reg['type']:
-                    output += generate_message_type('Write' + msg_suffix, reg, True)
+                    output += generate_message_type('Write' + msg_suffix, reg, True, False)
         else:
             if 'r' in spec['type']:
-                output += generate_message_type('Read' + group, None, False)
-                output += generate_message_type(group, None, True)
+                output += generate_message_type('Read' + group, spec, False, True)
+                output += generate_message_type(group, spec, True, True)
             if 'w' in spec['type']:
-                output += generate_message_type('Write' + group, None, True)
+                output += generate_message_type('Write' + group, spec, True, True)
 
     return output
 
@@ -186,7 +188,7 @@ def generate_pack_fns(specs):
             if 'r' in spec['type']:
                 output += generate_pack_read_mem_fn(group) + '\n'
             if 'w' in spec['type']:
-                output += generate_pack_write_mem_fn(group) + '\n'
+                output += generate_pack_write_mem_fn(group, spec['fields']) + '\n'
 
     return output
 
@@ -204,8 +206,16 @@ def generate_pack_write_reg_fn(group, reg):
 def generate_pack_read_reg_fn(group, reg):
     return PACK_READ_REG_TEMPLATE.format(group=group, reg=reg['name'])
 
-def generate_pack_write_mem_fn(group):
-    return PACK_WRITE_MEM_TEMPLATE.format(group=group)
+def generate_pack_write_mem_fn(group, fields):
+    field_sets = ''
+    offset = 0
+    for field in fields:
+        if field['name'] != 'spare':
+            field_sets += '    data |= (msg.%s & 0x%04X) << %u\n' % (field['name'], 2**field['width']-1, offset)
+
+        offset += field['width']
+
+    return PACK_WRITE_MEM_TEMPLATE.format(group=group, fields=field_sets)
 
 def generate_pack_read_mem_fn(group):
     return PACK_READ_MEM_TEMPLATE.format(group=group)
@@ -219,7 +229,7 @@ def generate_unpack_fns(specs):
                     output += generate_unpack_reg_fn(group, reg)
         else:
             if 'r' in spec['type']:
-                output += generate_unpack_mem_fn(group)
+                output += generate_unpack_mem_fn(group, spec['fields'])
 
     return output
 
@@ -232,8 +242,15 @@ def generate_unpack_reg_fn(group, reg):
         offset += field['width']
     return UNPACK_REG_TEMPLATE.format(group=group, reg=reg['name'], fields=field_gets)
 
-def generate_unpack_mem_fn(group):
-    return UNPACK_MEM_TEMPLATE.format(group=group)
+def generate_unpack_mem_fn(group, fields):
+    field_gets = ''
+    offset = 0
+    for field in fields:
+        if field['name'] != 'spare':
+            field_gets += '        %s = (data >> %u) & 0x%04X,\n' % (field['name'], offset, 2**field['width']-1)
+        offset += field['width']
+
+    return UNPACK_MEM_TEMPLATE.format(group=group, fields=field_gets)
 
 def generate_unpack_dicts(specs):
     reg_entries = ''

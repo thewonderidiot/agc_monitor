@@ -1,5 +1,15 @@
 {
     "name": "SimFixed",
     "id": 17,
-    "type": "rw"
+    "type": "rw",
+    "fields": [
+        {
+            "name": "parity",
+            "width": 1
+        },
+        {
+            "name": "data",
+            "width": 15
+        }
+    ]
 }
