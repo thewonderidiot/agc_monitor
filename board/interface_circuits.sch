@@ -1,0 +1,1861 @@
+EESchema Schematic File Version 4
+LIBS:agc_monitor-cache
+EELAYER 26 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 4 4
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+Text GLabel 7350 1950 0    50   Output ~ 0
+MDT01
+Wire Wire Line
+	7350 1950 7400 1950
+Text GLabel 7350 2050 0    50   Output ~ 0
+MDT02
+Wire Wire Line
+	7350 2050 7400 2050
+Text GLabel 7350 2150 0    50   Output ~ 0
+MDT03
+Wire Wire Line
+	7350 2150 7400 2150
+Text GLabel 7350 2250 0    50   Output ~ 0
+MDT04
+Wire Wire Line
+	7350 2250 7400 2250
+Text GLabel 7350 2350 0    50   Output ~ 0
+MDT05
+Wire Wire Line
+	7350 2350 7400 2350
+Text GLabel 7350 2450 0    50   Output ~ 0
+MDT06
+Wire Wire Line
+	7350 2450 7400 2450
+Text GLabel 7350 2550 0    50   Output ~ 0
+MDT07
+Wire Wire Line
+	7350 2550 7400 2550
+Text GLabel 7350 2650 0    50   Output ~ 0
+MDT08
+Wire Wire Line
+	7350 2650 7400 2650
+Text GLabel 9150 1950 0    50   Output ~ 0
+MDT09
+Wire Wire Line
+	9150 1950 9200 1950
+Text GLabel 9150 2050 0    50   Output ~ 0
+MDT10
+Wire Wire Line
+	9150 2050 9200 2050
+Text GLabel 9150 2150 0    50   Output ~ 0
+MDT11
+Wire Wire Line
+	9150 2150 9200 2150
+Text GLabel 9150 2250 0    50   Output ~ 0
+MDT12
+Wire Wire Line
+	9150 2250 9200 2250
+Text GLabel 9150 2350 0    50   Output ~ 0
+MDT13
+Wire Wire Line
+	9150 2350 9200 2350
+Text GLabel 9150 2450 0    50   Output ~ 0
+MDT14
+Wire Wire Line
+	9150 2450 9200 2450
+Text GLabel 9150 2550 0    50   Output ~ 0
+MDT15
+Wire Wire Line
+	9150 2550 9200 2550
+Text GLabel 9150 2650 0    50   Output ~ 0
+MDT16
+Wire Wire Line
+	9150 2650 9200 2650
+Text GLabel 8250 1950 0    50   Output ~ 0
+MWL01
+Wire Wire Line
+	8300 1950 8250 1950
+Text GLabel 8250 2050 0    50   Output ~ 0
+MWL02
+Wire Wire Line
+	8300 2050 8250 2050
+Text GLabel 8250 2150 0    50   Output ~ 0
+MWL03
+Wire Wire Line
+	8300 2150 8250 2150
+Text GLabel 8250 2250 0    50   Output ~ 0
+MWL04
+Wire Wire Line
+	8300 2250 8250 2250
+Text GLabel 8250 2350 0    50   Output ~ 0
+MWL05
+Wire Wire Line
+	8300 2350 8250 2350
+Text GLabel 8250 2450 0    50   Output ~ 0
+MWL06
+Wire Wire Line
+	8300 2450 8250 2450
+Text GLabel 8250 2550 0    50   Output ~ 0
+MWL07
+Wire Wire Line
+	8300 2550 8250 2550
+Text GLabel 8250 2650 0    50   Output ~ 0
+MWL08
+Wire Wire Line
+	8300 2650 8250 2650
+Text GLabel 10050 1950 0    50   Output ~ 0
+MWL09
+Wire Wire Line
+	10100 1950 10050 1950
+Text GLabel 10050 2050 0    50   Output ~ 0
+MWL10
+Wire Wire Line
+	10100 2050 10050 2050
+Text GLabel 10050 2150 0    50   Output ~ 0
+MWL11
+Wire Wire Line
+	10100 2150 10050 2150
+Text GLabel 10050 2250 0    50   Output ~ 0
+MWL12
+Wire Wire Line
+	10100 2250 10050 2250
+Text GLabel 10050 2350 0    50   Output ~ 0
+MWL13
+Wire Wire Line
+	10100 2350 10050 2350
+Text GLabel 10050 2450 0    50   Output ~ 0
+MWL14
+Wire Wire Line
+	10100 2450 10050 2450
+Text GLabel 10050 2550 0    50   Output ~ 0
+MWL15
+Wire Wire Line
+	10100 2550 10050 2550
+Text GLabel 10050 2650 0    50   Output ~ 0
+MWL16
+Wire Wire Line
+	10100 2650 10050 2650
+Text GLabel 7350 3050 0    50   Output ~ 0
+MT01
+Wire Wire Line
+	7400 3050 7350 3050
+Text GLabel 7350 3150 0    50   Output ~ 0
+MT02
+Wire Wire Line
+	7400 3150 7350 3150
+Text GLabel 7350 3250 0    50   Output ~ 0
+MT03
+Wire Wire Line
+	7400 3250 7350 3250
+Text GLabel 7350 3350 0    50   Output ~ 0
+MT04
+Wire Wire Line
+	7400 3350 7350 3350
+Text GLabel 7350 3450 0    50   Output ~ 0
+MT05
+Wire Wire Line
+	7400 3450 7350 3450
+Text GLabel 7350 3550 0    50   Output ~ 0
+MT06
+Wire Wire Line
+	7400 3550 7350 3550
+Text GLabel 7350 3650 0    50   Output ~ 0
+MT07
+Wire Wire Line
+	7400 3650 7350 3650
+Text GLabel 7350 3750 0    50   Output ~ 0
+MT08
+Wire Wire Line
+	7400 3750 7350 3750
+Text GLabel 8250 3050 0    50   Output ~ 0
+MT09
+Wire Wire Line
+	8300 3050 8250 3050
+Text GLabel 8250 3150 0    50   Output ~ 0
+MT10
+Wire Wire Line
+	8300 3150 8250 3150
+Text GLabel 8250 3250 0    50   Output ~ 0
+MT11
+Wire Wire Line
+	8300 3250 8250 3250
+Text GLabel 8250 3350 0    50   Output ~ 0
+MT12
+Wire Wire Line
+	8300 3350 8250 3350
+Text GLabel 8250 3450 0    50   Output ~ 0
+MRULOG
+Wire Wire Line
+	8300 3450 8250 3450
+Text GLabel 8250 3550 0    50   Output ~ 0
+MWFBG
+Wire Wire Line
+	8300 3550 8250 3550
+Text GLabel 8250 3650 0    50   Output ~ 0
+MWEBG
+Wire Wire Line
+	8300 3650 8250 3650
+Text GLabel 8250 3750 0    50   Output ~ 0
+MWBBEG
+Wire Wire Line
+	8300 3750 8250 3750
+Text GLabel 9150 3050 0    50   Output ~ 0
+MST1
+Wire Wire Line
+	9200 3050 9150 3050
+Text GLabel 9150 3150 0    50   Output ~ 0
+MST2
+Wire Wire Line
+	9200 3150 9150 3150
+Text GLabel 9150 3250 0    50   Output ~ 0
+MST3
+Wire Wire Line
+	9200 3250 9150 3250
+Text GLabel 9150 3350 0    50   Output ~ 0
+MTCSA_n
+Wire Wire Line
+	9200 3350 9150 3350
+Text GLabel 9150 3450 0    50   Output ~ 0
+MWSG
+Wire Wire Line
+	9200 3450 9150 3450
+Text GLabel 9150 3550 0    50   Output ~ 0
+MWZG
+Wire Wire Line
+	9200 3550 9150 3550
+Text GLabel 9150 3650 0    50   Output ~ 0
+MWYG
+Wire Wire Line
+	9200 3650 9150 3650
+Text GLabel 9150 3750 0    50   Output ~ 0
+MWQG
+Wire Wire Line
+	9200 3750 9150 3750
+Text GLabel 10050 3050 0    50   Output ~ 0
+MWBG
+Wire Wire Line
+	10100 3050 10050 3050
+Text GLabel 10050 3150 0    50   Output ~ 0
+MSQ10
+Wire Wire Line
+	10100 3150 10050 3150
+Text GLabel 10050 3250 0    50   Output ~ 0
+MSQ11
+Wire Wire Line
+	10100 3250 10050 3250
+Text GLabel 10050 3350 0    50   Output ~ 0
+MSQ12
+Wire Wire Line
+	10100 3350 10050 3350
+Text GLabel 10050 3450 0    50   Output ~ 0
+MSQ13
+Wire Wire Line
+	10100 3450 10050 3450
+Text GLabel 10050 3550 0    50   Output ~ 0
+MSQ14
+Wire Wire Line
+	10100 3550 10050 3550
+Text GLabel 10050 3650 0    50   Output ~ 0
+MSQEXT
+Wire Wire Line
+	10100 3650 10050 3650
+Text GLabel 10050 3750 0    50   Output ~ 0
+MSQ16
+Wire Wire Line
+	10100 3750 10050 3750
+Text GLabel 7350 4150 0    50   Output ~ 0
+MBR1
+Wire Wire Line
+	7400 4150 7350 4150
+Text GLabel 7350 4250 0    50   Output ~ 0
+MBR2
+Wire Wire Line
+	7400 4250 7350 4250
+Text GLabel 7350 4350 0    50   Output ~ 0
+MIIP
+Wire Wire Line
+	7400 4350 7350 4350
+Text GLabel 7350 4450 0    50   Output ~ 0
+MCTRAL_n
+Wire Wire Line
+	7400 4450 7350 4450
+Text GLabel 7350 4550 0    50   Output ~ 0
+MTCAL_n
+Wire Wire Line
+	7400 4550 7350 4550
+Text GLabel 7350 4650 0    50   Output ~ 0
+MRPTAL_n
+Wire Wire Line
+	7400 4650 7350 4650
+Text GLabel 7350 4750 0    50   Output ~ 0
+MPAL_n
+Wire Wire Line
+	7400 4750 7350 4750
+Text GLabel 7350 4850 0    50   Output ~ 0
+MSTPIT_n
+Wire Wire Line
+	7400 4850 7350 4850
+Text GLabel 8250 4150 0    50   Output ~ 0
+MGOJAM
+Wire Wire Line
+	8300 4150 8250 4150
+Text GLabel 8250 4250 0    50   Output ~ 0
+MINHL
+Wire Wire Line
+	8300 4250 8250 4250
+Text GLabel 8250 4350 0    50   Output ~ 0
+MINKL
+Wire Wire Line
+	8300 4350 8250 4350
+Text GLabel 8250 4450 0    50   Output ~ 0
+MWLG
+Wire Wire Line
+	8300 4450 8250 4450
+Text GLabel 8250 4550 0    50   Output ~ 0
+MONWT
+Wire Wire Line
+	8300 4550 8250 4550
+Text GLabel 8250 4650 0    50   Output ~ 0
+MRSC
+Wire Wire Line
+	8300 4650 8250 4650
+Text GLabel 8250 4750 0    50   Output ~ 0
+MRLG
+Wire Wire Line
+	8300 4750 8250 4750
+Text GLabel 2150 3950 2    50   Output ~ 0
+STRT1
+Wire Wire Line
+	2100 3950 2150 3950
+Text GLabel 2150 4350 2    50   Output ~ 0
+STRT2
+Wire Wire Line
+	2100 4350 2150 4350
+Text GLabel 9150 4150 0    50   Output ~ 0
+MNHSBF
+Wire Wire Line
+	9150 4150 9200 4150
+Text GLabel 9150 4250 0    50   Output ~ 0
+MNHNC
+Wire Wire Line
+	9150 4250 9200 4250
+Text GLabel 9150 4350 0    50   Output ~ 0
+MNHRPT
+Wire Wire Line
+	9150 4350 9200 4350
+Text GLabel 9150 4450 0    50   Output ~ 0
+MTCSAI
+Wire Wire Line
+	9150 4450 9200 4450
+Text GLabel 9150 4550 0    50   Output ~ 0
+MSTRT
+Wire Wire Line
+	9150 4550 9200 4550
+Text GLabel 9150 4650 0    50   Output ~ 0
+MSTP
+Wire Wire Line
+	9150 4650 9200 4650
+Text GLabel 9150 4750 0    50   Output ~ 0
+MSBSTP
+Wire Wire Line
+	9150 4750 9200 4750
+Text GLabel 9150 4850 0    50   Output ~ 0
+MRDCH
+Wire Wire Line
+	9150 4850 9200 4850
+Text GLabel 7350 5250 0    50   Output ~ 0
+MLDCH
+Wire Wire Line
+	7350 5250 7400 5250
+Text GLabel 10050 4150 0    50   Output ~ 0
+MGP_n
+Wire Wire Line
+	10100 4150 10050 4150
+Text GLabel 10050 4250 0    50   Output ~ 0
+MSP
+Wire Wire Line
+	10100 4250 10050 4250
+Text GLabel 8250 4850 0    50   Output ~ 0
+MRGG
+Wire Wire Line
+	8300 4850 8250 4850
+Text GLabel 10050 4350 0    50   Output ~ 0
+MWAG
+Wire Wire Line
+	10100 4350 10050 4350
+Text GLabel 10050 4450 0    50   Output ~ 0
+MRAG
+Wire Wire Line
+	10100 4450 10050 4450
+Text GLabel 1750 6350 0    50   Output ~ 0
+CTRL1
+Wire Wire Line
+	1750 6350 1800 6350
+Text GLabel 1750 6450 0    50   Output ~ 0
+CTRL2
+Wire Wire Line
+	1750 6450 1800 6450
+Text GLabel 3200 5700 2    50   Output ~ 0
+MTHI
+Wire Wire Line
+	3150 5700 3200 5700
+Text GLabel 3200 5850 2    50   Input ~ 0
+MTLO
+Wire Wire Line
+	3150 5850 3200 5850
+Text GLabel 10050 4550 0    50   Output ~ 0
+MWCH
+Wire Wire Line
+	10100 4550 10050 4550
+Text GLabel 10050 4650 0    50   Output ~ 0
+MRCH
+Wire Wire Line
+	10100 4650 10050 4650
+Text GLabel 7350 5350 0    50   Output ~ 0
+MONPAR
+Wire Wire Line
+	7350 5350 7400 5350
+Text GLabel 7350 5450 0    50   Output ~ 0
+MONWBK
+Wire Wire Line
+	7350 5450 7400 5450
+Text GLabel 10050 4750 0    50   Output ~ 0
+MWG
+Wire Wire Line
+	10100 4750 10050 4750
+Text GLabel 10050 4850 0    50   Output ~ 0
+MNISQ
+Wire Wire Line
+	10100 4850 10050 4850
+Text GLabel 8250 5250 0    50   Output ~ 0
+MREQIN
+Wire Wire Line
+	8300 5250 8250 5250
+Text GLabel 8250 5350 0    50   Output ~ 0
+MWATCH_n
+Wire Wire Line
+	8300 5350 8250 5350
+Text GLabel 7350 5550 0    50   Output ~ 0
+MLOAD
+Wire Wire Line
+	7350 5550 7400 5550
+Text GLabel 7350 5650 0    50   Output ~ 0
+MREAD
+Wire Wire Line
+	7350 5650 7400 5650
+Text GLabel 8250 5450 0    50   Output ~ 0
+MON800
+Wire Wire Line
+	8300 5450 8250 5450
+Text GLabel 8250 5550 0    50   Output ~ 0
+MPIPAL_n
+Wire Wire Line
+	8300 5550 8250 5550
+Text GLabel 9150 5550 0    50   Output ~ 0
+MSP803
+Wire Wire Line
+	9150 5550 9200 5550
+Text GLabel 9150 5650 0    50   Output ~ 0
+MSP805
+Wire Wire Line
+	9150 5650 9200 5650
+Text GLabel 9150 5750 0    50   Output ~ 0
+MSP806
+Wire Wire Line
+	9150 5750 9200 5750
+Text GLabel 9150 5850 0    50   Output ~ 0
+MSP807
+Wire Wire Line
+	9150 5850 9200 5850
+Text GLabel 8250 5650 0    50   Output ~ 0
+MSCDBL_n
+Wire Wire Line
+	8300 5650 8250 5650
+Text GLabel 7350 5850 0    50   Output ~ 0
+DOSCAL
+Wire Wire Line
+	7350 5850 7400 5850
+Text GLabel 7350 5950 0    50   Output ~ 0
+DBLTST
+Wire Wire Line
+	7350 5950 7400 5950
+Text GLabel 8250 5750 0    50   Output ~ 0
+MWARNF_n
+Wire Wire Line
+	8300 5750 8250 5750
+Text GLabel 8250 5850 0    50   Output ~ 0
+OUTCOM
+Wire Wire Line
+	8300 5850 8250 5850
+Text GLabel 8250 5950 0    50   Output ~ 0
+MSCAFL_n
+Wire Wire Line
+	8300 5950 8250 5950
+Text GLabel 9150 5250 0    50   Output ~ 0
+MOSCAL_n
+Wire Wire Line
+	9200 5250 9150 5250
+Text GLabel 9150 5350 0    50   Output ~ 0
+MVFAIL_n
+Wire Wire Line
+	9200 5350 9150 5350
+Text GLabel 9150 5950 0    50   Output ~ 0
+MSP902
+Wire Wire Line
+	9150 5950 9200 5950
+Text GLabel 10050 5250 0    50   Output ~ 0
+MSP904
+Wire Wire Line
+	10050 5250 10100 5250
+Text GLabel 10050 5450 0    50   Output ~ 0
+MSP910
+Wire Wire Line
+	10050 5450 10100 5450
+Text GLabel 10050 5350 0    50   Output ~ 0
+MSP908
+Wire Wire Line
+	10050 5350 10100 5350
+Text GLabel 7350 5750 0    50   Output ~ 0
+MAMU
+Wire Wire Line
+	7350 5750 7400 5750
+Text GLabel 10050 5550 0    50   Output ~ 0
+MSP912
+Wire Wire Line
+	10050 5550 10100 5550
+Text GLabel 10050 5650 0    50   Output ~ 0
+MSP914
+Wire Wire Line
+	10050 5650 10100 5650
+Text GLabel 10050 5750 0    50   Output ~ 0
+MSP916
+Wire Wire Line
+	10050 5750 10100 5750
+$Comp
+L Device:R_Network08_US RN1
+U 1 1 5C6C5E79
+P 7600 2350
+F 0 "RN1" V 8000 2350 50  0000 C CNN
+F 1 "3.3k" V 7100 2350 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 8075 2350 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 7600 2350 50  0001 C CNN
+	1    7600 2350
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Network08_US RN2
+U 1 1 5C6CE423
+P 9400 2350
+F 0 "RN2" V 9800 2350 50  0000 C CNN
+F 1 "3.3k" V 8900 2350 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 9875 2350 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 9400 2350 50  0001 C CNN
+	1    9400 2350
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR0104
+U 1 1 5C6DEF51
+P 2400 2350
+F 0 "#PWR0104" H 2400 2100 50  0001 C CNN
+F 1 "GND" H 2405 2177 50  0000 C CNN
+F 2 "" H 2400 2350 50  0001 C CNN
+F 3 "" H 2400 2350 50  0001 C CNN
+	1    2400 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2400 2350 2400 2300
+$Comp
+L Device:R_US R3
+U 1 1 5C7085EB
+P 1600 850
+F 0 "R3" V 1500 850 50  0000 C CNN
+F 1 "0" V 1700 850 50  0000 C CNN
+F 2 "" V 1640 840 50  0001 C CNN
+F 3 "~" H 1600 850 50  0001 C CNN
+	1    1600 850 
+	0    1    1    0   
+$EndComp
+Text Notes 1400 1000 0    50   ~ 0
+DNP
+Wire Wire Line
+	1850 1500 1900 1500
+Wire Wire Line
+	1450 850  1400 850 
+Text GLabel 1400 850  0    50   Input ~ 0
+EN_3V3_AGC
+$Comp
+L Device:L L2
+U 1 1 5C722359
+P 850 1300
+F 0 "L2" V 950 1300 50  0000 C CNN
+F 1 "8.2uH" V 800 1300 50  0000 C CNN
+F 2 "" H 850 1300 50  0001 C CNN
+F 3 "~" H 850 1300 50  0001 C CNN
+	1    850  1300
+	0    -1   -1   0   
+$EndComp
+$Comp
+L agc_monitor:BPLSSW #PWR0105
+U 1 1 5C72AEDD
+P 650 1250
+F 0 "#PWR0105" H 650 1100 50  0001 C CNN
+F 1 "BPLSSW" H 650 1400 50  0000 C CNN
+F 2 "" H 650 1250 50  0001 C CNN
+F 3 "" H 650 1250 50  0001 C CNN
+	1    650  1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	650  1250 650  1300
+Wire Wire Line
+	650  1300 700  1300
+$Comp
+L Device:CP1_Small C1
+U 1 1 5C73CBD2
+P 1050 1600
+F 0 "C1" H 850 1650 50  0000 L CNN
+F 1 "6.8uF" H 750 1550 50  0000 L CNN
+F 2 "" H 1050 1600 50  0001 C CNN
+F 3 "~" H 1050 1600 50  0001 C CNN
+	1    1050 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1000 1300 1050 1300
+Wire Wire Line
+	1050 1300 1050 1500
+Wire Wire Line
+	1050 1300 1650 1300
+Wire Wire Line
+	1650 1300 1650 1500
+Connection ~ 1050 1300
+Wire Wire Line
+	1050 1700 1050 2300
+Wire Wire Line
+	1050 2300 1650 2300
+Wire Wire Line
+	1650 2300 1650 1700
+Wire Wire Line
+	1650 1300 1900 1300
+$Comp
+L Device:L L1
+U 1 1 5C7F75EF
+P 3400 1500
+F 0 "L1" V 3500 1500 50  0000 C CNN
+F 1 "68uH" V 3350 1500 50  0000 C CNN
+F 2 "" H 3400 1500 50  0001 C CNN
+F 3 "~" H 3400 1500 50  0001 C CNN
+	1    3400 1500
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:CP1_Small C3
+U 1 1 5C8157A7
+P 3950 1900
+F 0 "C3" H 4041 1946 50  0000 L CNN
+F 1 "22uF" H 4041 1855 50  0000 L CNN
+F 2 "" H 3950 1900 50  0001 C CNN
+F 3 "~" H 3950 1900 50  0001 C CNN
+	1    3950 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_Schottky_ALT D1
+U 1 1 5C8341B3
+P 3100 1900
+F 0 "D1" V 3054 1979 50  0000 L CNN
+F 1 "30V,500mA" V 3145 1979 50  0000 L CNN
+F 2 "" H 3100 1900 50  0001 C CNN
+F 3 "~" H 3100 1900 50  0001 C CNN
+	1    3100 1900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3950 2000 3950 2300
+Wire Wire Line
+	3950 2300 3650 2300
+Wire Wire Line
+	3100 2300 3100 2050
+Wire Wire Line
+	3100 2300 2400 2300
+Connection ~ 3100 2300
+Connection ~ 2400 2300
+Wire Wire Line
+	2400 2300 2400 1900
+Connection ~ 1650 1300
+Wire Wire Line
+	1850 1500 1850 850 
+Wire Wire Line
+	1850 850  1750 850 
+Wire Wire Line
+	1650 2300 2400 2300
+Connection ~ 1650 2300
+$Comp
+L Device:C_Small C4
+U 1 1 5C90E3F0
+P 3100 1350
+F 0 "C4" H 3150 1250 50  0000 C CNN
+F 1 "100nF" H 2950 1250 50  0000 C CNN
+F 2 "" H 3100 1350 50  0001 C CNN
+F 3 "~" H 3100 1350 50  0001 C CNN
+	1    3100 1350
+	-1   0    0    1   
+$EndComp
+$Comp
+L agc_monitor:+3V3_AGC #PWR0106
+U 1 1 5C9611AB
+P 3950 1100
+F 0 "#PWR0106" H 3950 950 50  0001 C CNN
+F 1 "+3V3_AGC" H 3950 1250 50  0000 C CNN
+F 2 "" H 3950 1100 50  0001 C CNN
+F 3 "" H 3950 1100 50  0001 C CNN
+	1    3950 1100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_BJT:MMBT3904 Q1
+U 1 1 5C96DCC2
+P 2000 5550
+F 0 "Q1" H 2191 5596 50  0000 L CNN
+F 1 "MMBT3904" H 2191 5505 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 2200 5475 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 2000 5550 50  0001 L CNN
+	1    2000 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0107
+U 1 1 5C96DE18
+P 2100 5800
+F 0 "#PWR0107" H 2100 5550 50  0001 C CNN
+F 1 "GND" H 2105 5627 50  0000 C CNN
+F 2 "" H 2100 5800 50  0001 C CNN
+F 3 "" H 2100 5800 50  0001 C CNN
+	1    2100 5800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2100 5800 2100 5750
+$Comp
+L Device:R_US R13
+U 1 1 5C979FF6
+P 1600 5550
+F 0 "R13" V 1395 5550 50  0000 C CNN
+F 1 "1.5k" V 1486 5550 50  0000 C CNN
+F 2 "" V 1640 5540 50  0001 C CNN
+F 3 "~" H 1600 5550 50  0001 C CNN
+	1    1600 5550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1750 5550 1800 5550
+Text GLabel 1400 5550 0    50   Input ~ 0
+SIGNY
+Wire Wire Line
+	1400 5550 1450 5550
+Text GLabel 2200 5200 2    50   Output ~ 0
+SIGNY_n
+Wire Wire Line
+	2100 5200 2200 5200
+Wire Wire Line
+	2100 5200 2100 5350
+$Comp
+L power:GND #PWR0108
+U 1 1 5C9D4435
+P 1750 6600
+F 0 "#PWR0108" H 1750 6350 50  0001 C CNN
+F 1 "GND" H 1755 6427 50  0000 C CNN
+F 2 "" H 1750 6600 50  0001 C CNN
+F 3 "" H 1750 6600 50  0001 C CNN
+	1    1750 6600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1750 6600 1750 6550
+Wire Wire Line
+	1800 6550 1750 6550
+$Comp
+L agc_monitor:+3V3_AGC #PWR0109
+U 1 1 5CA4B983
+P 5200 1250
+F 0 "#PWR0109" H 5200 1100 50  0001 C CNN
+F 1 "+3V3_AGC" H 5200 1400 50  0000 C CNN
+F 2 "" H 5200 1250 50  0001 C CNN
+F 3 "" H 5200 1250 50  0001 C CNN
+	1    5200 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5200 1250 5200 1300
+Wire Wire Line
+	5200 1300 5000 1300
+Wire Wire Line
+	5000 1300 5000 1350
+$Comp
+L agc_monitor:+3V3_FPGA #PWR0110
+U 1 1 5CA72801
+P 4600 1250
+F 0 "#PWR0110" H 4600 1100 50  0001 C CNN
+F 1 "+3V3_FPGA" H 4600 1400 50  0000 C CNN
+F 2 "" H 4600 1250 50  0001 C CNN
+F 3 "" H 4600 1250 50  0001 C CNN
+	1    4600 1250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4600 1250 4600 1300
+Wire Wire Line
+	4600 1300 4800 1300
+Wire Wire Line
+	4800 1300 4800 1350
+$Comp
+L agc_monitor:+3V3_IO #PWR0111
+U 1 1 5CA8D403
+P 4900 1100
+F 0 "#PWR0111" H 4900 950 50  0001 C CNN
+F 1 "+3V3_IO" H 4900 1250 50  0000 C CNN
+F 2 "" H 4900 1100 50  0001 C CNN
+F 3 "" H 4900 1100 50  0001 C CNN
+	1    4900 1100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4900 1100 4900 1350
+$Comp
+L agc_monitor:+3V3_IO #PWR0112
+U 1 1 5CAEB7E2
+P 7800 1900
+F 0 "#PWR0112" H 7800 1750 50  0001 C CNN
+F 1 "+3V3_IO" H 7800 2050 50  0000 C CNN
+F 2 "" H 7800 1900 50  0001 C CNN
+F 3 "" H 7800 1900 50  0001 C CNN
+	1    7800 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7800 1900 7800 1950
+$Comp
+L agc_monitor:+3V3_IO #PWR0113
+U 1 1 5CB147BE
+P 9600 1900
+F 0 "#PWR0113" H 9600 1750 50  0001 C CNN
+F 1 "+3V3_IO" H 9600 2050 50  0000 C CNN
+F 2 "" H 9600 1900 50  0001 C CNN
+F 3 "" H 9600 1900 50  0001 C CNN
+	1    9600 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9600 1900 9600 1950
+$Comp
+L Device:R_Network08_US RN3
+U 1 1 5CBBC2DD
+P 8500 2350
+F 0 "RN3" V 8900 2350 50  0000 C CNN
+F 1 "3.3k" V 8000 2350 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 8975 2350 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 8500 2350 50  0001 C CNN
+	1    8500 2350
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0114
+U 1 1 5CBBC2E3
+P 8700 1900
+F 0 "#PWR0114" H 8700 1750 50  0001 C CNN
+F 1 "+3V3_IO" H 8700 2050 50  0000 C CNN
+F 2 "" H 8700 1900 50  0001 C CNN
+F 3 "" H 8700 1900 50  0001 C CNN
+	1    8700 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8700 1900 8700 1950
+$Comp
+L Device:R_Network08_US RN4
+U 1 1 5CBE66FC
+P 10300 2350
+F 0 "RN4" V 10700 2350 50  0000 C CNN
+F 1 "3.3k" V 9800 2350 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 10775 2350 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 10300 2350 50  0001 C CNN
+	1    10300 2350
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0115
+U 1 1 5CBE6702
+P 10500 1900
+F 0 "#PWR0115" H 10500 1750 50  0001 C CNN
+F 1 "+3V3_IO" H 10500 2050 50  0000 C CNN
+F 2 "" H 10500 1900 50  0001 C CNN
+F 3 "" H 10500 1900 50  0001 C CNN
+	1    10500 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10500 1900 10500 1950
+$Comp
+L Device:R_Network08_US RN5
+U 1 1 5CC034EB
+P 7600 3450
+F 0 "RN5" V 8000 3450 50  0000 C CNN
+F 1 "3.3k" V 7100 3450 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 8075 3450 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 7600 3450 50  0001 C CNN
+	1    7600 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0116
+U 1 1 5CC034F1
+P 7800 3000
+F 0 "#PWR0116" H 7800 2850 50  0001 C CNN
+F 1 "+3V3_IO" H 7800 3150 50  0000 C CNN
+F 2 "" H 7800 3000 50  0001 C CNN
+F 3 "" H 7800 3000 50  0001 C CNN
+	1    7800 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7800 3000 7800 3050
+$Comp
+L Device:R_Network08_US RN6
+U 1 1 5CC2EB15
+P 8500 3450
+F 0 "RN6" V 8900 3450 50  0000 C CNN
+F 1 "3.3k" V 8000 3450 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 8975 3450 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 8500 3450 50  0001 C CNN
+	1    8500 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0117
+U 1 1 5CC2EB1B
+P 8700 3000
+F 0 "#PWR0117" H 8700 2850 50  0001 C CNN
+F 1 "+3V3_IO" H 8700 3150 50  0000 C CNN
+F 2 "" H 8700 3000 50  0001 C CNN
+F 3 "" H 8700 3000 50  0001 C CNN
+	1    8700 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8700 3000 8700 3050
+$Comp
+L Device:R_Network08_US RN7
+U 1 1 5CC5BD90
+P 9400 3450
+F 0 "RN7" V 9800 3450 50  0000 C CNN
+F 1 "3.3k" V 8900 3450 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 9875 3450 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 9400 3450 50  0001 C CNN
+	1    9400 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0118
+U 1 1 5CC5BD96
+P 9600 3000
+F 0 "#PWR0118" H 9600 2850 50  0001 C CNN
+F 1 "+3V3_IO" H 9600 3150 50  0000 C CNN
+F 2 "" H 9600 3000 50  0001 C CNN
+F 3 "" H 9600 3000 50  0001 C CNN
+	1    9600 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9600 3000 9600 3050
+$Comp
+L Device:R_Network08_US RN8
+U 1 1 5CC6AA7F
+P 10300 3450
+F 0 "RN8" V 10700 3450 50  0000 C CNN
+F 1 "3.3k" V 9800 3450 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 10775 3450 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 10300 3450 50  0001 C CNN
+	1    10300 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0119
+U 1 1 5CC6AA85
+P 10500 3000
+F 0 "#PWR0119" H 10500 2850 50  0001 C CNN
+F 1 "+3V3_IO" H 10500 3150 50  0000 C CNN
+F 2 "" H 10500 3000 50  0001 C CNN
+F 3 "" H 10500 3000 50  0001 C CNN
+	1    10500 3000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10500 3000 10500 3050
+$Comp
+L agc_monitor:EE2-12NU K1
+U 1 1 5CC99E29
+P 1450 3900
+F 0 "K1" V 2150 3900 50  0000 C CNN
+F 1 "EE2-12NU" V 824 3900 50  0000 C CNN
+F 2 "" H 1450 3900 50  0001 C CNN
+F 3 "" H 1450 3900 50  0001 C CNN
+	1    1450 3900
+	0    -1   1    0   
+$EndComp
+$Comp
+L Device:R_US R6
+U 1 1 5CCA8F6D
+P 1950 3950
+F 0 "R6" V 1850 3950 50  0000 C CNN
+F 1 "0" V 2050 3950 50  0000 C CNN
+F 2 "" V 1990 3940 50  0001 C CNN
+F 3 "~" H 1950 3950 50  0001 C CNN
+	1    1950 3950
+	0    1    1    0   
+$EndComp
+NoConn ~ 1150 3850
+NoConn ~ 1150 4250
+Wire Wire Line
+	1800 3950 1750 3950
+$Comp
+L Device:R_US R7
+U 1 1 5CD7AB2D
+P 1950 4350
+F 0 "R7" V 1850 4350 50  0000 C CNN
+F 1 "0" V 2050 4350 50  0000 C CNN
+F 2 "" V 1990 4340 50  0001 C CNN
+F 3 "~" H 1950 4350 50  0001 C CNN
+	1    1950 4350
+	0    1    1    0   
+$EndComp
+Text Notes 2000 4500 0    50   ~ 0
+DNP
+Wire Wire Line
+	1800 4350 1750 4350
+Wire Wire Line
+	1150 4050 1100 4050
+Wire Wire Line
+	1100 4050 1100 4450
+$Comp
+L power:GND #PWR0120
+U 1 1 5CDB8A6B
+P 1100 4550
+F 0 "#PWR0120" H 1100 4300 50  0001 C CNN
+F 1 "GND" H 1105 4377 50  0000 C CNN
+F 2 "" H 1100 4550 50  0001 C CNN
+F 3 "" H 1100 4550 50  0001 C CNN
+	1    1100 4550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1150 4450 1100 4450
+Connection ~ 1100 4450
+Wire Wire Line
+	1100 4450 1100 4550
+$Comp
+L agc_monitor:BPLSSW #PWR0121
+U 1 1 5CEDF83A
+P 1100 3100
+F 0 "#PWR0121" H 1100 2950 50  0001 C CNN
+F 1 "BPLSSW" H 1100 3250 50  0000 C CNN
+F 2 "" H 1100 3100 50  0001 C CNN
+F 3 "" H 1100 3100 50  0001 C CNN
+	1    1100 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_ALT D2
+U 1 1 5CEF109A
+P 1450 3150
+F 0 "D2" H 1450 3274 50  0000 C CNN
+F 1 "D_ALT" H 1450 3275 50  0001 C CNN
+F 2 "" H 1450 3150 50  0001 C CNN
+F 3 "~" H 1450 3150 50  0001 C CNN
+	1    1450 3150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1150 3550 1100 3550
+Wire Wire Line
+	1100 3550 1100 3150
+Wire Wire Line
+	1100 3150 1300 3150
+Wire Wire Line
+	1600 3150 1800 3150
+Wire Wire Line
+	1800 3150 1800 3550
+Wire Wire Line
+	1800 3550 1750 3550
+Wire Wire Line
+	1100 3100 1100 3150
+Connection ~ 1100 3150
+$Comp
+L Transistor_BJT:MMBT3904 Q2
+U 1 1 5CF3B012
+P 2450 3350
+F 0 "Q2" H 2640 3396 50  0000 L CNN
+F 1 "MMBT3904" H 2640 3305 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 2650 3275 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 2450 3350 50  0001 L CNN
+	1    2450 3350
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0122
+U 1 1 5CF3B018
+P 2350 3600
+F 0 "#PWR0122" H 2350 3350 50  0001 C CNN
+F 1 "GND" H 2355 3427 50  0000 C CNN
+F 2 "" H 2350 3600 50  0001 C CNN
+F 3 "" H 2350 3600 50  0001 C CNN
+	1    2350 3600
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	2350 3600 2350 3550
+$Comp
+L Device:R_US R4
+U 1 1 5CF3B01F
+P 2850 3350
+F 0 "R4" V 2645 3350 50  0000 C CNN
+F 1 "1.5k" V 2736 3350 50  0000 C CNN
+F 2 "" V 2890 3340 50  0001 C CNN
+F 3 "~" H 2850 3350 50  0001 C CNN
+	1    2850 3350
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	2700 3350 2650 3350
+Text GLabel 3050 3350 2    50   Input ~ 0
+NHSTRT_R
+Wire Wire Line
+	3050 3350 3000 3350
+$Comp
+L Device:R_US R5
+U 1 1 5D0474C2
+P 2050 3150
+F 0 "R5" V 1845 3150 50  0000 C CNN
+F 1 "150" V 1936 3150 50  0000 C CNN
+F 2 "" V 2090 3140 50  0001 C CNN
+F 3 "~" H 2050 3150 50  0001 C CNN
+	1    2050 3150
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	1800 3150 1900 3150
+Connection ~ 1800 3150
+Wire Wire Line
+	2200 3150 2350 3150
+Text GLabel 4850 4000 2    50   Output ~ 0
+NHALGA
+Wire Wire Line
+	4800 4000 4850 4000
+Text GLabel 4850 4400 2    50   Output ~ 0
+ALGA
+Wire Wire Line
+	4800 4400 4850 4400
+$Comp
+L agc_monitor:EE2-12NU K2
+U 1 1 5D0943DF
+P 4150 3950
+F 0 "K2" V 4850 3950 50  0000 C CNN
+F 1 "EE2-12NU" V 3524 3950 50  0000 C CNN
+F 2 "" H 4150 3950 50  0001 C CNN
+F 3 "" H 4150 3950 50  0001 C CNN
+	1    4150 3950
+	0    -1   1    0   
+$EndComp
+$Comp
+L Device:R_US R11
+U 1 1 5D0943E5
+P 4650 4000
+F 0 "R11" V 4550 4000 50  0000 C CNN
+F 1 "0" V 4750 4000 50  0000 C CNN
+F 2 "" V 4690 3990 50  0001 C CNN
+F 3 "~" H 4650 4000 50  0001 C CNN
+	1    4650 4000
+	0    1    1    0   
+$EndComp
+NoConn ~ 3850 4300
+Wire Wire Line
+	4500 4000 4450 4000
+$Comp
+L Device:R_US R12
+U 1 1 5D0943EE
+P 4650 4400
+F 0 "R12" V 4550 4400 50  0000 C CNN
+F 1 "0" V 4750 4400 50  0000 C CNN
+F 2 "" V 4690 4390 50  0001 C CNN
+F 3 "~" H 4650 4400 50  0001 C CNN
+	1    4650 4400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4500 4400 4450 4400
+$Comp
+L power:GND #PWR0123
+U 1 1 5D0943F8
+P 3800 4600
+F 0 "#PWR0123" H 3800 4350 50  0001 C CNN
+F 1 "GND" H 3805 4427 50  0000 C CNN
+F 2 "" H 3800 4600 50  0001 C CNN
+F 3 "" H 3800 4600 50  0001 C CNN
+	1    3800 4600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3850 4500 3800 4500
+Wire Wire Line
+	3800 4500 3800 4600
+$Comp
+L agc_monitor:BPLSSW #PWR0124
+U 1 1 5D094401
+P 3800 3150
+F 0 "#PWR0124" H 3800 3000 50  0001 C CNN
+F 1 "BPLSSW" H 3800 3300 50  0000 C CNN
+F 2 "" H 3800 3150 50  0001 C CNN
+F 3 "" H 3800 3150 50  0001 C CNN
+	1    3800 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:D_ALT D3
+U 1 1 5D094407
+P 4150 3200
+F 0 "D3" H 4150 3324 50  0000 C CNN
+F 1 "D_ALT" H 4150 3325 50  0001 C CNN
+F 2 "" H 4150 3200 50  0001 C CNN
+F 3 "~" H 4150 3200 50  0001 C CNN
+	1    4150 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3850 3600 3800 3600
+Wire Wire Line
+	3800 3600 3800 3200
+Wire Wire Line
+	3800 3200 4000 3200
+Wire Wire Line
+	4300 3200 4500 3200
+Wire Wire Line
+	4500 3200 4500 3600
+Wire Wire Line
+	4500 3600 4450 3600
+Wire Wire Line
+	3800 3150 3800 3200
+Connection ~ 3800 3200
+$Comp
+L Transistor_BJT:MMBT3904 Q3
+U 1 1 5D094415
+P 5150 3400
+F 0 "Q3" H 5340 3446 50  0000 L CNN
+F 1 "MMBT3904" H 5340 3355 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 5350 3325 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 5150 3400 50  0001 L CNN
+	1    5150 3400
+	-1   0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0125
+U 1 1 5D09441B
+P 5050 3650
+F 0 "#PWR0125" H 5050 3400 50  0001 C CNN
+F 1 "GND" H 5055 3477 50  0000 C CNN
+F 2 "" H 5050 3650 50  0001 C CNN
+F 3 "" H 5050 3650 50  0001 C CNN
+	1    5050 3650
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5050 3650 5050 3600
+$Comp
+L Device:R_US R8
+U 1 1 5D094422
+P 5550 3400
+F 0 "R8" V 5345 3400 50  0000 C CNN
+F 1 "1.5k" V 5436 3400 50  0000 C CNN
+F 2 "" V 5590 3390 50  0001 C CNN
+F 3 "~" H 5550 3400 50  0001 C CNN
+	1    5550 3400
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	5400 3400 5350 3400
+Text GLabel 5750 3400 2    50   Input ~ 0
+NHALGA_R
+Wire Wire Line
+	5750 3400 5700 3400
+$Comp
+L Device:R_US R9
+U 1 1 5D09442B
+P 4750 3200
+F 0 "R9" V 4545 3200 50  0000 C CNN
+F 1 "150" V 4636 3200 50  0000 C CNN
+F 2 "" V 4790 3190 50  0001 C CNN
+F 3 "~" H 4750 3200 50  0001 C CNN
+	1    4750 3200
+	0    -1   1    0   
+$EndComp
+Wire Wire Line
+	4500 3200 4600 3200
+Connection ~ 4500 3200
+Wire Wire Line
+	4900 3200 5050 3200
+$Comp
+L agc_monitor:+3V3_IO #PWR0126
+U 1 1 5D0A9BE5
+P 3600 3800
+F 0 "#PWR0126" H 3600 3650 50  0001 C CNN
+F 1 "+3V3_IO" H 3600 3950 50  0000 C CNN
+F 2 "" H 3600 3800 50  0001 C CNN
+F 3 "" H 3600 3800 50  0001 C CNN
+	1    3600 3800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3800 4500 3800 3900
+Wire Wire Line
+	3800 3900 3850 3900
+Connection ~ 3800 4500
+Wire Wire Line
+	3600 4100 3850 4100
+$Comp
+L Device:R_US R10
+U 1 1 5D16B168
+P 3600 3950
+F 0 "R10" H 3800 4000 50  0000 R CNN
+F 1 "3.3k" H 3800 3900 50  0000 R CNN
+F 2 "" V 3640 3940 50  0001 C CNN
+F 3 "~" H 3600 3950 50  0001 C CNN
+	1    3600 3950
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:R_Network08_US RN9
+U 1 1 5D29D5B1
+P 7600 4550
+F 0 "RN9" V 8000 4550 50  0000 C CNN
+F 1 "3.3k" V 7100 4550 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 8075 4550 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 7600 4550 50  0001 C CNN
+	1    7600 4550
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0127
+U 1 1 5D29D5B7
+P 7800 4100
+F 0 "#PWR0127" H 7800 3950 50  0001 C CNN
+F 1 "+3V3_IO" H 7800 4250 50  0000 C CNN
+F 2 "" H 7800 4100 50  0001 C CNN
+F 3 "" H 7800 4100 50  0001 C CNN
+	1    7800 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7800 4100 7800 4150
+$Comp
+L Device:R_Network08_US RN10
+U 1 1 5D2DED9D
+P 8500 4550
+F 0 "RN10" V 8900 4550 50  0000 C CNN
+F 1 "3.3k" V 8000 4550 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 8975 4550 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 8500 4550 50  0001 C CNN
+	1    8500 4550
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0128
+U 1 1 5D2DEDA3
+P 8700 4100
+F 0 "#PWR0128" H 8700 3950 50  0001 C CNN
+F 1 "+3V3_IO" H 8700 4250 50  0000 C CNN
+F 2 "" H 8700 4100 50  0001 C CNN
+F 3 "" H 8700 4100 50  0001 C CNN
+	1    8700 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8700 4100 8700 4150
+$Comp
+L Device:R_Network08_US RN11
+U 1 1 5D36407A
+P 9400 4550
+F 0 "RN11" V 9800 4550 50  0000 C CNN
+F 1 "3.3k" V 8900 4550 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 9875 4550 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 9400 4550 50  0001 C CNN
+	1    9400 4550
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0129
+U 1 1 5D364080
+P 9600 4100
+F 0 "#PWR0129" H 9600 3950 50  0001 C CNN
+F 1 "+3V3_IO" H 9600 4250 50  0000 C CNN
+F 2 "" H 9600 4100 50  0001 C CNN
+F 3 "" H 9600 4100 50  0001 C CNN
+	1    9600 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9600 4100 9600 4150
+$Comp
+L Device:R_Network08_US RN12
+U 1 1 5D37A563
+P 10300 4550
+F 0 "RN12" V 10700 4550 50  0000 C CNN
+F 1 "3.3k" V 9800 4550 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 10775 4550 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 10300 4550 50  0001 C CNN
+	1    10300 4550
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0130
+U 1 1 5D37A569
+P 10500 4100
+F 0 "#PWR0130" H 10500 3950 50  0001 C CNN
+F 1 "+3V3_IO" H 10500 4250 50  0000 C CNN
+F 2 "" H 10500 4100 50  0001 C CNN
+F 3 "" H 10500 4100 50  0001 C CNN
+	1    10500 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10500 4100 10500 4150
+$Comp
+L Device:R_Network08_US RN13
+U 1 1 5D401854
+P 7600 5650
+F 0 "RN13" V 8000 5650 50  0000 C CNN
+F 1 "3.3k" V 7100 5650 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 8075 5650 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 7600 5650 50  0001 C CNN
+	1    7600 5650
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0131
+U 1 1 5D40185A
+P 7800 5200
+F 0 "#PWR0131" H 7800 5050 50  0001 C CNN
+F 1 "+3V3_IO" H 7800 5350 50  0000 C CNN
+F 2 "" H 7800 5200 50  0001 C CNN
+F 3 "" H 7800 5200 50  0001 C CNN
+	1    7800 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7800 5200 7800 5250
+$Comp
+L Device:R_Network08_US RN14
+U 1 1 5D48AC04
+P 8500 5650
+F 0 "RN14" V 8900 5650 50  0000 C CNN
+F 1 "3.3k" V 8000 5650 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 8975 5650 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 8500 5650 50  0001 C CNN
+	1    8500 5650
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0132
+U 1 1 5D48AC0A
+P 8700 5200
+F 0 "#PWR0132" H 8700 5050 50  0001 C CNN
+F 1 "+3V3_IO" H 8700 5350 50  0000 C CNN
+F 2 "" H 8700 5200 50  0001 C CNN
+F 3 "" H 8700 5200 50  0001 C CNN
+	1    8700 5200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Network08_US RN15
+U 1 1 5D52C5C1
+P 9400 5650
+F 0 "RN15" V 9800 5650 50  0000 C CNN
+F 1 "3.3k" V 8900 5650 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 9875 5650 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 9400 5650 50  0001 C CNN
+	1    9400 5650
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0133
+U 1 1 5D52C5C7
+P 9600 5200
+F 0 "#PWR0133" H 9600 5050 50  0001 C CNN
+F 1 "+3V3_IO" H 9600 5350 50  0000 C CNN
+F 2 "" H 9600 5200 50  0001 C CNN
+F 3 "" H 9600 5200 50  0001 C CNN
+	1    9600 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9600 5200 9600 5250
+$Comp
+L Device:R_Network08_US RN16
+U 1 1 5D5B878A
+P 10300 5650
+F 0 "RN16" V 10700 5650 50  0000 C CNN
+F 1 "3.3k" V 9800 5650 50  0000 C CNN
+F 2 "Resistor_THT:R_Array_SIP9" V 10775 5650 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/31509/csc.pdf" H 10300 5650 50  0001 C CNN
+	1    10300 5650
+	0    1    1    0   
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0134
+U 1 1 5D5B8790
+P 10500 5200
+F 0 "#PWR0134" H 10500 5050 50  0001 C CNN
+F 1 "+3V3_IO" H 10500 5350 50  0000 C CNN
+F 2 "" H 10500 5200 50  0001 C CNN
+F 3 "" H 10500 5200 50  0001 C CNN
+	1    10500 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10500 5200 10500 5250
+NoConn ~ 10100 5850
+NoConn ~ 10100 5950
+Text GLabel 9150 5450 0    50   Output ~ 0
+SIGNY_n
+Wire Wire Line
+	9150 5450 9200 5450
+$Comp
+L agc_monitor:+3V3_IO #PWR0135
+U 1 1 5D71E452
+P 3150 5650
+F 0 "#PWR0135" H 3150 5500 50  0001 C CNN
+F 1 "+3V3_IO" H 3150 5800 50  0000 C CNN
+F 2 "" H 3150 5650 50  0001 C CNN
+F 3 "" H 3150 5650 50  0001 C CNN
+	1    3150 5650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3150 5650 3150 5700
+$Comp
+L Device:R_US R14
+U 1 1 5D7AD36D
+P 3150 6050
+F 0 "R14" H 3350 6100 50  0000 R CNN
+F 1 "1.2k" H 3350 6000 50  0000 R CNN
+F 2 "" V 3190 6040 50  0001 C CNN
+F 3 "~" H 3150 6050 50  0001 C CNN
+	1    3150 6050
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	3150 5900 3150 5850
+$Comp
+L power:GND #PWR0136
+U 1 1 5D7DCF44
+P 3150 6200
+F 0 "#PWR0136" H 3150 5950 50  0001 C CNN
+F 1 "GND" H 3155 6027 50  0000 C CNN
+F 2 "" H 3150 6200 50  0001 C CNN
+F 3 "" H 3150 6200 50  0001 C CNN
+	1    3150 6200
+	1    0    0    -1  
+$EndComp
+$Comp
+L agc_monitor:BPLSSW #PWR0137
+U 1 1 5D80E721
+P 5400 5550
+F 0 "#PWR0137" H 5400 5400 50  0001 C CNN
+F 1 "BPLSSW" H 5400 5700 50  0000 C CNN
+F 2 "" H 5400 5550 50  0001 C CNN
+F 3 "" H 5400 5550 50  0001 C CNN
+	1    5400 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L agc_monitor:+4SW #PWR0138
+U 1 1 5D80E885
+P 4650 5550
+F 0 "#PWR0138" H 4650 5400 50  0001 C CNN
+F 1 "+4SW" H 4650 5700 50  0000 C CNN
+F 2 "" H 4650 5550 50  0001 C CNN
+F 3 "" H 4650 5550 50  0001 C CNN
+	1    4650 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L agc_monitor:+3V3_IO #PWR0139
+U 1 1 5D826987
+P 4000 5550
+F 0 "#PWR0139" H 4000 5400 50  0001 C CNN
+F 1 "+3V3_IO" H 4000 5700 50  0000 C CNN
+F 2 "" H 4000 5550 50  0001 C CNN
+F 3 "" H 4000 5550 50  0001 C CNN
+	1    4000 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R15
+U 1 1 5D88635A
+P 4000 5700
+F 0 "R15" H 4200 5750 50  0000 R CNN
+F 1 "4.7k" H 4200 5650 50  0000 R CNN
+F 2 "" V 4040 5690 50  0001 C CNN
+F 3 "~" H 4000 5700 50  0001 C CNN
+	1    4000 5700
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R16
+U 1 1 5D8B612C
+P 4000 6100
+F 0 "R16" H 4200 6150 50  0000 R CNN
+F 1 "1.5k" H 4200 6050 50  0000 R CNN
+F 2 "" V 4040 6090 50  0001 C CNN
+F 3 "~" H 4000 6100 50  0001 C CNN
+	1    4000 6100
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4000 5850 4000 5900
+$Comp
+L power:GND #PWR0140
+U 1 1 5D8FDE42
+P 4000 6250
+F 0 "#PWR0140" H 4000 6000 50  0001 C CNN
+F 1 "GND" H 4005 6077 50  0000 C CNN
+F 2 "" H 4000 6250 50  0001 C CNN
+F 3 "" H 4000 6250 50  0001 C CNN
+	1    4000 6250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R17
+U 1 1 5D95DC55
+P 4650 5700
+F 0 "R17" H 4850 5750 50  0000 R CNN
+F 1 "4.7k" H 4850 5650 50  0000 R CNN
+F 2 "" V 4690 5690 50  0001 C CNN
+F 3 "~" H 4650 5700 50  0001 C CNN
+	1    4650 5700
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R18
+U 1 1 5D95DC5B
+P 4650 6100
+F 0 "R18" H 4850 6150 50  0000 R CNN
+F 1 "1.2k" H 4850 6050 50  0000 R CNN
+F 2 "" V 4690 6090 50  0001 C CNN
+F 3 "~" H 4650 6100 50  0001 C CNN
+	1    4650 6100
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 5850 4650 5900
+$Comp
+L power:GND #PWR0141
+U 1 1 5D95DC62
+P 4650 6250
+F 0 "#PWR0141" H 4650 6000 50  0001 C CNN
+F 1 "GND" H 4655 6077 50  0000 C CNN
+F 2 "" H 4650 6250 50  0001 C CNN
+F 3 "" H 4650 6250 50  0001 C CNN
+	1    4650 6250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R19
+U 1 1 5D975CD5
+P 5400 5700
+F 0 "R19" H 5600 5750 50  0000 R CNN
+F 1 "22k" H 5600 5650 50  0000 R CNN
+F 2 "" V 5440 5690 50  0001 C CNN
+F 3 "~" H 5400 5700 50  0001 C CNN
+	1    5400 5700
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R20
+U 1 1 5D975CDB
+P 5400 6100
+F 0 "R20" H 5600 6150 50  0000 R CNN
+F 1 "1.5k" H 5600 6050 50  0000 R CNN
+F 2 "" V 5440 6090 50  0001 C CNN
+F 3 "~" H 5400 6100 50  0001 C CNN
+	1    5400 6100
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	5400 5850 5400 5900
+$Comp
+L power:GND #PWR0142
+U 1 1 5D975CE2
+P 5400 6250
+F 0 "#PWR0142" H 5400 6000 50  0001 C CNN
+F 1 "GND" H 5405 6077 50  0000 C CNN
+F 2 "" H 5400 6250 50  0001 C CNN
+F 3 "" H 5400 6250 50  0001 C CNN
+	1    5400 6250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C2
+U 1 1 5D9C0BBE
+P 1650 1600
+F 0 "C2" H 1742 1646 50  0000 L CNN
+F 1 "4.7uF" H 1742 1555 50  0000 L CNN
+F 2 "" H 1650 1600 50  0001 C CNN
+F 3 "~" H 1650 1600 50  0001 C CNN
+	1    1650 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3100 1250 3100 1200
+Wire Wire Line
+	3100 1200 2950 1200
+Wire Wire Line
+	2950 1200 2950 1300
+Wire Wire Line
+	2950 1300 2900 1300
+Wire Wire Line
+	2900 1500 3100 1500
+Wire Wire Line
+	3100 1450 3100 1500
+Connection ~ 3100 1500
+Wire Wire Line
+	3100 1500 3250 1500
+Wire Wire Line
+	3100 1500 3100 1750
+Wire Wire Line
+	3950 1100 3950 1500
+$Comp
+L Device:R_US R1
+U 1 1 5DB5877F
+P 3650 1700
+F 0 "R1" H 3718 1746 50  0000 L CNN
+F 1 "28k" H 3718 1655 50  0000 L CNN
+F 2 "" V 3690 1690 50  0001 C CNN
+F 3 "~" H 3650 1700 50  0001 C CNN
+	1    3650 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_US R2
+U 1 1 5DB86F44
+P 3650 2100
+F 0 "R2" H 3718 2146 50  0000 L CNN
+F 1 "8.45k" H 3718 2055 50  0000 L CNN
+F 2 "" V 3690 2090 50  0001 C CNN
+F 3 "~" H 3650 2100 50  0001 C CNN
+	1    3650 2100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3650 1850 3650 1900
+Wire Wire Line
+	3650 2250 3650 2300
+Connection ~ 3650 2300
+Wire Wire Line
+	3650 2300 3100 2300
+Wire Wire Line
+	3550 1500 3650 1500
+Wire Wire Line
+	3650 1500 3650 1550
+Wire Wire Line
+	3650 1500 3950 1500
+Connection ~ 3650 1500
+Connection ~ 3950 1500
+Wire Wire Line
+	3950 1500 3950 1800
+Wire Wire Line
+	3650 1900 3450 1900
+Wire Wire Line
+	3450 1900 3450 1700
+Wire Wire Line
+	3450 1700 2900 1700
+Connection ~ 3650 1900
+Wire Wire Line
+	3650 1900 3650 1950
+Text Notes 2050 750  0    50   ~ 0
+AGC-derived 3.3V Source
+Text Notes 4550 750  0    50   ~ 0
+I/O Voltage Selection
+Text Notes 3950 5300 0    50   ~ 0
+ADC Inputs
+$Comp
+L Regulator_Switching:LMR16006YQ3 U1
+U 1 1 5DC7F2B5
+P 2400 1500
+F 0 "U1" H 2400 1967 50  0000 C CNN
+F 1 "LMR16006XDDC" H 2400 1876 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-6" H 2400 1000 50  0001 C CIN
+F 3 "http://www.ti.com/lit/ds/symlink/lmr16006y-q1.pdf" H 2000 1950 50  0001 C CNN
+	1    2400 1500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8700 5200 8700 5250
+Text GLabel 3950 5900 0    50   Output ~ 0
+ADC_3V3_P
+Wire Wire Line
+	3950 5900 4000 5900
+Connection ~ 4000 5900
+Wire Wire Line
+	4000 5900 4000 5950
+Text GLabel 4600 5900 0    50   Output ~ 0
+ADC_4SW_P
+Wire Wire Line
+	4650 5900 4600 5900
+Connection ~ 4650 5900
+Wire Wire Line
+	4650 5900 4650 5950
+Text GLabel 5350 5900 0    50   Output ~ 0
+ADC_BPLSSW_P
+Wire Wire Line
+	5350 5900 5400 5900
+Connection ~ 5400 5900
+Wire Wire Line
+	5400 5900 5400 5950
+Text Notes 9300 1600 2    50   ~ 0
+I/O Pullups
+Text Notes 3150 2950 2    50   ~ 0
+Inhibit Relays
+Text Notes 2100 6200 2    50   ~ 0
+PSU Control Inputs
+Text Notes 2150 5100 2    50   ~ 0
+SIGNY RTL Input
+$Comp
+L Connector_Generic:Conn_01x03 J2
+U 1 1 5EB91D30
+P 2000 6450
+F 0 "J2" H 2079 6446 50  0000 L CNN
+F 1 "Conn_01x03" H 2080 6401 50  0001 L CNN
+F 2 "" H 2000 6450 50  0001 C CNN
+F 3 "~" H 2000 6450 50  0001 C CNN
+	1    2000 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x03 J1
+U 1 1 5EBA8EA1
+P 4900 1550
+F 0 "J1" V 5000 1500 50  0000 L CNN
+F 1 "Conn_01x03" H 4980 1501 50  0001 L CNN
+F 2 "" H 4900 1550 50  0001 C CNN
+F 3 "~" H 4900 1550 50  0001 C CNN
+	1    4900 1550
+	0    1    1    0   
+$EndComp
+$EndSCHEMATC
