@@ -18,6 +18,8 @@ $Comp
 L agc_monitor:test_connector P1
 U 1 1 5C348453
 P 3500 2650
+AR Path="/5C348453" Ref="P1"  Part="1" 
+AR Path="/5C3483A0/5C348453" Ref="P1"  Part="1" 
 F 0 "P1" H 3600 3450 50  0000 L CNN
 F 1 "test_connector" H 3879 2555 50  0001 L CNN
 F 2 "agc_monitor:test_connector" H 3500 2650 50  0001 C CNN
@@ -29,6 +31,8 @@ $Comp
 L agc_monitor:test_connector P1
 U 2 1 5C34852D
 P 4700 2650
+AR Path="/5C34852D" Ref="P1"  Part="2" 
+AR Path="/5C3483A0/5C34852D" Ref="P1"  Part="2" 
 F 0 "P1" H 4800 3450 50  0000 L CNN
 F 1 "test_connector" H 5079 2555 50  0001 L CNN
 F 2 "agc_monitor:test_connector" H 4700 2650 50  0001 C CNN
@@ -40,6 +44,8 @@ $Comp
 L agc_monitor:test_connector P1
 U 3 1 5C348601
 P 5800 2650
+AR Path="/5C348601" Ref="P1"  Part="3" 
+AR Path="/5C3483A0/5C348601" Ref="P1"  Part="3" 
 F 0 "P1" H 5900 3450 50  0000 L CNN
 F 1 "test_connector" H 6179 2555 50  0001 L CNN
 F 2 "agc_monitor:test_connector" H 5800 2650 50  0001 C CNN
@@ -51,6 +57,8 @@ $Comp
 L agc_monitor:test_connector P1
 U 4 1 5C348607
 P 6950 2650
+AR Path="/5C348607" Ref="P1"  Part="4" 
+AR Path="/5C3483A0/5C348607" Ref="P1"  Part="4" 
 F 0 "P1" H 7050 3450 50  0000 L CNN
 F 1 "test_connector" H 7329 2555 50  0001 L CNN
 F 2 "agc_monitor:test_connector" H 6950 2650 50  0001 C CNN
@@ -62,6 +70,8 @@ $Comp
 L agc_monitor:test_connector P1
 U 5 1 5C3486F3
 P 8000 2650
+AR Path="/5C3486F3" Ref="P1"  Part="5" 
+AR Path="/5C3483A0/5C3486F3" Ref="P1"  Part="5" 
 F 0 "P1" H 8100 3450 50  0000 L CNN
 F 1 "test_connector" H 8379 2555 50  0001 L CNN
 F 2 "agc_monitor:test_connector" H 8000 2650 50  0001 C CNN
@@ -73,6 +83,8 @@ $Comp
 L agc_monitor:test_connector P1
 U 6 1 5C3487FE
 P 4000 4550
+AR Path="/5C3487FE" Ref="P1"  Part="6" 
+AR Path="/5C3483A0/5C3487FE" Ref="P1"  Part="6" 
 F 0 "P1" H 4100 5350 50  0000 L CNN
 F 1 "test_connector" H 4379 4455 50  0001 L CNN
 F 2 "agc_monitor:test_connector" H 4000 4550 50  0001 C CNN
@@ -84,6 +96,8 @@ $Comp
 L agc_monitor:test_connector P1
 U 7 1 5C348804
 P 5250 4550
+AR Path="/5C348804" Ref="P1"  Part="7" 
+AR Path="/5C3483A0/5C348804" Ref="P1"  Part="7" 
 F 0 "P1" H 5350 5350 50  0000 L CNN
 F 1 "test_connector" H 5629 4455 50  0001 L CNN
 F 2 "agc_monitor:test_connector" H 5250 4550 50  0001 C CNN
@@ -95,6 +109,8 @@ $Comp
 L agc_monitor:test_connector P1
 U 9 1 5C348810
 P 7650 4550
+AR Path="/5C348810" Ref="P1"  Part="9" 
+AR Path="/5C3483A0/5C348810" Ref="P1"  Part="9" 
 F 0 "P1" H 7750 5350 50  0000 L CNN
 F 1 "test_connector" H 8029 4455 50  0001 L CNN
 F 2 "agc_monitor:test_connector" H 7650 4550 50  0001 C CNN
@@ -121,13 +137,6 @@ Wire Wire Line
 	7500 4050 7050 4050
 Connection ~ 7050 4050
 Wire Wire Line
-	7050 4050 7050 4250
-Wire Wire Line
-	7500 4250 7050 4250
-Connection ~ 7050 4250
-Wire Wire Line
-	7050 4250 7050 4450
-Wire Wire Line
 	7500 4450 7050 4450
 Connection ~ 7050 4450
 Wire Wire Line
@@ -135,13 +144,6 @@ Wire Wire Line
 Wire Wire Line
 	7500 4650 7050 4650
 Connection ~ 7050 4650
-Wire Wire Line
-	7050 4650 7050 4850
-Wire Wire Line
-	7500 4850 7050 4850
-Connection ~ 7050 4850
-Wire Wire Line
-	7050 4850 7050 5050
 Wire Wire Line
 	7500 5050 7050 5050
 Connection ~ 7050 5050
@@ -544,10 +546,6 @@ Text GLabel 5050 3950 0    50   Input ~ 0
 CTRL2
 Wire Wire Line
 	5050 3950 5100 3950
-Text GLabel 5050 4050 0    50   Output ~ 0
-MTHI
-Wire Wire Line
-	5100 4050 5050 4050
 Text GLabel 5050 4150 0    50   Output ~ 0
 MTLO
 Wire Wire Line
@@ -604,6 +602,8 @@ $Comp
 L agc_monitor:test_connector P1
 U 8 1 5C34880A
 P 6450 4550
+AR Path="/5C34880A" Ref="P1"  Part="8" 
+AR Path="/5C3483A0/5C34880A" Ref="P1"  Part="8" 
 F 0 "P1" H 6550 5350 50  0000 L CNN
 F 1 "test_connector" H 6829 4455 50  0001 L CNN
 F 2 "agc_monitor:test_connector" H 6450 4550 50  0001 C CNN
@@ -729,4 +729,109 @@ Wire Wire Line
 	5950 3800 5950 3950
 Wire Wire Line
 	5950 3950 6300 3950
+Wire Wire Line
+	7050 4650 7050 4850
+Wire Wire Line
+	7050 4850 7500 4850
+Connection ~ 7050 4850
+Wire Wire Line
+	7050 4850 7050 5050
+Wire Wire Line
+	7050 4050 7050 4250
+Wire Wire Line
+	7500 4250 7050 4250
+Connection ~ 7050 4250
+Wire Wire Line
+	7050 4250 7050 4450
+$Comp
+L Mechanical:MountingHole_Pad H1
+U 1 1 5C7A2299
+P 9000 3850
+F 0 "H1" H 8950 4050 50  0000 L CNN
+F 1 "MountingHole_Pad" H 9100 3810 50  0001 L CNN
+F 2 "agc_monitor:MountingHole_1004579" H 9000 3850 50  0001 C CNN
+F 3 "~" H 9000 3850 50  0001 C CNN
+	1    9000 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0160
+U 1 1 5C7A2406
+P 9300 4050
+F 0 "#PWR0160" H 9300 3800 50  0001 C CNN
+F 1 "GND" H 9300 3900 50  0000 C CNN
+F 2 "" H 9300 4050 50  0001 C CNN
+F 3 "" H 9300 4050 50  0001 C CNN
+	1    9300 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H2
+U 1 1 5C7A332F
+P 9200 3850
+F 0 "H2" H 9150 4050 50  0000 L CNN
+F 1 "MountingHole_Pad" H 9300 3810 50  0001 L CNN
+F 2 "agc_monitor:MountingHole_1004579" H 9200 3850 50  0001 C CNN
+F 3 "~" H 9200 3850 50  0001 C CNN
+	1    9200 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H3
+U 1 1 5C7AD28E
+P 9400 3850
+F 0 "H3" H 9350 4050 50  0000 L CNN
+F 1 "MountingHole_Pad" H 9500 3810 50  0001 L CNN
+F 2 "agc_monitor:MountingHole_1004579" H 9400 3850 50  0001 C CNN
+F 3 "~" H 9400 3850 50  0001 C CNN
+	1    9400 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H4
+U 1 1 5C7B71F2
+P 9600 3850
+F 0 "H4" H 9550 4050 50  0000 L CNN
+F 1 "MountingHole_Pad" H 9700 3810 50  0001 L CNN
+F 2 "agc_monitor:MountingHole_1004579" H 9600 3850 50  0001 C CNN
+F 3 "~" H 9600 3850 50  0001 C CNN
+	1    9600 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9000 3950 9000 4000
+Wire Wire Line
+	9000 4000 9200 4000
+Wire Wire Line
+	9300 4000 9300 4050
+Wire Wire Line
+	9300 4000 9400 4000
+Wire Wire Line
+	9600 4000 9600 3950
+Connection ~ 9300 4000
+Wire Wire Line
+	9400 3950 9400 4000
+Connection ~ 9400 4000
+Wire Wire Line
+	9400 4000 9600 4000
+Wire Wire Line
+	9200 3950 9200 4000
+Connection ~ 9200 4000
+Wire Wire Line
+	9200 4000 9300 4000
+$Comp
+L agc_monitor:+3V3_IO #PWR0135
+U 1 1 5D82059E
+P 4650 3850
+F 0 "#PWR0135" H 4650 3700 50  0001 C CNN
+F 1 "+3V3_IO" H 4650 4000 50  0000 C CNN
+F 2 "" H 4650 3850 50  0001 C CNN
+F 3 "" H 4650 3850 50  0001 C CNN
+	1    4650 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 3850 4650 4050
+Wire Wire Line
+	4650 4050 5100 4050
 $EndSCHEMATC

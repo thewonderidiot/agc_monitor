@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name agc_monitor)(type Legacy)(uri ${KIPRJMOD}/agc_monitor.lib)(options "")(descr ""))
+  (lib (name agc_monitor-rescue)(type Legacy)(uri ${KIPRJMOD}/agc_monitor-rescue.lib)(options "")(descr ""))
 )
