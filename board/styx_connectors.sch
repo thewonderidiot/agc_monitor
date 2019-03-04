@@ -646,7 +646,7 @@ DOSCAL
 Wire Wire Line
 	2650 5300 2700 5300
 Text GLabel 2650 6000 0    50   Output ~ 0
-NHALGA_R
+NHALGA
 Wire Wire Line
 	2650 6000 2700 6000
 Text GLabel 2650 5500 0    50   Output ~ 0
@@ -690,7 +690,7 @@ DBLTST
 Wire Wire Line
 	3800 5300 3750 5300
 Text GLabel 3800 6000 2    50   Output ~ 0
-NHSTRT_R
+NHSTRT1
 Wire Wire Line
 	3800 6000 3750 6000
 Wire Wire Line
@@ -839,7 +839,6 @@ Text GLabel 7250 4200 2    50   Input ~ 0
 MSCAFL_n
 Wire Wire Line
 	7250 4200 7200 4200
-NoConn ~ 7200 4300
 Text GLabel 7250 4400 2    50   Output ~ 0
 MDT04
 Wire Wire Line
@@ -1212,4 +1211,8 @@ Wire Wire Line
 Connection ~ 3450 3500
 Wire Wire Line
 	3450 3500 3800 3500
+Text GLabel 7250 4300 2    50   Output ~ 0
+NHSTRT2
+Wire Wire Line
+	7250 4300 7200 4300
 $EndSCHEMATC
