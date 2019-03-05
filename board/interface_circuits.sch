@@ -772,7 +772,6 @@ Text GLabel 3900 3750 0    50   Input ~ 0
 NHALGA
 Wire Wire Line
 	3900 3750 3950 3750
-NoConn ~ 9950 5850
 NoConn ~ 9950 5950
 Text GLabel 8900 5450 0    50   Output ~ 0
 SIGNY_n
@@ -2193,4 +2192,8 @@ Wire Wire Line
 Connection ~ 2550 2050
 Wire Wire Line
 	2550 2050 2800 2050
+Text GLabel 9900 5850 0    50   Output ~ 0
+NHALGA
+Wire Wire Line
+	9900 5850 9950 5850
 $EndSCHEMATC
