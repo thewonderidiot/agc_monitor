@@ -14,380 +14,378 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
-Text GLabel 6900 1950 0    50   Output ~ 0
+Text GLabel 9900 2550 0    50   Output ~ 0
 MDT01
 Wire Wire Line
-	6900 1950 6950 1950
-Text GLabel 6900 2050 0    50   Output ~ 0
+	9900 2550 9950 2550
+Text GLabel 9900 2450 0    50   Output ~ 0
 MDT02
 Wire Wire Line
-	6900 2050 6950 2050
-Text GLabel 6900 2150 0    50   Output ~ 0
+	9900 2450 9950 2450
+Text GLabel 8900 2650 0    50   Output ~ 0
 MDT03
 Wire Wire Line
-	6900 2150 6950 2150
-Text GLabel 6900 2250 0    50   Output ~ 0
+	8900 2650 8950 2650
+Text GLabel 8900 2550 0    50   Output ~ 0
 MDT04
 Wire Wire Line
-	6900 2250 6950 2250
-Text GLabel 6900 2350 0    50   Output ~ 0
+	8900 2550 8950 2550
+Text GLabel 7900 2650 0    50   Output ~ 0
 MDT05
 Wire Wire Line
-	6900 2350 6950 2350
-Text GLabel 6900 2450 0    50   Output ~ 0
+	7900 2650 7950 2650
+Text GLabel 7900 2550 0    50   Output ~ 0
 MDT06
 Wire Wire Line
-	6900 2450 6950 2450
-Text GLabel 6900 2550 0    50   Output ~ 0
+	7900 2550 7950 2550
+Text GLabel 7900 1950 0    50   Output ~ 0
 MDT07
 Wire Wire Line
-	6900 2550 6950 2550
+	7900 1950 7950 1950
 Text GLabel 6900 2650 0    50   Output ~ 0
 MDT08
 Wire Wire Line
 	6900 2650 6950 2650
-Text GLabel 8900 1950 0    50   Output ~ 0
+Text GLabel 9900 3750 0    50   Output ~ 0
 MDT09
 Wire Wire Line
-	8900 1950 8950 1950
-Text GLabel 8900 2050 0    50   Output ~ 0
+	9900 3750 9950 3750
+Text GLabel 9900 3650 0    50   Output ~ 0
 MDT10
 Wire Wire Line
-	8900 2050 8950 2050
-Text GLabel 8900 2150 0    50   Output ~ 0
+	9900 3650 9950 3650
+Text GLabel 8900 3650 0    50   Output ~ 0
 MDT11
 Wire Wire Line
-	8900 2150 8950 2150
-Text GLabel 8900 2250 0    50   Output ~ 0
+	8900 3650 8950 3650
+Text GLabel 8900 3550 0    50   Output ~ 0
 MDT12
 Wire Wire Line
-	8900 2250 8950 2250
-Text GLabel 8900 2350 0    50   Output ~ 0
+	8900 3550 8950 3550
+Text GLabel 7900 3650 0    50   Output ~ 0
 MDT13
 Wire Wire Line
-	8900 2350 8950 2350
-Text GLabel 8900 2450 0    50   Output ~ 0
+	7900 3650 7950 3650
+Text GLabel 7900 3550 0    50   Output ~ 0
 MDT14
 Wire Wire Line
-	8900 2450 8950 2450
-Text GLabel 8900 2550 0    50   Output ~ 0
+	7900 3550 7950 3550
+Text GLabel 6900 3550 0    50   Output ~ 0
 MDT15
 Wire Wire Line
-	8900 2550 8950 2550
-Text GLabel 8900 2650 0    50   Output ~ 0
+	6900 3550 6950 3550
+Text GLabel 6900 3450 0    50   Output ~ 0
 MDT16
 Wire Wire Line
-	8900 2650 8950 2650
-Text GLabel 7900 1950 0    50   Output ~ 0
+	6900 3450 6950 3450
+Text GLabel 9900 2650 0    50   Output ~ 0
 MWL01
 Wire Wire Line
-	7950 1950 7900 1950
-Text GLabel 7900 2050 0    50   Output ~ 0
+	9950 2650 9900 2650
+Text GLabel 9900 2250 0    50   Output ~ 0
 MWL02
 Wire Wire Line
-	7950 2050 7900 2050
-Text GLabel 7900 2150 0    50   Output ~ 0
+	9950 2250 9900 2250
+Text GLabel 9900 2150 0    50   Output ~ 0
 MWL03
 Wire Wire Line
-	7950 2150 7900 2150
-Text GLabel 7900 2250 0    50   Output ~ 0
+	9950 2150 9900 2150
+Text GLabel 8900 2250 0    50   Output ~ 0
 MWL04
 Wire Wire Line
-	7950 2250 7900 2250
-Text GLabel 7900 2350 0    50   Output ~ 0
+	8950 2250 8900 2250
+Text GLabel 8900 2150 0    50   Output ~ 0
 MWL05
 Wire Wire Line
-	7950 2350 7900 2350
-Text GLabel 7900 2450 0    50   Output ~ 0
+	8950 2150 8900 2150
+Text GLabel 7900 2250 0    50   Output ~ 0
 MWL06
 Wire Wire Line
-	7950 2450 7900 2450
-Text GLabel 7900 2550 0    50   Output ~ 0
+	7950 2250 7900 2250
+Text GLabel 7900 2150 0    50   Output ~ 0
 MWL07
 Wire Wire Line
-	7950 2550 7900 2550
-Text GLabel 7900 2650 0    50   Output ~ 0
+	7950 2150 7900 2150
+Text GLabel 6900 2250 0    50   Output ~ 0
 MWL08
 Wire Wire Line
-	7950 2650 7900 2650
-Text GLabel 9900 1950 0    50   Output ~ 0
+	6950 2250 6900 2250
+Text GLabel 6900 2150 0    50   Output ~ 0
 MWL09
 Wire Wire Line
-	9950 1950 9900 1950
-Text GLabel 9900 2050 0    50   Output ~ 0
+	6950 2150 6900 2150
+Text GLabel 9900 3250 0    50   Output ~ 0
 MWL10
 Wire Wire Line
-	9950 2050 9900 2050
-Text GLabel 9900 2150 0    50   Output ~ 0
+	9950 3250 9900 3250
+Text GLabel 9900 3150 0    50   Output ~ 0
 MWL11
 Wire Wire Line
-	9950 2150 9900 2150
-Text GLabel 9900 2250 0    50   Output ~ 0
+	9950 3150 9900 3150
+Text GLabel 8900 3250 0    50   Output ~ 0
 MWL12
 Wire Wire Line
-	9950 2250 9900 2250
-Text GLabel 9900 2350 0    50   Output ~ 0
+	8950 3250 8900 3250
+Text GLabel 8900 3150 0    50   Output ~ 0
 MWL13
 Wire Wire Line
-	9950 2350 9900 2350
-Text GLabel 9900 2450 0    50   Output ~ 0
+	8950 3150 8900 3150
+Text GLabel 7900 3150 0    50   Output ~ 0
 MWL14
 Wire Wire Line
-	9950 2450 9900 2450
-Text GLabel 9900 2550 0    50   Output ~ 0
+	7950 3150 7900 3150
+Text GLabel 7900 3050 0    50   Output ~ 0
 MWL15
 Wire Wire Line
-	9950 2550 9900 2550
-Text GLabel 9900 2650 0    50   Output ~ 0
+	7950 3050 7900 3050
+Text GLabel 6900 3150 0    50   Output ~ 0
 MWL16
 Wire Wire Line
-	9950 2650 9900 2650
-Text GLabel 6900 3050 0    50   Output ~ 0
-MT01
-Wire Wire Line
-	6950 3050 6900 3050
-Text GLabel 6900 3150 0    50   Output ~ 0
-MT02
-Wire Wire Line
 	6950 3150 6900 3150
-Text GLabel 6900 3250 0    50   Output ~ 0
-MT03
-Wire Wire Line
-	6950 3250 6900 3250
-Text GLabel 6900 3350 0    50   Output ~ 0
-MT04
-Wire Wire Line
-	6950 3350 6900 3350
-Text GLabel 6900 3450 0    50   Output ~ 0
-MT05
-Wire Wire Line
-	6950 3450 6900 3450
-Text GLabel 6900 3550 0    50   Output ~ 0
-MT06
-Wire Wire Line
-	6950 3550 6900 3550
-Text GLabel 6900 3650 0    50   Output ~ 0
-MT07
-Wire Wire Line
-	6950 3650 6900 3650
-Text GLabel 6900 3750 0    50   Output ~ 0
-MT08
-Wire Wire Line
-	6950 3750 6900 3750
-Text GLabel 7900 3050 0    50   Output ~ 0
-MT09
-Wire Wire Line
-	7950 3050 7900 3050
-Text GLabel 7900 3150 0    50   Output ~ 0
-MT10
-Wire Wire Line
-	7950 3150 7900 3150
-Text GLabel 7900 3250 0    50   Output ~ 0
-MT11
-Wire Wire Line
-	7950 3250 7900 3250
-Text GLabel 7900 3350 0    50   Output ~ 0
-MT12
-Wire Wire Line
-	7950 3350 7900 3350
-Text GLabel 7900 3450 0    50   Output ~ 0
-MRULOG
-Wire Wire Line
-	7950 3450 7900 3450
-Text GLabel 7900 3550 0    50   Output ~ 0
-MWFBG
-Wire Wire Line
-	7950 3550 7900 3550
-Text GLabel 7900 3650 0    50   Output ~ 0
-MWEBG
-Wire Wire Line
-	7950 3650 7900 3650
-Text GLabel 7900 3750 0    50   Output ~ 0
-MWBBEG
-Wire Wire Line
-	7950 3750 7900 3750
-Text GLabel 8900 3050 0    50   Output ~ 0
-MST1
-Wire Wire Line
-	8950 3050 8900 3050
-Text GLabel 8900 3150 0    50   Output ~ 0
-MST2
-Wire Wire Line
-	8950 3150 8900 3150
-Text GLabel 8900 3250 0    50   Output ~ 0
-MST3
-Wire Wire Line
-	8950 3250 8900 3250
-Text GLabel 8900 3350 0    50   Output ~ 0
-MTCSA_n
-Wire Wire Line
-	8950 3350 8900 3350
-Text GLabel 8900 3450 0    50   Output ~ 0
-MWSG
-Wire Wire Line
-	8950 3450 8900 3450
-Text GLabel 8900 3550 0    50   Output ~ 0
-MWZG
-Wire Wire Line
-	8950 3550 8900 3550
-Text GLabel 8900 3650 0    50   Output ~ 0
-MWYG
-Wire Wire Line
-	8950 3650 8900 3650
-Text GLabel 8900 3750 0    50   Output ~ 0
-MWQG
-Wire Wire Line
-	8950 3750 8900 3750
-Text GLabel 9900 3050 0    50   Output ~ 0
-MWBG
-Wire Wire Line
-	9950 3050 9900 3050
-Text GLabel 9900 3150 0    50   Output ~ 0
-MSQ10
-Wire Wire Line
-	9950 3150 9900 3150
-Text GLabel 9900 3250 0    50   Output ~ 0
-MSQ11
-Wire Wire Line
-	9950 3250 9900 3250
-Text GLabel 9900 3350 0    50   Output ~ 0
-MSQ12
-Wire Wire Line
-	9950 3350 9900 3350
-Text GLabel 9900 3450 0    50   Output ~ 0
-MSQ13
-Wire Wire Line
-	9950 3450 9900 3450
-Text GLabel 9900 3550 0    50   Output ~ 0
-MSQ14
-Wire Wire Line
-	9950 3550 9900 3550
-Text GLabel 9900 3650 0    50   Output ~ 0
-MSQEXT
-Wire Wire Line
-	9950 3650 9900 3650
-Text GLabel 9900 3750 0    50   Output ~ 0
-MSQ16
-Wire Wire Line
-	9950 3750 9900 3750
-Text GLabel 6900 4150 0    50   Output ~ 0
-MBR1
-Wire Wire Line
-	6950 4150 6900 4150
-Text GLabel 6900 4250 0    50   Output ~ 0
-MBR2
-Wire Wire Line
-	6950 4250 6900 4250
-Text GLabel 6900 4350 0    50   Output ~ 0
-MIIP
-Wire Wire Line
-	6950 4350 6900 4350
-Text GLabel 6900 4450 0    50   Output ~ 0
-MCTRAL_n
-Wire Wire Line
-	6950 4450 6900 4450
-Text GLabel 6900 4550 0    50   Output ~ 0
-MTCAL_n
-Wire Wire Line
-	6950 4550 6900 4550
-Text GLabel 6900 4650 0    50   Output ~ 0
-MRPTAL_n
-Wire Wire Line
-	6950 4650 6900 4650
-Text GLabel 6900 4750 0    50   Output ~ 0
-MPAL_n
-Wire Wire Line
-	6950 4750 6900 4750
-Text GLabel 6900 4850 0    50   Output ~ 0
-MSTPIT_n
-Wire Wire Line
-	6950 4850 6900 4850
-Text GLabel 7900 4150 0    50   Output ~ 0
-MGOJAM
-Wire Wire Line
-	7950 4150 7900 4150
-Text GLabel 7900 4250 0    50   Output ~ 0
-MINHL
-Wire Wire Line
-	7950 4250 7900 4250
-Text GLabel 7900 4350 0    50   Output ~ 0
-MINKL
-Wire Wire Line
-	7950 4350 7900 4350
-Text GLabel 7900 4450 0    50   Output ~ 0
-MWLG
-Wire Wire Line
-	7950 4450 7900 4450
-Text GLabel 7900 4550 0    50   Output ~ 0
-MONWT
-Wire Wire Line
-	7950 4550 7900 4550
-Text GLabel 7900 4650 0    50   Output ~ 0
-MRSC
-Wire Wire Line
-	7950 4650 7900 4650
-Text GLabel 7900 4750 0    50   Output ~ 0
-MRLG
-Wire Wire Line
-	7950 4750 7900 4750
-Text GLabel 3050 3050 2    50   Output ~ 0
-STRT1
-Text GLabel 8900 4150 0    50   Output ~ 0
-MNHSBF
-Wire Wire Line
-	8900 4150 8950 4150
-Text GLabel 8900 4250 0    50   Output ~ 0
-MNHNC
-Wire Wire Line
-	8900 4250 8950 4250
-Text GLabel 8900 4350 0    50   Output ~ 0
-MNHRPT
-Wire Wire Line
-	8900 4350 8950 4350
-Text GLabel 8900 4450 0    50   Output ~ 0
-MTCSAI
-Wire Wire Line
-	8900 4450 8950 4450
-Text GLabel 8900 4550 0    50   Output ~ 0
-MSTRT
-Wire Wire Line
-	8900 4550 8950 4550
-Text GLabel 8900 4650 0    50   Output ~ 0
-MSTP
-Wire Wire Line
-	8900 4650 8950 4650
-Text GLabel 8900 4750 0    50   Output ~ 0
-MSBSTP
-Wire Wire Line
-	8900 4750 8950 4750
-Text GLabel 8900 4850 0    50   Output ~ 0
-MRDCH
-Wire Wire Line
-	8900 4850 8950 4850
-Text GLabel 6900 5250 0    50   Output ~ 0
-MLDCH
-Wire Wire Line
-	6900 5250 6950 5250
-Text GLabel 9900 4150 0    50   Output ~ 0
-MGP_n
-Wire Wire Line
-	9950 4150 9900 4150
-Text GLabel 9900 4250 0    50   Output ~ 0
-MSP
-Wire Wire Line
-	9950 4250 9900 4250
-Text GLabel 7900 4850 0    50   Output ~ 0
-MRGG
-Wire Wire Line
-	7950 4850 7900 4850
 Text GLabel 9900 4350 0    50   Output ~ 0
-MWAG
+MT01
 Wire Wire Line
 	9950 4350 9900 4350
 Text GLabel 9900 4450 0    50   Output ~ 0
-MRAG
+MT02
 Wire Wire Line
 	9950 4450 9900 4450
+Text GLabel 8900 4150 0    50   Output ~ 0
+MT03
+Wire Wire Line
+	8950 4150 8900 4150
+Text GLabel 8900 4250 0    50   Output ~ 0
+MT04
+Wire Wire Line
+	8950 4250 8900 4250
+Text GLabel 8900 4850 0    50   Output ~ 0
+MT05
+Wire Wire Line
+	8950 4850 8900 4850
+Text GLabel 7900 4150 0    50   Output ~ 0
+MT06
+Wire Wire Line
+	7950 4150 7900 4150
+Text GLabel 6900 4150 0    50   Output ~ 0
+MT07
+Wire Wire Line
+	6950 4150 6900 4150
+Text GLabel 6900 4250 0    50   Output ~ 0
+MT08
+Wire Wire Line
+	6950 4250 6900 4250
+Text GLabel 6900 5350 0    50   Output ~ 0
+MT09
+Wire Wire Line
+	6950 5350 6900 5350
+Text GLabel 6900 5450 0    50   Output ~ 0
+MT10
+Wire Wire Line
+	6950 5450 6900 5450
+Text GLabel 7900 5350 0    50   Output ~ 0
+MT11
+Wire Wire Line
+	7950 5350 7900 5350
+Text GLabel 7900 5450 0    50   Output ~ 0
+MT12
+Wire Wire Line
+	7950 5450 7900 5450
+Text GLabel 8900 5450 0    50   Output ~ 0
+MRULOG
+Wire Wire Line
+	8950 5450 8900 5450
+Text GLabel 8900 5550 0    50   Output ~ 0
+MWFBG
+Wire Wire Line
+	8950 5550 8900 5550
+Text GLabel 9900 5450 0    50   Output ~ 0
+MWEBG
+Wire Wire Line
+	9950 5450 9900 5450
+Text GLabel 9900 5550 0    50   Output ~ 0
+MWBBEG
+Wire Wire Line
+	9950 5550 9900 5550
+Text GLabel 9900 4150 0    50   Output ~ 0
+MST1
+Wire Wire Line
+	9950 4150 9900 4150
+Text GLabel 9900 4650 0    50   Output ~ 0
+MST2
+Wire Wire Line
+	9950 4650 9900 4650
+Text GLabel 9900 4750 0    50   Output ~ 0
+MST3
+Wire Wire Line
+	9950 4750 9900 4750
+Text GLabel 8900 4450 0    50   Output ~ 0
+MTCSA_n
+Wire Wire Line
+	8950 4450 8900 4450
+Text GLabel 8900 4550 0    50   Output ~ 0
+MWSG
+Wire Wire Line
+	8950 4550 8900 4550
+Text GLabel 7900 4550 0    50   Output ~ 0
+MWZG
+Wire Wire Line
+	7950 4550 7900 4550
+Text GLabel 7900 4650 0    50   Output ~ 0
+MWYG
+Wire Wire Line
+	7950 4650 7900 4650
+Text GLabel 6900 4550 0    50   Output ~ 0
+MWQG
+Wire Wire Line
+	6950 4550 6900 4550
+Text GLabel 6900 4650 0    50   Output ~ 0
+MWBG
+Wire Wire Line
+	6950 4650 6900 4650
+Text GLabel 6900 5750 0    50   Output ~ 0
+MSQ10
+Wire Wire Line
+	6950 5750 6900 5750
+Text GLabel 6900 5850 0    50   Output ~ 0
+MSQ11
+Wire Wire Line
+	6950 5850 6900 5850
+Text GLabel 7900 5850 0    50   Output ~ 0
+MSQ12
+Wire Wire Line
+	7950 5850 7900 5850
+Text GLabel 7900 5950 0    50   Output ~ 0
+MSQ13
+Wire Wire Line
+	7950 5950 7900 5950
+Text GLabel 8900 5850 0    50   Output ~ 0
+MSQ14
+Wire Wire Line
+	8950 5850 8900 5850
+Text GLabel 8900 5950 0    50   Output ~ 0
+MSQEXT
+Wire Wire Line
+	8950 5950 8900 5950
+Text GLabel 9900 5950 0    50   Output ~ 0
+MSQ16
+Wire Wire Line
+	9950 5950 9900 5950
+Text GLabel 9900 4250 0    50   Output ~ 0
+MBR1
+Text GLabel 9900 2350 0    50   Output ~ 0
+MBR2
+Wire Wire Line
+	9950 2350 9900 2350
+Text GLabel 9900 1950 0    50   Output ~ 0
+MIIP
+Wire Wire Line
+	9950 1950 9900 1950
+Text GLabel 8900 2450 0    50   Output ~ 0
+MCTRAL_n
+Wire Wire Line
+	8950 2450 8900 2450
+Text GLabel 8900 1950 0    50   Output ~ 0
+MTCAL_n
+Wire Wire Line
+	8950 1950 8900 1950
+Text GLabel 7900 2450 0    50   Output ~ 0
+MRPTAL_n
+Wire Wire Line
+	7950 2450 7900 2450
+Text GLabel 6900 2550 0    50   Output ~ 0
+MPAL_n
+Wire Wire Line
+	6950 2550 6900 2550
+Text GLabel 6900 1950 0    50   Output ~ 0
+MSTPIT_n
+Wire Wire Line
+	6950 1950 6900 1950
+Text GLabel 9900 3550 0    50   Output ~ 0
+MGOJAM
+Wire Wire Line
+	9950 3550 9900 3550
+Text GLabel 8900 3750 0    50   Output ~ 0
+MINHL
+Wire Wire Line
+	8950 3750 8900 3750
+Text GLabel 8900 3450 0    50   Output ~ 0
+MINKL
+Wire Wire Line
+	8950 3450 8900 3450
+Text GLabel 7900 3750 0    50   Output ~ 0
+MWLG
+Wire Wire Line
+	7950 3750 7900 3750
+Text GLabel 7900 3450 0    50   Output ~ 0
+MONWT
+Wire Wire Line
+	7950 3450 7900 3450
+Text GLabel 6900 3650 0    50   Output ~ 0
+MRSC
+Wire Wire Line
+	6950 3650 6900 3650
+Text GLabel 6900 3350 0    50   Output ~ 0
+MRLG
+Wire Wire Line
+	6950 3350 6900 3350
+Text GLabel 3050 3050 2    50   Output ~ 0
+STRT1
+Text GLabel 9900 2050 0    50   Output ~ 0
+MNHSBF
+Wire Wire Line
+	9900 2050 9950 2050
+Text GLabel 8900 2350 0    50   Output ~ 0
+MNHNC
+Wire Wire Line
+	8900 2350 8950 2350
+Text GLabel 8900 2050 0    50   Output ~ 0
+MNHRPT
+Wire Wire Line
+	8900 2050 8950 2050
+Text GLabel 7900 2350 0    50   Output ~ 0
+MTCSAI
+Wire Wire Line
+	7900 2350 7950 2350
+Text GLabel 7900 2050 0    50   Output ~ 0
+MSTRT
+Wire Wire Line
+	7900 2050 7950 2050
+Text GLabel 6900 2350 0    50   Output ~ 0
+MSTP
+Wire Wire Line
+	6900 2350 6950 2350
+Text GLabel 6900 2050 0    50   Output ~ 0
+MSBSTP
+Wire Wire Line
+	6900 2050 6950 2050
+Text GLabel 9900 3350 0    50   Output ~ 0
+MRDCH
+Wire Wire Line
+	9900 3350 9950 3350
+Text GLabel 9900 3050 0    50   Output ~ 0
+MLDCH
+Wire Wire Line
+	9900 3050 9950 3050
+Text GLabel 8900 3350 0    50   Output ~ 0
+MGP_n
+Wire Wire Line
+	8950 3350 8900 3350
+Text GLabel 8900 3050 0    50   Output ~ 0
+MSP
+Wire Wire Line
+	8950 3050 8900 3050
+Text GLabel 7900 3250 0    50   Output ~ 0
+MRGG
+Wire Wire Line
+	7950 3250 7900 3250
+Text GLabel 6900 3750 0    50   Output ~ 0
+MWAG
+Wire Wire Line
+	6950 3750 6900 3750
+Text GLabel 6900 3250 0    50   Output ~ 0
+MRAG
+Wire Wire Line
+	6950 3250 6900 3250
 Text GLabel 1750 6350 0    50   Output ~ 0
 CTRL1
 Wire Wire Line
@@ -398,78 +396,78 @@ Wire Wire Line
 	1750 6450 1800 6450
 Text GLabel 3300 5900 0    50   Output ~ 0
 MTLO
-Text GLabel 9900 4550 0    50   Output ~ 0
+Text GLabel 8900 4750 0    50   Output ~ 0
 MWCH
 Wire Wire Line
-	9950 4550 9900 4550
-Text GLabel 9900 4650 0    50   Output ~ 0
+	8950 4750 8900 4750
+Text GLabel 7900 4250 0    50   Output ~ 0
 MRCH
 Wire Wire Line
-	9950 4650 9900 4650
-Text GLabel 6900 5350 0    50   Output ~ 0
+	7950 4250 7900 4250
+Text GLabel 7900 4850 0    50   Output ~ 0
 MONPAR
 Wire Wire Line
-	6900 5350 6950 5350
-Text GLabel 6900 5450 0    50   Output ~ 0
+	7900 4850 7950 4850
+Text GLabel 6900 4350 0    50   Output ~ 0
 MONWBK
 Wire Wire Line
-	6900 5450 6950 5450
-Text GLabel 9900 4750 0    50   Output ~ 0
+	6900 4350 6950 4350
+Text GLabel 6900 5250 0    50   Output ~ 0
 MWG
 Wire Wire Line
-	9950 4750 9900 4750
-Text GLabel 9900 4850 0    50   Output ~ 0
+	6950 5250 6900 5250
+Text GLabel 6900 5550 0    50   Output ~ 0
 MNISQ
 Wire Wire Line
-	9950 4850 9900 4850
+	6950 5550 6900 5550
 Text GLabel 7900 5250 0    50   Output ~ 0
 MREQIN
 Wire Wire Line
 	7950 5250 7900 5250
-Text GLabel 7900 5350 0    50   Output ~ 0
+Text GLabel 7900 5550 0    50   Output ~ 0
 MWATCH_n
 Wire Wire Line
-	7950 5350 7900 5350
-Text GLabel 6900 5550 0    50   Output ~ 0
+	7950 5550 7900 5550
+Text GLabel 8900 5350 0    50   Output ~ 0
 MLOAD
 Wire Wire Line
-	6900 5550 6950 5550
-Text GLabel 6900 5650 0    50   Output ~ 0
+	8900 5350 8950 5350
+Text GLabel 8900 5650 0    50   Output ~ 0
 MREAD
 Wire Wire Line
-	6900 5650 6950 5650
-Text GLabel 7900 5450 0    50   Output ~ 0
+	8900 5650 8950 5650
+Text GLabel 9900 5350 0    50   Output ~ 0
 MON800
 Wire Wire Line
-	7950 5450 7900 5450
-Text GLabel 7900 5550 0    50   Output ~ 0
+	9950 5350 9900 5350
+Text GLabel 9900 5650 0    50   Output ~ 0
 MPIPAL_n
 Wire Wire Line
-	7950 5550 7900 5550
-Text GLabel 8900 5550 0    50   Output ~ 0
+	9950 5650 9900 5650
+Text GLabel 9900 4850 0    50   Output ~ 0
 MSP803
 Wire Wire Line
-	8900 5550 8950 5550
-Text GLabel 8900 5650 0    50   Output ~ 0
+	9900 4850 9950 4850
+Text GLabel 8900 4650 0    50   Output ~ 0
 MSP805
 Wire Wire Line
-	8900 5650 8950 5650
-Text GLabel 8900 5750 0    50   Output ~ 0
+	8900 4650 8950 4650
+Text GLabel 7900 4450 0    50   Output ~ 0
 MSP806
 Wire Wire Line
-	8900 5750 8950 5750
-Text GLabel 8900 5850 0    50   Output ~ 0
+	7900 4450 7950 4450
+Text GLabel 7900 4750 0    50   Output ~ 0
 MSP807
 Wire Wire Line
-	8900 5850 8950 5850
-Text GLabel 7900 5650 0    50   Output ~ 0
+	7900 4750 7950 4750
+Text GLabel 6900 4450 0    50   Output ~ 0
 MSCDBL_n
 Wire Wire Line
-	7950 5650 7900 5650
-Text GLabel 6900 5850 0    50   Output ~ 0
+	6950 4450 6900 4450
+Text GLabel 6900 5650 0    50   Output ~ 0
 DOSCAL
 Wire Wire Line
-	6900 5850 6950 5850
+	6900 5650 6950 5650
 Text GLabel 6900 5950 0    50   Output ~ 0
 DBLTST
 Wire Wire Line
@@ -478,50 +476,50 @@ Text GLabel 7900 5750 0    50   Output ~ 0
 MWARNF_n
 Wire Wire Line
 	7950 5750 7900 5750
-Text GLabel 7900 5850 0    50   Output ~ 0
+Text GLabel 8900 5250 0    50   Output ~ 0
 OUTCOM
 Wire Wire Line
-	7950 5850 7900 5850
-Text GLabel 7900 5950 0    50   Output ~ 0
+	8950 5250 8900 5250
+Text GLabel 8900 5750 0    50   Output ~ 0
 MSCAFL_n
 Wire Wire Line
-	7950 5950 7900 5950
-Text GLabel 8900 5250 0    50   Output ~ 0
+	8950 5750 8900 5750
+Text GLabel 9900 5250 0    50   Output ~ 0
 MOSCAL_n
 Wire Wire Line
-	8950 5250 8900 5250
-Text GLabel 8900 5350 0    50   Output ~ 0
+	9950 5250 9900 5250
+Text GLabel 9900 5850 0    50   Output ~ 0
 MVFAIL_n
 Wire Wire Line
-	8950 5350 8900 5350
-Text GLabel 8900 5950 0    50   Output ~ 0
+	9950 5850 9900 5850
+Text GLabel 9900 4550 0    50   Output ~ 0
 MSP902
 Wire Wire Line
-	8900 5950 8950 5950
-Text GLabel 9900 5250 0    50   Output ~ 0
+	9900 4550 9950 4550
+Text GLabel 8900 4350 0    50   Output ~ 0
 MSP904
 Wire Wire Line
-	9900 5250 9950 5250
-Text GLabel 9900 5450 0    50   Output ~ 0
+	8900 4350 8950 4350
+Text GLabel 9900 3450 0    50   Output ~ 0
 MSP910
 Wire Wire Line
-	9900 5450 9950 5450
-Text GLabel 9900 5350 0    50   Output ~ 0
+	9900 3450 9950 3450
+Text GLabel 6900 2450 0    50   Output ~ 0
 MSP908
 Wire Wire Line
-	9900 5350 9950 5350
-Text GLabel 6900 5750 0    50   Output ~ 0
+	6900 2450 6950 2450
+Text GLabel 7900 4350 0    50   Output ~ 0
 MAMU
 Wire Wire Line
-	6900 5750 6950 5750
-Text GLabel 9900 5550 0    50   Output ~ 0
+	7900 4350 7950 4350
+Text GLabel 7900 5650 0    50   Output ~ 0
 MSP912
 Wire Wire Line
-	9900 5550 9950 5550
-Text GLabel 9900 5650 0    50   Output ~ 0
+	7900 5650 7950 5650
+Text GLabel 7900 3350 0    50   Output ~ 0
 MSP914
 Wire Wire Line
-	9900 5650 9950 5650
+	7900 3350 7950 3350
 Text GLabel 9900 5750 0    50   Output ~ 0
 MSP916
 Wire Wire Line
@@ -759,11 +757,10 @@ Text GLabel 3850 3700 0    50   Input ~ 0
 NHALGA
 Wire Wire Line
 	3850 3700 3900 3700
-NoConn ~ 9950 5950
-Text GLabel 8900 5450 0    50   Output ~ 0
+Text GLabel 6900 3050 0    50   Output ~ 0
 SIGNY_n
 Wire Wire Line
-	8900 5450 8950 5450
+	6900 3050 6950 3050
 $Comp
 L Device:R_US R6
 U 1 1 5D7AD36D
@@ -978,7 +975,7 @@ U 1 1 5EBA8EA1
 P 5900 2000
 F 0 "J1" V 6000 1950 50  0000 L CNN
 F 1 "Conn_01x03" H 5980 1951 50  0001 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 5900 2000 50  0001 C CNN
+F 2 "Connector_PinHeader_2.00mm:PinHeader_1x03_P2.00mm_Vertical" H 5900 2000 50  0001 C CNN
 F 3 "~" H 5900 2000 50  0001 C CNN
 	1    5900 2000
 	0    1    1    0   
@@ -2136,10 +2133,10 @@ Wire Wire Line
 	1050 2200 1050 2250
 Connection ~ 1050 2200
 Connection ~ 3100 1750
-Text GLabel 9900 5850 0    50   Output ~ 0
+Text GLabel 6900 4750 0    50   Output ~ 0
 NHALGA
 Wire Wire Line
-	9900 5850 9950 5850
+	6900 4750 6950 4750
 $Comp
 L agc_monitor:TPS77633_SO8 U1
 U 1 1 5EE8EA11
@@ -2195,17 +2192,6 @@ F 3 "" H 4800 2150 50  0001 C CNN
 	1    4800 2200
 	1    0    0    -1  
 $EndComp
-$Comp
-L agc_monitor:+3V3_AGC #PWR?
-U 1 1 5F267FD1
-P 4300 1450
-F 0 "#PWR?" H 4300 1300 50  0001 C CNN
-F 1 "+3V3_AGC" H 4300 1600 50  0000 C CNN
-F 2 "" H 4300 1450 50  0001 C CNN
-F 3 "" H 4300 1450 50  0001 C CNN
-	1    4300 1450
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	4300 1450 4300 1750
 Wire Wire Line
@@ -2213,45 +2199,45 @@ Wire Wire Line
 $Comp
 L Device:R_US R13
 U 1 1 5F2DB7B8
-P 3950 1650
-F 0 "R13" H 3800 1700 50  0000 C CNN
-F 1 "7.5k" H 3800 1600 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 3990 1640 50  0001 C CNN
-F 3 "~" H 3950 1650 50  0001 C CNN
-	1    3950 1650
+P 3900 1650
+F 0 "R13" H 3750 1700 50  0000 C CNN
+F 1 "7.5k" H 3750 1600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 3940 1640 50  0001 C CNN
+F 3 "~" H 3900 1650 50  0001 C CNN
+	1    3900 1650
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_US R14
 U 1 1 5F316390
-P 3950 2050
-F 0 "R14" H 3800 2100 50  0000 C CNN
-F 1 "10k" H 3800 2000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" V 3990 2040 50  0001 C CNN
-F 3 "~" H 3950 2050 50  0001 C CNN
-	1    3950 2050
+P 3900 2050
+F 0 "R14" H 3750 2100 50  0000 C CNN
+F 1 "10k" H 3750 2000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 3940 2040 50  0001 C CNN
+F 3 "~" H 3900 2050 50  0001 C CNN
+	1    3900 2050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3950 1800 3950 1850
+	3900 1800 3900 1850
 $Comp
-L agc_monitor:+4SW #PWR?
+L agc_monitor:+4SW #PWR0120
 U 1 1 5F38BA17
-P 3950 1450
-F 0 "#PWR?" H 3950 1300 50  0001 C CNN
-F 1 "+4SW" H 3950 1600 50  0000 C CNN
-F 2 "" H 3950 1450 50  0001 C CNN
-F 3 "" H 3950 1450 50  0001 C CNN
-	1    3950 1450
+P 3900 1450
+F 0 "#PWR0120" H 3900 1300 50  0001 C CNN
+F 1 "+4SW" H 3900 1600 50  0000 C CNN
+F 2 "" H 3900 1450 50  0001 C CNN
+F 3 "" H 3900 1450 50  0001 C CNN
+	1    3900 1450
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3950 1450 3950 1500
+	3900 1450 3900 1500
 Wire Wire Line
-	3950 1850 4450 1850
-Connection ~ 3950 1850
+	3900 1850 4450 1850
+Connection ~ 3900 1850
 Wire Wire Line
-	3950 1850 3950 1900
+	3900 1850 3900 1900
 $Comp
 L Connector:TestPoint TP2
 U 1 1 5F6863A6
@@ -2264,10 +2250,10 @@ F 3 "~" H 5350 1850 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0123
 U 1 1 5F6C1513
 P 4800 2300
-F 0 "#PWR?" H 4800 2050 50  0001 C CNN
+F 0 "#PWR0123" H 4800 2050 50  0001 C CNN
 F 1 "GND" H 4805 2127 50  0000 C CNN
 F 2 "" H 4800 2300 50  0001 C CNN
 F 3 "" H 4800 2300 50  0001 C CNN
@@ -2277,12 +2263,26 @@ $EndComp
 Wire Wire Line
 	4800 2200 4800 2250
 Wire Wire Line
-	3950 2200 3950 2250
+	3900 2200 3900 2250
 Wire Wire Line
-	3950 2250 4800 2250
+	3900 2250 4800 2250
 Connection ~ 4800 2250
 Wire Wire Line
 	4800 2250 4800 2300
 Text Notes 4300 1100 0    50   ~ 0
 FPGA 3.3V Switch
+$Comp
+L agc_monitor:+3V3_FPGA #PWR0110
+U 1 1 5CB523B2
+P 4300 1450
+F 0 "#PWR0110" H 4300 1300 50  0001 C CNN
+F 1 "+3V3_FPGA" H 4285 1623 50  0000 C CNN
+F 2 "" H 4300 1450 50  0001 C CNN
+F 3 "" H 4300 1450 50  0001 C CNN
+	1    4300 1450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9950 4250 9900 4250
+NoConn ~ 6950 4850
 $EndSCHEMATC
