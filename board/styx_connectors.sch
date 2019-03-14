@@ -88,34 +88,34 @@ Wire Wire Line
 Connection ~ 2050 1050
 Text Notes 1900 1050 0    50   ~ 0
 ADC_BPLSSW_N
-Text GLabel 1750 900  0    50   Input ~ 0
+Text GLabel 3800 5300 2    50   Input ~ 0
 MWCH
 Wire Wire Line
-	1750 900  1800 900 
-Text GLabel 1750 1000 0    50   Input ~ 0
+	3800 5300 3750 5300
+Text GLabel 6100 6000 0    50   Input ~ 0
 MWL01
 Wire Wire Line
-	1750 1000 1800 1000
-Text GLabel 1750 1100 0    50   Input ~ 0
+	6100 6000 6150 6000
+Text GLabel 6100 5400 0    50   Input ~ 0
 MWL05
 Wire Wire Line
-	1750 1100 1800 1100
-Text GLabel 1750 1200 0    50   Input ~ 0
+	6100 5400 6150 5400
+Text GLabel 6100 4400 0    50   Input ~ 0
 MWL09
 Wire Wire Line
-	1750 1200 1800 1200
+	6100 4400 6150 4400
 Text GLabel 7250 1950 2    50   Input ~ 0
 MWL13
 Wire Wire Line
 	7250 1950 7200 1950
-Text GLabel 1750 1400 0    50   Input ~ 0
+Text GLabel 7250 5900 2    50   Input ~ 0
 MT01
 Wire Wire Line
-	1750 1400 1800 1400
-Text GLabel 1750 1500 0    50   Input ~ 0
+	7250 5900 7200 5900
+Text GLabel 7250 5300 2    50   Input ~ 0
 MT05
 Wire Wire Line
-	1750 1500 1800 1500
+	7250 5300 7200 5300
 Text GLabel 2650 1350 0    50   Input ~ 0
 MT09
 Wire Wire Line
@@ -124,30 +124,30 @@ Text GLabel 6100 2250 0    50   Input ~ 0
 MRULOG
 Wire Wire Line
 	6100 2250 6150 2250
-Text GLabel 1250 950  0    50   Input ~ 0
+Text GLabel 7250 6000 2    50   Input ~ 0
 MST1
 Wire Wire Line
-	1250 950  1300 950 
-Text GLabel 1250 1050 0    50   Input ~ 0
+	7250 6000 7200 6000
+Text GLabel 3800 5400 2    50   Input ~ 0
 MWSG
 Wire Wire Line
-	1250 1050 1300 1050
-Text GLabel 1250 1150 0    50   Input ~ 0
+	3800 5400 3750 5400
+Text GLabel 7250 4400 2    50   Input ~ 0
 MWBG
 Wire Wire Line
-	1250 1150 1300 1150
+	7250 4400 7200 4400
 Text GLabel 2650 2150 0    50   Input ~ 0
 MSQ13
 Wire Wire Line
 	2650 2150 2700 2150
-Text GLabel 1800 2150 0    50   Input ~ 0
+Text GLabel 3800 6000 2    50   Input ~ 0
 MBR1
 Wire Wire Line
-	1800 2150 1850 2150
-Text GLabel 1900 2650 0    50   Input ~ 0
+	3800 6000 3750 6000
+Text GLabel 6100 5300 0    50   Input ~ 0
 MTCAL_n
 Wire Wire Line
-	1900 2650 1950 2650
+	6100 5300 6150 5300
 Text GLabel 7250 1350 2    50   Input ~ 0
 MGOJAM
 Wire Wire Line
@@ -184,18 +184,18 @@ Text GLabel 3800 1050 2    50   Input ~ 0
 ADC_BPLSSW_P
 Wire Wire Line
 	3800 1050 3750 1050
-Text GLabel 4500 1150 2    50   Input ~ 0
+Text GLabel 7250 5200 2    50   Input ~ 0
 MRCH
 Wire Wire Line
-	4500 1150 4450 1150
-Text GLabel 4500 1250 2    50   Input ~ 0
+	7250 5200 7200 5200
+Text GLabel 6100 5800 0    50   Input ~ 0
 MWL02
 Wire Wire Line
-	4500 1250 4450 1250
-Text GLabel 4500 1350 2    50   Input ~ 0
+	6100 5800 6150 5800
+Text GLabel 6100 4800 0    50   Input ~ 0
 MWL06
 Wire Wire Line
-	4500 1350 4450 1350
+	6100 4800 6150 4800
 Text GLabel 3800 1550 2    50   Input ~ 0
 MWL10
 Wire Wire Line
@@ -204,14 +204,14 @@ Text GLabel 7250 2450 2    50   Input ~ 0
 MWL14
 Wire Wire Line
 	7250 2450 7200 2450
-Text GLabel 4500 1650 2    50   Input ~ 0
+Text GLabel 3800 5900 2    50   Input ~ 0
 MT02
 Wire Wire Line
-	4500 1650 4450 1650
-Text GLabel 4500 1750 2    50   Input ~ 0
+	3800 5900 3750 5900
+Text GLabel 3800 5200 2    50   Input ~ 0
 MT06
 Wire Wire Line
-	4500 1750 4450 1750
+	3800 5200 3750 5200
 Text GLabel 6100 1350 0    50   Input ~ 0
 MT10
 Wire Wire Line
@@ -240,14 +240,14 @@ F 3 "" H 4350 3200 50  0001 C CNN
 	1    4350 3200
 	1    0    0    -1  
 $EndComp
-Text GLabel 1050 1550 2    50   Input ~ 0
+Text GLabel 3800 5800 2    50   Input ~ 0
 MST2
 Wire Wire Line
-	1050 1550 1000 1550
-Text GLabel 1050 1650 2    50   Input ~ 0
+	3800 5800 3750 5800
+Text GLabel 7250 4800 2    50   Input ~ 0
 MWZG
 Wire Wire Line
-	1050 1650 1000 1650
+	7250 4800 7200 4800
 Text GLabel 2650 1550 0    50   Input ~ 0
 MSQ10
 Wire Wire Line
@@ -256,14 +256,14 @@ Text GLabel 6100 2450 0    50   Input ~ 0
 MSQ14
 Wire Wire Line
 	6100 2450 6150 2450
-Text GLabel 1050 1950 2    50   Input ~ 0
+Text GLabel 2650 5900 0    50   Input ~ 0
 MBR2
 Wire Wire Line
-	1050 1950 1000 1950
-Text GLabel 4600 2050 2    50   Input ~ 0
+	2650 5900 2700 5900
+Text GLabel 6100 4900 0    50   Input ~ 0
 MRPTAL_n
 Wire Wire Line
-	4600 2050 4550 2050
+	6100 4900 6150 4900
 Text GLabel 7250 1650 2    50   Input ~ 0
 MINHL
 Wire Wire Line
@@ -374,14 +374,14 @@ Text GLabel 450  2500 2    50   Input ~ 0
 ADC_3V3_P
 Wire Wire Line
 	450  2500 400  2500
-Text GLabel 5200 550  0    50   Input ~ 0
+Text GLabel 2650 5800 0    50   Input ~ 0
 MWL03
 Wire Wire Line
-	5200 550  5250 550 
-Text GLabel 5200 650  0    50   Input ~ 0
+	2650 5800 2700 5800
+Text GLabel 2650 4800 0    50   Input ~ 0
 MWL07
 Wire Wire Line
-	5200 650  5250 650 
+	2650 4800 2700 4800
 Text GLabel 7250 1550 2    50   Input ~ 0
 MWL11
 Wire Wire Line
@@ -390,14 +390,14 @@ Text GLabel 7250 2550 2    50   Input ~ 0
 MWL15
 Wire Wire Line
 	7250 2550 7200 2550
-Text GLabel 5200 950  0    50   Input ~ 0
+Text GLabel 3800 5600 2    50   Input ~ 0
 MT03
 Wire Wire Line
-	5200 950  5250 950 
-Text GLabel 5200 1050 0    50   Input ~ 0
+	3800 5600 3750 5600
+Text GLabel 3800 4600 2    50   Input ~ 0
 MT07
 Wire Wire Line
-	5200 1050 5250 1050
+	3800 4600 3750 4600
 Text GLabel 2650 1750 0    50   Input ~ 0
 MT11
 Wire Wire Line
@@ -410,14 +410,14 @@ Text GLabel 6100 2750 0    50   Input ~ 0
 MWBBEG
 Wire Wire Line
 	6100 2750 6150 2750
-Text GLabel 5100 2950 0    50   Input ~ 0
+Text GLabel 7250 5700 2    50   Input ~ 0
 MST3
 Wire Wire Line
-	5100 2950 5150 2950
-Text GLabel 5100 3050 0    50   Input ~ 0
+	7250 5700 7200 5700
+Text GLabel 3800 4800 2    50   Input ~ 0
 MWYG
 Wire Wire Line
-	5100 3050 5150 3050
+	3800 4800 3750 4800
 Text GLabel 6100 1550 0    50   Input ~ 0
 MSQ11
 Wire Wire Line
@@ -426,14 +426,14 @@ Text GLabel 6100 2550 0    50   Input ~ 0
 MSQEXT
 Wire Wire Line
 	6100 2550 6150 2550
-Text GLabel 5100 3350 0    50   Input ~ 0
+Text GLabel 2650 5700 0    50   Input ~ 0
 MIIP
 Wire Wire Line
-	5100 3350 5150 3350
-Text GLabel 5250 1900 0    50   Input ~ 0
+	2650 5700 2700 5700
+Text GLabel 6100 4600 0    50   Input ~ 0
 MPAL_n
 Wire Wire Line
-	5250 1900 5300 1900
+	6100 4600 6150 4600
 Text GLabel 3800 1850 2    50   Input ~ 0
 MINKL
 Wire Wire Line
@@ -458,14 +458,14 @@ Text GLabel 2650 1850 0    50   Input ~ 0
 MWATCH_n
 Wire Wire Line
 	2650 1850 2700 1850
-Text GLabel 8450 600  2    50   Input ~ 0
+Text GLabel 2650 5400 0    50   Input ~ 0
 MWL04
 Wire Wire Line
-	8450 600  8400 600 
-Text GLabel 8450 700  2    50   Input ~ 0
+	2650 5400 2700 5400
+Text GLabel 2650 4400 0    50   Input ~ 0
 MWL08
 Wire Wire Line
-	8450 700  8400 700 
+	2650 4400 2700 4400
 Text GLabel 3800 1950 2    50   Input ~ 0
 MWL12
 Wire Wire Line
@@ -474,14 +474,14 @@ Text GLabel 3800 2850 2    50   Input ~ 0
 MWL16
 Wire Wire Line
 	3800 2850 3750 2850
-Text GLabel 8200 900  2    50   Input ~ 0
+Text GLabel 7250 5600 2    50   Input ~ 0
 MT04
 Wire Wire Line
-	8200 900  8150 900 
-Text GLabel 8200 1000 2    50   Input ~ 0
+	7250 5600 7200 5600
+Text GLabel 7250 4600 2    50   Input ~ 0
 MT08
 Wire Wire Line
-	8200 1000 8150 1000
+	7250 4600 7200 4600
 Text GLabel 6100 1750 0    50   Input ~ 0
 MT12
 Wire Wire Line
@@ -511,14 +511,14 @@ F 3 "" H 7850 3200 50  0001 C CNN
 	1    7850 3200
 	1    0    0    -1  
 $EndComp
-Text GLabel 8950 900  2    50   Input ~ 0
+Text GLabel 7250 5500 2    50   Input ~ 0
 MTCSA_n
 Wire Wire Line
-	8950 900  8900 900 
-Text GLabel 8950 1000 2    50   Input ~ 0
+	7250 5500 7200 5500
+Text GLabel 3800 4400 2    50   Input ~ 0
 MWQG
 Wire Wire Line
-	8950 1000 8900 1000
+	3800 4400 3750 4400
 Text GLabel 6100 1950 0    50   Input ~ 0
 MSQ12
 Wire Wire Line
@@ -527,14 +527,14 @@ Text GLabel 7250 2950 2    50   Input ~ 0
 MSQ16
 Wire Wire Line
 	7250 2950 7200 2950
-Text GLabel 8950 1300 2    50   Input ~ 0
+Text GLabel 2650 5500 0    50   Input ~ 0
 MCTRAL_n
 Wire Wire Line
-	8950 1300 8900 1300
-Text GLabel 8150 3000 2    50   Input ~ 0
+	2650 5500 2700 5500
+Text GLabel 6100 4300 0    50   Input ~ 0
 MSTPIT_n
 Wire Wire Line
-	8150 3000 8100 3000
+	6100 4300 6150 4300
 Text GLabel 7250 2150 2    50   Input ~ 0
 MWLG
 Wire Wire Line
@@ -608,14 +608,14 @@ Text GLabel 2650 2550 0    50   Input ~ 0
 MOSCAL_n
 Wire Wire Line
 	2650 2550 2700 2550
-Text GLabel 2650 4400 0    50   Output ~ 0
+Text GLabel 2650 6000 0    50   Output ~ 0
 MDT01
 Wire Wire Line
-	2650 4400 2700 4400
-Text GLabel 2650 4500 0    50   Output ~ 0
+	2650 6000 2700 6000
+Text GLabel 2650 5200 0    50   Output ~ 0
 MDT05
 Wire Wire Line
-	2650 4500 2700 4500
+	2650 5200 2700 5200
 Text GLabel 3800 1250 2    50   Output ~ 0
 MDT09
 Wire Wire Line
@@ -624,42 +624,42 @@ Text GLabel 3800 2250 2    50   Output ~ 0
 MDT13
 Wire Wire Line
 	3800 2250 3750 2250
-Text GLabel 2650 4800 0    50   Output ~ 0
+Text GLabel 6100 5700 0    50   Output ~ 0
 MNHSBF
 Wire Wire Line
-	2650 4800 2700 4800
-Text GLabel 2650 4900 0    50   Output ~ 0
+	6100 5700 6150 5700
+Text GLabel 6100 4700 0    50   Output ~ 0
 MSTRT
 Wire Wire Line
-	2650 4900 2700 4900
-Text GLabel 2650 5200 0    50   Output ~ 0
+	6100 4700 6150 4700
+Text GLabel 3800 4700 2    50   Output ~ 0
 MONPAR
 Wire Wire Line
-	2650 5200 2700 5200
+	3800 4700 3750 4700
 Text GLabel 6100 1450 0    50   Output ~ 0
 DOSCAL
 Wire Wire Line
 	6100 1450 6150 1450
-Text GLabel 2650 6000 0    50   Output ~ 0
+Text GLabel 3800 4300 2    50   Output ~ 0
 NHALGA
 Wire Wire Line
-	2650 6000 2700 6000
-Text GLabel 2650 5500 0    50   Output ~ 0
+	3800 4300 3750 4300
+Text GLabel 1150 5350 0    50   Output ~ 0
 EN_3V3_AGC
 Wire Wire Line
-	2700 5500 2650 5500
+	1200 5350 1150 5350
 Text GLabel 2650 2850 0    50   Input ~ 0
 MVFAIL_n
 Wire Wire Line
 	2650 2850 2700 2850
-Text GLabel 3800 4400 2    50   Output ~ 0
+Text GLabel 6100 5900 0    50   Output ~ 0
 MDT02
 Wire Wire Line
-	3800 4400 3750 4400
-Text GLabel 3800 4500 2    50   Output ~ 0
+	6100 5900 6150 5900
+Text GLabel 6100 5200 0    50   Output ~ 0
 MDT06
 Wire Wire Line
-	3800 4500 3750 4500
+	6100 5200 6150 5200
 Text GLabel 3800 1350 2    50   Output ~ 0
 MDT10
 Wire Wire Line
@@ -668,18 +668,18 @@ Text GLabel 7250 2250 2    50   Output ~ 0
 MDT14
 Wire Wire Line
 	7250 2250 7200 2250
-Text GLabel 3800 4800 2    50   Output ~ 0
+Text GLabel 6100 5500 0    50   Output ~ 0
 MNHNC
 Wire Wire Line
-	3800 4800 3750 4800
-Text GLabel 3800 4900 2    50   Output ~ 0
+	6100 5500 6150 5500
+Text GLabel 6100 4500 0    50   Output ~ 0
 MSTP
 Wire Wire Line
-	3800 4900 3750 4900
-Text GLabel 3800 5200 2    50   Output ~ 0
+	6100 4500 6150 4500
+Text GLabel 3800 4500 2    50   Output ~ 0
 MONWBK
 Wire Wire Line
-	3800 5200 3750 5200
+	3800 4500 3750 4500
 Text GLabel 2650 1650 0    50   Output ~ 0
 DBLTST
 Wire Wire Line
@@ -778,10 +778,10 @@ Text GLabel 6100 2650 0    50   Input ~ 0
 MON800
 Wire Wire Line
 	6100 2650 6150 2650
-Text GLabel 6100 4100 0    50   Input ~ 0
+Text GLabel 7250 4500 2    50   Input ~ 0
 MSCDBL_n
 Wire Wire Line
-	6100 4100 6150 4100
+	7250 4500 7200 4500
 Text GLabel 6100 2150 0    50   Input ~ 0
 OUTCOM
 Wire Wire Line
@@ -790,14 +790,14 @@ Text GLabel 6100 2950 0    50   Input ~ 0
 SIGNY_n
 Wire Wire Line
 	6100 2950 6150 2950
-Text GLabel 6100 4400 0    50   Output ~ 0
+Text GLabel 2650 5600 0    50   Output ~ 0
 MDT03
 Wire Wire Line
-	6100 4400 6150 4400
-Text GLabel 6100 4500 0    50   Output ~ 0
+	2650 5600 2700 5600
+Text GLabel 2650 4700 0    50   Output ~ 0
 MDT07
 Wire Wire Line
-	6100 4500 6150 4500
+	2650 4700 2700 4700
 Text GLabel 3800 1750 2    50   Output ~ 0
 MDT11
 Wire Wire Line
@@ -806,10 +806,10 @@ Text GLabel 3800 2650 2    50   Output ~ 0
 MDT15
 Wire Wire Line
 	3800 2650 3750 2650
-Text GLabel 6100 4800 0    50   Output ~ 0
+Text GLabel 2650 5300 0    50   Output ~ 0
 MNHRPT
 Wire Wire Line
-	6100 4800 6150 4800
+	2650 5300 2700 5300
 Text GLabel 3800 1650 2    50   Output ~ 0
 MLDCH
 Wire Wire Line
@@ -818,10 +818,10 @@ Text GLabel 2650 2250 0    50   Output ~ 0
 MLOAD
 Wire Wire Line
 	2650 2250 2700 2250
-Text GLabel 6100 5300 0    50   Output ~ 0
+Text GLabel 7250 4900 2    50   Output ~ 0
 MAMU
 Wire Wire Line
-	6100 5300 6150 5300
+	7250 4900 7200 4900
 Text GLabel 2650 2750 0    50   Input ~ 0
 MPIPAL_n
 Wire Wire Line
@@ -834,14 +834,14 @@ Text GLabel 2650 2450 0    50   Input ~ 0
 MSCAFL_n
 Wire Wire Line
 	2650 2450 2700 2450
-Text GLabel 7250 4400 2    50   Output ~ 0
+Text GLabel 6100 5600 0    50   Output ~ 0
 MDT04
 Wire Wire Line
-	7250 4400 7200 4400
-Text GLabel 7250 4500 2    50   Output ~ 0
+	6100 5600 6150 5600
+Text GLabel 2650 4600 0    50   Output ~ 0
 MDT08
 Wire Wire Line
-	7250 4500 7200 4500
+	2650 4600 2700 4600
 Text GLabel 7250 1750 2    50   Output ~ 0
 MDT12
 Wire Wire Line
@@ -850,10 +850,10 @@ Text GLabel 7250 2750 2    50   Output ~ 0
 MDT16
 Wire Wire Line
 	7250 2750 7200 2750
-Text GLabel 7250 4800 2    50   Output ~ 0
+Text GLabel 2650 4900 0    50   Output ~ 0
 MTCSAI
 Wire Wire Line
-	7250 4800 7200 4800
+	2650 4900 2700 4900
 Text GLabel 7250 1450 2    50   Output ~ 0
 MRDCH
 Wire Wire Line
@@ -862,42 +862,42 @@ Text GLabel 6100 2350 0    50   Output ~ 0
 MREAD
 Wire Wire Line
 	6100 2350 6150 2350
-Text GLabel 7250 5300 2    50   Output ~ 0
+Text GLabel 2650 4300 0    50   Output ~ 0
 MSBSTP
 Wire Wire Line
-	7250 5300 7200 5300
-Text GLabel 3800 5500 2    50   Output ~ 0
+	2650 4300 2700 4300
+Text GLabel 3800 5700 2    50   Output ~ 0
 MSP803
 Wire Wire Line
-	3800 5500 3750 5500
-Text GLabel 6100 5500 0    50   Output ~ 0
+	3800 5700 3750 5700
+Text GLabel 7250 5400 2    50   Output ~ 0
 MSP805
 Wire Wire Line
-	6100 5500 6150 5500
-Text GLabel 7250 5500 2    50   Output ~ 0
+	7250 5400 7200 5400
+Text GLabel 3800 4900 2    50   Output ~ 0
 MSP806
 Wire Wire Line
-	7250 5500 7200 5500
-Text GLabel 2650 5600 0    50   Output ~ 0
+	3800 4900 3750 4900
+Text GLabel 7250 4700 2    50   Output ~ 0
 MSP807
 Wire Wire Line
-	2650 5600 2700 5600
-Text GLabel 3800 5600 2    50   Output ~ 0
+	7250 4700 7200 4700
+Text GLabel 7250 5800 2    50   Output ~ 0
 MSP902
 Wire Wire Line
-	3800 5600 3750 5600
-Text GLabel 6100 5600 0    50   Output ~ 0
+	7250 5800 7200 5800
+Text GLabel 3800 5500 2    50   Output ~ 0
 MSP904
 Wire Wire Line
-	6100 5600 6150 5600
+	3800 5500 3750 5500
 Text GLabel 3800 1450 2    50   Output ~ 0
 MSP910
 Wire Wire Line
 	3800 1450 3750 1450
-Text GLabel 7250 5600 2    50   Output ~ 0
+Text GLabel 2650 4500 0    50   Output ~ 0
 MSP908
 Wire Wire Line
-	7250 5600 7200 5600
+	2650 4500 2700 4500
 Text GLabel 6100 1850 0    50   Output ~ 0
 MSP912
 Wire Wire Line
@@ -911,36 +911,36 @@ MSP916
 Wire Wire Line
 	6100 2850 6150 2850
 Wire Wire Line
-	2700 5800 2100 5800
-Text Label 2100 5800 0    50   ~ 0
+	1200 5650 600  5650
+Text Label 600  5650 0    50   ~ 0
 LED1
 Wire Wire Line
-	3750 5800 4350 5800
-Text Label 4350 5800 2    50   ~ 0
+	4450 4600 5050 4600
+Text Label 5050 4600 2    50   ~ 0
 LED2
 Wire Wire Line
-	6150 5800 5550 5800
-Text Label 5550 5800 0    50   ~ 0
+	6200 7000 5600 7000
+Text Label 5600 7000 0    50   ~ 0
 LED3
 Wire Wire Line
-	7200 5800 7800 5800
-Text Label 7800 5800 2    50   ~ 0
+	8100 5250 8700 5250
+Text Label 8700 5250 2    50   ~ 0
 LED4
 Wire Wire Line
-	2700 5900 2100 5900
-Text Label 2100 5900 0    50   ~ 0
+	1200 5750 600  5750
+Text Label 600  5750 0    50   ~ 0
 DBG3
 Wire Wire Line
-	3750 5900 4350 5900
-Text Label 4350 5900 2    50   ~ 0
+	4450 4700 5050 4700
+Text Label 5050 4700 2    50   ~ 0
 DBG4
 Wire Wire Line
-	6150 5900 5550 5900
-Text Label 5550 5900 0    50   ~ 0
+	6200 7100 5600 7100
+Text Label 5600 7100 0    50   ~ 0
 DBG5
 Wire Wire Line
-	7200 5900 7800 5900
-Text Label 7800 5900 2    50   ~ 0
+	8100 5350 8700 5350
+Text Label 8700 5350 2    50   ~ 0
 DBG6
 Wire Wire Line
 	8650 1350 8150 1350
@@ -951,12 +951,12 @@ Wire Wire Line
 Text Label 8700 1200 2    50   ~ 0
 DBG2
 Wire Wire Line
-	6150 6000 5550 6000
-Text Label 5550 6000 0    50   ~ 0
+	6200 7200 5600 7200
+Text Label 5600 7200 0    50   ~ 0
 DBG7
 Wire Wire Line
-	7200 6000 7800 6000
-Text Label 7800 6000 2    50   ~ 0
+	8100 5450 8700 5450
+Text Label 8700 5450 2    50   ~ 0
 DBG8
 Wire Wire Line
 	7200 6100 8150 6100
