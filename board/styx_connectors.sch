@@ -86,7 +86,7 @@ Wire Wire Line
 Wire Wire Line
 	2700 1050 2050 1050
 Connection ~ 2050 1050
-Text Notes 1900 1050 0    50   ~ 0
+Text Notes 2100 1050 0    50   ~ 0
 ADC_BPLSSW_N
 Text GLabel 3800 5300 2    50   Input ~ 0
 MWCH
@@ -357,23 +357,23 @@ Wire Wire Line
 	6150 3150 6100 3150
 Wire Wire Line
 	7250 3150 7200 3150
-Text Notes 5750 1050 2    50   ~ 0
+Text Notes 6000 1050 2    50   ~ 0
 ADC_4SW_N
 Wire Wire Line
 	6150 1150 5550 1150
 Connection ~ 5550 1150
 Wire Wire Line
-	5550 1150 5550 2050
+	5550 1150 5550 1250
 Text Notes 5950 1150 2    50   ~ 0
 MTLO_N
 Wire Wire Line
-	1100 2400 450  2400
-Text Notes 700  2400 2    50   ~ 0
+	6150 1250 5550 1250
+Text Notes 6000 1250 2    50   ~ 0
 ADC_3V3_N
-Text GLabel 450  2500 2    50   Input ~ 0
+Text GLabel 7250 1250 2    50   Input ~ 0
 ADC_3V3_P
 Wire Wire Line
-	450  2500 400  2500
+	7250 1250 7200 1250
 Text GLabel 2650 5800 0    50   Input ~ 0
 MWL03
 Wire Wire Line
@@ -644,10 +644,10 @@ Text GLabel 3800 4300 2    50   Output ~ 0
 NHALGA
 Wire Wire Line
 	3800 4300 3750 4300
-Text GLabel 1150 5350 0    50   Output ~ 0
+Text GLabel 7250 4300 2    50   Output ~ 0
 EN_3V3_AGC
 Wire Wire Line
-	1200 5350 1150 5350
+	7200 4300 7250 4300
 Text GLabel 2650 2850 0    50   Input ~ 0
 MVFAIL_n
 Wire Wire Line
@@ -911,53 +911,29 @@ MSP916
 Wire Wire Line
 	6100 2850 6150 2850
 Wire Wire Line
-	1200 5650 600  5650
-Text Label 600  5650 0    50   ~ 0
+	2700 950  2450 950 
+Text Label 2450 950  0    50   ~ 0
 LED1
 Wire Wire Line
-	4450 4600 5050 4600
-Text Label 5050 4600 2    50   ~ 0
+	3750 950  4000 950 
+Text Label 4000 950  2    50   ~ 0
 LED2
 Wire Wire Line
-	6200 7000 5600 7000
-Text Label 5600 7000 0    50   ~ 0
+	6150 950  5900 950 
+Text Label 5900 950  0    50   ~ 0
 LED3
 Wire Wire Line
-	8100 5250 8700 5250
-Text Label 8700 5250 2    50   ~ 0
+	7200 950  7450 950 
+Text Label 7450 950  2    50   ~ 0
 LED4
 Wire Wire Line
-	1200 5750 600  5750
-Text Label 600  5750 0    50   ~ 0
-DBG3
-Wire Wire Line
-	4450 4700 5050 4700
-Text Label 5050 4700 2    50   ~ 0
-DBG4
-Wire Wire Line
-	6200 7100 5600 7100
-Text Label 5600 7100 0    50   ~ 0
-DBG5
-Wire Wire Line
-	8100 5350 8700 5350
-Text Label 8700 5350 2    50   ~ 0
-DBG6
-Wire Wire Line
-	8650 1350 8150 1350
-Text Label 8150 1350 0    50   ~ 0
+	6150 4000 5650 4000
+Text Label 5650 4200 0    50   ~ 0
 DBG1
 Wire Wire Line
-	8150 1200 8700 1200
-Text Label 8700 1200 2    50   ~ 0
+	7200 4000 7450 4000
+Text Label 7450 4200 2    50   ~ 0
 DBG2
-Wire Wire Line
-	6200 7200 5600 7200
-Text Label 5600 7200 0    50   ~ 0
-DBG7
-Wire Wire Line
-	8100 5450 8700 5450
-Text Label 8700 5450 2    50   ~ 0
-DBG8
 Wire Wire Line
 	7200 6100 8150 6100
 Wire Wire Line
@@ -978,18 +954,18 @@ Wire Wire Line
 $Comp
 L power:GND #PWR0157
 U 1 1 5E983484
-P 9500 2800
-F 0 "#PWR0157" H 9500 2550 50  0001 C CNN
-F 1 "GND" H 9505 2627 50  0000 C CNN
-F 2 "" H 9500 2800 50  0001 C CNN
-F 3 "" H 9500 2800 50  0001 C CNN
-	1    9500 2800
+P 9500 2600
+F 0 "#PWR0157" H 9500 2350 50  0001 C CNN
+F 1 "GND" H 9505 2427 50  0000 C CNN
+F 2 "" H 9500 2600 50  0001 C CNN
+F 3 "" H 9500 2600 50  0001 C CNN
+	1    9500 2600
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9500 2800 9500 2750
+	9500 2600 9500 2550
 Wire Wire Line
-	9500 2750 9550 2750
+	9500 2550 9550 2550
 $Comp
 L agc_monitor:+3V3_IO #PWR0158
 U 1 1 5E993DA6
@@ -1163,17 +1139,6 @@ Connection ~ 9950 4200
 Wire Wire Line
 	9950 4800 9950 4500
 Connection ~ 9950 4500
-$Comp
-L Connector_Generic:Conn_01x10 J3
-U 1 1 5D1DF496
-P 9750 2250
-F 0 "J3" H 9829 2196 50  0000 L CNN
-F 1 "Conn_01x10" H 9830 2151 50  0001 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical" H 9750 2250 50  0001 C CNN
-F 3 "~" H 9750 2250 50  0001 C CNN
-	1    9750 2250
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	9550 2350 9200 2350
 Text Label 9200 2350 0    50   ~ 0
@@ -1182,14 +1147,6 @@ Wire Wire Line
 	9550 2450 9200 2450
 Text Label 9200 2450 0    50   ~ 0
 DBG6
-Wire Wire Line
-	9550 2550 9200 2550
-Text Label 9200 2550 0    50   ~ 0
-DBG7
-Wire Wire Line
-	9550 2650 9200 2650
-Text Label 9200 2650 0    50   ~ 0
-DBG8
 $Comp
 L power:PWR_FLAG #FLG0102
 U 1 1 5DCB357C
@@ -1216,4 +1173,112 @@ Wire Wire Line
 	2050 2050 2050 3050
 Connection ~ 2050 2050
 Connection ~ 2050 3050
+$Comp
+L Connector_Generic:Conn_01x08 J3
+U 1 1 5E56FA96
+P 9750 2150
+F 0 "J3" H 9830 2142 50  0000 L CNN
+F 1 "Conn_01x08" H 9830 2051 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x04_P2.54mm_Vertical" H 9750 2150 50  0001 C CNN
+F 3 "~" H 9750 2150 50  0001 C CNN
+	1    9750 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED D8
+U 1 1 5E5887E3
+P 9750 5100
+F 0 "D8" H 9750 5200 50  0000 C CNN
+F 1 "LED" H 9741 5225 50  0001 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 9750 5100 50  0001 C CNN
+F 3 "~" H 9750 5100 50  0001 C CNN
+	1    9750 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9250 5100 9000 5100
+Text Label 9000 5100 0    50   ~ 0
+LED5
+$Comp
+L Device:R_US R25
+U 1 1 5E5887EB
+P 9400 5100
+F 0 "R25" V 9300 5100 50  0000 C CNN
+F 1 "330" V 9500 5100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9440 5090 50  0001 C CNN
+F 3 "~" H 9400 5100 50  0001 C CNN
+	1    9400 5100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9600 5100 9550 5100
+Wire Wire Line
+	9950 5100 9900 5100
+Wire Wire Line
+	9950 4800 9950 5100
+Connection ~ 9950 4800
+$Comp
+L Device:LED D9
+U 1 1 5E5B5AA7
+P 9750 5400
+F 0 "D9" H 9750 5500 50  0000 C CNN
+F 1 "LED" H 9741 5525 50  0001 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric" H 9750 5400 50  0001 C CNN
+F 3 "~" H 9750 5400 50  0001 C CNN
+	1    9750 5400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9250 5400 9000 5400
+Text Label 9000 5400 0    50   ~ 0
+LED6
+$Comp
+L Device:R_US R26
+U 1 1 5E5B5AAF
+P 9400 5400
+F 0 "R26" V 9300 5400 50  0000 C CNN
+F 1 "330" V 9500 5400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" V 9440 5390 50  0001 C CNN
+F 3 "~" H 9400 5400 50  0001 C CNN
+	1    9400 5400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9600 5400 9550 5400
+Wire Wire Line
+	9950 5400 9900 5400
+Wire Wire Line
+	9950 5100 9950 5400
+Connection ~ 9950 5100
+Connection ~ 5550 1250
+Wire Wire Line
+	5550 1250 5550 2050
+Wire Wire Line
+	2700 1150 2450 1150
+Text Label 2450 1150 0    50   ~ 0
+LED5
+Wire Wire Line
+	3750 1150 4100 1150
+Wire Wire Line
+	4100 1150 4100 1200
+Wire Wire Line
+	4100 1200 4350 1200
+Text Label 4350 1200 2    50   ~ 0
+LED6
+Wire Wire Line
+	6150 4100 5650 4100
+Text Label 5650 4100 0    50   ~ 0
+DBG3
+Wire Wire Line
+	6150 4200 5650 4200
+Text Label 5650 4000 0    50   ~ 0
+DBG5
+Wire Wire Line
+	7200 4100 7450 4100
+Text Label 7450 4100 2    50   ~ 0
+DBG4
+Wire Wire Line
+	7200 4200 7450 4200
+Text Label 7450 4000 2    50   ~ 0
+DBG6
 $EndSCHEMATC

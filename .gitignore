@@ -103,3 +103,4 @@
 !*.sch
 !*-table
 !*.kicad_mod
+!*.wrl
