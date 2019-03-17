@@ -749,7 +749,7 @@ U 1 1 5C7A2299
 P 9000 3850
 F 0 "H1" H 8950 4050 50  0000 L CNN
 F 1 "MountingHole_Pad" H 9100 3810 50  0001 L CNN
-F 2 "agc_monitor:MountingHole_1004579" H 9000 3850 50  0001 C CNN
+F 2 "agc_monitor:MountingHole_ANSI_4" H 9000 3850 50  0001 C CNN
 F 3 "~" H 9000 3850 50  0001 C CNN
 	1    9000 3850
 	1    0    0    -1  
@@ -757,12 +757,12 @@ $EndComp
 $Comp
 L power:GND #PWR0160
 U 1 1 5C7A2406
-P 9300 4050
-F 0 "#PWR0160" H 9300 3800 50  0001 C CNN
-F 1 "GND" H 9300 3900 50  0000 C CNN
-F 2 "" H 9300 4050 50  0001 C CNN
-F 3 "" H 9300 4050 50  0001 C CNN
-	1    9300 4050
+P 9500 4050
+F 0 "#PWR0160" H 9500 3800 50  0001 C CNN
+F 1 "GND" H 9500 3900 50  0000 C CNN
+F 2 "" H 9500 4050 50  0001 C CNN
+F 3 "" H 9500 4050 50  0001 C CNN
+	1    9500 4050
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -771,7 +771,7 @@ U 1 1 5C7A332F
 P 9200 3850
 F 0 "H2" H 9150 4050 50  0000 L CNN
 F 1 "MountingHole_Pad" H 9300 3810 50  0001 L CNN
-F 2 "agc_monitor:MountingHole_1004579" H 9200 3850 50  0001 C CNN
+F 2 "agc_monitor:MountingHole_ANSI_4" H 9200 3850 50  0001 C CNN
 F 3 "~" H 9200 3850 50  0001 C CNN
 	1    9200 3850
 	1    0    0    -1  
@@ -782,7 +782,7 @@ U 1 1 5C7AD28E
 P 9400 3850
 F 0 "H3" H 9350 4050 50  0000 L CNN
 F 1 "MountingHole_Pad" H 9500 3810 50  0001 L CNN
-F 2 "agc_monitor:MountingHole_1004579" H 9400 3850 50  0001 C CNN
+F 2 "agc_monitor:MountingHole_ANSI_4" H 9400 3850 50  0001 C CNN
 F 3 "~" H 9400 3850 50  0001 C CNN
 	1    9400 3850
 	1    0    0    -1  
@@ -793,7 +793,7 @@ U 1 1 5C7B71F2
 P 9600 3850
 F 0 "H4" H 9550 4050 50  0000 L CNN
 F 1 "MountingHole_Pad" H 9700 3810 50  0001 L CNN
-F 2 "agc_monitor:MountingHole_1004579" H 9600 3850 50  0001 C CNN
+F 2 "agc_monitor:MountingHole_ANSI_4" H 9600 3850 50  0001 C CNN
 F 3 "~" H 9600 3850 50  0001 C CNN
 	1    9600 3850
 	1    0    0    -1  
@@ -803,22 +803,15 @@ Wire Wire Line
 Wire Wire Line
 	9000 4000 9200 4000
 Wire Wire Line
-	9300 4000 9300 4050
-Wire Wire Line
-	9300 4000 9400 4000
+	9500 4000 9500 4050
 Wire Wire Line
 	9600 4000 9600 3950
-Connection ~ 9300 4000
 Wire Wire Line
 	9400 3950 9400 4000
-Connection ~ 9400 4000
 Wire Wire Line
-	9400 4000 9600 4000
+	9400 4000 9500 4000
 Wire Wire Line
 	9200 3950 9200 4000
-Connection ~ 9200 4000
-Wire Wire Line
-	9200 4000 9300 4000
 $Comp
 L agc_monitor:+3V3_IO #PWR0135
 U 1 1 5D82059E
@@ -834,4 +827,43 @@ Wire Wire Line
 	4650 3850 4650 4050
 Wire Wire Line
 	4650 4050 5100 4050
+$Comp
+L Mechanical:MountingHole_Pad H5
+U 1 1 5C8E6EAB
+P 9800 3850
+F 0 "H5" H 9750 4050 50  0000 L CNN
+F 1 "MountingHole_Pad" H 9900 3810 50  0001 L CNN
+F 2 "agc_monitor:MountingHole_ANSI_4" H 9800 3850 50  0001 C CNN
+F 3 "~" H 9800 3850 50  0001 C CNN
+	1    9800 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole_Pad H6
+U 1 1 5C8E6EB1
+P 10000 3850
+F 0 "H6" H 9950 4050 50  0000 L CNN
+F 1 "MountingHole_Pad" H 10100 3810 50  0001 L CNN
+F 2 "agc_monitor:MountingHole_ANSI_4" H 10000 3850 50  0001 C CNN
+F 3 "~" H 10000 3850 50  0001 C CNN
+	1    10000 3850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9200 4000 9400 4000
+Connection ~ 9200 4000
+Connection ~ 9400 4000
+Wire Wire Line
+	9600 4000 9800 4000
+Wire Wire Line
+	9800 4000 9800 3950
+Connection ~ 9600 4000
+Wire Wire Line
+	9800 4000 10000 4000
+Wire Wire Line
+	10000 4000 10000 3950
+Connection ~ 9800 4000
+Connection ~ 9500 4000
+Wire Wire Line
+	9500 4000 9600 4000
 $EndSCHEMATC

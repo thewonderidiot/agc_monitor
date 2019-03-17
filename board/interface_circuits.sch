@@ -552,17 +552,6 @@ Wire Wire Line
 	650  1700 650  1750
 Wire Wire Line
 	650  1750 700  1750
-$Comp
-L Device:CP1_Small C1
-U 1 1 5C73CBD2
-P 1050 1950
-F 0 "C1" H 850 2000 50  0000 L CNN
-F 1 "10uF" H 750 1900 50  0000 L CNN
-F 2 "Capacitor_Tantalum_SMD:CP_EIA-6032-28_Kemet-C" H 1050 1950 50  0001 C CNN
-F 3 "~" H 1050 1950 50  0001 C CNN
-	1    1050 1950
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	1000 1750 1050 1750
 Wire Wire Line
@@ -964,7 +953,7 @@ U 1 1 5EB91D30
 P 2000 6450
 F 0 "J2" H 2079 6446 50  0000 L CNN
 F 1 "Conn_01x03" H 2080 6401 50  0001 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 2000 6450 50  0001 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Horizontal" H 2000 6450 50  0001 C CNN
 F 3 "~" H 2000 6450 50  0001 C CNN
 	1    2000 6450
 	1    0    0    -1  
@@ -2171,17 +2160,6 @@ F 3 "~" H 2900 1950 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:CP1_Small C3
-U 1 1 5F144E33
-P 3100 1950
-F 0 "C3" H 3200 2000 50  0000 L CNN
-F 1 "10uF" H 3200 1900 50  0000 L CNN
-F 2 "Capacitor_Tantalum_SMD:CP_EIA-6032-28_Kemet-C" H 3100 1950 50  0001 C CNN
-F 3 "~" H 3100 1950 50  0001 C CNN
-	1    3100 1950
-	1    0    0    -1  
-$EndComp
-$Comp
 L agc_monitor:STMPS2151_SOT23-5 U2
 U 1 1 5F26700B
 P 4800 2200
@@ -2285,4 +2263,26 @@ $EndComp
 Wire Wire Line
 	9950 4250 9900 4250
 NoConn ~ 6950 4850
+$Comp
+L Device:C_Small C1
+U 1 1 5C92A19B
+P 1050 1950
+F 0 "C1" H 1150 2000 50  0000 L CNN
+F 1 "10uF" H 1150 1900 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 1050 1950 50  0001 C CNN
+F 3 "~" H 1050 1950 50  0001 C CNN
+	1    1050 1950
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C3
+U 1 1 5C967817
+P 3100 1950
+F 0 "C3" H 3200 2000 50  0000 L CNN
+F 1 "10uF" H 3200 1900 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric" H 3100 1950 50  0001 C CNN
+F 3 "~" H 3100 1950 50  0001 C CNN
+	1    3100 1950
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
