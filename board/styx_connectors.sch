@@ -86,7 +86,7 @@ Wire Wire Line
 Wire Wire Line
 	2700 1050 2050 1050
 Connection ~ 2050 1050
-Text Notes 2100 1050 0    50   ~ 0
+Text Notes 5600 1150 0    50   ~ 0
 ADC_BPLSSW_N
 Text GLabel 3800 5300 2    50   Input ~ 0
 MWCH
@@ -167,10 +167,10 @@ Text GLabel 2650 1450 0    50   Input ~ 0
 MNISQ
 Wire Wire Line
 	2650 1450 2700 1450
-Text GLabel 3800 1050 2    50   Input ~ 0
+Text GLabel 7250 1150 2    50   Input ~ 0
 ADC_BPLSSW_P
 Wire Wire Line
-	3800 1050 3750 1050
+	7250 1150 7200 1150
 Text GLabel 7250 5200 2    50   Input ~ 0
 MRCH
 Wire Wire Line
@@ -299,16 +299,16 @@ Wire Wire Line
 Connection ~ 5550 1150
 Wire Wire Line
 	5550 1150 5550 1250
-Text Notes 5950 1150 2    50   ~ 0
+Text Notes 5950 1250 2    50   ~ 0
 MTLO_N
 Wire Wire Line
 	6150 1250 5550 1250
-Text Notes 6000 1250 2    50   ~ 0
+Text Notes 2700 1050 2    50   ~ 0
 ADC_3V3_N
-Text GLabel 7250 1250 2    50   Input ~ 0
+Text GLabel 3800 1050 2    50   Input ~ 0
 ADC_3V3_P
 Wire Wire Line
-	7250 1250 7200 1250
+	3800 1050 3750 1050
 Text GLabel 2650 5800 0    50   Input ~ 0
 MWL03
 Wire Wire Line
@@ -385,10 +385,10 @@ Text GLabel 7250 1050 2    50   Input ~ 0
 ADC_4SW_P
 Wire Wire Line
 	7250 1050 7200 1050
-Text GLabel 7250 1150 2    50   Input ~ 0
+Text GLabel 7250 1250 2    50   Input ~ 0
 MTLO
 Wire Wire Line
-	7250 1150 7200 1150
+	7250 1250 7200 1250
 Text GLabel 2650 1850 0    50   Input ~ 0
 MWATCH_n
 Wire Wire Line

@@ -1,4 +1,4 @@
-update=Sun 17 Feb 2019 10:58:40 PM PST
+update=Sun 17 Mar 2019 10:55:08 PM PDT
 version=1
 last_client=kicad
 [general]
@@ -34,10 +34,10 @@ LibDir=
 [schematic_editor]
 version=1
 PageLayoutDescrFile=
-PlotDirectoryName=/home/mike/agc_monitor/board
+PlotDirectoryName=/home/mike/
 SubpartIdSeparator=0
 SubpartFirstId=65
-NetFmtName=
+NetFmtName=Pcbnew
 SpiceAjustPassiveValues=0
 LabSize=50
 ERC_TestSimilarLabels=1
