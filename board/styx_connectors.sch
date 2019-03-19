@@ -1070,7 +1070,7 @@ U 1 1 5E56FA96
 P 9750 2150
 F 0 "J3" H 9830 2142 50  0000 L CNN
 F 1 "Conn_01x08" H 9830 2051 50  0000 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_2x04_P2.54mm_Vertical" H 9750 2150 50  0001 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_2x04_P2.54mm_Horizontal" H 9750 2150 50  0001 C CNN
 F 3 "~" H 9750 2150 50  0001 C CNN
 	1    9750 2150
 	1    0    0    -1  
@@ -1199,4 +1199,48 @@ Text Label 10250 3800 2    50   ~ 0
 Wire Wire Line
 	4750 6150 4750 6100
 Connection ~ 4750 6100
+$Comp
+L Mechanical:MountingHole H7
+U 1 1 5C9779E4
+P 8700 850
+F 0 "H7" H 8800 896 50  0000 L CNN
+F 1 "MountingHole" H 8800 805 50  0000 L CNN
+F 2 "agc_monitor:MountingHole_ANSI_4" H 8700 850 50  0001 C CNN
+F 3 "~" H 8700 850 50  0001 C CNN
+	1    8700 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H8
+U 1 1 5C98D89C
+P 8700 1050
+F 0 "H8" H 8800 1096 50  0000 L CNN
+F 1 "MountingHole" H 8800 1005 50  0000 L CNN
+F 2 "agc_monitor:MountingHole_ANSI_4" H 8700 1050 50  0001 C CNN
+F 3 "~" H 8700 1050 50  0001 C CNN
+	1    8700 1050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H9
+U 1 1 5C9A3644
+P 9550 850
+F 0 "H9" H 9650 896 50  0000 L CNN
+F 1 "MountingHole" H 9650 805 50  0000 L CNN
+F 2 "agc_monitor:MountingHole_ANSI_4" H 9550 850 50  0001 C CNN
+F 3 "~" H 9550 850 50  0001 C CNN
+	1    9550 850 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H10
+U 1 1 5C9A364A
+P 9550 1050
+F 0 "H10" H 9650 1096 50  0000 L CNN
+F 1 "MountingHole" H 9650 1005 50  0000 L CNN
+F 2 "agc_monitor:MountingHole_ANSI_4" H 9550 1050 50  0001 C CNN
+F 3 "~" H 9550 1050 50  0001 C CNN
+	1    9550 1050
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

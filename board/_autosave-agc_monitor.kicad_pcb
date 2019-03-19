@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 27)
+    (drawings 31)
     (tracks 2206)
     (zones 0)
     (modules 70)
@@ -4165,6 +4165,10 @@
     )
   )
 
+  (gr_line (start 96.5835 74.168) (end 96.5835 79.168) (layer Cmts.User) (width 0.2) (tstamp 5C9F6A2B))
+  (gr_line (start 96.5835 79.9465) (end 96.5835 84.9465) (layer Cmts.User) (width 0.2) (tstamp 5C9F6A2B))
+  (gr_line (start 116.84 100.619992) (end 121.92 100.619992) (layer Cmts.User) (width 0.2))
+  (gr_line (start 96.5835 85.7885) (end 96.5835 90.7885) (layer Cmts.User) (width 0.2))
   (gr_line (start 101.727 91.059) (end 98.2345 91.059) (layer Cmts.User) (width 0.2))
   (gr_line (start 101.727 100.076) (end 98.2345 100.076) (layer Cmts.User) (width 0.2))
   (gr_line (start 101.727279 91.048688) (end 101.727279 100.048695) (layer Cmts.User) (width 0.2))
