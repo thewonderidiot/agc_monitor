@@ -618,18 +618,18 @@ Wire Wire Line
 $Comp
 L power:GND #PWR0108
 U 1 1 5C9D4435
-P 1750 6600
-F 0 "#PWR0108" H 1750 6350 50  0001 C CNN
-F 1 "GND" H 1755 6427 50  0000 C CNN
-F 2 "" H 1750 6600 50  0001 C CNN
-F 3 "" H 1750 6600 50  0001 C CNN
-	1    1750 6600
+P 1750 6700
+F 0 "#PWR0108" H 1750 6450 50  0001 C CNN
+F 1 "GND" H 1755 6527 50  0000 C CNN
+F 2 "" H 1750 6700 50  0001 C CNN
+F 3 "" H 1750 6700 50  0001 C CNN
+	1    1750 6700
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1750 6600 1750 6550
+	1750 6700 1750 6650
 Wire Wire Line
-	1800 6550 1750 6550
+	1800 6650 1750 6650
 $Comp
 L agc_monitor:+3V3_AGC #PWR0109
 U 1 1 5CA4B983
@@ -947,17 +947,6 @@ Text Notes 2100 6200 2    50   ~ 0
 PSU Control Inputs
 Text Notes 2150 5100 2    50   ~ 0
 SIGNY RTL Input
-$Comp
-L Connector_Generic:Conn_01x03 J2
-U 1 1 5EB91D30
-P 2000 6450
-F 0 "J2" H 2079 6446 50  0000 L CNN
-F 1 "Conn_01x03" H 2080 6401 50  0001 L CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_1x03_P2.54mm_Horizontal" H 2000 6450 50  0001 C CNN
-F 3 "~" H 2000 6450 50  0001 C CNN
-	1    2000 6450
-	1    0    0    -1  
-$EndComp
 $Comp
 L Connector_Generic:Conn_01x03 J1
 U 1 1 5EBA8EA1
@@ -2285,4 +2274,20 @@ F 3 "~" H 3100 1950 50  0001 C CNN
 	1    3100 1950
 	1    0    0    -1  
 $EndComp
+$Comp
+L Connector_Generic:Conn_01x04 J2
+U 1 1 5C9F9B2F
+P 2000 6450
+F 0 "J2" H 2080 6442 50  0000 L CNN
+F 1 "Conn_01x04" H 2080 6351 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_2x02_P2.54mm_Horizontal" H 2000 6450 50  0001 C CNN
+F 3 "~" H 2000 6450 50  0001 C CNN
+	1    2000 6450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1750 6650 1750 6550
+Wire Wire Line
+	1750 6550 1800 6550
+Connection ~ 1750 6650
 $EndSCHEMATC
