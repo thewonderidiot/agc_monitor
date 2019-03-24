@@ -386,14 +386,14 @@ Text GLabel 6900 3250 0    50   Output ~ 0
 MRAG
 Wire Wire Line
 	6950 3250 6900 3250
-Text GLabel 1750 6350 0    50   Output ~ 0
+Text GLabel 1700 6350 0    50   Output ~ 0
 CTRL1
 Wire Wire Line
-	1750 6350 1800 6350
-Text GLabel 1750 6450 0    50   Output ~ 0
+	1700 6350 1800 6350
+Text GLabel 1700 6550 0    50   Output ~ 0
 CTRL2
 Wire Wire Line
-	1750 6450 1800 6450
+	1700 6550 1800 6550
 Text GLabel 3300 5900 0    50   Output ~ 0
 MTLO
 Text GLabel 8900 4750 0    50   Output ~ 0
@@ -2286,8 +2286,8 @@ F 3 "~" H 2000 6450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	1750 6650 1750 6550
-Wire Wire Line
-	1750 6550 1800 6550
+	1750 6650 1750 6450
 Connection ~ 1750 6650
+Wire Wire Line
+	1750 6450 1800 6450
 $EndSCHEMATC
