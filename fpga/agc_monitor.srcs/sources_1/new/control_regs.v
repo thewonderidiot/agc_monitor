@@ -13,6 +13,8 @@ module control_regs(
     input wire bplssw_n,
     input wire p4sw_p,
     input wire p4sw_n,
+    input wire p3v3io_p,
+    input wire p3v3io_n,
     input wire mtemp_p,
     input wire mtemp_n,
 
@@ -162,10 +164,12 @@ mon_adc adc(
     .reset_in(~rst_n),
     .vauxp7(p4sw_p),
     .vauxn7(p4sw_n),
-    .vauxp14(mtemp_p),
-    .vauxn14(mtemp_n),
-    .vauxp15(bplssw_p),
-    .vauxn15(bplssw_n),
+    .vauxp12(mtemp_p),
+    .vauxn12(mtemp_n),
+    .vauxp14(bplssw_p),
+    .vauxn14(bplssw_n),
+    .vauxp15(p3v3io_p),
+    .vauxn15(p3v3io_n),
     .busy_out(),
     .channel_out(adc_channel),
     .do_out(adc_do),
@@ -182,6 +186,7 @@ reg [15:0] adc_vccint;
 reg [15:0] adc_vccaux;
 reg [15:0] adc_bplssw;
 reg [15:0] adc_p4sw;
+reg [15:0] adc_p3v3io;
 reg [15:0] adc_mtemp;
 
 always @(posedge clk or negedge rst_n) begin
@@ -191,6 +196,7 @@ always @(posedge clk or negedge rst_n) begin
         adc_vccaux <= 16'b0;
         adc_bplssw <= 16'b0;
         adc_p4sw <= 16'b0;
+        adc_p3v3io <= 16'b0;
         adc_mtemp <= 16'b0;
     end else if (adc_drdy) begin
         case (adc_channel)
@@ -198,8 +204,9 @@ always @(posedge clk or negedge rst_n) begin
         `ADC_CHAN_VCCINT: adc_vccint <= adc_do;
         `ADC_CHAN_VCCAUX: adc_vccaux <= adc_do;
         `ADC_CHAN_VAUX7:  adc_p4sw <= adc_do;
-        `ADC_CHAN_VAUX14: adc_mtemp <= adc_do;
-        `ADC_CHAN_VAUX15: adc_bplssw <= adc_do;
+        `ADC_CHAN_VAUX12: adc_mtemp <= adc_do;
+        `ADC_CHAN_VAUX14: adc_bplssw <= adc_do;
+        `ADC_CHAN_VAUX15: adc_p3v3io <= adc_do;
         endcase
     end
 end
@@ -425,6 +432,7 @@ always @(posedge clk or negedge rst_n) begin
         `CTRL_REG_MON_VCCAUX:   read_data <= adc_vccaux;
         `CTRL_REG_AGC_BPLSSW:   read_data <= adc_bplssw;
         `CTRL_REG_AGC_P4SW:     read_data <= adc_p4sw;
+        `CTRL_REG_AGC_P3V3IO:   read_data <= adc_p3v3io;
         `CTRL_REG_AGC_MTEMP:    read_data <= adc_mtemp;
         endcase
     end else begin

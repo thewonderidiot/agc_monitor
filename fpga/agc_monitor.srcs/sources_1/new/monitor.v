@@ -20,6 +20,8 @@ module monitor(
     input wire bplssw_n,
     input wire p4sw_p,
     input wire p4sw_n,
+    input wire p3v3io_p,
+    input wire p3v3io_n,
     input wire mtemp_p,
     input wire mtemp_n,
 
@@ -220,10 +222,12 @@ control_regs ctrl_regs(
 
     .bplssw_p(bplssw_p),
     .bplssw_n(bplssw_n),
-    .mtemp_p(mtemp_p),
-    .mtemp_n(mtemp_n),
     .p4sw_p(p4sw_p),
     .p4sw_n(p4sw_n),
+    .p3v3io_p(p3v3io_p),
+    .p3v3io_n(p3v3io_n),
+    .mtemp_p(mtemp_p),
+    .mtemp_n(mtemp_n),
 
     .addr(cmd_addr),
     .data_in(cmd_data),

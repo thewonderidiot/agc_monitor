@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Tue Feb 12 21:20:48 2019
+| Date         : Mon Apr  1 22:46:43 2019
 | Host         : luminary running 64-bit unknown
 | Command      : report_bus_skew -warn_on_violation -file agc_monitor_bus_skew_routed.rpt -pb agc_monitor_bus_skew_routed.pb -rpx agc_monitor_bus_skew_routed.rpx
 | Design       : agc_monitor
@@ -43,7 +43,7 @@ Id  Position  From                            To                              Co
           {mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][7]} \
           {mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][8]} \
           {mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][9]}]]
-                                                                              Slow             10.000       1.139      8.861
+                                                                              Slow             10.000       1.059      8.941
 2   12        [get_cells [list {mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} \
           {mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[10]} \
           {mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]} \
@@ -66,7 +66,7 @@ Id  Position  From                            To                              Co
           {mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][7]} \
           {mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][8]} \
           {mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][9]}]]
-                                                                              Slow             10.000       1.078      8.922
+                                                                              Slow             10.000       0.895      9.105
 3   14        [get_cells [list {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]} \
           {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[10]} \
           {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[11]} \
@@ -93,7 +93,7 @@ Id  Position  From                            To                              Co
           {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][7]} \
           {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][8]} \
           {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][9]}]]
-                                                                              Slow             10.000       1.149      8.851
+                                                                              Slow             10.000       0.771      9.229
 4   16        [get_cells [list {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]} \
           {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[10]} \
           {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[11]} \
@@ -120,7 +120,7 @@ Id  Position  From                            To                              Co
           {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][7]} \
           {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][8]} \
           {mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][9]}]]
-                                                                              Slow             10.000       1.113      8.887
+                                                                              Slow             10.000       1.123      8.877
 
 
 2. Bus Skew Report Per Constraint
@@ -153,27 +153,27 @@ Endpoints: 11
 
 From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
 --------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
-clk                   clkout                mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]/D
-                                                                            mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][6]/D
-                                                                                                            Slow         1.139      8.861
+clk                   clkout                mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][9]/D
+                                                                            mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
+                                                                                                            Slow         1.059      8.941
 
 
-Slack (MET) :             8.861ns  (requirement - actual skew)
-  Endpoint Source:        mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]/C
+Slack (MET) :             8.941ns  (requirement - actual skew)
+  Endpoint Source:        mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[9]/C
                             (rising edge-triggered cell FDRE clocked by clk)
-  Endpoint Destination:   mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]/D
+  Endpoint Destination:   mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][9]/D
                             (rising edge-triggered cell FDRE clocked by clkout)
-  Reference Source:       mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[6]/C
+  Reference Source:       mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by clk)
-  Reference Destination:  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][6]/D
+  Reference Destination:  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
                             (rising edge-triggered cell FDRE clocked by clkout)
   Path Type:              Bus Skew (Max at Slow Process Corner)
   Requirement:            10.000ns
-  Endpoint Relative Delay:    1.952ns
-  Reference Relative Delay:   0.127ns
-  Relative CRPR:              0.722ns
+  Endpoint Relative Delay:    1.968ns
+  Reference Relative Delay:   0.086ns
+  Relative CRPR:              0.859ns
   Uncertainty:                0.035ns
-  Actual Bus Skew:            1.139ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR + Uncertainty)
+  Actual Bus Skew:            1.059ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR + Uncertainty)
 
 Endpoint path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -184,12 +184,12 @@ Endpoint path:
     Y6                   IBUF (Prop_ibuf_I_O)         1.484     1.484 r  clk_IBUF_inst/O
                          net (fo=1, routed)           2.171     3.655    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.101     3.756 r  clk_IBUF_BUFG_inst/O
-                         net (fo=1805, routed)        1.893     5.649    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_clk
-    SLICE_X54Y120        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]/C
+                         net (fo=1822, routed)        1.897     5.653    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_clk
+    SLICE_X54Y117        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[9]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X54Y120        FDRE (Prop_fdre_C_Q)         0.478     6.127 r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[1]/Q
-                         net (fo=1, routed)           0.663     6.791    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/async_path[1]
-    SLICE_X51Y121        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]/D
+    SLICE_X54Y117        FDRE (Prop_fdre_C_Q)         0.478     6.131 r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[9]/Q
+                         net (fo=1, routed)           0.674     6.806    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/async_path[9]
+    SLICE_X51Y116        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][9]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clkout rise edge)     0.000     0.000 r  
@@ -198,15 +198,15 @@ Endpoint path:
     L18                  IBUF (Prop_ibuf_I_O)         1.376     1.376 r  clkout_IBUF_inst/O
                          net (fo=1, routed)           2.006     3.382    clkout_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.473 r  clkout_IBUF_BUFG_inst/O
-                         net (fo=265, routed)         1.628     5.102    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_clk
-    SLICE_X51Y121        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]/C
-                         clock pessimism              0.000     5.102    
-    SLICE_X51Y121        FDRE (Setup_fdre_C_D)       -0.263     4.839    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][1]
+                         net (fo=265, routed)         1.633     5.107    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_clk
+    SLICE_X51Y116        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][9]/C
+                         clock pessimism              0.000     5.107    
+    SLICE_X51Y116        FDRE (Setup_fdre_C_D)       -0.269     4.838    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][9]
   -------------------------------------------------------------------
-                         data arrival                           6.791    
-                         clock arrival                          4.839    
+                         data arrival                           6.806    
+                         clock arrival                          4.838    
   -------------------------------------------------------------------
-                         relative delay                         1.952    
+                         relative delay                         1.968    
 
 Reference path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -217,12 +217,12 @@ Reference path:
     Y6                   IBUF (Prop_ibuf_I_O)         1.414     1.414 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.386    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     3.477 r  clk_IBUF_BUFG_inst/O
-                         net (fo=1805, routed)        1.631     5.108    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_clk
-    SLICE_X53Y121        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[6]/C
+                         net (fo=1822, routed)        1.706     5.183    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_clk
+    SLICE_X55Y116        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X53Y121        FDRE (Prop_fdre_C_Q)         0.367     5.475 r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[6]/Q
-                         net (fo=1, routed)           0.402     5.877    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/async_path[6]
-    SLICE_X47Y121        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][6]/D
+    SLICE_X55Y116        FDRE (Prop_fdre_C_Q)         0.367     5.550 r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]/Q
+                         net (fo=1, routed)           0.414     5.964    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/async_path[0]
+    SLICE_X54Y115        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clkout rise edge)     0.000     0.000 r  
@@ -231,15 +231,15 @@ Reference path:
     L18                  IBUF (Prop_ibuf_I_O)         1.447     1.447 r  clkout_IBUF_inst/O
                          net (fo=1, routed)           2.205     3.652    clkout_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.753 r  clkout_IBUF_BUFG_inst/O
-                         net (fo=265, routed)         1.829     5.582    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_clk
-    SLICE_X47Y121        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][6]/C
-                         clock pessimism              0.000     5.582    
-    SLICE_X47Y121        FDRE (Hold_fdre_C_D)         0.169     5.751    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][6]
+                         net (fo=265, routed)         1.896     5.649    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_clk
+    SLICE_X54Y115        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/C
+                         clock pessimism              0.000     5.649    
+    SLICE_X54Y115        FDRE (Hold_fdre_C_D)         0.230     5.879    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]
   -------------------------------------------------------------------
-                         data arrival                           5.877    
-                         clock arrival                          5.751    
+                         data arrival                           5.964    
+                         clock arrival                          5.879    
   -------------------------------------------------------------------
-                         relative delay                         0.127    
+                         relative delay                         0.086    
 
 
 
@@ -270,27 +270,27 @@ Endpoints: 11
 
 From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
 --------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
-clkout                clk                   mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][7]/D
-                                                                            mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][10]/D
-                                                                                                            Slow         1.078      8.922
+clkout                clk                   mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]/D
+                                                                            mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][6]/D
+                                                                                                            Slow         0.895      9.105
 
 
-Slack (MET) :             8.922ns  (requirement - actual skew)
-  Endpoint Source:        mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[7]/C
+Slack (MET) :             9.105ns  (requirement - actual skew)
+  Endpoint Source:        mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]/C
                             (rising edge-triggered cell FDRE clocked by clkout)
-  Endpoint Destination:   mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][7]/D
+  Endpoint Destination:   mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]/D
                             (rising edge-triggered cell FDRE clocked by clk)
-  Reference Source:       mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[10]/C
+  Reference Source:       mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[6]/C
                             (rising edge-triggered cell FDRE clocked by clkout)
-  Reference Destination:  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][10]/D
+  Reference Destination:  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][6]/D
                             (rising edge-triggered cell FDRE clocked by clk)
   Path Type:              Bus Skew (Max at Slow Process Corner)
   Requirement:            10.000ns
-  Endpoint Relative Delay:    1.949ns
-  Reference Relative Delay:   0.046ns
-  Relative CRPR:              0.861ns
+  Endpoint Relative Delay:    1.784ns
+  Reference Relative Delay:   0.102ns
+  Relative CRPR:              0.823ns
   Uncertainty:                0.035ns
-  Actual Bus Skew:            1.078ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR + Uncertainty)
+  Actual Bus Skew:            0.895ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR + Uncertainty)
 
 Endpoint path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -301,12 +301,12 @@ Endpoint path:
     L18                  IBUF (Prop_ibuf_I_O)         1.447     1.447 r  clkout_IBUF_inst/O
                          net (fo=1, routed)           2.205     3.652    clkout_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.753 r  clkout_IBUF_BUFG_inst/O
-                         net (fo=265, routed)         1.891     5.644    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_clk
-    SLICE_X54Y119        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[7]/C
+                         net (fo=265, routed)         1.892     5.645    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_clk
+    SLICE_X54Y118        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X54Y119        FDRE (Prop_fdre_C_Q)         0.478     6.122 r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[7]/Q
-                         net (fo=1, routed)           0.742     6.864    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/async_path[7]
-    SLICE_X55Y118        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][7]/D
+    SLICE_X54Y118        FDRE (Prop_fdre_C_Q)         0.478     6.123 r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[1]/Q
+                         net (fo=1, routed)           0.578     6.700    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/async_path[1]
+    SLICE_X55Y118        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)        0.000     0.000 r  
@@ -315,15 +315,15 @@ Endpoint path:
     Y6                   IBUF (Prop_ibuf_I_O)         1.414     1.414 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.386    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     3.477 r  clk_IBUF_BUFG_inst/O
-                         net (fo=1805, routed)        1.703     5.180    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_clk
-    SLICE_X55Y118        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][7]/C
+                         net (fo=1822, routed)        1.703     5.180    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_clk
+    SLICE_X55Y118        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]/C
                          clock pessimism              0.000     5.180    
-    SLICE_X55Y118        FDRE (Setup_fdre_C_D)       -0.265     4.915    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][7]
+    SLICE_X55Y118        FDRE (Setup_fdre_C_D)       -0.264     4.916    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][1]
   -------------------------------------------------------------------
-                         data arrival                           6.864    
-                         clock arrival                          4.915    
+                         data arrival                           6.700    
+                         clock arrival                          4.916    
   -------------------------------------------------------------------
-                         relative delay                         1.949    
+                         relative delay                         1.784    
 
 Reference path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -335,11 +335,11 @@ Reference path:
                          net (fo=1, routed)           2.006     3.382    clkout_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.473 r  clkout_IBUF_BUFG_inst/O
                          net (fo=265, routed)         1.629     5.103    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_clk
-    SLICE_X52Y119        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[10]/C
+    SLICE_X53Y119        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[6]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X52Y119        FDRE (Prop_fdre_C_Q)         0.367     5.470 r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[10]/Q
-                         net (fo=1, routed)           0.458     5.927    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/async_path[10]
-    SLICE_X54Y118        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][10]/D
+    SLICE_X53Y119        FDRE (Prop_fdre_C_Q)         0.367     5.470 r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[6]/Q
+                         net (fo=1, routed)           0.380     5.849    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/async_path[6]
+    SLICE_X51Y119        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][6]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)        0.000     0.000 r  
@@ -348,15 +348,15 @@ Reference path:
     Y6                   IBUF (Prop_ibuf_I_O)         1.484     1.484 r  clk_IBUF_inst/O
                          net (fo=1, routed)           2.171     3.655    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.101     3.756 r  clk_IBUF_BUFG_inst/O
-                         net (fo=1805, routed)        1.895     5.651    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_clk
-    SLICE_X54Y118        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][10]/C
-                         clock pessimism              0.000     5.651    
-    SLICE_X54Y118        FDRE (Hold_fdre_C_D)         0.230     5.881    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][10]
+                         net (fo=1822, routed)        1.822     5.578    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_clk
+    SLICE_X51Y119        FDRE                                         r  mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][6]/C
+                         clock pessimism              0.000     5.578    
+    SLICE_X51Y119        FDRE (Hold_fdre_C_D)         0.169     5.747    mon/usb_if/cmd_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][6]
   -------------------------------------------------------------------
-                         data arrival                           5.927    
-                         clock arrival                          5.881    
+                         data arrival                           5.849    
+                         clock arrival                          5.747    
   -------------------------------------------------------------------
-                         relative delay                         0.046    
+                         relative delay                         0.102    
 
 
 
@@ -391,15 +391,15 @@ Endpoints: 13
 
 From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
 --------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
-clkout                clk                   mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
+clkout                clk                   mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][7]/D
                                                                             mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][10]/D
-                                                                                                            Slow         1.149      8.851
+                                                                                                            Slow         0.771      9.229
 
 
-Slack (MET) :             8.851ns  (requirement - actual skew)
-  Endpoint Source:        mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]/C
+Slack (MET) :             9.229ns  (requirement - actual skew)
+  Endpoint Source:        mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[7]/C
                             (rising edge-triggered cell FDRE clocked by clkout)
-  Endpoint Destination:   mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
+  Endpoint Destination:   mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][7]/D
                             (rising edge-triggered cell FDRE clocked by clk)
   Reference Source:       mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[10]/C
                             (rising edge-triggered cell FDRE clocked by clkout)
@@ -407,11 +407,11 @@ Slack (MET) :             8.851ns  (requirement - actual skew)
                             (rising edge-triggered cell FDRE clocked by clk)
   Path Type:              Bus Skew (Max at Slow Process Corner)
   Requirement:            10.000ns
-  Endpoint Relative Delay:    1.796ns
-  Reference Relative Delay:   0.095ns
-  Relative CRPR:              0.587ns
+  Endpoint Relative Delay:    1.748ns
+  Reference Relative Delay:   0.155ns
+  Relative CRPR:              0.858ns
   Uncertainty:                0.035ns
-  Actual Bus Skew:            1.149ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR + Uncertainty)
+  Actual Bus Skew:            0.771ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR + Uncertainty)
 
 Endpoint path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -422,12 +422,12 @@ Endpoint path:
     L18                  IBUF (Prop_ibuf_I_O)         1.447     1.447 r  clkout_IBUF_inst/O
                          net (fo=1, routed)           2.205     3.652    clkout_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.753 r  clkout_IBUF_BUFG_inst/O
-                         net (fo=265, routed)         1.711     5.464    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_clk
-    SLICE_X54Y96         FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]/C
+                         net (fo=265, routed)         1.905     5.658    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_clk
+    SLICE_X60Y107        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[7]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X54Y96         FDRE (Prop_fdre_C_Q)         0.518     5.982 r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[0]/Q
-                         net (fo=1, routed)           0.785     6.766    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/async_path[0]
-    SLICE_X58Y98         FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
+    SLICE_X60Y107        FDRE (Prop_fdre_C_Q)         0.419     6.077 r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[7]/Q
+                         net (fo=1, routed)           0.600     6.676    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/async_path[7]
+    SLICE_X64Y107        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][7]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)        0.000     0.000 r  
@@ -436,15 +436,15 @@ Endpoint path:
     Y6                   IBUF (Prop_ibuf_I_O)         1.414     1.414 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.386    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     3.477 r  clk_IBUF_BUFG_inst/O
-                         net (fo=1805, routed)        1.541     5.018    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_clk
-    SLICE_X58Y98         FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/C
-                         clock pessimism              0.000     5.018    
-    SLICE_X58Y98         FDRE (Setup_fdre_C_D)       -0.047     4.971    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][0]
+                         net (fo=1822, routed)        1.717     5.194    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_clk
+    SLICE_X64Y107        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][7]/C
+                         clock pessimism              0.000     5.194    
+    SLICE_X64Y107        FDRE (Setup_fdre_C_D)       -0.266     4.928    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][7]
   -------------------------------------------------------------------
-                         data arrival                           6.766    
-                         clock arrival                          4.971    
+                         data arrival                           6.676    
+                         clock arrival                          4.928    
   -------------------------------------------------------------------
-                         relative delay                         1.796    
+                         relative delay                         1.748    
 
 Reference path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -455,12 +455,12 @@ Reference path:
     L18                  IBUF (Prop_ibuf_I_O)         1.376     1.376 r  clkout_IBUF_inst/O
                          net (fo=1, routed)           2.006     3.382    clkout_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.473 r  clkout_IBUF_BUFG_inst/O
-                         net (fo=265, routed)         1.712     5.186    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_clk
-    SLICE_X59Y101        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[10]/C
+                         net (fo=265, routed)         1.709     5.183    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_clk
+    SLICE_X58Y110        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[10]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X59Y101        FDRE (Prop_fdre_C_Q)         0.367     5.553 r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[10]/Q
-                         net (fo=1, routed)           0.378     5.931    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/async_path[10]
-    SLICE_X60Y101        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][10]/D
+    SLICE_X58Y110        FDRE (Prop_fdre_C_Q)         0.418     5.601 r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/src_gray_ff_reg[10]/Q
+                         net (fo=1, routed)           0.388     5.989    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/async_path[10]
+    SLICE_X65Y109        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][10]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clk rise edge)        0.000     0.000 r  
@@ -469,15 +469,15 @@ Reference path:
     Y6                   IBUF (Prop_ibuf_I_O)         1.484     1.484 r  clk_IBUF_inst/O
                          net (fo=1, routed)           2.171     3.655    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.101     3.756 r  clk_IBUF_BUFG_inst/O
-                         net (fo=1805, routed)        1.910     5.666    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_clk
-    SLICE_X60Y101        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][10]/C
-                         clock pessimism              0.000     5.666    
-    SLICE_X60Y101        FDRE (Hold_fdre_C_D)         0.169     5.835    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][10]
+                         net (fo=1822, routed)        1.908     5.664    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_clk
+    SLICE_X65Y109        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][10]/C
+                         clock pessimism              0.000     5.664    
+    SLICE_X65Y109        FDRE (Hold_fdre_C_D)         0.169     5.833    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/rd_pntr_cdc_inst/dest_graysync_ff_reg[0][10]
   -------------------------------------------------------------------
-                         data arrival                           5.931    
-                         clock arrival                          5.835    
+                         data arrival                           5.989    
+                         clock arrival                          5.833    
   -------------------------------------------------------------------
-                         relative delay                         0.095    
+                         relative delay                         0.155    
 
 
 
@@ -512,27 +512,27 @@ Endpoints: 13
 
 From Clock            To Clock              Endpoint Pin                    Reference Pin                   Corner  Actual(ns)  Slack(ns)
 --------------------  --------------------  ------------------------------  ------------------------------  ------  ----------  ---------
-clk                   clkout                mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][9]/D
-                                                                            mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]/D
-                                                                                                            Slow         1.113      8.887
+clk                   clkout                mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][11]/D
+                                                                            mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
+                                                                                                            Slow         1.123      8.877
 
 
-Slack (MET) :             8.887ns  (requirement - actual skew)
-  Endpoint Source:        mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[9]/C
+Slack (MET) :             8.877ns  (requirement - actual skew)
+  Endpoint Source:        mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[11]/C
                             (rising edge-triggered cell FDRE clocked by clk)
-  Endpoint Destination:   mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][9]/D
+  Endpoint Destination:   mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][11]/D
                             (rising edge-triggered cell FDRE clocked by clkout)
-  Reference Source:       mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]/C
+  Reference Source:       mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]/C
                             (rising edge-triggered cell FDRE clocked by clk)
-  Reference Destination:  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]/D
+  Reference Destination:  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
                             (rising edge-triggered cell FDRE clocked by clkout)
   Path Type:              Bus Skew (Max at Slow Process Corner)
   Requirement:            10.000ns
-  Endpoint Relative Delay:    1.831ns
-  Reference Relative Delay:   0.167ns
-  Relative CRPR:              0.587ns
+  Endpoint Relative Delay:    2.039ns
+  Reference Relative Delay:   0.129ns
+  Relative CRPR:              0.823ns
   Uncertainty:                0.035ns
-  Actual Bus Skew:            1.113ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR + Uncertainty)
+  Actual Bus Skew:            1.123ns  (Endpoint Relative Delay - Reference Relative Delay - Relative CRPR + Uncertainty)
 
 Endpoint path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -543,12 +543,12 @@ Endpoint path:
     Y6                   IBUF (Prop_ibuf_I_O)         1.484     1.484 r  clk_IBUF_inst/O
                          net (fo=1, routed)           2.171     3.655    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.101     3.756 r  clk_IBUF_BUFG_inst/O
-                         net (fo=1805, routed)        1.907     5.663    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_clk
-    SLICE_X54Y101        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[9]/C
+                         net (fo=1822, routed)        1.904     5.660    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_clk
+    SLICE_X55Y109        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[11]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X54Y101        FDRE (Prop_fdre_C_Q)         0.478     6.141 r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[9]/Q
-                         net (fo=1, routed)           0.538     6.680    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/async_path[9]
-    SLICE_X52Y100        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][9]/D
+    SLICE_X55Y109        FDRE (Prop_fdre_C_Q)         0.419     6.079 r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[11]/Q
+                         net (fo=1, routed)           0.910     6.990    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/async_path[11]
+    SLICE_X54Y109        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][11]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clkout rise edge)     0.000     0.000 r  
@@ -557,15 +557,15 @@ Endpoint path:
     L18                  IBUF (Prop_ibuf_I_O)         1.376     1.376 r  clkout_IBUF_inst/O
                          net (fo=1, routed)           2.006     3.382    clkout_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091     3.473 r  clkout_IBUF_BUFG_inst/O
-                         net (fo=265, routed)         1.641     5.115    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_clk
-    SLICE_X52Y100        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][9]/C
-                         clock pessimism              0.000     5.115    
-    SLICE_X52Y100        FDRE (Setup_fdre_C_D)       -0.266     4.849    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][9]
+                         net (fo=265, routed)         1.708     5.182    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_clk
+    SLICE_X54Y109        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][11]/C
+                         clock pessimism              0.000     5.182    
+    SLICE_X54Y109        FDRE (Setup_fdre_C_D)       -0.231     4.951    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][11]
   -------------------------------------------------------------------
-                         data arrival                           6.680    
-                         clock arrival                          4.849    
+                         data arrival                           6.990    
+                         clock arrival                          4.951    
   -------------------------------------------------------------------
-                         relative delay                         1.831    
+                         relative delay                         2.039    
 
 Reference path:
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -576,12 +576,12 @@ Reference path:
     Y6                   IBUF (Prop_ibuf_I_O)         1.414     1.414 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.972     3.386    clk_IBUF
     BUFGCTRL_X0Y0        BUFG (Prop_bufg_I_O)         0.091     3.477 r  clk_IBUF_BUFG_inst/O
-                         net (fo=1805, routed)        1.540     5.017    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_clk
-    SLICE_X55Y97         FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]/C
+                         net (fo=1822, routed)        1.717     5.194    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_clk
+    SLICE_X60Y106        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X55Y97         FDRE (Prop_fdre_C_Q)         0.367     5.384 r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[2]/Q
-                         net (fo=1, routed)           0.345     5.729    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/async_path[2]
-    SLICE_X52Y97         FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]/D
+    SLICE_X60Y106        FDRE (Prop_fdre_C_Q)         0.367     5.561 r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/src_gray_ff_reg[0]/Q
+                         net (fo=1, routed)           0.393     5.954    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/async_path[0]
+    SLICE_X59Y107        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock clkout rise edge)     0.000     0.000 r  
@@ -590,15 +590,15 @@ Reference path:
     L18                  IBUF (Prop_ibuf_I_O)         1.447     1.447 r  clkout_IBUF_inst/O
                          net (fo=1, routed)           2.205     3.652    clkout_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.753 r  clkout_IBUF_BUFG_inst/O
-                         net (fo=265, routed)         1.640     5.393    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_clk
-    SLICE_X52Y97         FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]/C
-                         clock pessimism              0.000     5.393    
-    SLICE_X52Y97         FDRE (Hold_fdre_C_D)         0.169     5.562    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][2]
+                         net (fo=265, routed)         1.903     5.656    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_clk
+    SLICE_X59Y107        FDRE                                         r  mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]/C
+                         clock pessimism              0.000     5.656    
+    SLICE_X59Y107        FDRE (Hold_fdre_C_D)         0.169     5.825    mon/usb_if/read_byte_queue/U0/inst_fifo_gen/gconvfifo.rf/grf.rf/gntv_or_sync_fifo.gcx.clkx/wr_pntr_cdc_inst/dest_graysync_ff_reg[0][0]
   -------------------------------------------------------------------
-                         data arrival                           5.729    
-                         clock arrival                          5.562    
+                         data arrival                           5.954    
+                         clock arrival                          5.825    
   -------------------------------------------------------------------
-                         relative delay                         0.167    
+                         relative delay                         0.129    
 
 
 

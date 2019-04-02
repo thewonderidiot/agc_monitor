@@ -60,6 +60,8 @@ module mon_adc
           reset_in,            // Reset signal for the System Monitor control logic
           vauxp7,              // Auxiliary channel 7
           vauxn7,
+          vauxp12,             // Auxiliary channel 12
+          vauxn12,
           vauxp14,             // Auxiliary channel 14
           vauxn14,
           vauxp15,             // Auxiliary channel 15
@@ -82,6 +84,8 @@ module mon_adc
           input reset_in;
           input vauxp7;
           input vauxn7;
+          input vauxp12;
+          input vauxn12;
           input vauxp14;
           input vauxn14;
           input vauxp15;
@@ -144,8 +148,8 @@ module mon_adc
           assign aux_channel_p[11] = 1'b0;
           assign aux_channel_n[11] = 1'b0;
 
-          assign aux_channel_p[12] = 1'b0;
-          assign aux_channel_n[12] = 1'b0;
+          assign aux_channel_p[12] = vauxp12;
+          assign aux_channel_n[12] = vauxn12;
 
           assign aux_channel_p[13] = 1'b0;
           assign aux_channel_n[13] = 1'b0;
@@ -160,13 +164,13 @@ XADC #(
         .INIT_41(16'h21AF), // config reg 1
         .INIT_42(16'h3D00), // config reg 2
         .INIT_48(16'h0700), // Sequencer channel selection
-        .INIT_49(16'hC080), // Sequencer channel selection
+        .INIT_49(16'hD080), // Sequencer channel selection
         .INIT_4A(16'h0700), // Sequencer Average selection
-        .INIT_4B(16'hC080), // Sequencer Average selection
+        .INIT_4B(16'hD080), // Sequencer Average selection
         .INIT_4C(16'h0000), // Sequencer Bipolar selection
         .INIT_4D(16'h0000), // Sequencer Bipolar selection
         .INIT_4E(16'h0000), // Sequencer Acq time selection
-        .INIT_4F(16'hC080), // Sequencer Acq time selection
+        .INIT_4F(16'hD080), // Sequencer Acq time selection
         .INIT_50(16'hB5ED), // Temp alarm trigger
         .INIT_51(16'h57E4), // Vccint upper alarm limit
         .INIT_52(16'hA147), // Vccaux upper alarm limit

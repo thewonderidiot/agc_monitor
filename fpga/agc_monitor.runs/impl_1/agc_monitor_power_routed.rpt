@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date             : Tue Feb 12 21:20:48 2019
+| Date             : Mon Apr  1 22:46:43 2019
 | Host             : luminary running 64-bit unknown
 | Command          : report_power -file agc_monitor_power_routed.rpt -pb agc_monitor_power_summary_routed.pb -rpx agc_monitor_power_routed.rpx
 | Design           : agc_monitor
@@ -52,16 +52,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
-| Clocks         |     0.010 |        5 |       --- |             --- |
-| Slice Logic    |     0.003 |     4424 |       --- |             --- |
-|   LUT as Logic |     0.003 |     1593 |     53200 |            2.99 |
-|   Register     |    <0.001 |     2053 |    106400 |            1.93 |
+| Clocks         |     0.009 |        5 |       --- |             --- |
+| Slice Logic    |     0.003 |     4449 |       --- |             --- |
+|   LUT as Logic |     0.003 |     1598 |     53200 |            3.00 |
+|   Register     |    <0.001 |     2070 |    106400 |            1.95 |
 |   CARRY4       |    <0.001 |       43 |     13300 |            0.32 |
 |   F7/F8 Muxes  |    <0.001 |       72 |     53200 |            0.14 |
 |   Others       |     0.000 |      299 |       --- |             --- |
-| Signals        |     0.004 |     3377 |       --- |             --- |
+| Signals        |     0.004 |     3407 |       --- |             --- |
 | Block RAM      |     0.003 |        7 |       140 |            5.00 |
-| I/O            |     0.005 |      126 |       200 |           63.00 |
+| I/O            |     0.006 |      128 |       200 |           64.00 |
 | XADC           |     0.002 |        1 |       --- |             --- |
 | PS7            |     1.280 |        1 |       --- |             --- |
 | Static Power   |     0.138 |          |           |                 |
@@ -75,9 +75,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) |
 +-----------+-------------+-----------+-------------+------------+
-| Vccint    |       1.000 |     0.034 |       0.021 |      0.014 |
+| Vccint    |       1.000 |     0.034 |       0.020 |      0.014 |
 | Vccaux    |       1.800 |     0.014 |       0.000 |      0.014 |
-| Vcco33    |       3.300 |     0.002 |       0.001 |      0.001 |
+| Vcco33    |       3.300 |     0.003 |       0.002 |      0.001 |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |
@@ -158,9 +158,9 @@ Table of Contents
 |       adc                  |     0.002 |
 |     mon_chans              |     0.001 |
 |     mon_regs               |     0.002 |
-|     usb_if                 |     0.008 |
+|     usb_if                 |     0.007 |
 |       cmd_queue            |     0.002 |
-|       read_byte_queue      |     0.004 |
+|       read_byte_queue      |     0.003 |
 |   monitor_ps               |     1.280 |
 |     monitor_ps_i           |     1.280 |
 |       processing_system7_0 |     1.280 |

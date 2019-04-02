@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-// Date        : Sun Jan 27 22:17:47 2019
+// Date        : Mon Apr  1 21:45:59 2019
 // Host        : luminary running 64-bit unknown
 // Command     : write_verilog -force -mode funcsim
 //               /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/mon_adc/mon_adc_sim_netlist.v
@@ -22,6 +22,8 @@ module mon_adc
     reset_in,
     vauxp7,
     vauxn7,
+    vauxp12,
+    vauxn12,
     vauxp14,
     vauxn14,
     vauxp15,
@@ -43,6 +45,8 @@ module mon_adc
   input reset_in;
   input vauxp7;
   input vauxn7;
+  input vauxp12;
+  input vauxn12;
   input vauxp14;
   input vauxn14;
   input vauxp15;
@@ -70,9 +74,11 @@ module mon_adc
   wire eoc_out;
   wire eos_out;
   wire reset_in;
+  wire vauxn12;
   wire vauxn14;
   wire vauxn15;
   wire vauxn7;
+  wire vauxp12;
   wire vauxp14;
   wire vauxp15;
   wire vauxp7;
@@ -96,13 +102,13 @@ module mon_adc
     .INIT_46(16'h0000),
     .INIT_47(16'h0000),
     .INIT_48(16'h0700),
-    .INIT_49(16'hC080),
+    .INIT_49(16'hD080),
     .INIT_4A(16'h0700),
-    .INIT_4B(16'hC080),
+    .INIT_4B(16'hD080),
     .INIT_4C(16'h0000),
     .INIT_4D(16'h0000),
     .INIT_4E(16'h0000),
-    .INIT_4F(16'hC080),
+    .INIT_4F(16'hD080),
     .INIT_50(16'hB5ED),
     .INIT_51(16'h57E4),
     .INIT_52(16'hA147),
@@ -144,8 +150,8 @@ module mon_adc
         .MUXADDR(NLW_inst_MUXADDR_UNCONNECTED[4:0]),
         .OT(NLW_inst_OT_UNCONNECTED),
         .RESET(reset_in),
-        .VAUXN({vauxn15,vauxn14,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,vauxn7,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .VAUXP({vauxp15,vauxp14,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,vauxp7,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .VAUXN({vauxn15,vauxn14,1'b0,vauxn12,1'b0,1'b0,1'b0,1'b0,vauxn7,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .VAUXP({vauxp15,vauxp14,1'b0,vauxp12,1'b0,1'b0,1'b0,1'b0,vauxp7,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .VN(vn_in),
         .VP(vp_in));
 endmodule
