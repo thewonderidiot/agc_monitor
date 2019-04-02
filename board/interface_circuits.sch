@@ -569,17 +569,6 @@ F 3 "" H 3100 1700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Transistor_BJT:MMBT3904 Q4
-U 1 1 5C96DCC2
-P 2000 5550
-F 0 "Q4" H 2191 5596 50  0000 L CNN
-F 1 "MMBT3904" H 2191 5505 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 2200 5475 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 2000 5550 50  0001 L CNN
-	1    2000 5550
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR0107
 U 1 1 5C96DE18
 P 2100 5800
@@ -2290,4 +2279,15 @@ Wire Wire Line
 Connection ~ 1750 6650
 Wire Wire Line
 	1750 6450 1800 6450
+$Comp
+L agc_monitor:MMBT2369 Q4
+U 1 1 5CA10390
+P 2000 5550
+F 0 "Q4" H 2191 5596 50  0000 L CNN
+F 1 "MMBT2369" H 2191 5505 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 2200 5475 50  0001 L CIN
+F 3 "http://www.fairchildsemi.com/ds/BC/BC817.pdf" H 2000 5550 50  0001 L CNN
+	1    2000 5550
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
