@@ -104,3 +104,4 @@
 !*-table
 !*.kicad_mod
 !*.wrl
+!*.step
