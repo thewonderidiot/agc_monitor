@@ -115,68 +115,157 @@ module agc_monitor(
 /*******************************************************************************.
 * Interface Circuits                                                            *
 '*******************************************************************************/
+// Debounced input wires
 wire mstpit_n_db;
-debounce #(1,3) db1(clk, rst_n, mstpit_n, mstpit_n_db);
 wire monwt_db;
-debounce #(1,3) db2(clk, rst_n, monwt, monwt_db);
 wire [12:1] mt_db;
-debounce #(12,3) db3(clk, rst_n, mt, mt_db);
 wire [16:1] mwl_db;
-debounce #(16,3) db4(clk, rst_n, mwl, mwl_db);
 wire miip_db;
-debounce #(1,3) db5(clk, rst_n, miip, miip_db);
 wire minhl_db;
-debounce #(1,3) db6(clk, rst_n, minhl, minhl_db);
 wire minkl_db;
-debounce #(1,3) db7(clk, rst_n, minkl, minkl_db);
 wire msqext_db;
-debounce #(1,3) db8(clk, rst_n, msqext, msqext_db);
 wire [15:10] msq_db;
-debounce #(6,3) db9(clk, rst_n, msq, msq_db);
 wire [3:1] mst_db;
-debounce #(3,3) db10(clk, rst_n, mst, mst_db);
 wire [2:1] mbr_db;
-debounce #(2,3) db11(clk, rst_n, mbr, mbr_db);
 wire mwag_db;
-debounce #(1,3) db12(clk, rst_n, mwag, mwag_db);
 wire mwlg_db;
-debounce #(1,3) db13(clk, rst_n, mwlg, mwlg_db);
 wire mwqg_db;
-debounce #(1,3) db14(clk, rst_n, mwqg, mwqg_db);
 wire mwebg_db;
-debounce #(1,3) db15(clk, rst_n, mwebg, mwebg_db);
 wire mwfbg_db;
-debounce #(1,3) db16(clk, rst_n, mwfbg, mwfbg_db);
 wire mwbbeg_db;
-debounce #(1,3) db17(clk, rst_n, mwbbeg, mwbbeg_db);
 wire mwzg_db;
-debounce #(1,3) db18(clk, rst_n, mwzg, mwzg_db);
 wire mwbg_db;
-debounce #(1,3) db19(clk, rst_n, mwbg, mwbg_db);
 wire mwsg_db;
-debounce #(1,3) db20(clk, rst_n, mwsg, mwsg_db);
 wire mwg_db;
-debounce #(1,3) db21(clk, rst_n, mwg, mwg_db);
 wire mwyg_db;
-debounce #(1,3) db22(clk, rst_n, mwyg, mwyg_db);
 wire mrulog_db;
-debounce #(1,3) db23(clk, rst_n, mrulog, mrulog_db);
 wire mrgg_db;
-debounce #(1,3) db24(clk, rst_n, mrgg, mrgg_db);
 wire mrch_db;
-debounce #(1,3) db25(clk, rst_n, mrch, mrch_db);
 wire mwch_db;
-debounce #(1,3) db26(clk, rst_n, mwch, mwch_db);
 wire mnisq_db;
-debounce #(1,3) db27(clk, rst_n, mnisq, mnisq_db);
 wire msp_db;
-debounce #(1,3) db28(clk, rst_n, msp, msp_db);
 wire mgp_n_db;
-debounce #(1,3) db29(clk, rst_n, mgp_n, mgp_n_db);
 wire mreqin_db;
-debounce #(1,3) db30(clk, rst_n, mreqin, mreqin_db);
 wire mtcsa_n_db;
-debounce #(1,3) db31(clk, rst_n, mtcsa_n, mtcsa_n_db);
+
+// Push-pull output wires
+wire mnhsbf_pp;
+wire [16:1] mdt_pp;
+wire monpar_pp;
+wire mstrt_pp;
+wire mstp_pp;
+wire mnhrpt_pp;
+wire mnhnc_pp;
+wire nhalga_pp;
+wire mread_pp;
+wire mload_pp;
+wire mrdch_pp;
+wire mldch_pp;
+wire mtcsai_pp;
+wire monwbk_pp;
+
+io_circuits io(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    // Raw inputs
+    .mstpit_n(mstpit_n),
+    .monwt(monwt),
+    .mt(mt),
+    .mwl(mwl),
+    .miip(miip),
+    .minhl(minhl),
+    .minkl(minkl),
+    .msqext(msqext),
+    .msq(msq),
+    .mst(mst),
+    .mbr(mbr),
+    .mwag(mwag),
+    .mwlg(mwlg),
+    .mwqg(mwqg),
+    .mwebg(mwebg),
+    .mwfbg(mwfbg),
+    .mwbbeg(mwbbeg),
+    .mwzg(mwzg),
+    .mwbg(mwbg),
+    .mwsg(mwsg),
+    .mwg(mwg),
+    .mwyg(mwyg),
+    .mrulog(mrulog),
+    .mrgg(mrgg),
+    .mrch(mrch),
+    .mwch(mwch),
+    .mnisq(mnisq),
+    .msp(msp),
+    .mgp_n(mgp_n),
+    .mreqin(mreqin),
+    .mtcsa_n(mtcsa_n),
+
+    // Debounced inputs
+    .mstpit_n_db(mstpit_n_db),
+    .monwt_db(monwt_db),
+    .mt_db(mt_db),
+    .mwl_db(mwl_db),
+    .miip_db(miip_db),
+    .minhl_db(minhl_db),
+    .minkl_db(minkl_db),
+    .msqext_db(msqext_db),
+    .msq_db(msq_db),
+    .mst_db(mst_db),
+    .mbr_db(mbr_db),
+    .mwag_db(mwag_db),
+    .mwlg_db(mwlg_db),
+    .mwqg_db(mwqg_db),
+    .mwebg_db(mwebg_db),
+    .mwfbg_db(mwfbg_db),
+    .mwbbeg_db(mwbbeg_db),
+    .mwzg_db(mwzg_db),
+    .mwbg_db(mwbg_db),
+    .mwsg_db(mwsg_db),
+    .mwg_db(mwg_db),
+    .mwyg_db(mwyg_db),
+    .mrulog_db(mrulog_db),
+    .mrgg_db(mrgg_db),
+    .mrch_db(mrch_db),
+    .mwch_db(mwch_db),
+    .mnisq_db(mnisq_db),
+    .msp_db(msp_db),
+    .mgp_n_db(mgp_n_db),
+    .mreqin_db(mreqin_db),
+    .mtcsa_n_db(mtcsa_n_db),
+
+    // Raw outputs
+    .mnhsbf(mnhsbf),
+    .mdt(mdt),
+    .monpar(monpar),
+    .mstrt(mstrt),
+    .mstp(mstp),
+    .mnhrpt(mnhrpt),
+    .mnhnc(mnhnc),
+    .nhalga(nhalga),
+    .mread(mread),
+    .mload(mload),
+    .mrdch(mrdch),
+    .mldch(mldch),
+    .mtcsai(mtcsai),
+    .monwbk(monwbk),
+
+    // OD outputs
+    .mnhsbf_pp(mnhsbf_pp),
+    .mdt_pp(mdt_pp),
+    .monpar_pp(monpar_pp),
+    .mstrt_pp(mstrt_pp),
+    .mstp_pp(mstp_pp),
+    .mnhrpt_pp(mnhrpt_pp),
+    .mnhnc_pp(mnhnc_pp),
+    .nhalga_pp(nhalga_pp),
+    .mread_pp(mread_pp),
+    .mload_pp(mload_pp),
+    .mrdch_pp(mrdch_pp),
+    .mldch_pp(mldch_pp),
+    .mtcsai_pp(mtcsai_pp),
+    .monwbk_pp(monwbk_pp)
+);
 
 /*******************************************************************************.
 * Monitor                                                                       *
@@ -248,23 +337,23 @@ monitor mon(
     .mscafl_n(mscafl_n),
     .mscdbl_n(mscdbl_n),
 
-    .mnhsbf(mnhsbf),
-    .mdt(mdt),
-    .monpar(monpar),
+    .mnhsbf(mnhsbf_pp),
+    .mdt(mdt_pp),
+    .monpar(monpar_pp),
 
-    .mstrt(mstrt),
-    .mstp(mstp),
+    .mstrt(mstrt_pp),
+    .mstp(mstp_pp),
 
-    .mnhrpt(mnhrpt),
-    .mnhnc(mnhnc),
-    .nhalga(nhalga),
+    .mnhrpt(mnhrpt_pp),
+    .mnhnc(mnhnc_pp),
+    .nhalga(nhalga_pp),
 
-    .mread(mread),
-    .mload(mload),
-    .mrdch(mrdch),
-    .mldch(mldch),
-    .mtcsai(mtcsai),
-    .monwbk(monwbk),
+    .mread(mread_pp),
+    .mload(mload_pp),
+    .mrdch(mrdch_pp),
+    .mldch(mldch_pp),
+    .mtcsai(mtcsai_pp),
+    .monwbk(monwbk_pp),
     .mreqin(mreqin_db),
     .mtcsa_n(mtcsa_n_db)
 );
