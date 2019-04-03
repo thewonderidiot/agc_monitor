@@ -17,6 +17,7 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -41,12 +42,14 @@ read_verilog -library xil_defaultlib {
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/debounce.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/edit.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_encoder.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/io_circuits.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_channels.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_dsky.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_regs.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/od_buf.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/peripheral_instructions.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v

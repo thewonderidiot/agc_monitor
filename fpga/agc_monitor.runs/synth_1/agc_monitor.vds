@@ -2,8 +2,8 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Mon Apr  1 22:44:42 2019
-# Process ID: 23583
+# Start of session at: Tue Apr  2 19:47:51 2019
+# Process ID: 25418
 # Current directory: /home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1
 # Command line: vivado -log agc_monitor.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source agc_monitor.tcl
 # Log file: /home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/agc_monitor.vds
@@ -18,11 +18,12 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 23608 
+INFO: Helper process launched with PID 25441 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 1350.164 ; gain = 0.000 ; free physical = 4702 ; free virtual = 18612
+Starting RTL Elaboration : Time (s): cpu = 00:00:01 ; elapsed = 00:00:02 . Memory (MB): peak = 1350.164 ; gain = 0.000 ; free physical = 2685 ; free virtual = 17118
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'agc_monitor' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_monitor.v:4]
+INFO: [Synth 8-6157] synthesizing module 'io_circuits' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/io_circuits.v:4]
 INFO: [Synth 8-6157] synthesizing module 'debounce' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/debounce.v:4]
 	Parameter WIDTH bound to: 1 - type: integer 
 	Parameter COUNT bound to: 3 - type: integer 
@@ -47,6 +48,13 @@ INFO: [Synth 8-6157] synthesizing module 'debounce__parameterized4' [/home/mike/
 	Parameter WIDTH bound to: 2 - type: integer 
 	Parameter COUNT bound to: 3 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'debounce__parameterized4' (1#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/debounce.v:4]
+INFO: [Synth 8-6157] synthesizing module 'od_buf' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/od_buf.v:4]
+	Parameter WIDTH bound to: 1 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'od_buf' (2#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/od_buf.v:4]
+INFO: [Synth 8-6157] synthesizing module 'od_buf__parameterized0' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/od_buf.v:4]
+	Parameter WIDTH bound to: 16 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'od_buf__parameterized0' (2#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/od_buf.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'io_circuits' (3#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/io_circuits.v:4]
 INFO: [Synth 8-6157] synthesizing module 'monitor' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor.v:4]
 INFO: [Synth 8-6157] synthesizing module 'usb_interface' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface.v:4]
 	Parameter IDLE bound to: 0 - type: integer 
@@ -59,20 +67,20 @@ INFO: [Synth 8-6157] synthesizing module 'cmd_receiver' [/home/mike/agc_monitor/
 	Parameter ESCAPED bound to: 2 - type: integer 
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v:62]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v:81]
-INFO: [Synth 8-6155] done synthesizing module 'cmd_receiver' (2#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v:6]
-INFO: [Synth 8-6157] synthesizing module 'cmd_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-23583-luminary/realtime/cmd_fifo_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'cmd_fifo' (3#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-23583-luminary/realtime/cmd_fifo_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'read_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-23583-luminary/realtime/read_fifo_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'read_fifo' (4#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-23583-luminary/realtime/read_fifo_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cmd_receiver' (4#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v:6]
+INFO: [Synth 8-6157] synthesizing module 'cmd_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-25418-luminary/realtime/cmd_fifo_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cmd_fifo' (5#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-25418-luminary/realtime/cmd_fifo_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'read_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-25418-luminary/realtime/read_fifo_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'read_fifo' (6#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-25418-luminary/realtime/read_fifo_stub.v:6]
 INFO: [Synth 8-6157] synthesizing module 'msg_sender' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v:6]
 	Parameter IDLE bound to: 0 - type: integer 
 	Parameter ACTIVE bound to: 1 - type: integer 
 	Parameter ESCAPE bound to: 2 - type: integer 
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v:86]
-INFO: [Synth 8-6155] done synthesizing module 'msg_sender' (5#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v:6]
-INFO: [Synth 8-6157] synthesizing module 'read_byte_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-23583-luminary/realtime/read_byte_fifo_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'read_byte_fifo' (6#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-23583-luminary/realtime/read_byte_fifo_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'usb_interface' (7#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'msg_sender' (7#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v:6]
+INFO: [Synth 8-6157] synthesizing module 'read_byte_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-25418-luminary/realtime/read_byte_fifo_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'read_byte_fifo' (8#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-25418-luminary/realtime/read_byte_fifo_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'usb_interface' (9#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface.v:4]
 INFO: [Synth 8-6157] synthesizing module 'cmd_controller' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_controller.v:6]
 	Parameter IDLE bound to: 0 - type: integer 
 	Parameter ERASABLE bound to: 1 - type: integer 
@@ -85,115 +93,115 @@ INFO: [Synth 8-6157] synthesizing module 'cmd_controller' [/home/mike/agc_monito
 	Parameter MON_CHANNELS bound to: 8 - type: integer 
 	Parameter MON_DSKY bound to: 9 - type: integer 
 	Parameter SEND_READ_MSG bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'cmd_controller' (8#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_controller.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cmd_controller' (10#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_controller.v:6]
 INFO: [Synth 8-6157] synthesizing module 'control_regs' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:6]
-INFO: [Synth 8-6157] synthesizing module 'mon_adc' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-23583-luminary/realtime/mon_adc_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mon_adc' (9#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-23583-luminary/realtime/mon_adc_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mon_adc' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-25418-luminary/realtime/mon_adc_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mon_adc' (11#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-25418-luminary/realtime/mon_adc_stub.v:5]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:202]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:290]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:350]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:405]
-INFO: [Synth 8-6155] done synthesizing module 'control_regs' (10#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'control_regs' (12#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:6]
 INFO: [Synth 8-6157] synthesizing module 'start_stop' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/start_stop.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'start_stop' (11#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/start_stop.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'start_stop' (13#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/start_stop.v:5]
 INFO: [Synth 8-6157] synthesizing module 'clear_timer' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/clear_timer.v:4]
 	Parameter CT_COUNT bound to: 5'b11000 
-INFO: [Synth 8-6155] done synthesizing module 'clear_timer' (12#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/clear_timer.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'clear_timer' (14#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/clear_timer.v:4]
 INFO: [Synth 8-6157] synthesizing module 'monitor_regs' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_regs.v:6]
 INFO: [Synth 8-6157] synthesizing module 'register' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register.v:4]
 	Parameter WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'register' (13#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'register' (15#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register.v:4]
 INFO: [Synth 8-6157] synthesizing module 'register2' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v:4]
 	Parameter WIDTH bound to: 3 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'register2' (14#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'register2' (16#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v:4]
 INFO: [Synth 8-6157] synthesizing module 'register__parameterized0' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register.v:4]
 	Parameter WIDTH bound to: 5 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'register__parameterized0' (14#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'register__parameterized0' (16#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register.v:4]
 INFO: [Synth 8-6157] synthesizing module 'register2__parameterized0' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v:4]
 	Parameter WIDTH bound to: 12 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'register2__parameterized0' (14#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'register2__parameterized0' (16#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v:4]
 INFO: [Synth 8-6157] synthesizing module 'edit' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/edit.v:9]
-INFO: [Synth 8-6155] done synthesizing module 'edit' (15#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/edit.v:9]
+INFO: [Synth 8-6155] done synthesizing module 'edit' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/edit.v:9]
 INFO: [Synth 8-6157] synthesizing module 'register2__parameterized1' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v:4]
 	Parameter WIDTH bound to: 16 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'register2__parameterized1' (15#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v:4]
-INFO: [Synth 8-6155] done synthesizing module 'monitor_regs' (16#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_regs.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'register2__parameterized1' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'monitor_regs' (18#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_regs.v:6]
 INFO: [Synth 8-6157] synthesizing module 'monitor_channels' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_channels.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000000011 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized0' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000000100 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized0' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized0' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized1' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000000101 
 	Parameter WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized1' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized1' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized2' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000000110 
 	Parameter WIDTH bound to: 8 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized2' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized2' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized3' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000000111 
 	Parameter WIDTH bound to: 3 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized3' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized3' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized4' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000001000 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized4' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized4' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized5' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000001001 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized5' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized5' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized6' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000001010 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized6' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized6' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized7' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000001011 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized7' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized7' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized8' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000001100 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized8' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized8' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized9' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000001101 
 	Parameter WIDTH bound to: 5 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized9' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized9' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized10' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000001110 
 	Parameter WIDTH bound to: 7 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized10' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized10' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized11' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000011000 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized11' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized11' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized12' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000011001 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized12' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized12' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized13' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000011010 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized13' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized13' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized14' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000011011 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized14' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized14' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized15' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000011100 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized15' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized15' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 INFO: [Synth 8-6157] synthesizing module 'channel__parameterized16' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
 	Parameter CHAN bound to: 9'b000011101 
 	Parameter WIDTH bound to: 15 - type: integer 
-INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized16' (17#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
-INFO: [Synth 8-6155] done synthesizing module 'monitor_channels' (18#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_channels.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'channel__parameterized16' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'monitor_channels' (20#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_channels.v:4]
 INFO: [Synth 8-6157] synthesizing module 'restart_monitor' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/restart_monitor.v:4]
-INFO: [Synth 8-6155] done synthesizing module 'restart_monitor' (19#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/restart_monitor.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'restart_monitor' (21#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/restart_monitor.v:4]
 INFO: [Synth 8-6157] synthesizing module 'peripheral_instructions' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/peripheral_instructions.v:5]
 	Parameter IDLE bound to: 0 - type: integer 
 	Parameter REQUEST bound to: 1 - type: integer 
@@ -205,15 +213,15 @@ INFO: [Synth 8-6157] synthesizing module 'peripheral_instructions' [/home/mike/a
 	Parameter COMPLETE bound to: 7 - type: integer 
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/peripheral_instructions.v:87]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/peripheral_instructions.v:102]
-INFO: [Synth 8-6155] done synthesizing module 'peripheral_instructions' (20#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/peripheral_instructions.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'peripheral_instructions' (22#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/peripheral_instructions.v:5]
 INFO: [Synth 8-6157] synthesizing module 'agc_fixed' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_fixed.v:6]
 	Parameter IDLE bound to: 0 - type: integer 
 	Parameter SET_FEXT bound to: 1 - type: integer 
 	Parameter READ_FIXED bound to: 2 - type: integer 
 	Parameter COMPLETE bound to: 3 - type: integer 
 INFO: [Synth 8-6157] synthesizing module 'fixed_addr_encoder' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_encoder.v:4]
-INFO: [Synth 8-6155] done synthesizing module 'fixed_addr_encoder' (21#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_encoder.v:4]
-INFO: [Synth 8-6155] done synthesizing module 'agc_fixed' (22#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_fixed.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'fixed_addr_encoder' (23#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_encoder.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'agc_fixed' (24#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_fixed.v:6]
 INFO: [Synth 8-6157] synthesizing module 'monitor_dsky' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_dsky.v:6]
 	Parameter IDLE bound to: 0 - type: integer 
 	Parameter WAIT_FOR_RSM bound to: 1 - type: integer 
@@ -226,16 +234,16 @@ INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/ag
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_dsky.v:228]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_dsky.v:350]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_dsky.v:373]
-INFO: [Synth 8-6155] done synthesizing module 'monitor_dsky' (23#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_dsky.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'monitor' (24#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'monitor_dsky' (25#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_dsky.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'monitor' (26#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor.v:4]
 INFO: [Synth 8-6157] synthesizing module 'monitor_ps_wrapper' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'monitor_ps' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/synth/monitor_ps.v:13]
-INFO: [Synth 8-6157] synthesizing module 'monitor_ps_processing_system7_0_0' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-23583-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'monitor_ps_processing_system7_0_0' (25#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-23583-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'monitor_ps_processing_system7_0_0' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-25418-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'monitor_ps_processing_system7_0_0' (27#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-25418-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
 WARNING: [Synth 8-350] instance 'processing_system7_0' of module 'monitor_ps_processing_system7_0_0' requires 25 connections, but only 22 given [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/synth/monitor_ps.v:79]
-INFO: [Synth 8-6155] done synthesizing module 'monitor_ps' (26#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/synth/monitor_ps.v:13]
-INFO: [Synth 8-6155] done synthesizing module 'monitor_ps_wrapper' (27#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v:12]
-INFO: [Synth 8-6155] done synthesizing module 'agc_monitor' (28#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_monitor.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'monitor_ps' (28#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/synth/monitor_ps.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'monitor_ps_wrapper' (29#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'agc_monitor' (30#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_monitor.v:4]
 WARNING: [Synth 8-3331] design monitor_dsky has unconnected port data_in[15]
 WARNING: [Synth 8-3331] design monitor_dsky has unconnected port data_in[14]
 WARNING: [Synth 8-3331] design monitor_dsky has unconnected port data_in[13]
@@ -280,7 +288,7 @@ WARNING: [Synth 8-3331] design peripheral_instructions has unconnected port mt[6
 WARNING: [Synth 8-3331] design peripheral_instructions has unconnected port mt[3]
 WARNING: [Synth 8-3331] design peripheral_instructions has unconnected port mt[2]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1401.445 ; gain = 51.281 ; free physical = 4707 ; free virtual = 18611
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1401.445 ; gain = 51.281 ; free physical = 2688 ; free virtual = 17118
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -293,10 +301,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1401.445 ; gain = 51.281 ; free physical = 4712 ; free virtual = 18615
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1401.445 ; gain = 51.281 ; free physical = 2692 ; free virtual = 17122
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1401.445 ; gain = 51.281 ; free physical = 4712 ; free virtual = 18615
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1401.445 ; gain = 51.281 ; free physical = 2692 ; free virtual = 17122
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -319,24 +327,24 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/agc_monitor_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/dont_touch.xdc]
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1792.477 ; gain = 0.000 ; free physical = 4425 ; free virtual = 18328
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1792.469 ; gain = 0.000 ; free physical = 2398 ; free virtual = 16832
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1792.477 ; gain = 0.000 ; free physical = 4425 ; free virtual = 18329
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1792.469 ; gain = 0.000 ; free physical = 2399 ; free virtual = 16833
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1792.477 ; gain = 0.000 ; free physical = 4425 ; free virtual = 18329
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1792.477 ; gain = 0.000 ; free physical = 4425 ; free virtual = 18329
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1792.469 ; gain = 0.000 ; free physical = 2398 ; free virtual = 16833
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1792.469 ; gain = 0.000 ; free physical = 2398 ; free virtual = 16833
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1792.477 ; gain = 442.312 ; free physical = 4535 ; free virtual = 18420
+Finished Constraint Validation : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1792.469 ; gain = 442.305 ; free physical = 2493 ; free virtual = 16924
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1792.477 ; gain = 442.312 ; free physical = 4535 ; free virtual = 18420
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 1792.469 ; gain = 442.305 ; free physical = 2493 ; free virtual = 16924
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -608,7 +616,7 @@ Applied set_property DONT_TOUCH = true for mon/usb_if/read_msg_queue. (constrain
 Applied set_property DONT_TOUCH = true for mon/usb_if/read_byte_queue. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for mon/ctrl_regs/adc. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:10 . Memory (MB): peak = 1792.477 ; gain = 442.312 ; free physical = 4535 ; free virtual = 18420
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 1792.469 ; gain = 442.305 ; free physical = 2491 ; free virtual = 16925
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'cmd_receiver'
 INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
@@ -737,7 +745,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'monitor_dsky'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1792.477 ; gain = 442.312 ; free physical = 4525 ; free virtual = 18410
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:11 ; elapsed = 00:00:13 . Memory (MB): peak = 1792.469 ; gain = 442.305 ; free physical = 2479 ; free virtual = 16911
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1324,7 +1332,7 @@ INFO: [Synth 8-3886] merging instance 'mon/ctrl_regs/periph_bb_reg[8]' (FDC) to 
 INFO: [Synth 8-3886] merging instance 'mon/ctrl_regs/periph_bb_reg[9]' (FDC) to 'mon/ctrl_regs/periph_bb_reg[10]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (mon/ctrl_regs/\periph_bb_reg[10] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:30 ; elapsed = 00:00:33 . Memory (MB): peak = 1792.477 ; gain = 442.312 ; free physical = 4474 ; free virtual = 18379
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:34 . Memory (MB): peak = 1792.469 ; gain = 442.305 ; free physical = 2411 ; free virtual = 16874
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1338,13 +1346,13 @@ Start Applying XDC Timing Constraints
 INFO: [Synth 8-5578] Moved timing constraint from pin 'monitor_ps/monitor_ps_i/processing_system7_0/FCLK_CLK0' to pin 'monitor_ps/monitor_ps_i/processing_system7_0/bbstub_FCLK_CLK0/O'
 INFO: [Synth 8-5819] Moved 1 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1792.477 ; gain = 442.312 ; free physical = 4354 ; free virtual = 18261
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:36 ; elapsed = 00:00:39 . Memory (MB): peak = 1792.469 ; gain = 442.305 ; free physical = 2292 ; free virtual = 16765
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:40 ; elapsed = 00:00:43 . Memory (MB): peak = 1812.750 ; gain = 462.586 ; free physical = 4340 ; free virtual = 18239
+Finished Timing Optimization : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1812.742 ; gain = 462.578 ; free physical = 2252 ; free virtual = 16710
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1357,7 +1365,7 @@ Start Technology Mapping
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-3886] merging instance 'mon/ctmr/monwt_d_reg' (FDC) to 'mon/mon_regs/monwt_sr_reg[0]'
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:41 ; elapsed = 00:00:44 . Memory (MB): peak = 1812.750 ; gain = 462.586 ; free physical = 4343 ; free virtual = 18239
+Finished Technology Mapping : Time (s): cpu = 00:00:45 ; elapsed = 00:00:49 . Memory (MB): peak = 1812.742 ; gain = 462.578 ; free physical = 2247 ; free virtual = 16706
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1377,11 +1385,13 @@ Finished Flattening Before IO Insertion
 ---------------------------------------------------------------------------------
 Start Final Netlist Cleanup
 ---------------------------------------------------------------------------------
+INFO: [Synth 8-5365] Flop mon/periph_insts/request_reg[2] is being inverted and renamed to mon/periph_insts/request_reg[2]_inv.
+INFO: [Synth 8-5365] Flop mon/periph_insts/request_reg[0] is being inverted and renamed to mon/periph_insts/request_reg[0]_inv.
 ---------------------------------------------------------------------------------
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 1812.750 ; gain = 462.586 ; free physical = 4343 ; free virtual = 18239
+Finished IO Insertion : Time (s): cpu = 00:00:46 ; elapsed = 00:00:50 . Memory (MB): peak = 1812.742 ; gain = 462.578 ; free physical = 2246 ; free virtual = 16706
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1394,7 +1404,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:42 ; elapsed = 00:00:45 . Memory (MB): peak = 1812.750 ; gain = 462.586 ; free physical = 4343 ; free virtual = 18239
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:46 ; elapsed = 00:00:50 . Memory (MB): peak = 1812.742 ; gain = 462.578 ; free physical = 2246 ; free virtual = 16706
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1406,25 +1416,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1812.750 ; gain = 462.586 ; free physical = 4343 ; free virtual = 18239
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1812.742 ; gain = 462.578 ; free physical = 2245 ; free virtual = 16705
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1812.750 ; gain = 462.586 ; free physical = 4343 ; free virtual = 18239
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1812.742 ; gain = 462.578 ; free physical = 2246 ; free virtual = 16705
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1812.750 ; gain = 462.586 ; free physical = 4343 ; free virtual = 18239
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1812.742 ; gain = 462.578 ; free physical = 2246 ; free virtual = 16705
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1812.750 ; gain = 462.586 ; free physical = 4343 ; free virtual = 18239
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1812.742 ; gain = 462.578 ; free physical = 2246 ; free virtual = 16705
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1452,11 +1462,11 @@ Report Cell Usage:
 |5     |read_fifo                         |     1|
 |6     |BUFG                              |     2|
 |7     |CARRY4                            |    11|
-|8     |LUT1                              |    16|
+|8     |LUT1                              |    38|
 |9     |LUT2                              |    98|
-|10    |LUT3                              |   464|
-|11    |LUT4                              |   149|
-|12    |LUT5                              |   289|
+|10    |LUT3                              |   463|
+|11    |LUT4                              |   151|
+|12    |LUT5                              |   287|
 |13    |LUT6                              |   682|
 |14    |MUXF7                             |    64|
 |15    |MUXF8                             |     8|
@@ -1464,115 +1474,117 @@ Report Cell Usage:
 |17    |FDPE                              |    70|
 |18    |IBUF                              |    87|
 |19    |IOBUF                             |     8|
-|20    |OBUF                              |    33|
+|20    |OBUF                              |     4|
+|21    |OBUFT                             |    29|
 +------+----------------------------------+------+
 
 Report Instance Areas: 
 +------+-----------------+--------------------------+------+
 |      |Instance         |Module                    |Cells |
 +------+-----------------+--------------------------+------+
-|1     |top              |                          |  3563|
-|2     |  db1            |debounce                  |    14|
-|3     |  db10           |debounce__parameterized3  |    32|
-|4     |  db11           |debounce__parameterized4  |    19|
-|5     |  db12           |debounce_0                |    14|
-|6     |  db13           |debounce_1                |    14|
-|7     |  db14           |debounce_2                |    14|
-|8     |  db15           |debounce_3                |    14|
-|9     |  db16           |debounce_4                |    14|
-|10    |  db17           |debounce_5                |    14|
-|11    |  db18           |debounce_6                |    14|
-|12    |  db19           |debounce_7                |    14|
-|13    |  db2            |debounce_8                |    15|
-|14    |  db20           |debounce_9                |    14|
-|15    |  db21           |debounce_10               |    14|
-|16    |  db22           |debounce_11               |    14|
-|17    |  db23           |debounce_12               |    14|
-|18    |  db24           |debounce_13               |    15|
-|19    |  db25           |debounce_14               |    16|
-|20    |  db26           |debounce_15               |    15|
-|21    |  db27           |debounce_16               |    14|
-|22    |  db28           |debounce_17               |    15|
-|23    |  db29           |debounce_18               |    15|
-|24    |  db3            |debounce__parameterized0  |    62|
-|25    |  db30           |debounce_19               |    15|
-|26    |  db31           |debounce_20               |    14|
-|27    |  db4            |debounce__parameterized1  |    87|
-|28    |  db5            |debounce_21               |    14|
-|29    |  db6            |debounce_22               |    14|
-|30    |  db7            |debounce_23               |    14|
-|31    |  db8            |debounce_24               |    14|
-|32    |  db9            |debounce__parameterized2  |    30|
-|33    |  mon            |monitor                   |  2828|
-|34    |    cmd_ctrl     |cmd_controller            |   347|
-|35    |    ctmr         |clear_timer               |   360|
-|36    |    ctrl_regs    |control_regs              |   684|
-|37    |    fixed_reader |agc_fixed                 |     5|
-|38    |    mon_chans    |monitor_channels          |   342|
-|39    |      chan_10    |channel__parameterized4   |    50|
-|40    |      chan_11    |channel__parameterized5   |    15|
-|41    |      chan_12    |channel__parameterized6   |    15|
-|42    |      chan_13    |channel__parameterized7   |    15|
-|43    |      chan_14    |channel__parameterized8   |    38|
-|44    |      chan_15    |channel__parameterized9   |     5|
-|45    |      chan_16    |channel__parameterized10  |     7|
-|46    |      chan_3     |channel                   |    15|
-|47    |      chan_30    |channel__parameterized11  |    15|
-|48    |      chan_31    |channel__parameterized12  |    23|
-|49    |      chan_32    |channel__parameterized13  |    15|
-|50    |      chan_33    |channel__parameterized14  |    21|
-|51    |      chan_34    |channel__parameterized15  |    15|
-|52    |      chan_35    |channel__parameterized16  |    30|
-|53    |      chan_4     |channel__parameterized0   |    43|
-|54    |      chan_5     |channel__parameterized1   |     8|
-|55    |      chan_6     |channel__parameterized2   |     8|
-|56    |      chan_7     |channel__parameterized3   |     3|
-|57    |    mon_dsky     |monitor_dsky              |   259|
-|58    |    mon_regs     |monitor_regs              |   330|
-|59    |      editing    |edit                      |    29|
-|60    |      reg_a      |register                  |    16|
-|61    |      reg_b      |register_25               |    18|
-|62    |      reg_eb     |register2                 |     3|
-|63    |      reg_fb     |register__parameterized0  |     5|
-|64    |      reg_g      |register2__parameterized1 |    34|
-|65    |      reg_l      |register_26               |    16|
-|66    |      reg_q      |register_27               |    16|
-|67    |      reg_s      |register2__parameterized0 |    76|
-|68    |      reg_w      |register_28               |    17|
-|69    |      reg_y      |register_29               |    16|
-|70    |      reg_z      |register_30               |    46|
-|71    |    periph_insts |peripheral_instructions   |   109|
-|72    |    restart_mon  |restart_monitor           |     9|
-|73    |    strt_stp     |start_stop                |    17|
-|74    |    usb_if       |usb_interface             |   299|
-|75    |      cmd_rx     |cmd_receiver              |    87|
-|76    |      msg_sndr   |msg_sender                |    97|
-|77    |  monitor_ps     |monitor_ps_wrapper        |     3|
-|78    |    monitor_ps_i |monitor_ps                |     3|
+|1     |top              |                          |  3584|
+|2     |  io             |io_circuits               |   631|
+|3     |    db1          |debounce                  |    14|
+|4     |    db10         |debounce__parameterized3  |    34|
+|5     |    db11         |debounce__parameterized4  |    19|
+|6     |    db12         |debounce_6                |    14|
+|7     |    db13         |debounce_7                |    15|
+|8     |    db14         |debounce_8                |    15|
+|9     |    db15         |debounce_9                |    14|
+|10    |    db16         |debounce_10               |    14|
+|11    |    db17         |debounce_11               |    14|
+|12    |    db18         |debounce_12               |    14|
+|13    |    db19         |debounce_13               |    15|
+|14    |    db2          |debounce_14               |    24|
+|15    |    db20         |debounce_15               |    15|
+|16    |    db21         |debounce_16               |    14|
+|17    |    db22         |debounce_17               |    14|
+|18    |    db23         |debounce_18               |    15|
+|19    |    db24         |debounce_19               |    15|
+|20    |    db25         |debounce_20               |    18|
+|21    |    db26         |debounce_21               |    15|
+|22    |    db27         |debounce_22               |    14|
+|23    |    db28         |debounce_23               |    16|
+|24    |    db29         |debounce_24               |    16|
+|25    |    db3          |debounce__parameterized0  |    70|
+|26    |    db30         |debounce_25               |    15|
+|27    |    db31         |debounce_26               |    15|
+|28    |    db4          |debounce__parameterized1  |    87|
+|29    |    db5          |debounce_27               |    14|
+|30    |    db6          |debounce_28               |    14|
+|31    |    db7          |debounce_29               |    14|
+|32    |    db8          |debounce_30               |    14|
+|33    |    db9          |debounce__parameterized2  |    30|
+|34    |  mon            |monitor                   |  2820|
+|35    |    cmd_ctrl     |cmd_controller            |   347|
+|36    |    ctmr         |clear_timer               |   360|
+|37    |    ctrl_regs    |control_regs              |   670|
+|38    |    fixed_reader |agc_fixed                 |     5|
+|39    |    mon_chans    |monitor_channels          |   342|
+|40    |      chan_10    |channel__parameterized4   |    50|
+|41    |      chan_11    |channel__parameterized5   |    15|
+|42    |      chan_12    |channel__parameterized6   |    15|
+|43    |      chan_13    |channel__parameterized7   |    15|
+|44    |      chan_14    |channel__parameterized8   |    37|
+|45    |      chan_15    |channel__parameterized9   |     5|
+|46    |      chan_16    |channel__parameterized10  |     7|
+|47    |      chan_3     |channel                   |    15|
+|48    |      chan_30    |channel__parameterized11  |    15|
+|49    |      chan_31    |channel__parameterized12  |    23|
+|50    |      chan_32    |channel__parameterized13  |    15|
+|51    |      chan_33    |channel__parameterized14  |    21|
+|52    |      chan_34    |channel__parameterized15  |    15|
+|53    |      chan_35    |channel__parameterized16  |    30|
+|54    |      chan_4     |channel__parameterized0   |    44|
+|55    |      chan_5     |channel__parameterized1   |     8|
+|56    |      chan_6     |channel__parameterized2   |     8|
+|57    |      chan_7     |channel__parameterized3   |     3|
+|58    |    mon_dsky     |monitor_dsky              |   275|
+|59    |    mon_regs     |monitor_regs              |   319|
+|60    |      editing    |edit                      |    29|
+|61    |      reg_a      |register                  |    16|
+|62    |      reg_b      |register_0                |    18|
+|63    |      reg_eb     |register2                 |     3|
+|64    |      reg_fb     |register__parameterized0  |     5|
+|65    |      reg_g      |register2__parameterized1 |    33|
+|66    |      reg_l      |register_1                |    16|
+|67    |      reg_q      |register_2                |    17|
+|68    |      reg_s      |register2__parameterized0 |    65|
+|69    |      reg_w      |register_3                |    17|
+|70    |      reg_y      |register_4                |    16|
+|71    |      reg_z      |register_5                |    46|
+|72    |    periph_insts |peripheral_instructions   |   126|
+|73    |    restart_mon  |restart_monitor           |    11|
+|74    |    strt_stp     |start_stop                |    17|
+|75    |    usb_if       |usb_interface             |   297|
+|76    |      cmd_rx     |cmd_receiver              |    87|
+|77    |      msg_sndr   |msg_sender                |    95|
+|78    |  monitor_ps     |monitor_ps_wrapper        |     3|
+|79    |    monitor_ps_i |monitor_ps                |     3|
 +------+-----------------+--------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1812.750 ; gain = 462.586 ; free physical = 4343 ; free virtual = 18239
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1812.742 ; gain = 462.578 ; free physical = 2246 ; free virtual = 16705
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 42 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:39 ; elapsed = 00:00:42 . Memory (MB): peak = 1812.750 ; gain = 71.555 ; free physical = 4399 ; free virtual = 18295
-Synthesis Optimization Complete : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1812.758 ; gain = 462.586 ; free physical = 4409 ; free virtual = 18305
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1812.742 ; gain = 71.555 ; free physical = 2302 ; free virtual = 16761
+Synthesis Optimization Complete : Time (s): cpu = 00:00:47 ; elapsed = 00:00:50 . Memory (MB): peak = 1812.750 ; gain = 462.578 ; free physical = 2307 ; free virtual = 16766
 INFO: [Project 1-571] Translating synthesized netlist
 INFO: [Netlist 29-17] Analyzing 91 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1844.766 ; gain = 0.000 ; free physical = 4340 ; free virtual = 18236
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1844.758 ; gain = 0.000 ; free physical = 2251 ; free virtual = 16708
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 8 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 8 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-250 Infos, 86 Warnings, 0 Critical Warnings and 0 Errors encountered.
+258 Infos, 86 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:45 ; elapsed = 00:00:47 . Memory (MB): peak = 1844.766 ; gain = 494.945 ; free physical = 4387 ; free virtual = 18284
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1844.766 ; gain = 0.000 ; free physical = 4387 ; free virtual = 18284
+synth_design: Time (s): cpu = 00:00:50 ; elapsed = 00:00:52 . Memory (MB): peak = 1844.758 ; gain = 494.938 ; free physical = 2317 ; free virtual = 16774
+Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1844.758 ; gain = 0.000 ; free physical = 2314 ; free virtual = 16771
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/agc_monitor.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file agc_monitor_utilization_synth.rpt -pb agc_monitor_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Mon Apr  1 22:45:40 2019...
+INFO: [Common 17-206] Exiting Vivado at Tue Apr  2 19:48:53 2019...

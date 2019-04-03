@@ -1,7 +1,7 @@
 Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-| Date         : Mon Apr  1 22:45:40 2019
+| Date         : Tue Apr  2 19:48:53 2019
 | Host         : luminary running 64-bit unknown
 | Command      : report_utilization -file agc_monitor_utilization_synth.rpt -pb agc_monitor_utilization_synth.pb
 | Design       : agc_monitor
@@ -30,8 +30,8 @@ Table of Contents
 +-------------------------+------+-------+-----------+-------+
 |        Site Type        | Used | Fixed | Available | Util% |
 +-------------------------+------+-------+-----------+-------+
-| Slice LUTs*             | 1374 |     0 |     53200 |  2.58 |
-|   LUT as Logic          | 1374 |     0 |     53200 |  2.58 |
+| Slice LUTs*             | 1394 |     0 |     53200 |  2.62 |
+|   LUT as Logic          | 1394 |     0 |     53200 |  2.62 |
 |   LUT as Memory         |    0 |     0 |     17400 |  0.00 |
 | Slice Registers         | 1528 |     0 |    106400 |  1.44 |
 |   Register as Flip Flop | 1528 |     0 |    106400 |  1.44 |
@@ -148,18 +148,18 @@ Table of Contents
 +----------+------+---------------------+
 | FDCE     | 1458 |        Flop & Latch |
 | LUT6     |  682 |                 LUT |
-| LUT3     |  464 |                 LUT |
-| LUT5     |  289 |                 LUT |
-| LUT4     |  149 |                 LUT |
+| LUT3     |  463 |                 LUT |
+| LUT5     |  287 |                 LUT |
+| LUT4     |  151 |                 LUT |
 | LUT2     |   98 |                 LUT |
 | IBUF     |   95 |                  IO |
 | FDPE     |   70 |        Flop & Latch |
 | MUXF7    |   64 |               MuxFx |
-| OBUF     |   33 |                  IO |
-| LUT1     |   16 |                 LUT |
+| LUT1     |   38 |                 LUT |
+| OBUFT    |   37 |                  IO |
 | CARRY4   |   11 |          CarryLogic |
-| OBUFT    |    8 |                  IO |
 | MUXF8    |    8 |               MuxFx |
+| OBUF     |    4 |                  IO |
 | BUFG     |    2 |               Clock |
 +----------+------+---------------------+
 
