@@ -131,6 +131,40 @@ ReadFixed = namedtuple('ReadFixed', ['addr'])
 ReadFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Fixed = namedtuple('Fixed', ['addr', 'parity', 'data'])
 Fixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadStatusAlarms = namedtuple('ReadStatusAlarms', [])
+ReadStatusAlarms.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+StatusAlarms = namedtuple('StatusAlarms', ['vfail', 'oscal', 'ctral', 'tcal', 'rptal', 'fpal', 'epal', 'watch', 'scdbl', 'scafl', 'pipal', 'warn'])
+StatusAlarms.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteStatusAlarms = namedtuple('WriteStatusAlarms', ['vfail', 'oscal', 'ctral', 'tcal', 'rptal', 'fpal', 'epal', 'watch', 'scdbl', 'scafl', 'pipal', 'warn'])
+WriteStatusAlarms.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadStatusMonTemp = namedtuple('ReadStatusMonTemp', [])
+ReadStatusMonTemp.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+StatusMonTemp = namedtuple('StatusMonTemp', ['counts'])
+StatusMonTemp.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadStatusVccInt = namedtuple('ReadStatusVccInt', [])
+ReadStatusVccInt.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+StatusVccInt = namedtuple('StatusVccInt', ['counts'])
+StatusVccInt.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadStatusVccAux = namedtuple('ReadStatusVccAux', [])
+ReadStatusVccAux.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+StatusVccAux = namedtuple('StatusVccAux', ['counts'])
+StatusVccAux.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadStatusP3v3io = namedtuple('ReadStatusP3v3io', [])
+ReadStatusP3v3io.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+StatusP3v3io = namedtuple('StatusP3v3io', ['counts'])
+StatusP3v3io.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadStatusAgcTemp = namedtuple('ReadStatusAgcTemp', [])
+ReadStatusAgcTemp.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+StatusAgcTemp = namedtuple('StatusAgcTemp', ['counts'])
+StatusAgcTemp.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadStatusBplssw = namedtuple('ReadStatusBplssw', [])
+ReadStatusBplssw.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+StatusBplssw = namedtuple('StatusBplssw', ['counts'])
+StatusBplssw.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadStatusP4sw = namedtuple('ReadStatusP4sw', [])
+ReadStatusP4sw.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+StatusP4sw = namedtuple('StatusP4sw', ['counts'])
+StatusP4sw.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadMonChanFEXT = namedtuple('ReadMonChanFEXT', [])
 ReadMonChanFEXT.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 MonChanFEXT = namedtuple('MonChanFEXT', ['fext'])
@@ -295,6 +329,18 @@ WriteControlBankS = namedtuple('WriteControlBankS', ['s_only'])
 WriteControlBankS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlAdvanceS = namedtuple('WriteControlAdvanceS', [])
 WriteControlAdvanceS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlDoscal = namedtuple('ReadControlDoscal', [])
+ReadControlDoscal.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlDoscal = namedtuple('ControlDoscal', ['doscal'])
+ControlDoscal.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlDoscal = namedtuple('WriteControlDoscal', ['doscal'])
+WriteControlDoscal.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadControlDbltst = namedtuple('ReadControlDbltst', [])
+ReadControlDbltst.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ControlDbltst = namedtuple('ControlDbltst', ['dbltst'])
+ControlDbltst.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlDbltst = namedtuple('WriteControlDbltst', ['dbltst'])
+WriteControlDbltst.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlNHALGA = namedtuple('ReadControlNHALGA', [])
 ReadControlNHALGA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlNHALGA = namedtuple('ControlNHALGA', ['nhalga'])
@@ -335,6 +381,7 @@ class AddressGroup(object):
     MonReg = 0x21
     DSKY = 0x23
     Fixed = 0x01
+    Status = 0x24
     MonChan = 0x22
     SimFixed = 0x11
     Channels = 0x02
@@ -369,6 +416,15 @@ class DSKY(object):
     Button = 0x0009
     Proceed = 0x000A
     Status = 0x000B
+class Status(object):
+    Alarms = 0x0000
+    MonTemp = 0x0010
+    VccInt = 0x0011
+    VccAux = 0x0012
+    P3v3io = 0x0013
+    AgcTemp = 0x0014
+    Bplssw = 0x0015
+    P4sw = 0x0016
 class MonChan(object):
     FEXT = 0x0007
     Restart = 0x003F
@@ -399,6 +455,8 @@ class Control(object):
     LoadReadS1S2 = 0x0017
     BankS = 0x0018
     AdvanceS = 0x0019
+    Doscal = 0x0030
+    Dbltst = 0x0030
     NHALGA = 0x0040
     STRT1 = 0x0041
     STRT2 = 0x0042
@@ -512,6 +570,46 @@ def _pack_ReadDSKYStatus(msg):
 
 def _pack_ReadFixed(msg):
     return _pack_read_msg(AddressGroup.Fixed, msg.addr)
+
+def _pack_ReadStatusAlarms(msg):
+    return _pack_read_msg(AddressGroup.Status, Status.Alarms)
+
+def _pack_WriteStatusAlarms(msg):
+    data = 0x0000
+    data |= (msg.vfail & 0x0001) << 0
+    data |= (msg.oscal & 0x0001) << 1
+    data |= (msg.ctral & 0x0001) << 2
+    data |= (msg.tcal & 0x0001) << 3
+    data |= (msg.rptal & 0x0001) << 4
+    data |= (msg.fpal & 0x0001) << 5
+    data |= (msg.epal & 0x0001) << 6
+    data |= (msg.watch & 0x0001) << 7
+    data |= (msg.scdbl & 0x0001) << 8
+    data |= (msg.scafl & 0x0001) << 9
+    data |= (msg.pipal & 0x0001) << 10
+    data |= (msg.warn & 0x0001) << 11
+    return _pack_write_msg(AddressGroup.Status, Status.Alarms, data)
+
+def _pack_ReadStatusMonTemp(msg):
+    return _pack_read_msg(AddressGroup.Status, Status.MonTemp)
+
+def _pack_ReadStatusVccInt(msg):
+    return _pack_read_msg(AddressGroup.Status, Status.VccInt)
+
+def _pack_ReadStatusVccAux(msg):
+    return _pack_read_msg(AddressGroup.Status, Status.VccAux)
+
+def _pack_ReadStatusP3v3io(msg):
+    return _pack_read_msg(AddressGroup.Status, Status.P3v3io)
+
+def _pack_ReadStatusAgcTemp(msg):
+    return _pack_read_msg(AddressGroup.Status, Status.AgcTemp)
+
+def _pack_ReadStatusBplssw(msg):
+    return _pack_read_msg(AddressGroup.Status, Status.Bplssw)
+
+def _pack_ReadStatusP4sw(msg):
+    return _pack_read_msg(AddressGroup.Status, Status.P4sw)
 
 def _pack_ReadMonChanFEXT(msg):
     return _pack_read_msg(AddressGroup.MonChan, MonChan.FEXT)
@@ -791,6 +889,22 @@ def _pack_WriteControlAdvanceS(msg):
     data = 0x0000
     return _pack_write_msg(AddressGroup.Control, Control.AdvanceS, data)
 
+def _pack_ReadControlDoscal(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.Doscal)
+
+def _pack_WriteControlDoscal(msg):
+    data = 0x0000
+    data |= (msg.doscal & 0x0001) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.Doscal, data)
+
+def _pack_ReadControlDbltst(msg):
+    return _pack_read_msg(AddressGroup.Control, Control.Dbltst)
+
+def _pack_WriteControlDbltst(msg):
+    data = 0x0000
+    data |= (msg.dbltst & 0x0001) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.Dbltst, data)
+
 def _pack_ReadControlNHALGA(msg):
     return _pack_read_msg(AddressGroup.Control, Control.NHALGA)
 
@@ -1024,6 +1138,57 @@ def _unpack_Fixed(addr, data):
         data = (data >> 1) & 0x7FFF,
     )
 
+def _unpack_StatusAlarms(data):
+    return StatusAlarms(
+        vfail = (data >> 0) & 0x0001,
+        oscal = (data >> 1) & 0x0001,
+        ctral = (data >> 2) & 0x0001,
+        tcal = (data >> 3) & 0x0001,
+        rptal = (data >> 4) & 0x0001,
+        fpal = (data >> 5) & 0x0001,
+        epal = (data >> 6) & 0x0001,
+        watch = (data >> 7) & 0x0001,
+        scdbl = (data >> 8) & 0x0001,
+        scafl = (data >> 9) & 0x0001,
+        pipal = (data >> 10) & 0x0001,
+        warn = (data >> 11) & 0x0001,
+    )
+
+def _unpack_StatusMonTemp(data):
+    return StatusMonTemp(
+        counts = (data >> 4) & 0x0FFF,
+    )
+
+def _unpack_StatusVccInt(data):
+    return StatusVccInt(
+        counts = (data >> 4) & 0x0FFF,
+    )
+
+def _unpack_StatusVccAux(data):
+    return StatusVccAux(
+        counts = (data >> 4) & 0x0FFF,
+    )
+
+def _unpack_StatusP3v3io(data):
+    return StatusP3v3io(
+        counts = (data >> 4) & 0x0FFF,
+    )
+
+def _unpack_StatusAgcTemp(data):
+    return StatusAgcTemp(
+        counts = (data >> 4) & 0x0FFF,
+    )
+
+def _unpack_StatusBplssw(data):
+    return StatusBplssw(
+        counts = (data >> 4) & 0x0FFF,
+    )
+
+def _unpack_StatusP4sw(data):
+    return StatusP4sw(
+        counts = (data >> 4) & 0x0FFF,
+    )
+
 def _unpack_MonChanFEXT(data):
     return MonChanFEXT(
         fext = (data >> 4) & 0x0007,
@@ -1253,6 +1418,16 @@ def _unpack_ControlBankS(data):
         s_only = (data >> 0) & 0x0001,
     )
 
+def _unpack_ControlDoscal(data):
+    return ControlDoscal(
+        doscal = (data >> 0) & 0x0001,
+    )
+
+def _unpack_ControlDbltst(data):
+    return ControlDbltst(
+        dbltst = (data >> 0) & 0x0001,
+    )
+
 def _unpack_ControlNHALGA(data):
     return ControlNHALGA(
         nhalga = (data >> 0) & 0x0001,
@@ -1294,6 +1469,14 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg3L): _unpack_DSKYReg3L,
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg3H): _unpack_DSKYReg3H,
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Status): _unpack_DSKYStatus,
+    (DATA_FLAG | AddressGroup.Status, Status.Alarms): _unpack_StatusAlarms,
+    (DATA_FLAG | AddressGroup.Status, Status.MonTemp): _unpack_StatusMonTemp,
+    (DATA_FLAG | AddressGroup.Status, Status.VccInt): _unpack_StatusVccInt,
+    (DATA_FLAG | AddressGroup.Status, Status.VccAux): _unpack_StatusVccAux,
+    (DATA_FLAG | AddressGroup.Status, Status.P3v3io): _unpack_StatusP3v3io,
+    (DATA_FLAG | AddressGroup.Status, Status.AgcTemp): _unpack_StatusAgcTemp,
+    (DATA_FLAG | AddressGroup.Status, Status.Bplssw): _unpack_StatusBplssw,
+    (DATA_FLAG | AddressGroup.Status, Status.P4sw): _unpack_StatusP4sw,
     (DATA_FLAG | AddressGroup.MonChan, MonChan.FEXT): _unpack_MonChanFEXT,
     (DATA_FLAG | AddressGroup.MonChan, MonChan.Restart): _unpack_MonChanRestart,
     (DATA_FLAG | AddressGroup.Control, Control.Stop): _unpack_ControlStop,
@@ -1319,6 +1502,8 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.Control, Control.ICompStatus): _unpack_ControlICompStatus,
     (DATA_FLAG | AddressGroup.Control, Control.LoadReadS1S2): _unpack_ControlLoadReadS1S2,
     (DATA_FLAG | AddressGroup.Control, Control.BankS): _unpack_ControlBankS,
+    (DATA_FLAG | AddressGroup.Control, Control.Doscal): _unpack_ControlDoscal,
+    (DATA_FLAG | AddressGroup.Control, Control.Dbltst): _unpack_ControlDbltst,
     (DATA_FLAG | AddressGroup.Control, Control.NHALGA): _unpack_ControlNHALGA,
     (DATA_FLAG | AddressGroup.Control, Control.STRT1): _unpack_ControlSTRT1,
     (DATA_FLAG | AddressGroup.Control, Control.STRT2): _unpack_ControlSTRT2,

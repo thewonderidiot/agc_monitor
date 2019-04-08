@@ -2,7 +2,7 @@ import warnings
 import queue
 import time
 from ctypes import *
-from PySide2.QtCore import QObject, QThread, QTimer, Signal
+from PySide2.QtCore import QObject, QThread, QTimer, Qt, Signal
 from pylibftdi import Device, USB_PID_LIST, USB_VID_LIST, FtdiError
 
 from slip import slip, unslip, unslip_from
@@ -123,19 +123,21 @@ class USBInterface(QObject):
     def __init__(self):
         QObject.__init__(self)
 
-        self._thread = QThread()
+        #self._thread = QThread()
         self._worker = USBWorker()
-        self._worker.moveToThread(self._thread)
-        self._thread.finished.connect(self._worker.deleteLater)
+        #self._worker.moveToThread(self._thread)
+        #self._thread.finished.connect(self._worker.deleteLater)
         self._worker.connected.connect(self.connected)
         self.msg_sent.connect(self._worker.send_msg)
 
     def start(self):
-        self._thread.start()
+        #self._thread.start()
+        pass
 
     def close(self):
-        self._thread.quit()
-        self._thread.wait()
+        pass
+        # self._thread.quit()
+        # self._thread.wait()
 
     def poll(self, msg):
         self._worker.poll(msg)

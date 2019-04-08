@@ -1,6 +1,6 @@
 from PySide2.QtWidgets import QMainWindow, QHBoxLayout, QLabel, QWidget
 from monitor_panel import MonitorPanel
-# from alarm_mem_panel import AlarmMemPanel
+from alarm_mem_panel import AlarmMemPanel
 from usb_interface import USBInterface
 from dsky import DSKY
 import resources
@@ -37,11 +37,12 @@ class MainWindow(QMainWindow):
         layout.setSpacing(0)
         layout.setMargin(0)
 
-        # self._alarm_mem_panel = AlarmMemPanel(central, self._usbif)
-        # layout.addWidget(self._alarm_mem_panel)
-
         self._monitor_panel = MonitorPanel(central, self._usbif)
         layout.addWidget(self._monitor_panel)
+
+        self._alarm_mem_panel = AlarmMemPanel(central, self._usbif)
+        layout.addWidget(self._alarm_mem_panel)
+
 
     def connected(self, connected):
         if connected:

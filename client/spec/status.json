@@ -1,0 +1,166 @@
+{
+    "name": "Status",
+    "id": 36,
+    "registers": [
+        {
+            "addr": 0,
+            "name": "Alarms",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "vfail",
+                    "width": 1
+                },
+                {
+                    "name": "oscal",
+                    "width": 1
+                },
+                {
+                    "name": "ctral",
+                    "width": 1
+                },
+                {
+                    "name": "tcal",
+                    "width": 1
+                },
+                {
+                    "name": "rptal",
+                    "width": 1
+                },
+                {
+                    "name": "fpal",
+                    "width": 1
+                },
+                {
+                    "name": "epal",
+                    "width": 1
+                },
+                {
+                    "name": "watch",
+                    "width": 1
+                },
+                {
+                    "name": "scdbl",
+                    "width": 1
+                },
+                {
+                    "name": "scafl",
+                    "width": 1
+                },
+                {
+                    "name": "pipal",
+                    "width": 1
+                },
+                {
+                    "name": "warn",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 16,
+            "name": "MonTemp",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "spare",
+                    "width": 4
+                },
+                {
+                    "name": "counts",
+                    "width": 12
+                }
+            ]
+        },
+        {
+            "addr": 17,
+            "name": "VccInt",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "spare",
+                    "width": 4
+                },
+                {
+                    "name": "counts",
+                    "width": 12
+                }
+            ]
+        },
+        {
+            "addr": 18,
+            "name": "VccAux",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "spare",
+                    "width": 4
+                },
+                {
+                    "name": "counts",
+                    "width": 12
+                }
+            ]
+        },
+        {
+            "addr": 19,
+            "name": "P3v3io",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "spare",
+                    "width": 4
+                },
+                {
+                    "name": "counts",
+                    "width": 12
+                }
+            ]
+        },
+        {
+            "addr": 20,
+            "name": "AgcTemp",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "spare",
+                    "width": 4
+                },
+                {
+                    "name": "counts",
+                    "width": 12
+                }
+            ]
+        },
+        {
+            "addr": 21,
+            "name": "Bplssw",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "spare",
+                    "width": 4
+                },
+                {
+                    "name": "counts",
+                    "width": 12
+                }
+            ]
+        },
+        {
+            "addr": 22,
+            "name": "P4sw",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "spare",
+                    "width": 4
+                },
+                {
+                    "name": "counts",
+                    "width": 12
+                }
+            ]
+        }
+    ]
+}

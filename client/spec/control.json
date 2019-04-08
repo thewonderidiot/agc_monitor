@@ -619,6 +619,28 @@
             "fields": []
         },
         {
+            "addr": 48,
+            "name": "Doscal",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "doscal",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 48,
+            "name": "Dbltst",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "dbltst",
+                    "width": 1
+                }
+            ]
+        },
+        {
             "addr": 64,
             "name": "NHALGA",
             "type": "rw",
