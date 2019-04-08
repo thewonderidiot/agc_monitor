@@ -21,6 +21,10 @@ module control_regs(
     output reg mnhrpt,
     output reg mnhnc,
     output reg nhalga,
+    output reg nhstrt1,
+    output reg nhstrt2,
+    output reg doscal,
+    output reg dbltst,
 
     input wire [12:1] s,
     input wire [11:9] eb,
@@ -154,6 +158,10 @@ always @(posedge clk or negedge rst_n) begin
         mnhrpt <= 1'b0;
         mnhnc <= 1'b0;
         nhalga <= 1'b0;
+        nhstrt1 <= 1'b0;
+        nhstrt2 <= 1'b0;
+        doscal <= 1'b0;
+        dbltst <= 1'b0;
 
         s1_s <= 12'b0;
         s1_eb <= 3'b0;
@@ -267,6 +275,10 @@ always @(posedge clk or negedge rst_n) begin
                     i_comp_stat_ign <= data_in[13:7];
                 end
                 `CTRL_REG_NHALGA:   nhalga <= data_in[0];
+                `CTRL_REG_NHSTRT1:  nhstrt1 <= data_in[0];
+                `CTRL_REG_NHSTRT2:  nhstrt2 <= data_in[0];
+                `CTRL_REG_DOSCAL:   doscal <= data_in[0];
+                `CTRL_REG_DBLTST:   dbltst <= data_in[0];
                 `CTRL_REG_LDRD_S1_S2: ldrd_s1_s2 <= data_in[4:0];
                 `CTRL_REG_BANK_S: s_only <= data_in[0];
                 `CTRL_REG_ADVANCE_S: adv_s <= 1'b1;
@@ -353,6 +365,10 @@ always @(posedge clk or negedge rst_n) begin
         `CTRL_REG_I_COMP_IGN:   read_data <= {4'b0, i_comp_val_ign};
         `CTRL_REG_I_COMP_STAT:  read_data <= {2'b0, i_comp_stat_ign, i_comp_stat};
         `CTRL_REG_NHALGA:       read_data <= {15'b0, nhalga};
+        `CTRL_REG_NHSTRT1:      read_data <= {15'b0, nhstrt1};
+        `CTRL_REG_NHSTRT2:      read_data <= {15'b0, nhstrt2};
+        `CTRL_REG_DOSCAL:       read_data <= {15'b0, doscal};
+        `CTRL_REG_DBLTST:       read_data <= {15'b0, dbltst};
         `CTRL_REG_LDRD_S1_S2:   read_data <= {11'b0, ldrd_s1_s2};
         `CTRL_REG_BANK_S:       read_data <= {15'b0, s_only};
         endcase

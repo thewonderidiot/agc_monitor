@@ -79,6 +79,8 @@ module io_circuits(
     input wire mnhrpt_pp,
     input wire mnhnc_pp,
     input wire nhalga_pp,
+    input wire doscal_pp,
+    input wire dbltst_pp,
     input wire mread_pp,
     input wire mload_pp,
     input wire mrdch_pp,
@@ -94,6 +96,8 @@ module io_circuits(
     output wire mnhrpt,
     output wire mnhnc,
     output wire nhalga,
+    output wire doscal,
+    output wire dbltst,
     output wire mread,
     output wire mload,
     output wire mrdch,
@@ -142,12 +146,14 @@ od_buf #(1)  od5(mstp_pp, mstp);
 od_buf #(1)  od6(mnhrpt_pp, mnhrpt);
 od_buf #(1)  od7(mnhnc_pp, mnhnc);
 od_buf #(1)  od8(nhalga_pp, nhalga);
-od_buf #(1)  od9(mread_pp, mread);
-od_buf #(1) od10(mload_pp, mload);
-od_buf #(1) od11(mrdch_pp, mrdch);
-od_buf #(1) od12(mldch_pp, mldch);
-od_buf #(1) od13(mtcsai_pp, mtcsai);
-od_buf #(1) od14(monwbk_pp, monwbk);
+od_buf #(1)  od9(doscal_pp, doscal);
+od_buf #(1) od10(dbltst_pp, dbltst);
+od_buf #(1) od11(mread_pp, mread);
+od_buf #(1) od12(mload_pp, mload);
+od_buf #(1) od13(mrdch_pp, mrdch);
+od_buf #(1) od14(mldch_pp, mldch);
+od_buf #(1) od15(mtcsai_pp, mtcsai);
+od_buf #(1) od16(monwbk_pp, monwbk);
 
 endmodule
 `default_nettype wire

@@ -78,6 +78,10 @@ module agc_monitor(
     output wire mnhrpt,
     output wire mnhnc,
     output wire nhalga,
+    output wire nhstrt1,
+    output wire nhstrt2,
+    output wire doscal,
+    output wire dbltst,
 
     output wire mread,
     output wire mload,
@@ -157,6 +161,8 @@ wire mstp_pp;
 wire mnhrpt_pp;
 wire mnhnc_pp;
 wire nhalga_pp;
+wire doscal_pp;
+wire dbltst_pp;
 wire mread_pp;
 wire mload_pp;
 wire mrdch_pp;
@@ -243,6 +249,8 @@ io_circuits io(
     .mnhrpt(mnhrpt),
     .mnhnc(mnhnc),
     .nhalga(nhalga),
+    .doscal(doscal),
+    .dbltst(dbltst),
     .mread(mread),
     .mload(mload),
     .mrdch(mrdch),
@@ -259,6 +267,8 @@ io_circuits io(
     .mnhrpt_pp(mnhrpt_pp),
     .mnhnc_pp(mnhnc_pp),
     .nhalga_pp(nhalga_pp),
+    .doscal_pp(doscal_pp),
+    .dbltst_pp(dbltst_pp),
     .mread_pp(mread_pp),
     .mload_pp(mload_pp),
     .mrdch_pp(mrdch_pp),
@@ -347,6 +357,10 @@ monitor mon(
     .mnhrpt(mnhrpt_pp),
     .mnhnc(mnhnc_pp),
     .nhalga(nhalga_pp),
+    .nhstrt1(nhstrt1),
+    .nhstrt2(nhstrt2),
+    .doscal(doscal_pp),
+    .dbltst(dbltst_pp),
 
     .mread(mread_pp),
     .mload(mload_pp),

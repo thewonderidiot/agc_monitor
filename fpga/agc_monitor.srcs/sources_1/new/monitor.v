@@ -78,6 +78,10 @@ module monitor(
     output wire mnhrpt,
     output wire mnhnc,
     output wire nhalga,
+    output wire nhstrt1,
+    output wire nhstrt2,
+    output wire doscal,
+    output wire dbltst,
 
     output wire mread,
     output wire mload,
@@ -240,6 +244,10 @@ control_regs ctrl_regs(
     .mnhrpt(mnhrpt),
     .mnhnc(mnhnc),
     .nhalga(nhalga),
+    .nhstrt1(nhstrt1),
+    .nhstrt2(nhstrt2),
+    .doscal(doscal),
+    .dbltst(dbltst),
 
     .s(s),
     .eb(eb),
