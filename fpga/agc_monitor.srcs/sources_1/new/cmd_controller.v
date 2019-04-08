@@ -28,6 +28,10 @@ module cmd_controller(
     output reg ctrl_write_en,
     input wire ctrl_write_done,
 
+    // Status registers control signals
+    output reg status_read_en,
+    output reg status_write_en,
+
     // Monitor registers control signals
     output reg mon_reg_read_en,
     output reg mon_chan_read_en,
@@ -51,9 +55,10 @@ localparam IDLE          = 0,
            SIM_ERASABLE  = 4,
            SIM_FIXED     = 5,
            CONTROL       = 6,
-           MON_REGS      = 7,
-           MON_CHANNELS  = 8,
-           MON_DSKY      = 9,
+           STATUS        = 7,
+           MON_REGS      = 8,
+           MON_CHANNELS  = 9,
+           MON_DSKY      = 10,
            SEND_READ_MSG = 15;
 
 reg [3:0] state;
@@ -101,6 +106,8 @@ always @(*) begin
     cmd_read_en = 1'b0;
     ctrl_read_en = 1'b0;
     ctrl_write_en = 1'b0;
+    status_read_en = 1'b0;
+    status_write_en = 1'b0;
     mon_reg_read_en = 1'b0;
     mon_chan_read_en = 1'b0;
     agc_fixed_read_en = 1'b0;
@@ -121,6 +128,7 @@ always @(*) begin
             `ADDR_GROUP_SIM_ERASABLE: next_state = SIM_ERASABLE;
             `ADDR_GROUP_SIM_FIXED:    next_state = SIM_FIXED;
             `ADDR_GROUP_CONTROL:      next_state = CONTROL;
+            `ADDR_GROUP_STATUS:       next_state = STATUS;
             `ADDR_GROUP_MON_REGS:     next_state = MON_REGS;
             `ADDR_GROUP_MON_CHANNELS: next_state = MON_CHANNELS;
             `ADDR_GROUP_MON_DSKY:     next_state = MON_DSKY;
@@ -169,6 +177,16 @@ always @(*) begin
         end else begin
             ctrl_read_en = 1'b1;
             next_state = SEND_READ_MSG;
+        end
+    end
+
+    STATUS: begin
+        if (~cmd_write_flag) begin
+            status_read_en = 1'b1;
+            next_state = SEND_READ_MSG;
+        end else begin
+            status_write_en = 1'b1;
+            next_state = IDLE;
         end
     end
 

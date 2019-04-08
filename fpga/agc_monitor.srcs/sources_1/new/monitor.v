@@ -134,6 +134,10 @@ wire ctrl_write_en;
 wire ctrl_write_done;
 wire [15:0] ctrl_data;
 
+wire status_read_en;
+wire status_write_en;
+wire [15:0] status_data;
+
 wire mon_reg_read_en;
 wire [15:0] mon_reg_data;
 
@@ -150,7 +154,7 @@ wire [15:0] agc_fixed_data;
 
 // Resulting data from the active read command
 wire [15:0] read_data;
-assign read_data = ctrl_data | mon_reg_data | mon_chan_data | agc_fixed_data | mon_dsky_data;
+assign read_data = ctrl_data | status_data | mon_reg_data | mon_chan_data | agc_fixed_data | mon_dsky_data;
 
 // Command controller 
 cmd_controller cmd_ctrl(
@@ -167,6 +171,8 @@ cmd_controller cmd_ctrl(
     .ctrl_read_en(ctrl_read_en),
     .ctrl_write_en(ctrl_write_en),
     .ctrl_write_done(ctrl_write_done),
+    .status_read_en(status_read_en),
+    .status_write_en(status_write_en),
     .mon_reg_read_en(mon_reg_read_en),
     .mon_chan_read_en(mon_chan_read_en),
     .agc_fixed_read_en(agc_fixed_read_en),
@@ -220,15 +226,6 @@ control_regs ctrl_regs(
     .clk(clk),
     .rst_n(rst_n),
 
-    .bplssw_p(bplssw_p),
-    .bplssw_n(bplssw_n),
-    .p4sw_p(p4sw_p),
-    .p4sw_n(p4sw_n),
-    .p3v3io_p(p3v3io_p),
-    .p3v3io_n(p3v3io_n),
-    .mtemp_p(mtemp_p),
-    .mtemp_n(mtemp_n),
-
     .addr(cmd_addr),
     .data_in(cmd_data),
     .read_en(ctrl_read_en),
@@ -277,6 +274,29 @@ control_regs ctrl_regs(
     .periph_bb(ctrl_periph_bb),
     .periph_data(ctrl_periph_data),
     .periph_complete(periph_complete)
+);
+
+/*******************************************************************************.
+* Status Registers                                                              *
+'*******************************************************************************/
+status_regs stat_regs(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .bplssw_p(bplssw_p),
+    .bplssw_n(bplssw_n),
+    .p4sw_p(p4sw_p),
+    .p4sw_n(p4sw_n),
+    .p3v3io_p(p3v3io_p),
+    .p3v3io_n(p3v3io_n),
+    .mtemp_p(mtemp_p),
+    .mtemp_n(mtemp_n),
+
+    .addr(cmd_addr),
+    .data_in(cmd_data),
+    .read_en(status_read_en),
+    .write_en(status_write_en),
+    .data_out(status_data)
 );
 
 /*******************************************************************************.

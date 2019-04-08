@@ -20,6 +20,7 @@
 `define ADDR_GROUP_MON_REGS     7'h21
 `define ADDR_GROUP_MON_CHANNELS 7'h22
 `define ADDR_GROUP_MON_DSKY     7'h23
+`define ADDR_GROUP_STATUS       7'h24
 
 // Control Registers
 `define CTRL_REG_START        16'h0
@@ -48,14 +49,11 @@
 `define CTRL_REG_LDRD_S1_S2   16'h17
 `define CTRL_REG_BANK_S       16'h18
 `define CTRL_REG_ADVANCE_S    16'h19
+`define CTRL_REG_DOSCAL       16'h30
+`define CTRL_REG_DBLTST       16'h31
 `define CTRL_REG_NHALGA       16'h40
-`define CTRL_REG_MON_TEMP     16'h60
-`define CTRL_REG_MON_VCCINT   16'h61
-`define CTRL_REG_MON_VCCAUX   16'h62
-`define CTRL_REG_AGC_BPLSSW   16'h63
-`define CTRL_REG_AGC_P4SW     16'h64
-`define CTRL_REG_AGC_P3V3IO   16'h65
-`define CTRL_REG_AGC_MTEMP    16'h66
+`define CTRL_REG_NHSTRT1      16'h41
+`define CTRL_REG_NHSTRT2      16'h42
 `define CTRL_REG_LOAD_S       16'h70
 `define CTRL_REG_LOAD_PRESET  16'h71
 `define CTRL_REG_LOAD_CHAN    16'h72
@@ -64,6 +62,16 @@
 `define CTRL_REG_READ_CHAN    16'h75
 `define CTRL_REG_START_S      16'h76
 `define CTRL_REG_START_PRESET 16'h77
+
+// Status registers
+`define STATUS_REG_ALARMS       16'h00
+`define STATUS_REG_MON_TEMP     16'h10
+`define STATUS_REG_MON_VCCINT   16'h11
+`define STATUS_REG_MON_VCCAUX   16'h12
+`define STATUS_REG_MON_P3V3IO   16'h13
+`define STATUS_REG_AGC_TEMP     16'h14
+`define STATUS_REG_AGC_BPLSSW   16'h15
+`define STATUS_REG_AGC_P4SW     16'h16
 
 // Monitor AGC Register Mirrors
 `define MON_REG_A      16'h00
