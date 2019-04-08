@@ -16,6 +16,14 @@
                     "width": 1
                 },
                 {
+                    "name": "scafl",
+                    "width": 1
+                },
+                {
+                    "name": "scdbl",
+                    "width": 1
+                },
+                {
                     "name": "ctral",
                     "width": 1
                 },
@@ -37,14 +45,6 @@
                 },
                 {
                     "name": "watch",
-                    "width": 1
-                },
-                {
-                    "name": "scdbl",
-                    "width": 1
-                },
-                {
-                    "name": "scafl",
                     "width": 1
                 },
                 {

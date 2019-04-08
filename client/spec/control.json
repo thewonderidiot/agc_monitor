@@ -630,7 +630,7 @@
             ]
         },
         {
-            "addr": 48,
+            "addr": 49,
             "name": "Dbltst",
             "type": "rw",
             "fields": [

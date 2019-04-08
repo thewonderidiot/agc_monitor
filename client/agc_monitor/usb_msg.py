@@ -456,7 +456,7 @@ class Control(object):
     BankS = 0x0018
     AdvanceS = 0x0019
     Doscal = 0x0030
-    Dbltst = 0x0030
+    Dbltst = 0x0031
     NHALGA = 0x0040
     STRT1 = 0x0041
     STRT2 = 0x0042

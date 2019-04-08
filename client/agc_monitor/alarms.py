@@ -9,8 +9,8 @@ import usb_msg as um
 ALARMS = OrderedDict([
     ('VFAIL', QColor(255,   0,   0)),
     ('OSCAL', QColor(255,   0,   0)),
-    ('SCDBL', QColor(255,   0,   0)),
     ('SCAFL', QColor(255,   0,   0)),
+    ('SCDBL', QColor(255,   0,   0)),
     ('CTRAL', QColor(255, 127,   0)),
     ('TCAL',  QColor(255, 127,   0)),
     ('RPTAL', QColor(255, 127,   0)),
@@ -63,14 +63,14 @@ class Alarms(QFrame):
         check.setStyleSheet('QCheckBox::indicator{subcontrol-position:center;}')
         layout.addWidget(check, 2, 2)
         layout.setAlignment(check, Qt.AlignCenter)
-        check.stateChanged.connect(lambda state: self._usbif.send(um.WriteControlDoscal(state)))
+        check.stateChanged.connect(lambda state: self._usbif.send(um.WriteControlDoscal(bool(state))))
 
         check = QCheckBox(self)
         check.setFixedSize(20,20)
         check.setStyleSheet('QCheckBox::indicator{subcontrol-position:center;}')
         layout.addWidget(check, 2, 3)
         layout.setAlignment(check, Qt.AlignCenter)
-        check.stateChanged.connect(lambda state: self._usbif.send(um.WriteControlDbltst(state)))
+        check.stateChanged.connect(lambda state: self._usbif.send(um.WriteControlDbltst(bool(state))))
 
         b = QPushButton(self)
         b.setFixedSize(20,20)
