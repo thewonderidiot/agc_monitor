@@ -133,9 +133,9 @@ Fixed = namedtuple('Fixed', ['addr', 'parity', 'data'])
 Fixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadStatusAlarms = namedtuple('ReadStatusAlarms', [])
 ReadStatusAlarms.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-StatusAlarms = namedtuple('StatusAlarms', ['vfail', 'oscal', 'ctral', 'tcal', 'rptal', 'fpal', 'epal', 'watch', 'scdbl', 'scafl', 'pipal', 'warn'])
+StatusAlarms = namedtuple('StatusAlarms', ['vfail', 'oscal', 'scafl', 'scdbl', 'ctral', 'tcal', 'rptal', 'fpal', 'epal', 'watch', 'pipal', 'warn'])
 StatusAlarms.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-WriteStatusAlarms = namedtuple('WriteStatusAlarms', ['vfail', 'oscal', 'ctral', 'tcal', 'rptal', 'fpal', 'epal', 'watch', 'scdbl', 'scafl', 'pipal', 'warn'])
+WriteStatusAlarms = namedtuple('WriteStatusAlarms', ['vfail', 'oscal', 'scafl', 'scdbl', 'ctral', 'tcal', 'rptal', 'fpal', 'epal', 'watch', 'pipal', 'warn'])
 WriteStatusAlarms.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadStatusMonTemp = namedtuple('ReadStatusMonTemp', [])
 ReadStatusMonTemp.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
@@ -578,14 +578,14 @@ def _pack_WriteStatusAlarms(msg):
     data = 0x0000
     data |= (msg.vfail & 0x0001) << 0
     data |= (msg.oscal & 0x0001) << 1
-    data |= (msg.ctral & 0x0001) << 2
-    data |= (msg.tcal & 0x0001) << 3
-    data |= (msg.rptal & 0x0001) << 4
-    data |= (msg.fpal & 0x0001) << 5
-    data |= (msg.epal & 0x0001) << 6
-    data |= (msg.watch & 0x0001) << 7
-    data |= (msg.scdbl & 0x0001) << 8
-    data |= (msg.scafl & 0x0001) << 9
+    data |= (msg.scafl & 0x0001) << 2
+    data |= (msg.scdbl & 0x0001) << 3
+    data |= (msg.ctral & 0x0001) << 4
+    data |= (msg.tcal & 0x0001) << 5
+    data |= (msg.rptal & 0x0001) << 6
+    data |= (msg.fpal & 0x0001) << 7
+    data |= (msg.epal & 0x0001) << 8
+    data |= (msg.watch & 0x0001) << 9
     data |= (msg.pipal & 0x0001) << 10
     data |= (msg.warn & 0x0001) << 11
     return _pack_write_msg(AddressGroup.Status, Status.Alarms, data)
@@ -1142,14 +1142,14 @@ def _unpack_StatusAlarms(data):
     return StatusAlarms(
         vfail = (data >> 0) & 0x0001,
         oscal = (data >> 1) & 0x0001,
-        ctral = (data >> 2) & 0x0001,
-        tcal = (data >> 3) & 0x0001,
-        rptal = (data >> 4) & 0x0001,
-        fpal = (data >> 5) & 0x0001,
-        epal = (data >> 6) & 0x0001,
-        watch = (data >> 7) & 0x0001,
-        scdbl = (data >> 8) & 0x0001,
-        scafl = (data >> 9) & 0x0001,
+        scafl = (data >> 2) & 0x0001,
+        scdbl = (data >> 3) & 0x0001,
+        ctral = (data >> 4) & 0x0001,
+        tcal = (data >> 5) & 0x0001,
+        rptal = (data >> 6) & 0x0001,
+        fpal = (data >> 7) & 0x0001,
+        epal = (data >> 8) & 0x0001,
+        watch = (data >> 9) & 0x0001,
         pipal = (data >> 10) & 0x0001,
         warn = (data >> 11) & 0x0001,
     )

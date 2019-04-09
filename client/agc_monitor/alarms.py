@@ -30,7 +30,7 @@ class Alarms(QFrame):
 
         self._setup_ui()
 
-        #usbif.poll(um.ReadStatusAlarms())
+        usbif.poll(um.ReadStatusAlarms())
         usbif.listen(self)
 
         self._reset_alarms()
