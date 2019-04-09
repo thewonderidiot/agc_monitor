@@ -20,6 +20,8 @@ class Measurements(QFrame):
         self._p4sw_rb = float(config['P4SW']['RB'])
         self._p3v3io_rt = float(config['P3V3IO']['RT'])
         self._p3v3io_rb = float(config['P3V3IO']['RB'])
+        self._agc_temp_rt25 = float(config['AGCTEMP']['RT25'])
+        self._agc_temp_tcr = float(config['AGCTEMP']['TCR'])
         self._agc_temp_rb = float(config['AGCTEMP']['RB'])
 
         self._setup_ui()
@@ -47,7 +49,7 @@ class Measurements(QFrame):
         elif isinstance(msg, um.StatusP4sw):
             self._p4sw.setText('%.02f V' % self._convert_agc_volts(msg.counts, self._p4sw_rt, self._p4sw_rb))
         elif isinstance(msg, um.StatusAgcTemp):
-            self._agc_temp.setText('%.02f C' % self._convert_agc_temp(msg.counts, self._agc_temp_rb))
+            self._agc_temp.setText('%.02f C' % self._convert_agc_temp(msg.counts, self._agc_temp_rt25, self._agc_temp_tcr, self._agc_temp_rb))
 
     def _convert_mon_temp(self, counts):
         # Taken from UG480 p.33
@@ -60,11 +62,11 @@ class Measurements(QFrame):
     def _convert_agc_volts(self, counts, rt, rb):
         return (counts / 4096.0) * (rt + rb) / rb
 
-    def _convert_agc_temp(self, counts, rb):
+    def _convert_agc_temp(self, counts, rt25, tcr, rb):
         if counts < 0x400:
             return 0
         rt = rb * ((3.3 / (counts / 4096.0)) - 1)
-        return (80.0 / 4300) * rt - (2125.0/43)
+        return 25 + ((rt / rt25) - 1) / (tcr/1e6)
 
     def _setup_ui(self):
         self.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
