@@ -20,7 +20,22 @@ module status_regs(
     input wire p3v3io_p,
     input wire p3v3io_n,
     input wire mtemp_p,
-    input wire mtemp_n
+    input wire mtemp_n,
+
+    input wire mt05,
+    input wire mt08,
+
+    input wire mvfail_n,
+    input wire moscal_n,
+    input wire mscafl_n,
+    input wire mscdbl_n,
+    input wire mctral_n,
+    input wire mtcal_n,
+    input wire mrptal_n,
+    input wire mpal_n,
+    input wire mwatch_n,
+    input wire mpipal_n,
+    input wire mwarnf_n
 );
 
 wire [4:0] adc_channel;
@@ -86,18 +101,84 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
+localparam VFAIL = 0,
+           OSCAL = 1,
+           SCAFL = 2,
+           SCDBL = 3,
+           CTRAL = 4,
+           TCAL  = 5,
+           RPTAL = 6,
+           EPAL  = 7,
+           FPAL  = 8,
+           WATCH = 9,
+           PIPAL = 10,
+           WARN  = 11;
+
+reg [11:0] alarms;
+
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        alarms <= 12'b0;
+    end else begin
+        if (write_en) begin
+            alarms <= alarms & ~(data_in[11:0]);
+        end else begin
+            if (~mvfail_n) begin
+                alarms[VFAIL] <= 1'b1;
+            end
+
+            if (~moscal_n) begin
+                alarms[OSCAL] <= 1'b1;
+            end
+
+            if (~mscafl_n) begin
+                alarms[SCAFL] <= 1'b1;
+            end
+
+            if (~mscdbl_n) begin
+                alarms[SCDBL] <= 1'b1;
+            end
+
+            if (~mctral_n) begin
+                alarms[CTRAL] <= 1'b1;
+            end
+
+            if (~mtcal_n) begin
+                alarms[TCAL] <= 1'b1;
+            end
+
+            if (~mrptal_n) begin
+                alarms[RPTAL] <= 1'b1;
+            end
+
+            if (~mpal_n & mt08) begin
+                alarms[FPAL] <= 1'b1;
+            end
+
+            if (~mpal_n & mt05) begin
+                alarms[EPAL] <= 1'b1;
+            end
+
+            if (~mwatch_n) begin
+                alarms[WATCH] <= 1'b1;
+            end
+
+            if (~mpipal_n) begin
+                alarms[PIPAL] <= 1'b1;
+            end
+
+            if (~mwarnf_n) begin
+                alarms[WARN] <= 1'b1;
+            end
+        end
+    end
+end
+
+
 reg [15:0] read_data;
 reg read_done;
 
 assign data_out = read_done ? read_data : 16'b0;
-
-/* always @(posedge clk or negedge rst_n) begin */
-/*     if (~rst_n) begin */
-/*     end else begin */
-/*         if (write_en) begin */
-/*         end */
-/*     end */
-/* end */
 
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
@@ -106,6 +187,7 @@ always @(posedge clk or negedge rst_n) begin
     end else if (read_en) begin
         read_done <= 1'b1;
         case (addr)
+        `STATUS_REG_ALARMS:     read_data <= {4'b0, alarms};
         `STATUS_REG_MON_TEMP:   read_data <= adc_temp;
         `STATUS_REG_MON_VCCINT: read_data <= adc_vccint;
         `STATUS_REG_MON_VCCAUX: read_data <= adc_vccaux;
