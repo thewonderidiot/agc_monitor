@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<section name="Workbench">
-	<item value="/home/mike/agc_monitor/fpga/agc_monitor.sdk/agc_monitor_ps/bootimage" key="bootgen_files_selection"/>
-	<item value="/home/mike/agc_monitor/fpga/agc_monitor.sdk/fsbl/Debug" key="zynq_flash_files_selection"/>
-	<item value="/home/mike/agc_monitor/fpga/agc_monitor.sdk/agc_monitor_ps/bootimage" key="last_stored_selection"/>
-</section>

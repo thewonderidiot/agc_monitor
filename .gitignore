@@ -56,7 +56,9 @@
 #Do NOT ignore *.xpr files
 !*.xpr
 #Include *.xml files for 2013.4 or earlier version
-!*.xml
+#*.xml
+!**/bd/**/*.xml
+!**/ip/**/*.xml
 #########
 #Constraint files
 #########
@@ -73,9 +75,9 @@
 #########
 #Reports
 #########
-!*.rpt
-!*.txt
-!*.vdi
+#*.rpt
+#*.txt
+#*.vdi
 #########
 #C-files
 #########
@@ -91,6 +93,7 @@
 !*.json
 !*.qrc
 !*.png
+!*.cfg
 
 #########
 #KiCAD-files
