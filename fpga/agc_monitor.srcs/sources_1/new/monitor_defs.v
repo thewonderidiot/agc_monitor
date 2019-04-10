@@ -49,6 +49,10 @@
 `define CTRL_REG_LDRD_S1_S2   16'h17
 `define CTRL_REG_BANK_S       16'h18
 `define CTRL_REG_ADVANCE_S    16'h19
+`define CTRL_REG_CRS_BANK_EN0 16'h1A
+`define CTRL_REG_CRS_BANK_EN1 16'h1B
+`define CTRL_REG_CRS_BANK_EN2 16'h1C
+`define CTRL_REG_CRS_BANK_EN3 16'h1D
 `define CTRL_REG_DOSCAL       16'h30
 `define CTRL_REG_DBLTST       16'h31
 `define CTRL_REG_NHALGA       16'h40

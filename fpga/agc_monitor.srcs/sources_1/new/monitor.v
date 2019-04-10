@@ -236,6 +236,8 @@ wire [15:1] ctrl_periph_bb;
 wire [16:1] ctrl_periph_data;
 wire periph_complete;
 
+wire [63:0] crs_bank_en;
+
 control_regs ctrl_regs(
     .clk(clk),
     .rst_n(rst_n),
@@ -291,7 +293,9 @@ control_regs ctrl_regs(
     .periph_s(ctrl_periph_s),
     .periph_bb(ctrl_periph_bb),
     .periph_data(ctrl_periph_data),
-    .periph_complete(periph_complete)
+    .periph_complete(periph_complete),
+
+    .crs_bank_en(crs_bank_en)
 );
 
 /*******************************************************************************.
@@ -624,7 +628,7 @@ core_rope_sim crs(
     .data_in(cmd_data),
     .data_out(crs_data),
 
-    .bank_en(64'b0),
+    .bank_en(crs_bank_en),
     .mnhsbf_dsky(mnhsbf_dsky),
     
     .fext(fext),

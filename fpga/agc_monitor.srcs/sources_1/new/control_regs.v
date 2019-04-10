@@ -58,7 +58,9 @@ module control_regs(
     output reg [12:1] periph_s,
     output reg [15:1] periph_bb,
     output reg [16:1] periph_data,
-    input wire periph_complete
+    input wire periph_complete,
+
+    output reg [63:0] crs_bank_en
 );
 
 reg [12:1] s1_s;
@@ -206,6 +208,8 @@ always @(posedge clk or negedge rst_n) begin
         periph_s <= 12'b0;
         periph_bb <= 15'b0;
         periph_data <= 16'b0;
+
+        crs_bank_en <= 64'b0;
     end else begin
         write_done <= 1'b0;
         start_req <= 1'b0;
@@ -282,6 +286,10 @@ always @(posedge clk or negedge rst_n) begin
                 `CTRL_REG_LDRD_S1_S2: ldrd_s1_s2 <= data_in[4:0];
                 `CTRL_REG_BANK_S: s_only <= data_in[0];
                 `CTRL_REG_ADVANCE_S: adv_s <= 1'b1;
+                `CTRL_REG_CRS_BANK_EN0: crs_bank_en[15:0] <= data_in;
+                `CTRL_REG_CRS_BANK_EN1: crs_bank_en[31:16] <= data_in;
+                `CTRL_REG_CRS_BANK_EN2: crs_bank_en[47:32] <= data_in;
+                `CTRL_REG_CRS_BANK_EN3: crs_bank_en[63:48] <= data_in;
                 endcase
             end else begin
                 if (periph_complete) begin
@@ -371,6 +379,10 @@ always @(posedge clk or negedge rst_n) begin
         `CTRL_REG_DBLTST:       read_data <= {15'b0, dbltst};
         `CTRL_REG_LDRD_S1_S2:   read_data <= {11'b0, ldrd_s1_s2};
         `CTRL_REG_BANK_S:       read_data <= {15'b0, s_only};
+        `CTRL_REG_CRS_BANK_EN0: read_data <= crs_bank_en[15:0];
+        `CTRL_REG_CRS_BANK_EN1: read_data <= crs_bank_en[31:16];
+        `CTRL_REG_CRS_BANK_EN2: read_data <= crs_bank_en[47:32];
+        `CTRL_REG_CRS_BANK_EN3: read_data <= crs_bank_en[63:48];
         endcase
     end else begin
         read_done <= 1'b0;
