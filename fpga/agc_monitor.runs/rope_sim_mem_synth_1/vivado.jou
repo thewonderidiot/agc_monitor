@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2018.3 (64-bit)
+# SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
+# IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
+# Start of session at: Tue Apr  9 18:56:29 2019
+# Process ID: 15479
+# Current directory: /home/mike/agc_monitor/fpga/agc_monitor.runs/rope_sim_mem_synth_1
+# Command line: vivado -log rope_sim_mem.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source rope_sim_mem.tcl
+# Log file: /home/mike/agc_monitor/fpga/agc_monitor.runs/rope_sim_mem_synth_1/rope_sim_mem.vds
+# Journal file: /home/mike/agc_monitor/fpga/agc_monitor.runs/rope_sim_mem_synth_1/vivado.jou
+#-----------------------------------------------------------
+source rope_sim_mem.tcl -notrace

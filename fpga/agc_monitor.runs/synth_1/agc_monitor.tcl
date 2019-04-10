@@ -39,6 +39,7 @@ read_verilog -library xil_defaultlib {
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_controller.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/core_rope_sim.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/debounce.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/edit.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_encoder.v
@@ -80,6 +81,9 @@ set_property used_in_implementation false [get_files -all /home/mike/agc_monitor
 read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/mon_adc/mon_adc.xci
 set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/mon_adc/mon_adc_ooc.xdc]
 set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/mon_adc/mon_adc.xdc]
+
+read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/rope_sim_mem/rope_sim_mem.xci
+set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/rope_sim_mem/rope_sim_mem_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

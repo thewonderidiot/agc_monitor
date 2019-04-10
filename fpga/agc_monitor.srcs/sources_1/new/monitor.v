@@ -159,9 +159,13 @@ wire agc_fixed_read_en;
 wire agc_fixed_read_done;
 wire [15:0] agc_fixed_data;
 
+wire crs_read_en;
+wire crs_write_en;
+wire [15:0] crs_data;
+
 // Resulting data from the active read command
 wire [15:0] read_data;
-assign read_data = ctrl_data | status_data | mon_reg_data | mon_chan_data | agc_fixed_data | mon_dsky_data;
+assign read_data = ctrl_data | status_data | mon_reg_data | mon_chan_data | agc_fixed_data | crs_data | mon_dsky_data;
 
 // Command controller 
 cmd_controller cmd_ctrl(
@@ -184,6 +188,8 @@ cmd_controller cmd_ctrl(
     .mon_chan_read_en(mon_chan_read_en),
     .agc_fixed_read_en(agc_fixed_read_en),
     .agc_fixed_read_done(agc_fixed_read_done),
+    .crs_read_en(crs_read_en),
+    .crs_write_en(crs_write_en),
     .mon_dsky_read_en(mon_dsky_read_en),
     .mon_dsky_write_en(mon_dsky_write_en)
 );
@@ -597,6 +603,20 @@ agc_fixed fixed_reader(
     .periph_complete(periph_complete),
 
     .fext(fext)
+);
+
+/*******************************************************************************.
+* Core Rope Simulation                                                          *
+'*******************************************************************************/
+core_rope_sim crs(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .read_en(crs_read_en),
+    .write_en(crs_write_en),
+    .addr(cmd_addr),
+    .data_in(cmd_data),
+    .data_out(crs_data)
 );
 
 /*******************************************************************************.

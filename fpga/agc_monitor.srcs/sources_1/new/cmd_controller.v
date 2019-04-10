@@ -40,6 +40,10 @@ module cmd_controller(
     output reg agc_fixed_read_en,
     input wire agc_fixed_read_done,
 
+    // Core rope simulation control signals
+    output reg crs_read_en,
+    output reg crs_write_en,
+
     // DSKY control signals
     output reg mon_dsky_read_en,
     output reg mon_dsky_write_en
@@ -111,6 +115,8 @@ always @(*) begin
     mon_reg_read_en = 1'b0;
     mon_chan_read_en = 1'b0;
     agc_fixed_read_en = 1'b0;
+    crs_read_en = 1'b0;
+    crs_write_en = 1'b0;
     mon_dsky_read_en = 1'b0;
     mon_dsky_write_en = 1'b0;
 
@@ -162,7 +168,13 @@ always @(*) begin
     end
 
     SIM_FIXED: begin
-        next_state = IDLE;
+        if (~cmd_write_flag) begin
+            crs_read_en = 1'b1;
+            next_state = SEND_READ_MSG;
+        end else begin
+            crs_write_en = 1'b1;
+            next_state = IDLE;
+        end
     end
 
     CONTROL: begin

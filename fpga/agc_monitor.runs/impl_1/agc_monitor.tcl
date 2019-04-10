@@ -83,6 +83,7 @@ set rc [catch {
   read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/read_fifo/read_fifo.xci
   read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/read_byte_fifo/read_byte_fifo.xci
   read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/mon_adc/mon_adc.xci
+  read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/rope_sim_mem/rope_sim_mem.xci
   set_param project.isImplRun false
   read_xdc /home/mike/agc_monitor/fpga/agc_monitor.srcs/constrs_1/new/agc_monitor.xdc
   set_param project.isImplRun true
