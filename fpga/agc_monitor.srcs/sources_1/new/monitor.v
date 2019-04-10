@@ -40,6 +40,7 @@ module monitor(
     input wire [3:1] mst,
     input wire [2:1] mbr,
 
+    input wire mrsc,
     input wire mwag,
     input wire mwlg,
     input wire mwqg,
@@ -608,6 +609,11 @@ agc_fixed fixed_reader(
 /*******************************************************************************.
 * Core Rope Simulation                                                          *
 '*******************************************************************************/
+wire mnhsbf_dsky;
+wire mnhsbf_crs;
+wire [16:1] mdt_crs;
+wire monpar_crs;
+
 core_rope_sim crs(
     .clk(clk),
     .rst_n(rst_n),
@@ -616,13 +622,30 @@ core_rope_sim crs(
     .write_en(crs_write_en),
     .addr(cmd_addr),
     .data_in(cmd_data),
-    .data_out(crs_data)
+    .data_out(crs_data),
+
+    .bank_en(64'b0),
+    .mnhsbf_dsky(mnhsbf_dsky),
+    
+    .fext(fext),
+    .fb(fb),
+    .s(s),
+
+    .mt02(mt[2]),
+    .mt07(mt[7]),
+    .mrsc(mrsc),
+    .mwg(mwg),
+
+    .mnhsbf(mnhsbf_crs),
+    .mdt(mdt_crs),
+    .monpar(monpar_crs)
 );
 
 /*******************************************************************************.
 * DSKY                                                                          *
 '*******************************************************************************/
 wire [16:1] mdt_dsky;
+wire monpar_dsky;
 
 monitor_dsky mon_dsky(
     .clk(clk),
@@ -651,12 +674,14 @@ monitor_dsky mon_dsky(
     .dsalmout(dsalmout),
     .chan13(chan13),
 
-    .mnhsbf(mnhsbf),
+    .mnhsbf(mnhsbf_dsky),
     .mdt(mdt_dsky),
-    .monpar(monpar)
+    .monpar(monpar_dsky)
 );
 
-assign mdt = mdt_chan77 | mdt_periph | mdt_dsky;
+assign mnhsbf = mnhsbf_crs | mnhsbf_dsky;
+assign mdt = mdt_chan77 | mdt_periph | mdt_crs | mdt_dsky;
+assign monpar = monpar_crs | monpar_dsky;
 
 endmodule
 `default_nettype wire

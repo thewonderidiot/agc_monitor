@@ -17,6 +17,7 @@ module io_circuits(
     input wire [15:10] msq,
     input wire [3:1] mst,
     input wire [2:1] mbr,
+    input wire mrsc,
     input wire mwag,
     input wire mwlg,
     input wire mwqg,
@@ -49,6 +50,7 @@ module io_circuits(
     output wire [15:10] msq_db,
     output wire [3:1] mst_db,
     output wire [2:1] mbr_db,
+    output wire mrsc_db,
     output wire mwag_db,
     output wire mwlg_db,
     output wire mwqg_db,
@@ -117,26 +119,27 @@ debounce #(1,3)  db8(clk, rst_n, msqext, msqext_db);
 debounce #(6,3)  db9(clk, rst_n, msq, msq_db);
 debounce #(3,3) db10(clk, rst_n, mst, mst_db);
 debounce #(2,3) db11(clk, rst_n, mbr, mbr_db);
-debounce #(1,3) db12(clk, rst_n, mwag, mwag_db);
-debounce #(1,3) db13(clk, rst_n, mwlg, mwlg_db);
-debounce #(1,3) db14(clk, rst_n, mwqg, mwqg_db);
-debounce #(1,3) db15(clk, rst_n, mwebg, mwebg_db);
-debounce #(1,3) db16(clk, rst_n, mwfbg, mwfbg_db);
-debounce #(1,3) db17(clk, rst_n, mwbbeg, mwbbeg_db);
-debounce #(1,3) db18(clk, rst_n, mwzg, mwzg_db);
-debounce #(1,3) db19(clk, rst_n, mwbg, mwbg_db);
-debounce #(1,3) db20(clk, rst_n, mwsg, mwsg_db);
-debounce #(1,3) db21(clk, rst_n, mwg, mwg_db);
-debounce #(1,3) db22(clk, rst_n, mwyg, mwyg_db);
-debounce #(1,3) db23(clk, rst_n, mrulog, mrulog_db);
-debounce #(1,3) db24(clk, rst_n, mrgg, mrgg_db);
-debounce #(1,3) db25(clk, rst_n, mrch, mrch_db);
-debounce #(1,3) db26(clk, rst_n, mwch, mwch_db);
-debounce #(1,3) db27(clk, rst_n, mnisq, mnisq_db);
-debounce #(1,3) db28(clk, rst_n, msp, msp_db);
-debounce #(1,3) db29(clk, rst_n, mgp_n, mgp_n_db);
-debounce #(1,3) db30(clk, rst_n, mreqin, mreqin_db);
-debounce #(1,3) db31(clk, rst_n, mtcsa_n, mtcsa_n_db);
+debounce #(1,3) db12(clk, rst_n, mrsc, mrsc_db);
+debounce #(1,3) db13(clk, rst_n, mwag, mwag_db);
+debounce #(1,3) db14(clk, rst_n, mwlg, mwlg_db);
+debounce #(1,3) db15(clk, rst_n, mwqg, mwqg_db);
+debounce #(1,3) db16(clk, rst_n, mwebg, mwebg_db);
+debounce #(1,3) db17(clk, rst_n, mwfbg, mwfbg_db);
+debounce #(1,3) db18(clk, rst_n, mwbbeg, mwbbeg_db);
+debounce #(1,3) db19(clk, rst_n, mwzg, mwzg_db);
+debounce #(1,3) db20(clk, rst_n, mwbg, mwbg_db);
+debounce #(1,3) db21(clk, rst_n, mwsg, mwsg_db);
+debounce #(1,3) db22(clk, rst_n, mwg, mwg_db);
+debounce #(1,3) db23(clk, rst_n, mwyg, mwyg_db);
+debounce #(1,3) db24(clk, rst_n, mrulog, mrulog_db);
+debounce #(1,3) db25(clk, rst_n, mrgg, mrgg_db);
+debounce #(1,3) db26(clk, rst_n, mrch, mrch_db);
+debounce #(1,3) db27(clk, rst_n, mwch, mwch_db);
+debounce #(1,3) db28(clk, rst_n, mnisq, mnisq_db);
+debounce #(1,3) db29(clk, rst_n, msp, msp_db);
+debounce #(1,3) db30(clk, rst_n, mgp_n, mgp_n_db);
+debounce #(1,3) db31(clk, rst_n, mreqin, mreqin_db);
+debounce #(1,3) db32(clk, rst_n, mtcsa_n, mtcsa_n_db);
 
 od_buf #(1)  od1(mnhsbf_pp, mnhsbf);
 od_buf #(16) od2(mdt_pp, mdt);

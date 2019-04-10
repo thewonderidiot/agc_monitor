@@ -40,6 +40,7 @@ module agc_monitor(
     input wire [3:1] mst,
     input wire [2:1] mbr,
 
+    input wire mrsc,
     input wire mwag,
     input wire mwlg,
     input wire mwqg,
@@ -134,6 +135,7 @@ wire msqext_db;
 wire [15:10] msq_db;
 wire [3:1] mst_db;
 wire [2:1] mbr_db;
+wire mrsc_db;
 wire mwag_db;
 wire mwlg_db;
 wire mwqg_db;
@@ -189,6 +191,7 @@ io_circuits io(
     .msq(msq),
     .mst(mst),
     .mbr(mbr),
+    .mrsc(mrsc),
     .mwag(mwag),
     .mwlg(mwlg),
     .mwqg(mwqg),
@@ -222,6 +225,7 @@ io_circuits io(
     .msq_db(msq_db),
     .mst_db(mst_db),
     .mbr_db(mbr_db),
+    .mrsc_db(mrsc_db),
     .mwag_db(mwag_db),
     .mwlg_db(mwlg_db),
     .mwqg_db(mwqg_db),
@@ -322,6 +326,7 @@ monitor mon(
     .mst(mst_db),
     .mbr(mbr_db),
 
+    .mrsc(mrsc_db),
     .mwag(mwag_db),
     .mwlg(mwlg_db),
     .mwqg(mwqg_db),

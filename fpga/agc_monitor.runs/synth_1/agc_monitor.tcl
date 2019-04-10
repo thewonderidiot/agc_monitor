@@ -42,6 +42,7 @@ read_verilog -library xil_defaultlib {
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/core_rope_sim.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/debounce.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/edit.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_decoder.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_encoder.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/io_circuits.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor.v

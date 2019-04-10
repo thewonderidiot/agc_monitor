@@ -329,3 +329,6 @@ set_property IOSTANDARD LVCMOS33 [get_ports mpipal_n]
 set_property PACKAGE_PIN V15 [get_ports mpipal_n]
 set_property IOSTANDARD LVCMOS33 [get_ports mwarnf_n]
 set_property PACKAGE_PIN D17 [get_ports mwarnf_n]
+
+set_property IOSTANDARD LVCMOS33 [get_ports mrsc]
+set_property PACKAGE_PIN R19 [get_ports mrsc]
