@@ -1,8 +1,11 @@
+import array
+import os
 from PySide2.QtWidgets import QWidget, QFrame, QHBoxLayout, QGridLayout, \
                               QLabel, QCheckBox, QPushButton, QRadioButton, QFileDialog
 from PySide2.QtGui import QFont
 from PySide2.QtCore import Qt, QTimer
 import usb_msg as um
+import agc
 
 class CoreRopeSim(QFrame):
     def __init__(self, parent, usbif):
@@ -32,7 +35,7 @@ class CoreRopeSim(QFrame):
             sw = self._create_bank_switch('%o' % bank, layout, row, col, 1)
             self._bank_switches.append(sw)
 
-        self._create_bank_switch('44-77', layout, 5, 0, 2)
+        self._aux_switch = self._create_bank_switch('44-77', layout, 5, 0, 2)
 
         label = QLabel('CRS', self)
         font = label.font()
@@ -106,23 +109,51 @@ class CoreRopeSim(QFrame):
         return check
 
     def _load_rope(self):
-        filename = QFileDialog.getOpenFileName(self, 'Load AGC Rope', '', 'AGC ROMs (*.bin)')
+        filename, group = QFileDialog.getOpenFileName(self, 'Load AGC Rope', 'roms', 'AGC ROMs (*.bin)')
+        if group == '':
+            return
+
+        self._load_data = array.array('H')
+        with open(filename, 'rb') as f:
+            self._load_data.fromfile(f, int(os.path.getsize(filename)/2))
+        self._load_data.byteswap()
+
         self._next_bank = 0
         self._load_timer.start(20)
 
     def _load_next_bank(self):
-        bank = self._next_bank
-        while bank < len(self._bank_switches):
-            sw = self._bank_switches[bank]
-            bank += 1
+        while self._next_bank <= 0o100:
+            bank = self._next_bank
+            if bank < 0o44:
+                sw = self._bank_switches[bank]
+            else:
+                sw = self._aux_switch
+
+            self._next_bank += 1
+
             if sw.isChecked():
                 sw.setCheckState(Qt.PartiallyChecked)
                 break
 
-        if bank == 0o44:
-            self._load_timer.stop()
-            for sw in self._bank_switches:
-                sw.setTristate(False)
-                sw.update()
+        if bank == 0o100:
+            self._complete_load()
+            return
 
-        self._next_bank = bank
+        bank_addr = bank * 1024
+        words = self._load_data[bank_addr:bank_addr+1024]
+
+        if len(words) == 0:
+            self._complete_load()
+            return
+
+        for a,w in enumerate(words):
+            d,p = agc.split_word(w)
+            self._usbif.send(um.WriteSimFixed(addr=bank_addr+a, data=d, parity=p))
+
+    def _complete_load(self):
+        self._load_timer.stop()
+        for sw in self._bank_switches:
+            sw.setTristate(False)
+            sw.update()
+        self._aux_switch.setTristate(False)
+        self._aux_switch.update()
