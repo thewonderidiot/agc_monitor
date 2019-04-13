@@ -1,11 +1,10 @@
-import array
-import os
 from PySide2.QtWidgets import QWidget, QFrame, QHBoxLayout, QGridLayout, \
                               QLabel, QCheckBox, QPushButton, QRadioButton, QFileDialog
 from PySide2.QtGui import QFont
-from PySide2.QtCore import Qt, QTimer
+from PySide2.QtCore import Qt
+from memory_load import MemoryLoad
+from memory_dump import MemoryDump
 import usb_msg as um
-import agc
 
 class CoreRopeSim(QFrame):
     def __init__(self, parent, usbif):
@@ -15,10 +14,13 @@ class CoreRopeSim(QFrame):
         self._bank_switches = []
         self._updating_switches = False
 
-        self._load_timer = QTimer(self)
-        self._load_timer.timeout.connect(self._load_next_bank)
-
         self._setup_ui()
+
+        self._rope_loader = MemoryLoad(usbif, um.WriteSimFixed, 0o100, 1024, self._bank_switches, self._aux_switch)
+        self._rope_loader.finished.connect(self._load_complete)
+
+        self._rope_dumper = MemoryDump(usbif, um.ReadFixed, um.Fixed, 0o100, 1024, self._bank_switches, self._aux_switch)
+        self._rope_loader.finished.connect(self._dump_complete)
 
     def _setup_ui(self):
         self.setFrameStyle(QFrame.StyledPanel | QFrame.Raised)
@@ -55,10 +57,9 @@ class CoreRopeSim(QFrame):
         self._crs_sel.setLayoutDirection(Qt.RightToLeft)
         layout.addWidget(self._crs_sel, 5, 7, 2, 3)
         layout.setAlignment(self._crs_sel, Qt.AlignRight)
-        self._crs_sel.setChecked(True)
-        #self._s1.toggled.connect(self._set_stop_conds)
 
         self._agc_sel = QRadioButton('AGC', self)
+        self._agc_sel.setChecked(True)
         layout.addWidget(self._agc_sel, 5, 9, 2, 3)
         layout.setAlignment(self._agc_sel, Qt.AlignCenter)
 
@@ -69,6 +70,7 @@ class CoreRopeSim(QFrame):
         b = self._create_button('LOAD', layout, 5, 11, 3)
         b.pressed.connect(self._load_rope)
         b = self._create_button('DUMP', layout, 5, 13, 2)
+        b.pressed.connect(self._dump_rope)
 
     def _update_crs_bank(self, bank):
         if self._updating_switches:
@@ -138,53 +140,29 @@ class CoreRopeSim(QFrame):
         filename, group = QFileDialog.getOpenFileName(self, 'Load AGC Rope', 'roms', 'AGC ROMs (*.bin)')
         if group == '':
             return
-
-        self._load_data = array.array('H')
-        with open(filename, 'rb') as f:
-            self._load_data.fromfile(f, int(os.path.getsize(filename)/2))
-        self._load_data.byteswap()
-
-        self._next_bank = 0
         self._updating_switches = True
-        self._load_timer.start(20)
+        self._rope_loader.load_memory(filename)
 
-    def _load_next_bank(self):
-        while self._next_bank <= 0o100:
-            bank = self._next_bank
-            if bank < 0o44:
-                sw = self._bank_switches[bank]
-            else:
-                sw = self._aux_switch
+    def _load_complete(self):
+        self._updating_switches = False
 
-            self._next_bank += 1
-
-            if sw.isChecked():
-                sw.setCheckState(Qt.PartiallyChecked)
-                break
-
-        if bank == 0o100:
-            self._complete_load()
-            return
-
-        bank_addr = bank * 1024
-        words = self._load_data[bank_addr:bank_addr+1024]
-
-        if len(words) == 0:
-            self._complete_load()
-            return
-
-        for a,w in enumerate(words):
-            d,p = agc.split_word(w)
-            self._usbif.send(um.WriteSimFixed(addr=bank_addr+a, data=d, parity=p))
-
-    def _complete_load(self):
-        self._load_timer.stop()
-        for sw in self._bank_switches:
-            sw.setTristate(False)
-            sw.update()
-        self._aux_switch.setTristate(False)
-        self._aux_switch.update()
+    def _dump_complete(self):
+        self._update_all_banks()
         self._updating_switches = False
 
     def _dump_rope(self):
-        pass
+        filename, group = QFileDialog.getSaveFileName(self, 'Save AGC Rope', 'roms', 'AGC ROMs (*.bin)')
+        if group == '':
+            return
+
+        self._updating_switches = True
+
+        if self._agc_sel.isChecked():
+            z = [False]*16
+            for m in [um.WriteControlCRSBankEnable0,
+                      um.WriteControlCRSBankEnable1,
+                      um.WriteControlCRSBankEnable2,
+                      um.WriteControlCRSBankEnable3]:
+                self._usbif.send(m(*z))
+
+        self._rope_dumper.dump_memory(filename)

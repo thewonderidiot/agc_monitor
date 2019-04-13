@@ -124,7 +124,10 @@ def format_addr(s, eb, fb, fext):
 
     return addr
 
-def split_word(word):
+def unpack_word(word):
     parity = (word >> 14) & 0x1
     data = ((word & 0x8000) >> 1) | (word & 0x3FFF)
     return data, parity
+
+def pack_word(data, parity):
+    return (parity << 14) | ((data & 0x4000) << 1) | (data & 0x3FFF)

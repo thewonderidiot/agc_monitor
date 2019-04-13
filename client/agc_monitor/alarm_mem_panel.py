@@ -1,6 +1,5 @@
 from PySide2.QtWidgets import QFrame, QVBoxLayout, QWidget
 from PySide2.QtCore import Qt
-from memory_simulation import MemorySimulation
 from core_rope_sim import CoreRopeSim
 from measurements import Measurements
 from alarms import Alarms
@@ -32,6 +31,3 @@ class AlarmMemPanel(QFrame):
         self._core_rope_sim = CoreRopeSim(self, self._usbif)
         layout.addWidget(self._core_rope_sim)
         layout.setAlignment(self._core_rope_sim, Qt.AlignTop)
-
-        #self._mem_sim = MemorySimulation(self, self._usbif)
-        #layout.addWidget(self._mem_sim)
