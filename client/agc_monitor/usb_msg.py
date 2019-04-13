@@ -329,6 +329,14 @@ WriteControlBankS = namedtuple('WriteControlBankS', ['s_only'])
 WriteControlBankS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlAdvanceS = namedtuple('WriteControlAdvanceS', [])
 WriteControlAdvanceS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlCRSBankEnable0 = namedtuple('WriteControlCRSBankEnable0', ['f0', 'f1', 'f2', 'f3', 'f4', 'f5', 'f6', 'f7', 'f10', 'f11', 'f12', 'f13', 'f14', 'f15', 'f16', 'f17'])
+WriteControlCRSBankEnable0.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlCRSBankEnable1 = namedtuple('WriteControlCRSBankEnable1', ['f20', 'f21', 'f22', 'f23', 'f24', 'f25', 'f26', 'f27', 'f30', 'f31', 'f32', 'f33', 'f34', 'f35', 'f36', 'f37'])
+WriteControlCRSBankEnable1.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlCRSBankEnable2 = namedtuple('WriteControlCRSBankEnable2', ['f40', 'f41', 'f42', 'f43', 'f44', 'f45', 'f46', 'f47', 'f50', 'f51', 'f52', 'f53', 'f54', 'f55', 'f56', 'f57'])
+WriteControlCRSBankEnable2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlCRSBankEnable3 = namedtuple('WriteControlCRSBankEnable3', ['f60', 'f61', 'f62', 'f63', 'f64', 'f65', 'f66', 'f67', 'f70', 'f71', 'f72', 'f73', 'f74', 'f75', 'f76', 'f77'])
+WriteControlCRSBankEnable3.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlDoscal = namedtuple('ReadControlDoscal', [])
 ReadControlDoscal.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlDoscal = namedtuple('ControlDoscal', ['doscal'])
@@ -455,6 +463,10 @@ class Control(object):
     LoadReadS1S2 = 0x0017
     BankS = 0x0018
     AdvanceS = 0x0019
+    CRSBankEnable0 = 0x001A
+    CRSBankEnable1 = 0x001B
+    CRSBankEnable2 = 0x001C
+    CRSBankEnable3 = 0x001D
     Doscal = 0x0030
     Dbltst = 0x0031
     NHALGA = 0x0040
@@ -888,6 +900,86 @@ def _pack_WriteControlBankS(msg):
 def _pack_WriteControlAdvanceS(msg):
     data = 0x0000
     return _pack_write_msg(AddressGroup.Control, Control.AdvanceS, data)
+
+def _pack_WriteControlCRSBankEnable0(msg):
+    data = 0x0000
+    data |= (msg.f0 & 0x0001) << 0
+    data |= (msg.f1 & 0x0001) << 1
+    data |= (msg.f2 & 0x0001) << 2
+    data |= (msg.f3 & 0x0001) << 3
+    data |= (msg.f4 & 0x0001) << 4
+    data |= (msg.f5 & 0x0001) << 5
+    data |= (msg.f6 & 0x0001) << 6
+    data |= (msg.f7 & 0x0001) << 7
+    data |= (msg.f10 & 0x0001) << 8
+    data |= (msg.f11 & 0x0001) << 9
+    data |= (msg.f12 & 0x0001) << 10
+    data |= (msg.f13 & 0x0001) << 11
+    data |= (msg.f14 & 0x0001) << 12
+    data |= (msg.f15 & 0x0001) << 13
+    data |= (msg.f16 & 0x0001) << 14
+    data |= (msg.f17 & 0x0001) << 15
+    return _pack_write_msg(AddressGroup.Control, Control.CRSBankEnable0, data)
+
+def _pack_WriteControlCRSBankEnable1(msg):
+    data = 0x0000
+    data |= (msg.f20 & 0x0001) << 0
+    data |= (msg.f21 & 0x0001) << 1
+    data |= (msg.f22 & 0x0001) << 2
+    data |= (msg.f23 & 0x0001) << 3
+    data |= (msg.f24 & 0x0001) << 4
+    data |= (msg.f25 & 0x0001) << 5
+    data |= (msg.f26 & 0x0001) << 6
+    data |= (msg.f27 & 0x0001) << 7
+    data |= (msg.f30 & 0x0001) << 8
+    data |= (msg.f31 & 0x0001) << 9
+    data |= (msg.f32 & 0x0001) << 10
+    data |= (msg.f33 & 0x0001) << 11
+    data |= (msg.f34 & 0x0001) << 12
+    data |= (msg.f35 & 0x0001) << 13
+    data |= (msg.f36 & 0x0001) << 14
+    data |= (msg.f37 & 0x0001) << 15
+    return _pack_write_msg(AddressGroup.Control, Control.CRSBankEnable1, data)
+
+def _pack_WriteControlCRSBankEnable2(msg):
+    data = 0x0000
+    data |= (msg.f40 & 0x0001) << 0
+    data |= (msg.f41 & 0x0001) << 1
+    data |= (msg.f42 & 0x0001) << 2
+    data |= (msg.f43 & 0x0001) << 3
+    data |= (msg.f44 & 0x0001) << 4
+    data |= (msg.f45 & 0x0001) << 5
+    data |= (msg.f46 & 0x0001) << 6
+    data |= (msg.f47 & 0x0001) << 7
+    data |= (msg.f50 & 0x0001) << 8
+    data |= (msg.f51 & 0x0001) << 9
+    data |= (msg.f52 & 0x0001) << 10
+    data |= (msg.f53 & 0x0001) << 11
+    data |= (msg.f54 & 0x0001) << 12
+    data |= (msg.f55 & 0x0001) << 13
+    data |= (msg.f56 & 0x0001) << 14
+    data |= (msg.f57 & 0x0001) << 15
+    return _pack_write_msg(AddressGroup.Control, Control.CRSBankEnable2, data)
+
+def _pack_WriteControlCRSBankEnable3(msg):
+    data = 0x0000
+    data |= (msg.f60 & 0x0001) << 0
+    data |= (msg.f61 & 0x0001) << 1
+    data |= (msg.f62 & 0x0001) << 2
+    data |= (msg.f63 & 0x0001) << 3
+    data |= (msg.f64 & 0x0001) << 4
+    data |= (msg.f65 & 0x0001) << 5
+    data |= (msg.f66 & 0x0001) << 6
+    data |= (msg.f67 & 0x0001) << 7
+    data |= (msg.f70 & 0x0001) << 8
+    data |= (msg.f71 & 0x0001) << 9
+    data |= (msg.f72 & 0x0001) << 10
+    data |= (msg.f73 & 0x0001) << 11
+    data |= (msg.f74 & 0x0001) << 12
+    data |= (msg.f75 & 0x0001) << 13
+    data |= (msg.f76 & 0x0001) << 14
+    data |= (msg.f77 & 0x0001) << 15
+    return _pack_write_msg(AddressGroup.Control, Control.CRSBankEnable3, data)
 
 def _pack_ReadControlDoscal(msg):
     return _pack_read_msg(AddressGroup.Control, Control.Doscal)

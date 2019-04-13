@@ -33,6 +33,7 @@ class CoreRopeSim(QFrame):
             col = bank % 18
             row = int(bank / 18) * 2
             sw = self._create_bank_switch('%o' % bank, layout, row, col, 1)
+            sw.stateChanged.connect(lambda state,bank=bank: self._update_crs_bank(bank))
             self._bank_switches.append(sw)
 
         self._aux_switch = self._create_bank_switch('44-77', layout, 5, 0, 2)
@@ -69,11 +70,36 @@ class CoreRopeSim(QFrame):
         b.pressed.connect(self._load_rope)
         b = self._create_button('DUMP', layout, 5, 13, 2)
 
+    def _update_crs_bank(self, bank):
+        if self._updating_switches:
+            return
+        
+        group = int(bank / 16)
+        first_bank = group * 16
+
+        enables = [False] * 16
+        for i in range(16):
+            bank = first_bank + i
+            if bank < 0o44:
+                sw = self._bank_switches[bank]
+            else:
+                sw = self._aux_switch
+
+            enables[i] = sw.isChecked()
+
+        write_crs_enables = getattr(um, 'WriteControlCRSBankEnable%u' % group)
+        self._usbif.send(write_crs_enables(*enables))
+
+    def _update_all_banks(self):
+        for bank in [0, 0o20, 0o40, 0o60]:
+            self._update_crs_bank(bank)
+
     def _set_all(self, state):
         self._updating_switches = True
         for sw in self._bank_switches:
             sw.setChecked(state)
         self._updating_switches = False
+        self._update_all_banks()
 
     def _create_button(self, name, layout, row, col, width):
         label = QLabel(name, self)
@@ -119,6 +145,7 @@ class CoreRopeSim(QFrame):
         self._load_data.byteswap()
 
         self._next_bank = 0
+        self._updating_switches = True
         self._load_timer.start(20)
 
     def _load_next_bank(self):
@@ -157,3 +184,7 @@ class CoreRopeSim(QFrame):
             sw.update()
         self._aux_switch.setTristate(False)
         self._aux_switch.update()
+        self._updating_switches = False
+
+    def _dump_rope(self):
+        pass

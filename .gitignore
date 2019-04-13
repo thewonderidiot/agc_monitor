@@ -94,6 +94,7 @@
 !*.qrc
 !*.png
 !*.cfg
+!**/roms/*.bin
 
 #########
 #KiCAD-files

@@ -619,6 +619,290 @@
             "fields": []
         },
         {
+            "addr": 26,
+            "name": "CRSBankEnable0",
+            "type": "w",
+            "fields": [
+                {
+                    "name": "f0",
+                    "width": 1
+                },
+                {
+                    "name": "f1",
+                    "width": 1
+                },
+                {
+                    "name": "f2",
+                    "width": 1
+                },
+                {
+                    "name": "f3",
+                    "width": 1
+                },
+                {
+                    "name": "f4",
+                    "width": 1
+                },
+                {
+                    "name": "f5",
+                    "width": 1
+                },
+                {
+                    "name": "f6",
+                    "width": 1
+                },
+                {
+                    "name": "f7",
+                    "width": 1
+                },
+                {
+                    "name": "f10",
+                    "width": 1
+                },
+                {
+                    "name": "f11",
+                    "width": 1
+                },
+                {
+                    "name": "f12",
+                    "width": 1
+                },
+                {
+                    "name": "f13",
+                    "width": 1
+                },
+                {
+                    "name": "f14",
+                    "width": 1
+                },
+                {
+                    "name": "f15",
+                    "width": 1
+                },
+                {
+                    "name": "f16",
+                    "width": 1
+                },
+                {
+                    "name": "f17",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 27,
+            "name": "CRSBankEnable1",
+            "type": "w",
+            "fields": [
+                {
+                    "name": "f20",
+                    "width": 1
+                },
+                {
+                    "name": "f21",
+                    "width": 1
+                },
+                {
+                    "name": "f22",
+                    "width": 1
+                },
+                {
+                    "name": "f23",
+                    "width": 1
+                },
+                {
+                    "name": "f24",
+                    "width": 1
+                },
+                {
+                    "name": "f25",
+                    "width": 1
+                },
+                {
+                    "name": "f26",
+                    "width": 1
+                },
+                {
+                    "name": "f27",
+                    "width": 1
+                },
+                {
+                    "name": "f30",
+                    "width": 1
+                },
+                {
+                    "name": "f31",
+                    "width": 1
+                },
+                {
+                    "name": "f32",
+                    "width": 1
+                },
+                {
+                    "name": "f33",
+                    "width": 1
+                },
+                {
+                    "name": "f34",
+                    "width": 1
+                },
+                {
+                    "name": "f35",
+                    "width": 1
+                },
+                {
+                    "name": "f36",
+                    "width": 1
+                },
+                {
+                    "name": "f37",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 28,
+            "name": "CRSBankEnable2",
+            "type": "w",
+            "fields": [
+                {
+                    "name": "f40",
+                    "width": 1
+                },
+                {
+                    "name": "f41",
+                    "width": 1
+                },
+                {
+                    "name": "f42",
+                    "width": 1
+                },
+                {
+                    "name": "f43",
+                    "width": 1
+                },
+                {
+                    "name": "f44",
+                    "width": 1
+                },
+                {
+                    "name": "f45",
+                    "width": 1
+                },
+                {
+                    "name": "f46",
+                    "width": 1
+                },
+                {
+                    "name": "f47",
+                    "width": 1
+                },
+                {
+                    "name": "f50",
+                    "width": 1
+                },
+                {
+                    "name": "f51",
+                    "width": 1
+                },
+                {
+                    "name": "f52",
+                    "width": 1
+                },
+                {
+                    "name": "f53",
+                    "width": 1
+                },
+                {
+                    "name": "f54",
+                    "width": 1
+                },
+                {
+                    "name": "f55",
+                    "width": 1
+                },
+                {
+                    "name": "f56",
+                    "width": 1
+                },
+                {
+                    "name": "f57",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 29,
+            "name": "CRSBankEnable3",
+            "type": "w",
+            "fields": [
+                {
+                    "name": "f60",
+                    "width": 1
+                },
+                {
+                    "name": "f61",
+                    "width": 1
+                },
+                {
+                    "name": "f62",
+                    "width": 1
+                },
+                {
+                    "name": "f63",
+                    "width": 1
+                },
+                {
+                    "name": "f64",
+                    "width": 1
+                },
+                {
+                    "name": "f65",
+                    "width": 1
+                },
+                {
+                    "name": "f66",
+                    "width": 1
+                },
+                {
+                    "name": "f67",
+                    "width": 1
+                },
+                {
+                    "name": "f70",
+                    "width": 1
+                },
+                {
+                    "name": "f71",
+                    "width": 1
+                },
+                {
+                    "name": "f72",
+                    "width": 1
+                },
+                {
+                    "name": "f73",
+                    "width": 1
+                },
+                {
+                    "name": "f74",
+                    "width": 1
+                },
+                {
+                    "name": "f75",
+                    "width": 1
+                },
+                {
+                    "name": "f76",
+                    "width": 1
+                },
+                {
+                    "name": "f77",
+                    "width": 1
+                }
+            ]
+        },
+        {
             "addr": 48,
             "name": "Doscal",
             "type": "rw",

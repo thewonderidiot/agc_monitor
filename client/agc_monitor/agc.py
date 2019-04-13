@@ -123,3 +123,8 @@ def format_addr(s, eb, fb, fext):
         addr = '%04o' % s
 
     return addr
+
+def split_word(word):
+    parity = (word >> 14) & 0x1
+    data = ((word & 0x8000) >> 1) | (word & 0x3FFF)
+    return data, parity

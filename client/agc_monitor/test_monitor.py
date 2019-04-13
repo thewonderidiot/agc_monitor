@@ -48,20 +48,37 @@ with Device('MON001') as dev:
 
     #     break
 
-    dev.write('\xC0\x20\x00\x64\xC0')
-    res = ''
-    while not res:
-        res = dev.read(64)
-    data, rem = unslip_from(res)
-    msg = struct.unpack('>BHH', data)
-    #temp = (msg[2] >> 4)*503.975/4096 - 273.15
-    v = (msg[2] >> 4) / 4096
-    #r = 1173.0
-    #t = r*(3.296/v - 1)
-    r1 = 4700
-    r2 = 1200
-    x = v*(r1+r2)/r2
-    print('%03x -> %f -> %f' % (msg[2]>>4, v, x))
+    # for i in range(0o2000):
+    #     msg = slip(b'\x91' + struct.pack('>H', i) + struct.pack('>H', i))
+    #     dev.write(msg)
+
+    with open('dump.bin', 'wb') as f:
+        for i in range(0o44*1024):
+            msg = slip(b'\x11' + struct.pack('>H', i))
+            dev.write(msg)
+            res = ''
+            while not res:
+                res = dev.read(64)
+            data, rem = unslip_from(res)
+            msg = struct.unpack('>BHH', data)
+            d = (msg[2] & 0x8000) | ((msg[2] & 0x1) << 14) | ((msg[2] & 0x7FFE) >> 1)
+            f.write(struct.pack('>H', d))
+
+
+    # dev.write('\xC0\x20\x00\x64\xC0')
+    # res = ''
+    # while not res:
+    #     res = dev.read(64)
+    # data, rem = unslip_from(res)
+    # msg = struct.unpack('>BHH', data)
+    # #temp = (msg[2] >> 4)*503.975/4096 - 273.15
+    # v = (msg[2] >> 4) / 4096
+    # #r = 1173.0
+    # #t = r*(3.296/v - 1)
+    # r1 = 4700
+    # r2 = 1200
+    # x = v*(r1+r2)/r2
+    # print('%03x -> %f -> %f' % (msg[2]>>4, v, x))
 
         # time.sleep(0.1)
 
