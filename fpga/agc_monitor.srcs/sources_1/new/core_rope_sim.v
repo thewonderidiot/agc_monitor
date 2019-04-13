@@ -62,8 +62,8 @@ wire wagc;
 assign wagc = mnhsbf & mrsc & mwg;
 
 reg [16:1] mon_word;
-assign mdt = wagc ? {mon_word[16], mon_word[16], mon_word[14:1]} : 16'b0;
-assign monpar = wagc ? mon_word[15] : 1'b0;
+assign mdt = wagc ? {mon_word[16], mon_word[16:2]} : 16'b0;
+assign monpar = wagc ? mon_word[1] : 1'b0;
 
 wire [5:0] bank;
 assign bank = faddr[16:11];
