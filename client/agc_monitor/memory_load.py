@@ -43,7 +43,7 @@ class MemoryLoad(QObject):
                 sw.setCheckState(Qt.PartiallyChecked)
                 break
 
-        if bank == self._num_banks:
+        if self._next_bank == self._num_banks:
             self._complete_load()
             return
 

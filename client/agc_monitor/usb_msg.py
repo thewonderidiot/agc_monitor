@@ -337,6 +337,8 @@ WriteControlCRSBankEnable2 = namedtuple('WriteControlCRSBankEnable2', ['f40', 'f
 WriteControlCRSBankEnable2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlCRSBankEnable3 = namedtuple('WriteControlCRSBankEnable3', ['f60', 'f61', 'f62', 'f63', 'f64', 'f65', 'f66', 'f67', 'f70', 'f71', 'f72', 'f73', 'f74', 'f75', 'f76', 'f77'])
 WriteControlCRSBankEnable3.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlEMSBankEnable = namedtuple('WriteControlEMSBankEnable', ['e0', 'e1', 'e2', 'e3', 'e4', 'e5', 'e6', 'e7'])
+WriteControlEMSBankEnable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlDoscal = namedtuple('ReadControlDoscal', [])
 ReadControlDoscal.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ControlDoscal = namedtuple('ControlDoscal', ['doscal'])
@@ -467,6 +469,7 @@ class Control(object):
     CRSBankEnable1 = 0x001B
     CRSBankEnable2 = 0x001C
     CRSBankEnable3 = 0x001D
+    EMSBankEnable = 0x001E
     Doscal = 0x0030
     Dbltst = 0x0031
     NHALGA = 0x0040
@@ -980,6 +983,18 @@ def _pack_WriteControlCRSBankEnable3(msg):
     data |= (msg.f76 & 0x0001) << 14
     data |= (msg.f77 & 0x0001) << 15
     return _pack_write_msg(AddressGroup.Control, Control.CRSBankEnable3, data)
+
+def _pack_WriteControlEMSBankEnable(msg):
+    data = 0x0000
+    data |= (msg.e0 & 0x0001) << 0
+    data |= (msg.e1 & 0x0001) << 1
+    data |= (msg.e2 & 0x0001) << 2
+    data |= (msg.e3 & 0x0001) << 3
+    data |= (msg.e4 & 0x0001) << 4
+    data |= (msg.e5 & 0x0001) << 5
+    data |= (msg.e6 & 0x0001) << 6
+    data |= (msg.e7 & 0x0001) << 7
+    return _pack_write_msg(AddressGroup.Control, Control.EMSBankEnable, data)
 
 def _pack_ReadControlDoscal(msg):
     return _pack_read_msg(AddressGroup.Control, Control.Doscal)

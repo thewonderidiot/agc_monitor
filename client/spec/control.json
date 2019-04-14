@@ -903,6 +903,45 @@
             ]
         },
         {
+            "addr": 30,
+            "name": "EMSBankEnable",
+            "type": "w",
+            "fields": [
+                {
+                    "name": "e0",
+                    "width": 1
+                },
+                {
+                    "name": "e1",
+                    "width": 1
+                },
+                {
+                    "name": "e2",
+                    "width": 1
+                },
+                {
+                    "name": "e3",
+                    "width": 1
+                },
+                {
+                    "name": "e4",
+                    "width": 1
+                },
+                {
+                    "name": "e5",
+                    "width": 1
+                },
+                {
+                    "name": "e6",
+                    "width": 1
+                },
+                {
+                    "name": "e7",
+                    "width": 1
+                }
+            ]
+        },
+        {
             "addr": 48,
             "name": "Doscal",
             "type": "rw",

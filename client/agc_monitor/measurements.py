@@ -94,7 +94,7 @@ class Measurements(QFrame):
         font.setBold(True)
         label.setFont(font)
         label.setAlignment(Qt.AlignCenter)
-        layout.addWidget(label, 4, 2, 1, 2, Qt.AlignCenter)
+        layout.addWidget(label, 4, 2, 1, 2, Qt.AlignRight)
     
     def _create_header(self, name, layout, col):
         label = QLabel(name, self)
