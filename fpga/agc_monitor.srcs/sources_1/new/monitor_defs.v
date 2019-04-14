@@ -133,6 +133,7 @@
 `define ADC_CHAN_VAUX14 5'h1E
 `define ADC_CHAN_VAUX15 5'h1F
 
+`define ERASABLE_BASE_ADDR 12'o0010
 `define FIXED_BASE_ADDR 16'o2000
 
 `define EB 12'o0003
@@ -141,4 +142,13 @@
 
 `define TCF_KEYRUPT1 16'o14024
 `define RESUME 16'o150017
-`define RXOR 6'o06
+
+`define SQ_RXOR 6'o06
+`define SQ_DV 5'o4
+`define SQ_IO 3'o0
+`define IO_RUPT 3'o7
+
+`define CYR  12'o0020
+`define SR   12'o0021
+`define CYL  12'o0022
+`define EDOP 12'o0023

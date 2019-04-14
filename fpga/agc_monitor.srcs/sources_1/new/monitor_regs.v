@@ -65,6 +65,7 @@ module monitor_regs(
     output wire [12:1] s,
     output wire [11:9] eb,
     output wire [15:11] fb,
+    output wire [16:1] g,
 
     output wire [16:1] w,
     output reg [1:0] wp,
@@ -200,7 +201,6 @@ edit editing(
     .mwl_edited(mwl_edited)
 );
 
-wire [16:1] g;
 register2 reg_g(
     .clk(clk),
     .rst_n(rst_n),

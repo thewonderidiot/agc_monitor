@@ -73,6 +73,7 @@ module monitor(
     input wire mwarnf_n,
 
     output wire mnhsbf,
+    output wire mamu,
     output wire [16:1] mdt,
     output wire monpar,
 
@@ -164,9 +165,13 @@ wire crs_read_en;
 wire crs_write_en;
 wire [15:0] crs_data;
 
+wire ems_read_en;
+wire ems_write_en;
+wire [15:0] ems_data;
+
 // Resulting data from the active read command
 wire [15:0] read_data;
-assign read_data = ctrl_data | status_data | mon_reg_data | mon_chan_data | agc_fixed_data | crs_data | mon_dsky_data;
+assign read_data = ctrl_data | status_data | mon_reg_data | mon_chan_data | agc_fixed_data | crs_data | ems_data | mon_dsky_data;
 
 // Command controller 
 cmd_controller cmd_ctrl(
@@ -191,6 +196,8 @@ cmd_controller cmd_ctrl(
     .agc_fixed_read_done(agc_fixed_read_done),
     .crs_read_en(crs_read_en),
     .crs_write_en(crs_write_en),
+    .ems_read_en(ems_read_en),
+    .ems_write_en(ems_write_en),
     .mon_dsky_read_en(mon_dsky_read_en),
     .mon_dsky_write_en(mon_dsky_write_en)
 );
@@ -386,6 +393,7 @@ clear_timer ctmr(
 wire [15:10] sq;
 wire [16:1] l;
 wire [16:1] q;
+wire [16:1] g;
 wire inhibit_ws;
 wire rbbk;
 monitor_regs mon_regs(
@@ -448,6 +456,7 @@ monitor_regs mon_regs(
     .s(s),
     .eb(eb),
     .fb(fb),
+    .g(g),
 
     .w(w),
     .wp(wp),
@@ -646,6 +655,36 @@ core_rope_sim crs(
 );
 
 /*******************************************************************************.
+* Erasable Memory Simulation                                                    *
+'*******************************************************************************/
+wire [16:1] mdt_ems;
+
+erasable_mem_sim ems(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .read_en(ems_read_en),
+    .write_en(ems_write_en),
+    .addr(cmd_addr),
+    .data_in(cmd_data),
+    .data_out(ems_data),
+
+    .mt(mt),
+    .msqext(msqext),
+    .msq(msq),
+    .mst(mst),
+    .eb(eb),
+    .s(s),
+    .g(g),
+    .mgp_n(mgp_n),
+    .mrsc(mrsc),
+    .mrgg(mrgg),
+    .mwg(mwg),
+    .mamu(mamu),
+    .mdt(mdt_ems)
+);
+
+/*******************************************************************************.
 * DSKY                                                                          *
 '*******************************************************************************/
 wire [16:1] mdt_dsky;
@@ -684,7 +723,7 @@ monitor_dsky mon_dsky(
 );
 
 assign mnhsbf = mnhsbf_crs | mnhsbf_dsky;
-assign mdt = mdt_chan77 | mdt_periph | mdt_crs | mdt_dsky;
+assign mdt = mdt_chan77 | mdt_periph | mdt_crs | mdt_ems | mdt_dsky;
 assign monpar = monpar_crs | monpar_dsky;
 
 endmodule

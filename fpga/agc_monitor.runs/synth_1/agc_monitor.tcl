@@ -42,6 +42,8 @@ read_verilog -library xil_defaultlib {
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/core_rope_sim.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/debounce.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/edit.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/erasable_addr_decoder.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/erasable_mem_sim.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_decoder.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_encoder.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/io_circuits.v
@@ -58,6 +60,7 @@ read_verilog -library xil_defaultlib {
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/restart_monitor.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/start_stop.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/status_regs.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/unedit.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_monitor.v
 }
@@ -85,6 +88,9 @@ set_property used_in_implementation false [get_files -all /home/mike/agc_monitor
 
 read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/rope_sim_mem/rope_sim_mem.xci
 set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/rope_sim_mem/rope_sim_mem_ooc.xdc]
+
+read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/erasable_sim_mem/erasable_sim_mem.xci
+set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/erasable_sim_mem/erasable_sim_mem_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the

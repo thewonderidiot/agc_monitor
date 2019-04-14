@@ -73,6 +73,7 @@ module agc_monitor(
     input wire mwarnf_n,
 
     output wire mnhsbf,
+    output wire mamu,
     output wire [16:1] mdt,
     output wire monpar,
 
@@ -159,6 +160,7 @@ wire mtcsa_n_db;
 
 // Push-pull output wires
 wire mnhsbf_pp;
+wire mamu_pp;
 wire [16:1] mdt_pp;
 wire monpar_pp;
 wire mstrt_pp;
@@ -249,6 +251,7 @@ io_circuits io(
 
     // Raw outputs
     .mnhsbf(mnhsbf),
+    .mamu(mamu),
     .mdt(mdt),
     .monpar(monpar),
     .mstrt(mstrt),
@@ -267,6 +270,7 @@ io_circuits io(
 
     // OD outputs
     .mnhsbf_pp(mnhsbf_pp),
+    .mamu_pp(mamu_pp),
     .mdt_pp(mdt_pp),
     .monpar_pp(monpar_pp),
     .mstrt_pp(mstrt_pp),
@@ -359,6 +363,7 @@ monitor mon(
     .mwarnf_n(mwarnf_n),
 
     .mnhsbf(mnhsbf_pp),
+    .mamu(mamu_pp),
     .mdt(mdt_pp),
     .monpar(monpar_pp),
 

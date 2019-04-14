@@ -74,6 +74,7 @@ module io_circuits(
 
     // Open-drain outputs
     input wire mnhsbf_pp,
+    input wire mamu_pp,
     input wire [16:1] mdt_pp,
     input wire monpar_pp,
     input wire mstrt_pp,
@@ -91,6 +92,7 @@ module io_circuits(
     input wire monwbk_pp,
 
     output wire mnhsbf,
+    output wire mamu,
     output wire [16:1] mdt,
     output wire monpar,
     output wire mstrt,
@@ -142,21 +144,22 @@ debounce #(1,3) db31(clk, rst_n, mreqin, mreqin_db);
 debounce #(1,3) db32(clk, rst_n, mtcsa_n, mtcsa_n_db);
 
 od_buf #(1)  od1(mnhsbf_pp, mnhsbf);
-od_buf #(16) od2(mdt_pp, mdt);
-od_buf #(1)  od3(monpar_pp, monpar);
-od_buf #(1)  od4(mstrt_pp, mstrt);
-od_buf #(1)  od5(mstp_pp, mstp);
-od_buf #(1)  od6(mnhrpt_pp, mnhrpt);
-od_buf #(1)  od7(mnhnc_pp, mnhnc);
-od_buf #(1)  od8(nhalga_pp, nhalga);
-od_buf #(1)  od9(doscal_pp, doscal);
-od_buf #(1) od10(dbltst_pp, dbltst);
-od_buf #(1) od11(mread_pp, mread);
-od_buf #(1) od12(mload_pp, mload);
-od_buf #(1) od13(mrdch_pp, mrdch);
-od_buf #(1) od14(mldch_pp, mldch);
-od_buf #(1) od15(mtcsai_pp, mtcsai);
-od_buf #(1) od16(monwbk_pp, monwbk);
+od_buf #(1)  od2(mamu_pp, mamu);
+od_buf #(16) od3(mdt_pp, mdt);
+od_buf #(1)  od4(monpar_pp, monpar);
+od_buf #(1)  od5(mstrt_pp, mstrt);
+od_buf #(1)  od6(mstp_pp, mstp);
+od_buf #(1)  od7(mnhrpt_pp, mnhrpt);
+od_buf #(1)  od8(mnhnc_pp, mnhnc);
+od_buf #(1)  od9(nhalga_pp, nhalga);
+od_buf #(1) od10(doscal_pp, doscal);
+od_buf #(1) od11(dbltst_pp, dbltst);
+od_buf #(1) od12(mread_pp, mread);
+od_buf #(1) od13(mload_pp, mload);
+od_buf #(1) od14(mrdch_pp, mrdch);
+od_buf #(1) od15(mldch_pp, mldch);
+od_buf #(1) od16(mtcsai_pp, mtcsai);
+od_buf #(1) od17(monwbk_pp, monwbk);
 
 endmodule
 `default_nettype wire

@@ -1,10 +1,7 @@
 `timescale 1ns / 1ps
 `default_nettype none
 
-`define CYR  12'o0020
-`define SR   12'o0021
-`define CYL  12'o0022
-`define EDOP 12'o0023
+`include "monitor_defs.v"
 
 module edit(
     input wire clk,
