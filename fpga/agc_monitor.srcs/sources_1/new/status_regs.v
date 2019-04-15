@@ -38,7 +38,11 @@ module status_regs(
     input wire mwarnf_n,
 
     input wire mnhsbf,
-    input wire mamu
+    input wire mamu,
+    input wire mload,
+    input wire mldch,
+    input wire mread,
+    input wire mrdch
 );
 
 wire [4:0] adc_channel;
@@ -191,7 +195,7 @@ always @(posedge clk or negedge rst_n) begin
         read_done <= 1'b1;
         case (addr)
         `STATUS_REG_ALARMS:     read_data <= {4'b0, alarms};
-        `STATUS_REG_SIMULATION: read_data <= {14'b0, mamu, mnhsbf};
+        `STATUS_REG_SIMULATION: read_data <= {10'b0, mrdch, mread, mldch, mload, mamu, mnhsbf};
         `STATUS_REG_MON_TEMP:   read_data <= adc_temp;
         `STATUS_REG_MON_VCCINT: read_data <= adc_vccint;
         `STATUS_REG_MON_VCCAUX: read_data <= adc_vccaux;

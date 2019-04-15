@@ -28,6 +28,7 @@ class InstructionRegister(QWidget):
 
         usbif.poll(um.ReadMonRegI())
         usbif.poll(um.ReadMonRegStatus())
+        usbif.poll(um.ReadStatusPeripheral())
 
         usbif.listen(self)
 
@@ -38,6 +39,11 @@ class InstructionRegister(QWidget):
             self._status_inds['iip'].set_on(msg.iip)
             self._status_inds['inhl'].set_on(msg.inhl)
             self._status_inds['inkl'].set_on(msg.inkl)
+        elif isinstance(msg, um.StatusPeripheral):
+            self._status_inds['ld'].set_on(msg.ld)
+            self._status_inds['chld'].set_on(msg.chld)
+            self._status_inds['rd'].set_on(msg.rd)
+            self._status_inds['chrd'].set_on(msg.chrd)
 
     def set_i_values(self, br, st, sqext, sq):
         self._set_reg_value(self._br_inds, self._br_value, br)

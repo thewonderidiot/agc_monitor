@@ -356,7 +356,11 @@ status_regs stat_regs(
     .mwarnf_n(mwarnf_n),
 
     .mnhsbf(mnhsbf),
-    .mamu(mamu)
+    .mamu(mamu),
+    .mload(mload),
+    .mldch(mldch),
+    .mread(mread),
+    .mrdch(mrdch)
 );
 
 /*******************************************************************************.

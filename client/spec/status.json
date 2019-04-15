@@ -59,7 +59,7 @@
         },
         {
             "addr": 1,
-            "name": "Simulation",
+            "name": "Peripheral",
             "type": "r",
             "fields": [
                 {
@@ -68,6 +68,22 @@
                 },
                 {
                     "name": "ems_cycle",
+                    "width": 1
+                },
+                {
+                    "name": "ld",
+                    "width": 1
+                },
+                {
+                    "name": "chld",
+                    "width": 1
+                },
+                {
+                    "name": "rd",
+                    "width": 1
+                },
+                {
+                    "name": "chrd",
                     "width": 1
                 }
             ]
