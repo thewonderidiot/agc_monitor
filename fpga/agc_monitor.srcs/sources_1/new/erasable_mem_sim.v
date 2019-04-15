@@ -13,6 +13,8 @@ module erasable_mem_sim(
     input wire [15:0] data_in,
     output wire [15:0] data_out,
 
+    input wire [7:0] bank_en,
+
     input wire [12:1] mt,
     input wire msqext,
     input wire [15:10] msq,
@@ -36,6 +38,8 @@ reg [1:0] state;
 assign mamu = (state != IDLE);
 
 wire [11:1] eaddr;
+wire [2:0] bank;
+assign bank = eaddr[11:9];
 erasable_addr_decoder(
     .eb(eb),
     .s(s),
@@ -110,7 +114,7 @@ always @(posedge clk or negedge rst_n) begin
     end else begin
         case (state)
         IDLE: begin
-            if (mt[2] && (~dv13764) && (~io_inst) && (s >= `ERASABLE_BASE_ADDR) && (s < `FIXED_BASE_ADDR)) begin
+            if (bank_en[bank] && mt[2] && (~dv13764) && (~io_inst) && (s >= `ERASABLE_BASE_ADDR) && (s < `FIXED_BASE_ADDR)) begin
                 writeback_eaddr <= eaddr;
                 read_word <= agc_data_out;
                 state <= ACTIVE;

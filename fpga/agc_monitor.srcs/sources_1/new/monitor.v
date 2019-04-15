@@ -244,6 +244,7 @@ wire [16:1] ctrl_periph_data;
 wire periph_complete;
 
 wire [63:0] crs_bank_en;
+wire [7:0] ems_bank_en;
 
 control_regs ctrl_regs(
     .clk(clk),
@@ -302,7 +303,8 @@ control_regs ctrl_regs(
     .periph_data(ctrl_periph_data),
     .periph_complete(periph_complete),
 
-    .crs_bank_en(crs_bank_en)
+    .crs_bank_en(crs_bank_en),
+    .ems_bank_en(ems_bank_en)
 );
 
 /*******************************************************************************.
@@ -668,6 +670,8 @@ erasable_mem_sim ems(
     .addr(cmd_addr),
     .data_in(cmd_data),
     .data_out(ems_data),
+
+    .bank_en(ems_bank_en),
 
     .mt(mt),
     .msqext(msqext),
