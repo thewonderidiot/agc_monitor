@@ -96,6 +96,9 @@ module agc_monitor(
     output wire monwbk,
     input wire mreqin,
     input wire mtcsa_n,
+
+    output wire [6:1] leds,
+    output wire [6:1] dbg,
     
     // Zynq PS I/O
     inout wire [14:0] DDR_addr,
@@ -288,6 +291,9 @@ io_circuits io(
     .monwbk_pp(monwbk_pp)
 );
 
+wire [6:1] leds_n;
+assign leds = ~leds_n;
+
 /*******************************************************************************.
 * Monitor                                                                       *
 '*******************************************************************************/
@@ -385,7 +391,10 @@ monitor mon(
     .mtcsai(mtcsai_pp),
     .monwbk(monwbk_pp),
     .mreqin(mreqin_db),
-    .mtcsa_n(mtcsa_n_db)
+    .mtcsa_n(mtcsa_n_db),
+
+    .leds(leds_n),
+    .dbg(dbg)
 );
 
 /*******************************************************************************.

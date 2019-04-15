@@ -257,3 +257,5 @@ set_property src_info {type:XDC file:1 line:331 export:INPUT save:INPUT read:REA
 set_property PACKAGE_PIN D17 [get_ports mwarnf_n]
 set_property src_info {type:XDC file:1 line:334 export:INPUT save:INPUT read:READ} [current_design]
 set_property PACKAGE_PIN R19 [get_ports mrsc]
+set_property src_info {type:XDC file:1 line:338 export:INPUT save:INPUT read:READ} [current_design]
+set_property PACKAGE_PIN AB20 [get_ports mamu]

@@ -95,8 +95,19 @@ module monitor(
     output wire mtcsai,
     output wire monwbk,
     input wire mreqin,
-    input wire mtcsa_n
+    input wire mtcsa_n,
+
+    output wire [6:1] leds,
+    output wire [6:1] dbg
 );
+
+assign dbg = 6'b0;
+assign leds[1] = ~mstpit_n;
+assign leds[2] = mnhsbf | mamu;
+assign leds[3] = mreqin;
+assign leds[4] = mstp;
+assign leds[5] = ~mvfail_n;
+assign leds[6] = ~moscal_n;
 
 /*******************************************************************************.
 * USB Interface                                                                 *
