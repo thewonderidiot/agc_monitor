@@ -17,7 +17,7 @@ class MemoryDump(QObject):
 
         self._data = []
         self._read_addrs = []
-        self._next_bank = 0
+        self._bank = 0
 
         self._switches = switches
         self._aux_switch = aux_switch
@@ -53,26 +53,27 @@ class MemoryDump(QObject):
             self._usbif.send(self._read_msg(a))
 
     def _dump_next_bank(self):
-        while self._next_bank <= self._num_banks:
-            bank = self._next_bank
-            if bank < 0o44:
-                sw = self._switches[bank]
+        while self._bank < self._num_banks:
+            if self._bank < 0o44:
+                sw = self._switches[self._bank]
             else:
                 sw = self._aux_switch
-
-            self._next_bank += 1
 
             if sw.isChecked():
                 sw.setCheckState(Qt.PartiallyChecked)
                 break
 
-        if bank == self._num_banks:
+            self._bank += 1
+
+        if self._bank == self._num_banks:
             self._complete_dump()
             return
 
-        bank_start = bank * self._bank_size
+        bank_start = self._bank * self._bank_size
         bank_end = bank_start + self._bank_size
         self._dump_addrs(list(range(bank_start, bank_end)))
+
+        self._bank += 1
 
     def _complete_dump(self):
         self._check_timer.stop()
@@ -96,7 +97,7 @@ class MemoryDump(QObject):
 
     def dump_memory(self, filename):
         self._filename = filename
-        self._next_bank = 0
+        self._bank = 0
         self._data = []
         self._timer.restart()
         self._check_timer.start(5)

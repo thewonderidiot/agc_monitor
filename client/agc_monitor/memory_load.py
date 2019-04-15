@@ -16,7 +16,7 @@ class MemoryLoad(QObject):
 
         self._switches = switches
         self._aux_switch = aux_switch
-        self._next_bank = 0
+        self._bank = 0
 
         self._timer = QTimer()
         self._timer.timeout.connect(self._load_next_bank)
@@ -26,28 +26,27 @@ class MemoryLoad(QObject):
         with open(filename, 'rb') as f:
             self._load_data.fromfile(f, int(os.path.getsize(filename)/2))
         self._load_data.byteswap()
-        self._next_bank = 0
+        self._bank = 0
         self._timer.start(20)
 
     def _load_next_bank(self):
-        while self._next_bank <= self._num_banks:
-            bank = self._next_bank
-            if bank < 0o44:
-                sw = self._switches[bank]
+        while self._bank < self._num_banks:
+            if self._bank < 0o44:
+                sw = self._switches[self._bank]
             else:
                 sw = self._aux_switch
-
-            self._next_bank += 1
 
             if sw.isChecked():
                 sw.setCheckState(Qt.PartiallyChecked)
                 break
 
-        if self._next_bank == self._num_banks:
+            self._bank += 1
+
+        if self._bank == self._num_banks:
             self._complete_load()
             return
 
-        bank_addr = bank * self._bank_size
+        bank_addr = self._bank * self._bank_size
         words = self._load_data[bank_addr:bank_addr+self._bank_size]
 
         if len(words) == 0:
@@ -57,6 +56,8 @@ class MemoryLoad(QObject):
         for a,w in enumerate(words):
             d,p = agc.unpack_word(w)
             self._usbif.send(self._write_msg(addr=bank_addr+a, data=d, parity=p))
+
+        self._bank += 1
 
     def _complete_load(self):
         self._timer.stop()
