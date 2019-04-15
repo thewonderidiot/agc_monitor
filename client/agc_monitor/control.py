@@ -30,6 +30,7 @@ class Control(QFrame):
 
         usbif.poll(um.ReadMonRegStatus())
         usbif.poll(um.ReadControlStopCause())
+        usbif.poll(um.ReadStatusSimulation())
         usbif.listen(self)
 
         for msg in INH_SWITCHES.values():
@@ -41,6 +42,8 @@ class Control(QFrame):
             self._status_inds['agc_run'].set_on(msg.run)
         elif isinstance(msg, um.ControlStopCause):
             self._status_inds['mon_stop'].set_on(any(msg))
+        elif isinstance(msg, um.StatusSimulation):
+            self._status_inds['crs_cycle'].set_on(any(msg))
 
     def _set_inh(self, ind, msg, on):
         ind.set_on(on)

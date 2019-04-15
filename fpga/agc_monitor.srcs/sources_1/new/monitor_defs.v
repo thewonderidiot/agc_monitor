@@ -70,6 +70,7 @@
 
 // Status registers
 `define STATUS_REG_ALARMS       16'h00
+`define STATUS_REG_SIMULATION   16'h01
 `define STATUS_REG_MON_TEMP     16'h10
 `define STATUS_REG_MON_VCCINT   16'h11
 `define STATUS_REG_MON_VCCAUX   16'h12

@@ -314,6 +314,12 @@ status_regs stat_regs(
     .clk(clk),
     .rst_n(rst_n),
 
+    .addr(cmd_addr),
+    .data_in(cmd_data),
+    .read_en(status_read_en),
+    .write_en(status_write_en),
+    .data_out(status_data),
+
     .bplssw_p(bplssw_p),
     .bplssw_n(bplssw_n),
     .p4sw_p(p4sw_p),
@@ -338,11 +344,8 @@ status_regs stat_regs(
     .mpipal_n(mpipal_n),
     .mwarnf_n(mwarnf_n),
 
-    .addr(cmd_addr),
-    .data_in(cmd_data),
-    .read_en(status_read_en),
-    .write_en(status_write_en),
-    .data_out(status_data)
+    .mnhsbf(mnhsbf),
+    .mamu(mamu)
 );
 
 /*******************************************************************************.

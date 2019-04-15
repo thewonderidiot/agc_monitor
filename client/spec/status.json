@@ -58,6 +58,21 @@
             ]
         },
         {
+            "addr": 1,
+            "name": "Simulation",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "crs_cycle",
+                    "width": 1
+                },
+                {
+                    "name": "ems_cycle",
+                    "width": 1
+                }
+            ]
+        },
+        {
             "addr": 16,
             "name": "MonTemp",
             "type": "r",

@@ -137,6 +137,10 @@ StatusAlarms = namedtuple('StatusAlarms', ['vfail', 'oscal', 'scafl', 'scdbl', '
 StatusAlarms.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteStatusAlarms = namedtuple('WriteStatusAlarms', ['vfail', 'oscal', 'scafl', 'scdbl', 'ctral', 'tcal', 'rptal', 'fpal', 'epal', 'watch', 'pipal', 'warn'])
 WriteStatusAlarms.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadStatusSimulation = namedtuple('ReadStatusSimulation', [])
+ReadStatusSimulation.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+StatusSimulation = namedtuple('StatusSimulation', ['crs_cycle', 'ems_cycle'])
+StatusSimulation.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadStatusMonTemp = namedtuple('ReadStatusMonTemp', [])
 ReadStatusMonTemp.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 StatusMonTemp = namedtuple('StatusMonTemp', ['counts'])
@@ -428,6 +432,7 @@ class DSKY(object):
     Status = 0x000B
 class Status(object):
     Alarms = 0x0000
+    Simulation = 0x0001
     MonTemp = 0x0010
     VccInt = 0x0011
     VccAux = 0x0012
@@ -604,6 +609,9 @@ def _pack_WriteStatusAlarms(msg):
     data |= (msg.pipal & 0x0001) << 10
     data |= (msg.warn & 0x0001) << 11
     return _pack_write_msg(AddressGroup.Status, Status.Alarms, data)
+
+def _pack_ReadStatusSimulation(msg):
+    return _pack_read_msg(AddressGroup.Status, Status.Simulation)
 
 def _pack_ReadStatusMonTemp(msg):
     return _pack_read_msg(AddressGroup.Status, Status.MonTemp)
@@ -1261,6 +1269,12 @@ def _unpack_StatusAlarms(data):
         warn = (data >> 11) & 0x0001,
     )
 
+def _unpack_StatusSimulation(data):
+    return StatusSimulation(
+        crs_cycle = (data >> 0) & 0x0001,
+        ems_cycle = (data >> 1) & 0x0001,
+    )
+
 def _unpack_StatusMonTemp(data):
     return StatusMonTemp(
         counts = (data >> 4) & 0x0FFF,
@@ -1577,6 +1591,7 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Reg3H): _unpack_DSKYReg3H,
     (DATA_FLAG | AddressGroup.DSKY, DSKY.Status): _unpack_DSKYStatus,
     (DATA_FLAG | AddressGroup.Status, Status.Alarms): _unpack_StatusAlarms,
+    (DATA_FLAG | AddressGroup.Status, Status.Simulation): _unpack_StatusSimulation,
     (DATA_FLAG | AddressGroup.Status, Status.MonTemp): _unpack_StatusMonTemp,
     (DATA_FLAG | AddressGroup.Status, Status.VccInt): _unpack_StatusVccInt,
     (DATA_FLAG | AddressGroup.Status, Status.VccAux): _unpack_StatusVccAux,
