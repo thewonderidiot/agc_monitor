@@ -40,6 +40,8 @@ $Comp
 L agc_monitor:Styx_P5 J5
 U 1 1 5E181991
 P 3200 5050
+AR Path="/5E181991" Ref="J5"  Part="1" 
+AR Path="/5C358E7A/5E181991" Ref="J5"  Part="1" 
 F 0 "J5" H 3200 6300 50  0000 C CNN
 F 1 "Styx_P5" H 3225 6334 50  0001 C CNN
 F 2 "agc_monitor:PinHeader_4x24_P2.54mm_Vertical" H 3550 5050 50  0001 C CNN
@@ -51,6 +53,8 @@ $Comp
 L agc_monitor:Styx_P5 J5
 U 2 1 5E181A69
 P 6650 5050
+AR Path="/5E181A69" Ref="J5"  Part="2" 
+AR Path="/5C358E7A/5E181A69" Ref="J5"  Part="2" 
 F 0 "J5" H 6650 6300 50  0000 C CNN
 F 1 "Styx_P5" H 6675 6334 50  0001 C CNN
 F 2 "agc_monitor:PinHeader_4x24_P2.54mm_Vertical" H 7000 5050 50  0001 C CNN
