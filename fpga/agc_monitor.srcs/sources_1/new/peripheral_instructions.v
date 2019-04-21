@@ -44,16 +44,18 @@ module peripheral_instructions(
 );
 
 localparam IDLE = 0,
-           REQUEST = 1,
-           READ = 2,
-           LOAD = 3,
-           READCH = 4,
-           LOADCH = 5,
-           TCSAJ = 6,
-           COMPLETE = 7;
+           WAIT_MREQ_DONE = 1,
+           REQUEST = 2,
+           ALLOW_MCT = 3,
+           READ = 4,
+           LOAD = 5,
+           READCH = 6,
+           LOADCH = 7,
+           TCSAJ = 8,
+           COMPLETE = 9;
 
-reg [2:0] state;
-reg [2:0] next_state;
+reg [3:0] state;
+reg [3:0] next_state;
 
 reg [4:0] request;
 reg [4:0] request_q;
@@ -76,11 +78,30 @@ assign mldch = request[2];
 assign mread = request[3];
 assign mload = request[4];
 
-assign inhibit_mstp = (state != IDLE);
+assign inhibit_mstp = (state != IDLE) && (state != REQUEST);
 assign monwbk = (state == LOAD) & ((req_s == `EB) | (req_s == `FB) | (req_s == `BB));
 assign rbbk = ((state == LOAD) | (state == READ)) & mt[10];
 
 assign complete = (state == COMPLETE);
+
+reg mt12_q;
+reg t12_start;
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        mt12_q <= 1'b0;
+        t12_start <= 1'b0;
+    end else begin
+        mt12_q <= mt[12];
+
+        if (state == REQUEST) begin
+            if (mt[12] & ~mt12_q) begin
+                t12_start <= 1'b1;
+            end
+        end else begin
+            t12_start <= 1'b0;
+        end
+    end
+end
 
 always @(*) begin
     inhibit_ws = 1'b0;
@@ -131,31 +152,49 @@ always @(*) begin
     req_bb_q = req_bb;
     req_s_q = req_s;
     req_data_q = req_data;
+
     case (state)
     IDLE: begin
         if (load | read | loadch | readch | tcsaj) begin
-            next_state = REQUEST;
-            request_q = {load, read, loadch, readch, tcsaj};
+            next_state = WAIT_MREQ_DONE;
             req_bb_q = bb;
             req_s_q = s;
             req_data_q = data;
         end
     end
 
+    WAIT_MREQ_DONE: begin
+        if (~mreqin) begin
+            request_q = {load, read, loadch, readch, tcsaj};
+            next_state = REQUEST;
+        end
+    end
+
     REQUEST: begin
         request_q = request;
-        if (mreqin & mt[1]) begin
-            if (mread) begin
-                next_state = READ;
-            end else if (mload) begin
-                next_state = LOAD;
-            end else if (mrdch) begin
-                next_state = READCH;
-            end else begin
-                next_state = LOADCH;
+        if (t12_start & ~mt[12]) begin
+            next_state = ALLOW_MCT;
+        end else begin
+            if (mreqin) begin
+                if (mread) begin
+                    next_state = READ;
+                end else if (mload) begin
+                    next_state = LOAD;
+                end else if (mrdch) begin
+                    next_state = READCH;
+                end else begin
+                    next_state = LOADCH;
+                end
+            end else if (~mtcsa_n & monwt & mt[12]) begin
+                next_state = TCSAJ;
             end
-        end else if (~mtcsa_n & monwt & mt[12]) begin
-            next_state = TCSAJ;
+        end
+    end
+
+    ALLOW_MCT: begin
+        request_q = request;
+        if (mt[1]) begin
+            next_state = REQUEST;
         end
     end
 

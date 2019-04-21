@@ -101,8 +101,9 @@ module monitor(
     output wire [6:1] dbg
 );
 
-assign dbg = 6'b0;
-assign leds[1] = ~mstpit_n;
+assign dbg[5] = 1'b0;
+assign dbg[6] = 1'b0;
+assign leds[1] = mstpit_n;
 assign leds[2] = mnhsbf | mamu;
 assign leds[3] = mreqin;
 assign leds[4] = mstp;
@@ -116,6 +117,10 @@ assign leds[6] = ~moscal_n;
 wire [39:0] cmd;
 wire cmd_ready;
 wire cmd_read_en;
+assign dbg[1] = cmd_read_en;
+assign dbg[2] = cmd_ready;
+assign dbg[3] = rxf_n;
+assign dbg[4] = oe_n;
 
 // Read response message for sending back over USB, and its validity flag
 wire [39:0] read_msg;
