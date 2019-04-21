@@ -1,5 +1,4 @@
 import warnings
-import queue
 import time
 from ctypes import *
 from PySide2.QtCore import QObject, QThread, QTimer, Qt, Signal
@@ -32,7 +31,7 @@ class USBWorker(QObject):
         self._dev = None
 
         self._poll_msgs = []
-        self._tx_queue = queue.Queue()
+        self._tx_queue = []
         self._rx_bytes = b''
         self._poll_ctr = 0
 
@@ -46,7 +45,7 @@ class USBWorker(QObject):
             self._dev.close()
 
     def send_msg(self, msg):
-        self._tx_queue.put(msg)
+        self._tx_queue.append(msg)
 
     def poll(self, msg):
         if msg not in self._poll_msgs:
@@ -54,22 +53,24 @@ class USBWorker(QObject):
 
     def _enqueue_poll_msgs(self):
         for msg in self._poll_msgs:
-            self._tx_queue.put(msg)
+            self._tx_queue.append(msg)
 
     def _service(self):
         if self._dev is None:
             self._connect()
         else:
             self._enqueue_poll_msgs()
-            while not self._tx_queue.empty():
-                msg = self._tx_queue.get_nowait()
+            write_data = b''
+            while len(self._tx_queue) > 0:
+                msg = self._tx_queue.pop(0)
                 packed_msg = um.pack(msg)
-                slipped_msg = slip(packed_msg)
-                try:
-                    self._dev.write(slipped_msg)
-                except:
-                    self._disconnect()
-                    return
+                write_data += slip(packed_msg)
+
+            try:
+                self._dev.write(write_data)
+            except:
+                self._disconnect()
+                return
 
             try:
                 self._rx_bytes += self._dev.read(4096)
@@ -101,7 +102,7 @@ class USBWorker(QObject):
             self._dev.ftdi_fn.ftdi_set_bitmode(0xFF, 0x40)
 
             # Set communication params
-            self._dev.ftdi_fn.ftdi_set_latency_timer(2)
+            self._dev.ftdi_fn.ftdi_set_latency_timer(5)
             self._dev.ftdi_fn.ftdi_setflowctrl(0)
             self._dev.ftdi_fn.ftdi_usb_purge_buffers()
 
