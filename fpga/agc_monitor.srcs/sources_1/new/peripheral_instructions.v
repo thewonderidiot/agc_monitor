@@ -54,6 +54,9 @@ localparam IDLE = 0,
            TCSAJ = 8,
            COMPLETE = 9;
 
+`define PERIPH_TIMEOUT_COUNT 9375 // Eight MCTs
+`define PERIPH_MAX_T12S 3
+
 reg [3:0] state;
 reg [3:0] next_state;
 
@@ -78,27 +81,39 @@ assign mldch = request[2];
 assign mread = request[3];
 assign mload = request[4];
 
-assign inhibit_mstp = (state != IDLE) && (state != REQUEST);
+assign inhibit_mstp = (state != IDLE) && (state != WAIT_MREQ_DONE) && (state != REQUEST);
 assign monwbk = (state == LOAD) & ((req_s == `EB) | (req_s == `FB) | (req_s == `BB));
 assign rbbk = ((state == LOAD) | (state == READ)) & mt[10];
 
 assign complete = (state == COMPLETE);
 
+reg [13:0] timer;
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        timer <= 14'b0;
+    end else begin
+        if (state == IDLE) begin
+            timer <= 14'b0;
+        end else if (timer < `PERIPH_TIMEOUT_COUNT) begin
+            timer <= timer + 1;
+        end
+    end
+end
+
 reg mt12_q;
-reg t12_start;
+reg [1:0] t12_starts;
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         mt12_q <= 1'b0;
-        t12_start <= 1'b0;
+        t12_starts <= 2'b0;
     end else begin
         mt12_q <= mt[12];
-
         if (state == REQUEST) begin
-            if (mt[12] & ~mt12_q) begin
-                t12_start <= 1'b1;
+            if ((t12_starts < `PERIPH_MAX_T12S) & ~mt12_q & mt[12]) begin
+                t12_starts <= t12_starts + 1;
             end
         end else begin
-            t12_start <= 1'b0;
+            t12_starts <= 2'b0;
         end
     end
 end
@@ -153,67 +168,66 @@ always @(*) begin
     req_s_q = req_s;
     req_data_q = req_data;
 
-    case (state)
-    IDLE: begin
+    if (state == IDLE) begin
         if (load | read | loadch | readch | tcsaj) begin
             next_state = WAIT_MREQ_DONE;
             req_bb_q = bb;
             req_s_q = s;
             req_data_q = data;
         end
-    end
-
-    WAIT_MREQ_DONE: begin
-        if (~mreqin) begin
-            request_q = {load, read, loadch, readch, tcsaj};
-            next_state = REQUEST;
-        end
-    end
-
-    REQUEST: begin
+    end else if (state == COMPLETE) begin
+        next_state = IDLE;
+    end else if (timer < `PERIPH_TIMEOUT_COUNT) begin
         request_q = request;
-        if (t12_start & ~mt[12]) begin
-            next_state = ALLOW_MCT;
-        end else begin
-            if (mreqin) begin
-                if (mread) begin
-                    next_state = READ;
-                end else if (mload) begin
-                    next_state = LOAD;
-                end else if (mrdch) begin
-                    next_state = READCH;
-                end else begin
-                    next_state = LOADCH;
-                end
-            end else if (~mtcsa_n & monwt & mt[12]) begin
-                next_state = TCSAJ;
+        case (state)
+        WAIT_MREQ_DONE: begin
+            if (~mreqin) begin
+                request_q = {load, read, loadch, readch, tcsaj};
+                next_state = REQUEST;
             end
         end
-    end
 
-    ALLOW_MCT: begin
-        request_q = request;
-        if (mt[1]) begin
-            next_state = REQUEST;
+        REQUEST: begin
+            if (t12_starts >= `PERIPH_MAX_T12S) begin
+                next_state = ALLOW_MCT;
+            end else begin
+                if (mreqin) begin
+                    if (mread) begin
+                        next_state = READ;
+                    end else if (mload) begin
+                        next_state = LOAD;
+                    end else if (mrdch) begin
+                        next_state = READCH;
+                    end else begin
+                        next_state = LOADCH;
+                    end
+                end else if (~mtcsa_n & monwt & mt[12]) begin
+                    next_state = TCSAJ;
+                end
+            end
         end
-    end
 
-    READ,LOAD: begin
-        if ((mst == 3'b1) & mt[11]) begin
-            next_state = COMPLETE;
+        ALLOW_MCT: begin
+            if (mt[1]) begin
+                next_state = REQUEST;
+            end
         end
-    end
 
-    READCH,LOADCH,TCSAJ: begin
-        if (mt[9]) begin
-            next_state = COMPLETE;
+        READ,LOAD: begin
+            if ((mst == 3'b1) & mt[11]) begin
+                next_state = COMPLETE;
+            end
         end
-    end
 
-    COMPLETE: begin
-        next_state = IDLE;
+        READCH,LOADCH,TCSAJ: begin
+            if (mt[9]) begin
+                next_state = COMPLETE;
+            end
+        end
+        endcase
+    end else begin
+        next_state = COMPLETE;
     end
-    endcase
 end
 
 always @(posedge clk or negedge rst_n) begin
