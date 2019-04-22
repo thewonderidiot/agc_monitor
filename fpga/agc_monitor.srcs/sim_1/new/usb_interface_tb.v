@@ -15,6 +15,10 @@ wire siwu;
 reg [7:0] data_in;
 wire [39:0] cmd_out;
 wire cmd_ready;
+wire dbg1;
+wire dbg2;
+wire dbg3;
+wire dbg4;
 
 always #16.667 clkout = ~clkout;
 always #10 clk = ~clk;
@@ -33,7 +37,14 @@ usb_interface usb_if(
     .oe_n(oe_n),
     .siwu(siwu),
     .cmd(cmd_out),
-    .cmd_ready(cmd_ready)
+    .cmd_ready(cmd_ready),
+    .read_msg(40'b0),
+    .read_msg_ready(1'b0),
+
+    .dbg1(dbg1),
+    .dbg2(dbg2),
+    .dbg3(dbg3),
+    .dbg4(dbg4)
 );
 
 initial begin
@@ -46,14 +57,22 @@ initial begin
     data_in = 8'h00;
     
     #20 rst_n = 1'b1;
-    #100 rxf_n = 1'b0;
+    #1000 rxf_n = 1'b0;
     @(negedge oe_n) data_in = 8'hC0;
     @(negedge rd_n);
-    @(posedge clkout) data_in = 8'h80;
-    @(posedge clkout) data_in = 8'h12;
-    @(posedge clkout) data_in = 8'h34;
-    @(posedge clkout) data_in = 8'h56;
-    @(posedge clkout) data_in = 8'h78;
+    @(posedge clkout) data_in = 8'h21;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'hC0;
+    @(posedge clkout) data_in = 8'hC0;
+    @(posedge clkout) data_in = 8'h21;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h01;
+    @(posedge clkout) data_in = 8'hC0;
+    @(posedge clkout) data_in = 8'hC0;
+    @(posedge clkout) data_in = 8'h21;
+    @(posedge clkout) data_in = 8'h00;
+    @(posedge clkout) data_in = 8'h03;
     @(posedge clkout) data_in = 8'hC0;
     rxf_n = 1'b1;
 

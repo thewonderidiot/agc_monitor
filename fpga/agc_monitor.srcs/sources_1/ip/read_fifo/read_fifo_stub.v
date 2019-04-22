@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
-// Date        : Mon Feb 11 22:12:28 2019
+// Date        : Sun Apr 21 16:48:50 2019
 // Host        : luminary running 64-bit unknown
 // Command     : write_verilog -force -mode synth_stub
 //               /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/read_fifo/read_fifo_stub.v
