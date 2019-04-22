@@ -23,7 +23,7 @@ def unslip(msg):
 def unslip_from(data):
     first_end = data.find(SLIP_END)
     if first_end == -1:
-        return b'', b''
+        return b'', data
     elif first_end != 0:
         warnings.warn('Dropping %u bytes from data stream' % first_end)
 

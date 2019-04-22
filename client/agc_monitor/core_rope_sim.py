@@ -146,8 +146,8 @@ class CoreRopeSim(QFrame):
         self._updating_switches = False
 
     def _dump_complete(self):
-        self._update_all_banks()
         self._updating_switches = False
+        self._update_all_banks()
 
     def _dump_rope(self):
         filename, group = QFileDialog.getSaveFileName(self, 'Save AGC Rope', 'roms', 'AGC ROMs (*.bin)')

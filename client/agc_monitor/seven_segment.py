@@ -46,7 +46,7 @@ class SevenSegment(QWidget):
                 p.drawPixmap(5, 1, self._el_pix, 131, 11, 9, 18)
             if self._bit1: # right upper
                 p.drawPixmap(23, 0, self._el_pix, 141, 10, 10, 19)
-            if (~self._bit2) & (self._bit1 | self._bit5): # left lower
+            if (~self._bit2) & (self._bit5): # left lower
                 p.drawPixmap(0, 19, self._el_pix, 131, 37, 10, 18)
             if self._bit2 | (~self._bit2 & self._bit3): # right lower
                 p.drawPixmap(20, 19, self._el_pix, 143, 37, 9, 18)

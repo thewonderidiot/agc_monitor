@@ -44,7 +44,7 @@ class MemoryDump(QObject):
                     self._dump_addrs(self._read_addrs)
 
     def _check_progress(self):
-        if self._timer.elapsed() >= 500:
+        if self._timer.elapsed() >= 80:
             self._dump_addrs(self._read_addrs)
 
     def _dump_addrs(self, addrs):
@@ -100,5 +100,5 @@ class MemoryDump(QObject):
         self._bank = 0
         self._data = []
         self._timer.restart()
-        self._check_timer.start(5)
+        self._check_timer.start(20)
         self._dump_next_bank()
