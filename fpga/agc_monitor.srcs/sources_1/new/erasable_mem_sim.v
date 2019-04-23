@@ -15,6 +15,7 @@ module erasable_mem_sim(
 
     input wire [7:0] bank_en,
 
+    input wire minkl,
     input wire [12:1] mt,
     input wire msqext,
     input wire [15:10] msq,
@@ -47,10 +48,10 @@ erasable_addr_decoder(
 );
 
 wire dv13764;
-assign dv13764 = (msqext & (msq[15:11] == `SQ_DV) & (mst > 3'o0) & (mst != 3'o2));
+assign dv13764 = (~minkl & msqext & (msq[15:11] == `SQ_DV) & (mst > 3'o0) & (mst != 3'o2));
 
 wire io_inst;
-assign io_inst = (msqext & (msq[15:13] == `SQ_IO) && (msq[12:10] < `IO_RUPT));
+assign io_inst = (~minkl & msqext & (msq[15:13] == `SQ_IO) && (msq[12:10] < `IO_RUPT) & (mst != 3'o2));
 
 reg [11:1] writeback_eaddr;
 

@@ -323,7 +323,7 @@ register reg_w(
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         wp <= 2'b0;
-    end else if (mrgg & w_pulses[`W_PULSE_G]) begin
+    end else if (mrgg & mwwg & w_pulses[`W_PULSE_G]) begin
         wp <= {msp, ~mgp_n};
     end
 end

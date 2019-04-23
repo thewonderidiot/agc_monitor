@@ -696,6 +696,7 @@ erasable_mem_sim ems(
 
     .bank_en(ems_bank_en),
 
+    .minkl(minkl),
     .mt(mt),
     .msqext(msqext),
     .msq(msq),
