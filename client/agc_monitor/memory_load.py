@@ -10,6 +10,7 @@ class MemoryLoad(QObject):
         QObject.__init__(self)
 
         self._usbif = usbif
+        self._default_write_msg = write_msg
         self._write_msg = write_msg
         self._num_banks = num_banks
         self._bank_size = bank_size
@@ -21,7 +22,11 @@ class MemoryLoad(QObject):
         self._timer = QTimer()
         self._timer.timeout.connect(self._load_next_bank)
 
-    def load_memory(self, filename):
+    def load_memory(self, filename, write_msg=None):
+        if write_msg is None:
+            write_msg = self._default_write_msg
+
+        self._write_msg = write_msg
         self._load_data = array.array('H')
         with open(filename, 'rb') as f:
             self._load_data.fromfile(f, int(os.path.getsize(filename)/2))

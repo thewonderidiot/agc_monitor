@@ -191,6 +191,8 @@ ReadErasable = namedtuple('ReadErasable', ['addr'])
 ReadErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Erasable = namedtuple('Erasable', ['addr', 'parity', 'data'])
 Erasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteErasable = namedtuple('WriteErasable', ['addr', 'parity', 'data'])
+WriteErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlStart = namedtuple('WriteControlStart', [])
 WriteControlStart.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadControlStop = namedtuple('ReadControlStop', [])
@@ -654,6 +656,12 @@ def _pack_ReadChannels(msg):
 
 def _pack_ReadErasable(msg):
     return _pack_read_msg(AddressGroup.Erasable, msg.addr)
+
+def _pack_WriteErasable(msg):
+    data = 0x0000
+    data |= (msg.parity & 0x0001) << 0
+    data |= (msg.data & 0x7FFF) << 1
+    return _pack_write_msg(AddressGroup.Erasable, msg.addr, data)
 
 def _pack_WriteControlStart(msg):
     data = 0x0000

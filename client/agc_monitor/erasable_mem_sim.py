@@ -131,14 +131,14 @@ class ErasableMemSim(QFrame):
         if group == '':
             return
         self._updating_switches = True
-        self._core_loader.load_memory(filename)
+        self._core_loader.load_memory(filename, um.WriteErasable if self._agc_sel.isChecked() else um.WriteSimErasable)
 
     def _load_complete(self):
         self._updating_switches = False
 
     def _dump_complete(self):
-        self._update_ems_banks()
         self._updating_switches = False
+        self._update_ems_banks()
 
     def _dump_core(self):
         filename, group = QFileDialog.getSaveFileName(self, 'Save AGC Core Dump', 'cores', 'AGC Core Files (*.bin)')

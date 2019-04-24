@@ -1,7 +1,7 @@
 {
     "name": "Erasable",
     "id": 0,
-    "type": "r",
+    "type": "rw",
     "fields": [
         {
             "name": "parity",

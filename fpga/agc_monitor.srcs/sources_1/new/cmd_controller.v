@@ -40,6 +40,12 @@ module cmd_controller(
     output reg agc_fixed_read_en,
     input wire agc_fixed_read_done,
 
+    // Erasable memory control signals
+    output reg agc_erasable_read_en,
+    input wire agc_erasable_read_done,
+    output reg agc_erasable_write_en,
+    input wire agc_erasable_write_done,
+
     // Core rope simulation control signals
     output reg crs_read_en,
     output reg crs_write_en,
@@ -119,6 +125,8 @@ always @(*) begin
     mon_reg_read_en = 1'b0;
     mon_chan_read_en = 1'b0;
     agc_fixed_read_en = 1'b0;
+    agc_erasable_read_en = 1'b0;
+    agc_erasable_write_en = 1'b0;
     crs_read_en = 1'b0;
     crs_write_en = 1'b0;
     ems_read_en = 1'b0;
@@ -150,7 +158,19 @@ always @(*) begin
     end
 
     ERASABLE: begin
-        next_state = IDLE;
+        if (~cmd_write_flag) begin
+            if (agc_erasable_read_done) begin
+                next_state = SEND_READ_MSG;
+            end else begin
+                agc_erasable_read_en = 1'b1;
+            end
+        end else begin
+            if (agc_erasable_write_done) begin
+                next_state = IDLE;
+            end else begin
+                agc_erasable_write_en = 1'b1;
+            end
+        end
     end
 
     FIXED: begin
