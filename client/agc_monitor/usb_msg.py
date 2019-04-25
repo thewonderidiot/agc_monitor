@@ -187,6 +187,8 @@ ReadChannels = namedtuple('ReadChannels', ['addr'])
 ReadChannels.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Channels = namedtuple('Channels', ['addr', 'data'])
 Channels.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteChannels = namedtuple('WriteChannels', ['addr', 'data'])
+WriteChannels.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadErasable = namedtuple('ReadErasable', ['addr'])
 ReadErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Erasable = namedtuple('Erasable', ['addr', 'parity', 'data'])
@@ -653,6 +655,11 @@ def _pack_WriteSimFixed(msg):
 
 def _pack_ReadChannels(msg):
     return _pack_read_msg(AddressGroup.Channels, msg.addr)
+
+def _pack_WriteChannels(msg):
+    data = 0x0000
+    data |= (msg.data & 0xFFFF) << 0
+    return _pack_write_msg(AddressGroup.Channels, msg.addr, data)
 
 def _pack_ReadErasable(msg):
     return _pack_read_msg(AddressGroup.Erasable, msg.addr)

@@ -1,7 +1,7 @@
 {
     "name": "Channels",
     "id": 2,
-    "type": "r",
+    "type": "rw",
     "fields": [
         {
             "name": "data",

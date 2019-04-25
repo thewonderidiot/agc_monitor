@@ -183,6 +183,12 @@ wire agc_erasable_write_en;
 wire agc_erasable_write_done;
 wire [15:0] agc_erasable_data;
 
+wire agc_channels_read_en;
+wire agc_channels_read_done;
+wire agc_channels_write_en;
+wire agc_channels_write_done;
+wire [15:0] agc_channels_data;
+
 wire crs_read_en;
 wire crs_write_en;
 wire [15:0] crs_data;
@@ -194,7 +200,7 @@ wire [15:0] ems_data;
 // Resulting data from the active read command
 wire [15:0] read_data;
 assign read_data = ctrl_data | status_data | mon_reg_data | mon_chan_data | agc_fixed_data |
-                   agc_erasable_data | crs_data | ems_data | mon_dsky_data;
+                   agc_erasable_data | agc_channels_data | crs_data | ems_data | mon_dsky_data;
 
 // Command controller 
 cmd_controller cmd_ctrl(
@@ -221,6 +227,10 @@ cmd_controller cmd_ctrl(
     .agc_erasable_read_done(agc_erasable_read_done),
     .agc_erasable_write_en(agc_erasable_write_en),
     .agc_erasable_write_done(agc_erasable_write_done),
+    .agc_channels_read_en(agc_channels_read_en),
+    .agc_channels_read_done(agc_channels_read_done),
+    .agc_channels_write_en(agc_channels_write_en),
+    .agc_channels_write_done(agc_channels_write_done),
     .crs_read_en(crs_read_en),
     .crs_write_en(crs_write_en),
     .ems_read_en(ems_read_en),
@@ -577,6 +587,11 @@ wire [12:1] agc_erasable_periph_s;
 wire [15:1] agc_erasable_periph_bb;
 wire [16:1] agc_erasable_periph_data;
 
+wire agc_channels_periph_readch;
+wire agc_channels_periph_loadch;
+wire [12:1] agc_channels_periph_s;
+wire [16:1] agc_channels_periph_data;
+
 wire periph_load;
 wire periph_read;
 wire periph_loadch;
@@ -591,12 +606,12 @@ wire periph_read_parity;
 
 assign periph_load = ctrl_periph_load | agc_erasable_periph_load;
 assign periph_read = ctrl_periph_read | agc_fixed_periph_read | agc_erasable_periph_read;
-assign periph_loadch = ctrl_periph_loadch | agc_fixed_periph_loadch;
-assign periph_readch = ctrl_periph_readch;
+assign periph_loadch = ctrl_periph_loadch | agc_fixed_periph_loadch | agc_channels_periph_loadch;
+assign periph_readch = ctrl_periph_readch | agc_channels_periph_readch;
 assign periph_tcsaj = ctrl_periph_tcsaj;
 assign periph_bb = ctrl_periph_bb | agc_fixed_periph_bb | agc_erasable_periph_bb;
-assign periph_s = ctrl_periph_s | agc_fixed_periph_s | agc_erasable_periph_s;
-assign periph_data = ctrl_periph_data | agc_fixed_periph_data | agc_erasable_periph_data;
+assign periph_s = ctrl_periph_s | agc_fixed_periph_s | agc_erasable_periph_s | agc_channels_periph_s;
+assign periph_data = ctrl_periph_data | agc_fixed_periph_data | agc_erasable_periph_data | agc_channels_periph_data;
 
 peripheral_instructions periph_insts(
     .clk(clk),
@@ -664,7 +679,7 @@ agc_fixed fixed(
 );
 
 /*******************************************************************************.
-* AGC Erasable Memory Reader/Writer                                             *
+* AGC Erasable Memory                                                           *
 '*******************************************************************************/
 agc_erasable erasable(
     .clk(clk),
@@ -685,6 +700,29 @@ agc_erasable erasable(
     .periph_data(agc_erasable_periph_data),
     .periph_read_data(periph_read_data),
     .periph_read_parity(periph_read_parity),
+    .periph_complete(periph_complete)
+);
+
+/*******************************************************************************.
+* AGC Channels                                                                  *
+'*******************************************************************************/
+agc_channels channels(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .read_en(agc_channels_read_en),
+    .read_done(agc_channels_read_done),
+    .write_en(agc_channels_write_en),
+    .write_done(agc_channels_write_done),
+    .addr(cmd_addr),
+    .data_in(cmd_data),
+    .data_out(agc_channels_data),
+
+    .periph_readch(agc_channels_periph_readch),
+    .periph_loadch(agc_channels_periph_loadch),
+    .periph_s(agc_channels_periph_s),
+    .periph_data(agc_channels_periph_data),
+    .periph_read_data(periph_read_data),
     .periph_complete(periph_complete)
 );
 

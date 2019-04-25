@@ -17,7 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -33,6 +32,7 @@ set_property board_part numato.com:styx:part0:1.0 [current_project]
 set_property ip_output_repo /home/mike/agc_monitor/fpga/agc_monitor.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 read_verilog -library xil_defaultlib {
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_channels.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_erasable.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_fixed.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/channel.v

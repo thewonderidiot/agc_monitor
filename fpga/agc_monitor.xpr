@@ -70,6 +70,13 @@
           <Proxy FileSetName="monitor_ps_processing_system7_0_0"/>
         </CompFileExtendedInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/new/agc_channels.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <File Path="$PSRCDIR/sources_1/new/agc_erasable.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
