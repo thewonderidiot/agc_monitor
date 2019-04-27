@@ -62,7 +62,10 @@ module cmd_controller(
 
     // DSKY control signals
     output reg mon_dsky_read_en,
-    output reg mon_dsky_write_en
+    output reg mon_dsky_write_en,
+
+    // Trace control signals
+    output reg trace_read_en
 );
 
 /*******************************************************************************.
@@ -79,6 +82,7 @@ localparam IDLE          = 0,
            MON_REGS      = 8,
            MON_CHANNELS  = 9,
            MON_DSKY      = 10,
+           TRACE         = 11,
            SEND_READ_MSG = 15;
 
 reg [3:0] state;
@@ -141,6 +145,7 @@ always @(*) begin
     ems_write_en = 1'b0;
     mon_dsky_read_en = 1'b0;
     mon_dsky_write_en = 1'b0;
+    trace_read_en = 1'b0;
 
     case (state)
     IDLE: begin
@@ -160,6 +165,7 @@ always @(*) begin
             `ADDR_GROUP_MON_REGS:     next_state = MON_REGS;
             `ADDR_GROUP_MON_CHANNELS: next_state = MON_CHANNELS;
             `ADDR_GROUP_MON_DSKY:     next_state = MON_DSKY;
+            `ADDR_GROUP_TRACE:        next_state = TRACE;
             default:                  next_state = IDLE;
             endcase
         end
@@ -278,6 +284,15 @@ always @(*) begin
             next_state = SEND_READ_MSG;
         end else begin
             mon_dsky_write_en = 1'b1;
+            next_state = IDLE;
+        end
+    end
+
+    TRACE: begin
+        if (~cmd_write_flag) begin
+            trace_read_en = 1'b1;
+            next_state = SEND_READ_MSG;
+        end else begin
             next_state = IDLE;
         end
     end

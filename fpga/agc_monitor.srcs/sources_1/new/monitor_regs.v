@@ -62,10 +62,14 @@ module monitor_regs(
     output reg [15:10] sq,
     output wire [16:1] l,
     output wire [16:1] q,
+    output wire [16:1] z,
     output wire [12:1] s,
     output wire [11:9] eb,
     output wire [15:11] fb,
     output wire [16:1] g,
+    output wire [16:1] b,
+    output wire [16:1] y,
+    output wire [16:1] u,
 
     output wire [16:1] w,
     output reg [1:0] wp,
@@ -130,7 +134,6 @@ register #(5) reg_fb(
 );
 
 // Register Z
-wire [16:1] z;
 register reg_z(
     .clk(clk),
     .rst_n(rst_n),
@@ -141,7 +144,6 @@ register reg_z(
 );
 
 // Register B
-wire [16:1] b;
 register reg_b(
     .clk(clk),
     .rst_n(rst_n),
@@ -222,7 +224,6 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 // Register Y
-wire [16:1] y;
 register reg_y(
     .clk(clk),
     .rst_n(rst_n),
@@ -230,6 +231,16 @@ register reg_y(
     .mwg(mwyg),
     .mwl(mwl),
     .val(y)
+);
+
+// Register U
+register reg_u(
+    .clk(clk),
+    .rst_n(rst_n),
+    .ct(ct),
+    .mwg(mrulog),
+    .mwl(mwl),
+    .val(u)
 );
 
 // Register SQ

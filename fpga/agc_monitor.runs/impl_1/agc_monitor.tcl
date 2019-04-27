@@ -65,6 +65,7 @@ start_step init_design
 set ACTIVE_STEP init_design
 set rc [catch {
   create_msg_db init_design.pb
+  set_param xicom.use_bs_reader 1
   create_project -in_memory -part xc7z020clg484-1
   set_property board_part numato.com:styx:part0:1.0 [current_project]
   set_property design_mode GateLvl [current_fileset]
@@ -84,6 +85,7 @@ set rc [catch {
   read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/mon_adc/mon_adc.xci
   read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/rope_sim_mem/rope_sim_mem.xci
   read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/erasable_sim_mem/erasable_sim_mem.xci
+  read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/trace_memory/trace_memory.xci
   set_param project.isImplRun false
   read_xdc /home/mike/agc_monitor/fpga/agc_monitor.srcs/constrs_1/new/agc_monitor.xdc
   set_param project.isImplRun true

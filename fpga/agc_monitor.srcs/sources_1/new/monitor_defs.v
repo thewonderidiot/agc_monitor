@@ -21,6 +21,7 @@
 `define ADDR_GROUP_MON_CHANNELS 7'h22
 `define ADDR_GROUP_MON_DSKY     7'h23
 `define ADDR_GROUP_STATUS       7'h24
+`define ADDR_GROUP_TRACE        7'h25
 
 // Control Registers
 `define CTRL_REG_START        16'h0

@@ -197,10 +197,13 @@ wire ems_read_en;
 wire ems_write_en;
 wire [15:0] ems_data;
 
+wire trace_read_en;
+wire [15:0] trace_data;
+
 // Resulting data from the active read command
 wire [15:0] read_data;
 assign read_data = ctrl_data | status_data | mon_reg_data | mon_chan_data | agc_fixed_data |
-                   agc_erasable_data | agc_channels_data | crs_data | ems_data | mon_dsky_data;
+                   agc_erasable_data | agc_channels_data | crs_data | ems_data | mon_dsky_data | trace_data;
 
 // Command controller 
 cmd_controller cmd_ctrl(
@@ -236,7 +239,8 @@ cmd_controller cmd_ctrl(
     .ems_read_en(ems_read_en),
     .ems_write_en(ems_write_en),
     .mon_dsky_read_en(mon_dsky_read_en),
-    .mon_dsky_write_en(mon_dsky_write_en)
+    .mon_dsky_write_en(mon_dsky_write_en),
+    .trace_read_en(trace_read_en)
 );
 
 /*******************************************************************************.
@@ -439,7 +443,11 @@ clear_timer ctmr(
 wire [15:10] sq;
 wire [16:1] l;
 wire [16:1] q;
+wire [16:1] z;
 wire [16:1] g;
+wire [16:1] b;
+wire [16:1] y;
+wire [16:1] u;
 wire inhibit_ws;
 wire rbbk;
 monitor_regs mon_regs(
@@ -499,10 +507,14 @@ monitor_regs mon_regs(
     .sq(sq),
     .l(l),
     .q(q),
+    .z(z),
     .s(s),
     .eb(eb),
     .fb(fb),
     .g(g),
+    .b(b),
+    .y(y),
+    .u(u),
 
     .w(w),
     .wp(wp),
@@ -830,6 +842,38 @@ monitor_dsky mon_dsky(
     .mnhsbf(mnhsbf_dsky),
     .mdt(mdt_dsky),
     .monpar(monpar_dsky)
+);
+
+/*******************************************************************************.
+* Instruction Trace                                                             *
+'*******************************************************************************/
+instruction_trace trace(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .read_en(trace_read_en),
+    .addr(cmd_addr),
+    .data_out(trace_data),
+
+    .mnisq(mnisq),
+    .minkl(minkl),
+    .minhl(minhl),
+    .mreqin(mreqin),
+    .mt(mt),
+    .mst(mst),
+
+    .msqext(msqext),
+    .g(g),
+    .b(b),
+    .z(z),
+    .s(s),
+    .y(y),
+    .u(u),
+    .fext(fext),
+    .fb(fb),
+    .eb(eb),
+
+    .w(w)
 );
 
 assign mnhsbf = mnhsbf_crs | mnhsbf_dsky;

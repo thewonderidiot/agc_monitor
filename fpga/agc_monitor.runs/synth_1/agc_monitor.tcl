@@ -17,6 +17,7 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
+set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -48,6 +49,7 @@ read_verilog -library xil_defaultlib {
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/erasable_mem_sim.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_decoder.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_encoder.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/instruction_trace.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/io_circuits.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_channels.v
@@ -93,6 +95,9 @@ set_property used_in_implementation false [get_files -all /home/mike/agc_monitor
 
 read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/erasable_sim_mem/erasable_sim_mem.xci
 set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/erasable_sim_mem/erasable_sim_mem_ooc.xdc]
+
+read_ip -quiet /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/trace_memory/trace_memory.xci
+set_property used_in_implementation false [get_files -all /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/ip/trace_memory/trace_memory_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
