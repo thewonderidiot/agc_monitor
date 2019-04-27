@@ -12,6 +12,7 @@ module instruction_trace(
     input wire mnisq,
     input wire minkl,
     input wire minhl,
+    input wire miip,
     input wire mreqin,
     input wire [12:1] mt,
     input wire [3:1] mst,
@@ -99,6 +100,8 @@ reg [16:1] trace_b;
 reg trace_write;
 
 reg mt11_q;
+reg miip_q;
+
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         pending_inst <= 1'b0;
@@ -124,6 +127,11 @@ always @(posedge clk or negedge rst_n) begin
                 pending_inst <= 1'b1;
             end
 
+            miip_q <= miip;
+            if (~miip_q & miip) begin
+                pending_b <= 16'o7000;
+            end
+
             if (pending_inst) begin
                 if (count) begin
                     trace_write <= 1'b1;
@@ -139,7 +147,7 @@ always @(posedge clk or negedge rst_n) begin
                     end else begin
                         trace_b <= 16'o3;
                     end
-                end else begin
+                end else if (~nisql) begin
                     pending_inst <= 1'b0;
                 end
             end

@@ -858,6 +858,7 @@ instruction_trace trace(
     .mnisq(mnisq),
     .minkl(minkl),
     .minhl(minhl),
+    .miip(miip),
     .mreqin(mreqin),
     .mt(mt),
     .mst(mst),
