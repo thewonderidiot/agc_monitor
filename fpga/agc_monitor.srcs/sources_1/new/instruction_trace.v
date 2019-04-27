@@ -158,11 +158,11 @@ end
 wire [16:1] trace_m;
 assign trace_m = {fext, fb, eb, count, 4'b0};
 
-reg [10:1] trace_idx;
+reg [14:1] trace_idx;
 
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
-        trace_idx <= 10'b0;
+        trace_idx <= 14'b0;
     end else begin
         if (trace_write) begin
             trace_idx <= trace_idx + 1;
@@ -170,8 +170,8 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
-wire [9:0] read_addr;
-assign read_addr = (trace_idx - addr[9:0]) - 1;
+wire [13:0] read_addr;
+assign read_addr = (trace_idx - addr[13:0]) - 1;
 wire [63:0] trace_data;
 
 trace_memory mem(

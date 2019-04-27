@@ -2,8 +2,8 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Thu Apr 25 20:54:07 2019
-# Process ID: 29546
+# Start of session at: Sat Apr 27 11:09:05 2019
+# Process ID: 21741
 # Current directory: /home/mike/agc_monitor/fpga/agc_monitor.runs/trace_memory_synth_1
 # Command line: vivado -log trace_memory.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source trace_memory.tcl
 # Log file: /home/mike/agc_monitor/fpga/agc_monitor.runs/trace_memory_synth_1/trace_memory.vds
