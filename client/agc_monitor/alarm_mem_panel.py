@@ -4,6 +4,7 @@ from core_rope_sim import CoreRopeSim
 from erasable_mem_sim import ErasableMemSim
 from measurements import Measurements
 from alarms import Alarms
+from trace import Trace
 
 class AlarmMemPanel(QFrame):
     def __init__(self, parent, usbif):
@@ -36,3 +37,6 @@ class AlarmMemPanel(QFrame):
         self._erasable_mem_sim = ErasableMemSim(self, self._usbif)
         layout.addWidget(self._erasable_mem_sim)
         layout.setAlignment(self._erasable_mem_sim, Qt.AlignTop)
+
+        self._trace = Trace(self, self._usbif)
+        layout.addWidget(self._trace)

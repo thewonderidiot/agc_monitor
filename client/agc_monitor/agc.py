@@ -1,4 +1,36 @@
-def disassemble(sqext, sqr, st):
+COUNTERS = {
+    0o24: 'TIME2',
+    0o25: 'TIME1',
+    0o26: 'TIME3',
+    0o27: 'TIME4',
+    0o30: 'TIME5',
+    0o31: 'TIME6',
+    0o32: 'CDUX',
+    0o33: 'CDUY',
+    0o34: 'CDUZ',
+    0o35: 'CDUT',
+    0o36: 'CDUS',
+    0o37: 'PIPAX',
+    0o40: 'PIPAY',
+    0o41: 'PIPAZ',
+    0o42: 'Q-RHCCTR',
+    0o43: 'P-RHCCTR',
+    0o44: 'R-RHCCTR',
+    0o45: 'INLINK',
+    0o46: 'RNRAD',
+    0o47: 'GYROCMD',
+    0o50: 'CDUXCMD',
+    0o51: 'CDUYCMD',
+    0o52: 'CDUZCMD',
+    0o53: 'CDUTCMD',
+    0o54: 'CDUSCMD',
+    0o55: 'THRUST',
+    0o56: 'LEMONM',
+    0o57: 'OUTLINK',
+    0o60: 'ALTM',
+}
+
+def disassemble_subinst(sqext, sqr, st):
     sq = (sqr >> 3) & 0o7
     qc = (sqr >> 1) & 0o3
     io = sqr & 0o7
@@ -92,6 +124,130 @@ def disassemble(sqext, sqr, st):
             opcode = 'MP'
 
     return opcode + str(st)
+
+def disassemble_inst(b, count):
+    sq = b >> 12
+    qc = (b >> 10) & 0o3
+    s = b & 0o7777
+    es = s & 0o1777
+
+    if count:
+        up = sq >> 3
+        down = (sq >> 2) & 0o1
+        name = COUNTERS[es]
+        if name in ('TIME2', 'TIME1', 'TIME3', 'TIME4', 'TIME5'):
+            return 'PINC', name
+        elif name in ('TIME6', 'GYROCMD', 'CDUXCMD', 'CDUYCMD', 'CDUZCMD', 'CDUTCMD', 'CDUSCMD', 'THRUST', 'LEMONM'):
+            return 'DINC', name
+        elif name in ('CDUX', 'CDUY', 'CDUZ', 'CDUT', 'CDUS'):
+            if down:
+                return 'MCDU', name
+            else:
+                return 'PCDU', name
+        elif name in ('INLINK', 'RNRAD'):
+            if up:
+                return 'SHANC', name
+            else:
+                return 'SHINC', name
+        elif name in ('OUTLINK', 'ALTM'):
+            return 'SHINC', name
+        else:
+            if up and down:
+                return 'ZINC', name
+            elif up:
+                return 'PINC', name
+            else:
+                return 'MINC', name
+    else:
+        if sq == 0o0:
+            if b == 0o3:
+                return 'RELINT', ''
+            elif b == 0o4:
+                return 'INHINT', ''
+            elif b == 0o6:
+                return 'EXTEND', ''
+            else:
+                return 'TC', '%04o' % s
+        elif sq == 0o1:
+            if qc == 0o0:
+                return 'CCS', '%04o' % es
+            else:
+                return 'TCF', '%04o' % s
+        elif sq == 0o2:
+            if qc == 0o0:
+                return 'DAS', '%04o' % (es - 1)
+            elif qc == 0o1:
+                return 'LXCH', '%04o' % es
+            elif qc == 0o2:
+                return 'INCR', '%04o' % es
+            else:
+                return 'ADS', '%04o' % es
+        elif sq == 0o03:
+            return 'CA', '%04o' % s
+        elif sq == 0o04:
+            return 'CS', '%04o' % s
+        elif sq == 0o05:
+            if qc == 0:
+                if s == 0o17:
+                    return 'RESUME', ''
+                else:
+                    return 'INDEX', '%04o' % es
+            elif qc == 0o1:
+                return 'DXCH', '%04o' % (es - 1)
+            elif qc == 0o2:
+                return 'TS', '%04o' % es
+            else:
+                return 'XCH', '%04o' % es
+        elif sq == 0o06:
+            return 'AD', '%04o' % s
+        elif sq == 0o07:
+            return 'MASK', '%04o' % s
+        elif sq == 0o10:
+            io = (b >> 9) & 0o7
+            ios = es & 0o777
+            if io == 0o0:
+                return 'READ', '%04o' % ios
+            elif io == 0o1:
+                return 'WRITE', '%04o' % ios
+            elif io == 0o2:
+                return 'RAND', '%04o' % ios
+            elif io == 0o3:
+                return 'WAND', '%04o' % ios
+            elif io == 0o4:
+                return 'ROR', '%04o' % ios
+            elif io == 0o5:
+                return 'WOR', '%04o' % ios
+            elif io == 0o6:
+                return 'RXOR', '%04o' % ios
+            else:
+                return 'RUPT', '%04o' % s
+        elif sq == 0o11:
+            if qc == 0o0:
+                return 'DV', '%04o' % es
+            else:
+                return 'BZF', '%04o' % s
+        elif sq == 0o12:
+            if qc == 0o0:
+                return 'MSU', '%04o' % es
+            elif qc == 0o1:
+                return 'QXCH', '%04o' % es
+            elif qc == 0o2:
+                return 'AUG', '%04o' % es
+            else:
+                return 'DIM', '%04o' % es
+        elif sq == 0o13:
+            return 'DCA', '%04o' % (s - 1)
+        elif sq == 0o14:
+            return 'DCS', '%04o' % (s - 1)
+        elif sq == 0o15:
+            return 'INDEX', '%04o' % s
+        elif sq == 0o16:
+            if qc == 0o0:
+                return 'SU', '%04o' % es
+            else:
+                return 'BZMF', '%04o' % s
+        else:
+            return 'MP', '%04o' % s
 
 def format_addr(s, eb, fb, fext):
     # Determine which class of memory is being addressed by looking at S,

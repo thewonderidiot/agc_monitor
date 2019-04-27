@@ -27,6 +27,10 @@ SimErasable = namedtuple('SimErasable', ['addr', 'parity', 'data'])
 SimErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteSimErasable = namedtuple('WriteSimErasable', ['addr', 'parity', 'data'])
 WriteSimErasable.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadTrace = namedtuple('ReadTrace', ['addr'])
+ReadTrace.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+Trace = namedtuple('Trace', ['addr', 'data'])
+Trace.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadMonRegA = namedtuple('ReadMonRegA', [])
 ReadMonRegA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 MonRegA = namedtuple('MonRegA', ['a'])
@@ -396,6 +400,7 @@ WriteControlStartPreset.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) 
 
 class AddressGroup(object):
     SimErasable = 0x10
+    Trace = 0x25
     MonReg = 0x21
     DSKY = 0x23
     Fixed = 0x01
@@ -510,6 +515,9 @@ def _pack_WriteSimErasable(msg):
     data |= (msg.parity & 0x0001) << 0
     data |= (msg.data & 0x7FFF) << 1
     return _pack_write_msg(AddressGroup.SimErasable, msg.addr, data)
+
+def _pack_ReadTrace(msg):
+    return _pack_read_msg(AddressGroup.Trace, msg.addr)
 
 def _pack_ReadMonRegA(msg):
     return _pack_read_msg(AddressGroup.MonReg, MonReg.A)
@@ -1099,6 +1107,12 @@ def _unpack_SimErasable(addr, data):
         data = (data >> 1) & 0x7FFF,
     )
 
+def _unpack_Trace(addr, data):
+    return Trace(
+        addr = addr,
+        data = (data >> 0) & 0xFFFF,
+    )
+
 def _unpack_MonRegA(data):
     return MonRegA(
         a = (data >> 0) & 0xFFFF,
@@ -1652,6 +1666,7 @@ _unpack_reg_fns = {
 
 _unpack_mem_fns = {
     (DATA_FLAG | AddressGroup.SimErasable): _unpack_SimErasable,
+    (DATA_FLAG | AddressGroup.Trace): _unpack_Trace,
     (DATA_FLAG | AddressGroup.Fixed): _unpack_Fixed,
     (DATA_FLAG | AddressGroup.SimFixed): _unpack_SimFixed,
     (DATA_FLAG | AddressGroup.Channels): _unpack_Channels,

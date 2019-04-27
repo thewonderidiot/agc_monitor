@@ -1,0 +1,11 @@
+{
+    "name": "Trace",
+    "id": 37,
+    "type": "r",
+    "fields": [
+        {
+            "name": "data",
+            "width": 16
+        }
+    ]
+}
