@@ -124,7 +124,30 @@ class ErasableMemSim(QFrame):
         return check
 
     def _load_pad(self):
-        pass
+        filename, group = QFileDialog.getOpenFileName(self, 'Load AGC Pad Load', 'pads', 'AGC Pad Load Files (*.pad)')
+        if group == '':
+            return
+
+        load_data = []
+        with open(filename, 'r') as f:
+            for l in f.readlines():
+                parts = l.split()
+                addr_idx = 0
+                if len(parts) == 3:
+                    if parts[0] in ('CMPAD', 'LMPAD'):
+                        addr_idx = 1
+                    else:
+                        raise RuntimeError('Invalid pad load line "%s"' % l)
+                elif len(parts) != 2:
+                    raise RuntimeError('Invalid pad load line "%s"' % l)
+
+                addr = int(parts[addr_idx], 8)
+                val = int(parts[addr_idx + 1], 8)
+                load_data.append((addr, val))
+        
+        msg_type = um.WriteErasable if self._agc_sel.isChecked() else um.WriteSimErasable
+        for addr, val in load_data:
+            self._usbif.send(msg_type(addr=addr, data=val, parity=0))
 
     def _load_core(self):
         filename, group = QFileDialog.getOpenFileName(self, 'Load AGC Core File', 'cores', 'AGC Core Files (*.bin)')
