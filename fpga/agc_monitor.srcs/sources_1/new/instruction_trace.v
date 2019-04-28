@@ -110,6 +110,7 @@ always @(posedge clk or negedge rst_n) begin
         trace_z <= 16'b0;
         trace_b <= 16'b0;
         mt11_q <= 1'b0;
+        miip_q <= 1'b0;
         trace_write <= 1'b0;
     end else begin
         mt11_q <= mt[11];

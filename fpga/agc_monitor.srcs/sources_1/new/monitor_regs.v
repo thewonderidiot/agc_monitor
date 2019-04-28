@@ -75,6 +75,10 @@ module monitor_regs(
     output reg [1:0] wp,
     output wire [12:1] i,
 
+    output wire [11:9] true_eb,
+    output wire [15:11] true_fb,
+    output wire [12:1] true_s,
+
     input wire read_en,
     input wire [15:0] addr,
     output reg [15:0] data_out
@@ -123,6 +127,17 @@ register2 #(3) reg_eb(
     .val(eb)
 );
 
+register2 #(3) reg_true_eb(
+    .clk(clk),
+    .rst_n(rst_n),
+    .ct(ct),
+    .mwg1(mwebg),
+    .mwl1(mwl[11:9]),
+    .mwg2(mwbbeg | rbbk),
+    .mwl2(mwl[3:1]),
+    .val(true_eb)
+);
+
 // Register FB
 register #(5) reg_fb(
     .clk(clk),
@@ -131,6 +146,15 @@ register #(5) reg_fb(
     .mwg(mwfbg | (rbbk & s_only)),
     .mwl({mwl[16], mwl[14:11]}),
     .val(fb)
+);
+
+register #(5) reg_true_fb(
+    .clk(clk),
+    .rst_n(rst_n),
+    .ct(ct),
+    .mwg(mwfbg | rbbk),
+    .mwl({mwl[16], mwl[14:11]}),
+    .val(true_fb)
 );
 
 // Register Z
@@ -190,6 +214,15 @@ register2 #(12) reg_s(
     .mwg2(mws_adv),
     .mwl2(next_s),
     .val(s)
+);
+
+register #(12) reg_true_s(
+    .clk(clk),
+    .rst_n(rst_n),
+    .ct(ct),
+    .mwg(mwsg),
+    .mwl(mwl[12:1]),
+    .val(true_s)
 );
 
 // Register G

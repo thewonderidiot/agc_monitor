@@ -83,7 +83,7 @@ assign mload = request[4];
 
 assign inhibit_mstp = (state != IDLE) && (state != WAIT_MREQ_DONE) && (state != REQUEST);
 assign monwbk = (state == LOAD) & ((req_s == `EB) | (req_s == `FB) | (req_s == `BB));
-assign rbbk = ((state == LOAD) | (state == READ)) & mt[10];
+assign rbbk = ((state == LOAD) | (state == READ)) & (mst == 3'd1) & mt[10];
 
 assign complete = (state == COMPLETE);
 

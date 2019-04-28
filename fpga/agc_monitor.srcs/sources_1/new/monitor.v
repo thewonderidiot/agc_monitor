@@ -448,6 +448,9 @@ wire [16:1] g;
 wire [16:1] b;
 wire [16:1] y;
 wire [16:1] u;
+wire [11:9] true_eb;
+wire [15:11] true_fb;
+wire [12:1] true_s;
 wire inhibit_ws;
 wire rbbk;
 monitor_regs mon_regs(
@@ -519,6 +522,10 @@ monitor_regs mon_regs(
     .w(w),
     .wp(wp),
     .i(i),
+
+    .true_eb(true_eb),
+    .true_fb(true_fb),
+    .true_s(true_s),
 
     .read_en(mon_reg_read_en),
     .addr(cmd_addr),
@@ -760,8 +767,8 @@ core_rope_sim crs(
     .mnhsbf_dsky(mnhsbf_dsky),
     
     .fext(fext),
-    .fb(fb),
-    .s(s),
+    .fb(true_fb),
+    .s(true_s),
 
     .mt02(mt[2]),
     .mt07(mt[7]),
@@ -795,8 +802,8 @@ erasable_mem_sim ems(
     .msqext(msqext),
     .msq(msq),
     .mst(mst),
-    .eb(eb),
-    .s(s),
+    .eb(true_eb),
+    .s(true_s),
     .g(g),
     .mgp_n(mgp_n),
     .mrsc(mrsc),
