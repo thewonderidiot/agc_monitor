@@ -192,6 +192,28 @@
                     "width": 12
                 }
             ]
+        },
+        {
+            "addr": 64,
+            "name": "MismatchAddr",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "addr",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 65,
+            "name": "MismatchData",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "data",
+                    "width": 16
+                }
+            ]
         }
     ]
 }

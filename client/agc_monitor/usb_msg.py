@@ -173,6 +173,14 @@ ReadStatusP4sw = namedtuple('ReadStatusP4sw', [])
 ReadStatusP4sw.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 StatusP4sw = namedtuple('StatusP4sw', ['counts'])
 StatusP4sw.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadStatusMismatchAddr = namedtuple('ReadStatusMismatchAddr', [])
+ReadStatusMismatchAddr.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+StatusMismatchAddr = namedtuple('StatusMismatchAddr', ['addr'])
+StatusMismatchAddr.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadStatusMismatchData = namedtuple('ReadStatusMismatchData', [])
+ReadStatusMismatchData.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+StatusMismatchData = namedtuple('StatusMismatchData', ['data'])
+StatusMismatchData.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadMonChanFEXT = namedtuple('ReadMonChanFEXT', [])
 ReadMonChanFEXT.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 MonChanFEXT = namedtuple('MonChanFEXT', ['fext'])
@@ -449,6 +457,8 @@ class Status(object):
     AgcTemp = 0x0014
     Bplssw = 0x0015
     P4sw = 0x0016
+    MismatchAddr = 0x0040
+    MismatchData = 0x0041
 class MonChan(object):
     FEXT = 0x0007
     Restart = 0x003F
@@ -645,6 +655,12 @@ def _pack_ReadStatusBplssw(msg):
 
 def _pack_ReadStatusP4sw(msg):
     return _pack_read_msg(AddressGroup.Status, Status.P4sw)
+
+def _pack_ReadStatusMismatchAddr(msg):
+    return _pack_read_msg(AddressGroup.Status, Status.MismatchAddr)
+
+def _pack_ReadStatusMismatchData(msg):
+    return _pack_read_msg(AddressGroup.Status, Status.MismatchData)
 
 def _pack_ReadMonChanFEXT(msg):
     return _pack_read_msg(AddressGroup.MonChan, MonChan.FEXT)
@@ -1343,6 +1359,16 @@ def _unpack_StatusP4sw(data):
         counts = (data >> 4) & 0x0FFF,
     )
 
+def _unpack_StatusMismatchAddr(data):
+    return StatusMismatchAddr(
+        addr = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_StatusMismatchData(data):
+    return StatusMismatchData(
+        data = (data >> 0) & 0xFFFF,
+    )
+
 def _unpack_MonChanFEXT(data):
     return MonChanFEXT(
         fext = (data >> 4) & 0x0007,
@@ -1632,6 +1658,8 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.Status, Status.AgcTemp): _unpack_StatusAgcTemp,
     (DATA_FLAG | AddressGroup.Status, Status.Bplssw): _unpack_StatusBplssw,
     (DATA_FLAG | AddressGroup.Status, Status.P4sw): _unpack_StatusP4sw,
+    (DATA_FLAG | AddressGroup.Status, Status.MismatchAddr): _unpack_StatusMismatchAddr,
+    (DATA_FLAG | AddressGroup.Status, Status.MismatchData): _unpack_StatusMismatchData,
     (DATA_FLAG | AddressGroup.MonChan, MonChan.FEXT): _unpack_MonChanFEXT,
     (DATA_FLAG | AddressGroup.MonChan, MonChan.Restart): _unpack_MonChanRestart,
     (DATA_FLAG | AddressGroup.Control, Control.Stop): _unpack_ControlStop,
