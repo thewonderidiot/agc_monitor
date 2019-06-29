@@ -210,6 +210,7 @@ class DSKY(QWidget):
         b.move(x, y)
         b.setStyleSheet('QPushButton{background-color: rgba(0,0,0,0);}')
         b.setFocusPolicy(Qt.FocusPolicy.NoFocus)
+        b.setAutoRepeat(False)
         if keycode is None:
             b.pressed.connect(lambda k=keycode: self._usbif.send(um.WriteDSKYProceed()))
         else:
@@ -238,43 +239,59 @@ class DSKY(QWidget):
 
     def keyPressEvent(self, event):
         key = event.key()
+        self._set_key_down(key, True)
+
+    def keyReleaseEvent(self, event):
+        key = event.key()
+        self._set_key_down(key, False)
+
+    def _set_key_down(self, key, down):
+        but = None
 
         if key == Qt.Key.Key_V:
-            self._but_verb.click()
+            but = self._but_verb
         elif key == Qt.Key.Key_N:
-            self._but_noun.click()
+            but = self._but_noun
         elif key == Qt.Key.Key_V:
-            self._but_verb.click()
+            but = self._but_verb
         elif key == Qt.Key.Key_Plus or key == Qt.Key.Key_Equal:
-            self._but_plus.click()
+            but = self._but_plus
+        elif key == Qt.Key.Key_Minus:
+            but = self._but_minus
         elif key == Qt.Key.Key_0:
-            self._but_0.click()
+            but = self._but_0
         elif key == Qt.Key.Key_1:
-            self._but_1.click()
+            but = self._but_1
         elif key == Qt.Key.Key_2:
-            self._but_2.click()
+            but = self._but_2
         elif key == Qt.Key.Key_3:
-            self._but_3.click()
+            but = self._but_3
         elif key == Qt.Key.Key_4:
-            self._but_4.click()
+            but = self._but_4
         elif key == Qt.Key.Key_5:
-            self._but_5.click()
+            but = self._but_5
         elif key == Qt.Key.Key_6:
-            self._but_6.click()
+            but = self._but_6
         elif key == Qt.Key.Key_7:
-            self._but_7.click()
+            but = self._but_7
         elif key == Qt.Key.Key_8:
-            self._but_8.click()
+            but = self._but_8
         elif key == Qt.Key.Key_9:
-            self._but_9.click()
+            but = self._but_9
         elif key == Qt.Key.Key_C:
-            self._but_clr.click()
+            but = self._but_clr
         elif key == Qt.Key.Key_P:
-            self._but_pro.click()
+            but = self._but_pro
         elif key == Qt.Key.Key_K:
-            self._but_key_rel.click()
+            but = self._but_key_rel
         elif key == Qt.Key.Key_E:
-            self._but_enter.click()
+            but = self._but_enter
         elif key == Qt.Key.Key_R:
-            self._but_reset.click()
+            but = self._but_reset
 
+        if but is None:
+            return
+
+        if down:
+            but.click()
+        but.setDown(down)
