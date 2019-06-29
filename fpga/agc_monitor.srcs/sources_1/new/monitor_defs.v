@@ -79,6 +79,8 @@
 `define STATUS_REG_AGC_TEMP     16'h14
 `define STATUS_REG_AGC_BPLSSW   16'h15
 `define STATUS_REG_AGC_P4SW     16'h16
+`define STATUS_REG_MM_ADDR      16'h40
+`define STATUS_REG_MM_DATA      16'h41
 
 // Monitor AGC Register Mirrors
 `define MON_REG_A      16'h00

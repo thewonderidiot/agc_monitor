@@ -42,7 +42,10 @@ module status_regs(
     input wire mload,
     input wire mldch,
     input wire mread,
-    input wire mrdch
+    input wire mrdch,
+
+    input wire [16:1] mismatch_faddr,
+    input wire [16:1] mismatch_data
 );
 
 wire [4:0] adc_channel;
@@ -203,6 +206,8 @@ always @(posedge clk or negedge rst_n) begin
         `STATUS_REG_AGC_TEMP:   read_data <= adc_mtemp;
         `STATUS_REG_AGC_BPLSSW: read_data <= adc_bplssw;
         `STATUS_REG_AGC_P4SW:   read_data <= adc_p4sw;
+        `STATUS_REG_MM_ADDR:    read_data <= mismatch_faddr;
+        `STATUS_REG_MM_DATA:    read_data <= mismatch_data;
         endcase
     end else begin
         read_done <= 1'b0;

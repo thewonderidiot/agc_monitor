@@ -101,7 +101,8 @@ module monitor(
     output wire [6:1] dbg
 );
 
-assign dbg[5] = 1'b0;
+wire mismatch;
+assign dbg[5] = mismatch;
 assign dbg[6] = 1'b0;
 assign leds[1] = mstpit_n;
 assign leds[2] = mnhsbf | mamu;
@@ -351,6 +352,8 @@ control_regs ctrl_regs(
 /*******************************************************************************.
 * Status Registers                                                              *
 '*******************************************************************************/
+wire [16:1] mismatch_faddr;
+wire [16:1] mismatch_data;
 status_regs stat_regs(
     .clk(clk),
     .rst_n(rst_n),
@@ -390,7 +393,10 @@ status_regs stat_regs(
     .mload(mload),
     .mldch(mldch),
     .mread(mread),
-    .mrdch(mrdch)
+    .mrdch(mrdch),
+
+    .mismatch_faddr(mismatch_faddr),
+    .mismatch_data(mismatch_data)
 );
 
 /*******************************************************************************.
@@ -771,13 +777,20 @@ core_rope_sim crs(
     .s(true_s),
 
     .mt02(mt[2]),
+    .mt04(mt[4]),
     .mt07(mt[7]),
     .mrsc(mrsc),
     .mwg(mwg),
 
     .mnhsbf(mnhsbf_crs),
     .mdt(mdt_crs),
-    .monpar(monpar_crs)
+    .monpar(monpar_crs),
+
+    .mrgg(mrgg),
+    .g(g),
+    .mismatch(mismatch),
+    .mismatch_faddr(mismatch_faddr),
+    .mismatch_data(mismatch_data)
 );
 
 /*******************************************************************************.

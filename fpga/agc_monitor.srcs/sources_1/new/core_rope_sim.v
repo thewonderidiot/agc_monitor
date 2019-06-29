@@ -21,13 +21,20 @@ module core_rope_sim(
     input wire [12:1] s,
 
     input wire mt02,
+    input wire mt04,
     input wire mt07,
     input wire mrsc,
     input wire mwg,
 
     output reg mnhsbf,
     output wire [16:1] mdt,
-    output wire monpar
+    output wire monpar,
+
+    input wire mrgg,
+    input wire [16:1] g,
+    output wire mismatch,
+    output reg [16:1] mismatch_faddr,
+    output reg [16:1] mismatch_data
 );
 
 wire [16:1] faddr;
@@ -89,6 +96,82 @@ always @(posedge clk or negedge rst_n) begin
         endcase
     end
 end
+
+reg [3:0] mismatch_timer;
+assign mismatch = mismatch_timer != 0;
+reg [16:1] shadow_word;
+reg [16:1] shadow_addr;
+reg shadow_active;
+reg shadow_fixed;
+
+reg mrgg_r;
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        mrgg_r <= 1'b0;
+    end else begin
+        mrgg_r <= mrgg;
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        shadow_fixed <= 1'b0;
+        shadow_word <= 16'b0;
+        shadow_addr <= 16'b0;
+    end else begin
+        if (mt02) begin
+            if (s >= `FIXED_BASE_ADDR) begin
+                shadow_fixed <= 1'b1;
+                shadow_word <= fixed_data;
+                shadow_addr <= faddr;
+            end else begin
+                shadow_fixed <= 1'b0;
+            end
+        end
+    end
+end
+
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        shadow_active <= 1'b0;
+    end else begin
+        if (mwg) begin
+            shadow_active <= 1'b0;
+        end else begin
+            if (shadow_fixed) begin
+                if (mt07) begin
+                    shadow_active <= 1'b1;
+                end
+            end else begin
+                if (mt04) begin
+                    shadow_active <= 1'b0;
+                end
+            end
+        end
+    end
+end
+
+
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        mismatch_timer <= 4'b0;
+        mismatch_faddr <= 16'b0;
+        mismatch_data <= 16'b0;
+    end else begin
+        if (mismatch_timer > 4'b0) begin
+            mismatch_timer <= mismatch_timer - 1;
+        end
+
+        if (shadow_active & mrgg_r & ~mrgg) begin
+            if (g != {shadow_word[16],shadow_word[16:2]}) begin
+                mismatch_timer <= 4'hF;
+                mismatch_faddr <= shadow_addr;
+                mismatch_data <= g;
+            end
+        end
+    end
+end
+
 
 reg read_done;
 assign data_out = read_done ? rope_mem_data : 16'b0;
