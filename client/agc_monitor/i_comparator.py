@@ -114,7 +114,7 @@ class IComparator(QWidget):
             self._sqext_ign = sqext_ign
             self._usbif.send(um.WriteControlICompIgnore(br=br_ign, st=st_ign, sqext=sqext_ign, sq=sq_ign))
 
-        self._inst_value.setText(agc.disassemble(sqext, sq, st))
+        self._inst_value.setText(agc.disassemble_subinst(sqext, sq, st))
 
     def _update_status(self):
         status_cmp = {v: self._status_cmp_switches[v].isChecked() for v in STATUS_INDS.keys()}
