@@ -2,8 +2,8 @@
 # Vivado v2018.3 (64-bit)
 # SW Build 2405991 on Thu Dec  6 23:36:41 MST 2018
 # IP Build 2404404 on Fri Dec  7 01:43:56 MST 2018
-# Start of session at: Sat Jun  8 09:05:32 2019
-# Process ID: 12164
+# Start of session at: Mon Jul  1 18:32:21 2019
+# Process ID: 26126
 # Current directory: /home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1
 # Command line: vivado -log agc_monitor.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source agc_monitor.tcl
 # Log file: /home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/agc_monitor.vds
@@ -18,9 +18,9 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z020'
 INFO: Launching helper process for spawning children vivado processes
-INFO: Helper process launched with PID 12185 
+INFO: Helper process launched with PID 26234 
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:03 . Memory (MB): peak = 1349.938 ; gain = 0.000 ; free physical = 4512 ; free virtual = 18945
+Starting RTL Elaboration : Time (s): cpu = 00:00:02 ; elapsed = 00:00:02 . Memory (MB): peak = 1345.574 ; gain = 4.637 ; free physical = 2280 ; free virtual = 17413
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'agc_monitor' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_monitor.v:4]
 INFO: [Synth 8-6157] synthesizing module 'io_circuits' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/io_circuits.v:4]
@@ -68,19 +68,19 @@ INFO: [Synth 8-6157] synthesizing module 'cmd_receiver' [/home/mike/agc_monitor/
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v:62]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v:81]
 INFO: [Synth 8-6155] done synthesizing module 'cmd_receiver' (4#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_receiver.v:6]
-INFO: [Synth 8-6157] synthesizing module 'cmd_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/cmd_fifo_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'cmd_fifo' (5#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/cmd_fifo_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'cmd_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/cmd_fifo_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'cmd_fifo' (5#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/cmd_fifo_stub.v:6]
 WARNING: [Synth 8-350] instance 'cmd_queue' of module 'cmd_fifo' requires 11 connections, but only 9 given [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface.v:83]
-INFO: [Synth 8-6157] synthesizing module 'read_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/read_fifo_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'read_fifo' (6#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/read_fifo_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'read_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/read_fifo_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'read_fifo' (6#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/read_fifo_stub.v:6]
 INFO: [Synth 8-6157] synthesizing module 'msg_sender' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v:6]
 	Parameter IDLE bound to: 0 - type: integer 
 	Parameter ACTIVE bound to: 1 - type: integer 
 	Parameter ESCAPE bound to: 2 - type: integer 
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v:86]
 INFO: [Synth 8-6155] done synthesizing module 'msg_sender' (7#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/msg_sender.v:6]
-INFO: [Synth 8-6157] synthesizing module 'read_byte_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/read_byte_fifo_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'read_byte_fifo' (8#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/read_byte_fifo_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'read_byte_fifo' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/read_byte_fifo_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'read_byte_fifo' (8#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/read_byte_fifo_stub.v:6]
 WARNING: [Synth 8-350] instance 'read_byte_queue' of module 'read_byte_fifo' requires 12 connections, but only 10 given [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface.v:156]
 INFO: [Synth 8-6155] done synthesizing module 'usb_interface' (9#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/usb_interface.v:4]
 INFO: [Synth 8-6157] synthesizing module 'cmd_controller' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_controller.v:6]
@@ -96,6 +96,7 @@ INFO: [Synth 8-6157] synthesizing module 'cmd_controller' [/home/mike/agc_monito
 	Parameter MON_CHANNELS bound to: 9 - type: integer 
 	Parameter MON_DSKY bound to: 10 - type: integer 
 	Parameter TRACE bound to: 11 - type: integer 
+	Parameter NASSP bound to: 12 - type: integer 
 	Parameter SEND_READ_MSG bound to: 15 - type: integer 
 INFO: [Synth 8-6155] done synthesizing module 'cmd_controller' (10#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/cmd_controller.v:6]
 INFO: [Synth 8-6157] synthesizing module 'control_regs' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/control_regs.v:6]
@@ -116,8 +117,8 @@ INFO: [Synth 8-6157] synthesizing module 'status_regs' [/home/mike/agc_monitor/f
 	Parameter WATCH bound to: 9 - type: integer 
 	Parameter PIPAL bound to: 10 - type: integer 
 	Parameter WARN bound to: 11 - type: integer 
-INFO: [Synth 8-6157] synthesizing module 'mon_adc' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/mon_adc_stub.v:5]
-INFO: [Synth 8-6155] done synthesizing module 'mon_adc' (12#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/mon_adc_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'mon_adc' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/mon_adc_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'mon_adc' (12#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/mon_adc_stub.v:5]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/status_regs.v:102]
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/status_regs.v:199]
 INFO: [Synth 8-6155] done synthesizing module 'status_regs' (13#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/status_regs.v:6]
@@ -264,8 +265,8 @@ INFO: [Synth 8-6155] done synthesizing module 'agc_channels' (28#1) [/home/mike/
 INFO: [Synth 8-6157] synthesizing module 'core_rope_sim' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/core_rope_sim.v:6]
 INFO: [Synth 8-6157] synthesizing module 'fixed_addr_decoder' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_decoder.v:4]
 INFO: [Synth 8-6155] done synthesizing module 'fixed_addr_decoder' (29#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/fixed_addr_decoder.v:4]
-INFO: [Synth 8-6157] synthesizing module 'rope_sim_mem' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/rope_sim_mem_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'rope_sim_mem' (30#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/rope_sim_mem_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'rope_sim_mem' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/rope_sim_mem_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'rope_sim_mem' (30#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/rope_sim_mem_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'core_rope_sim' (31#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/core_rope_sim.v:6]
 INFO: [Synth 8-6157] synthesizing module 'erasable_mem_sim' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/erasable_mem_sim.v:6]
 	Parameter IDLE bound to: 2'b00 
@@ -273,11 +274,11 @@ INFO: [Synth 8-6157] synthesizing module 'erasable_mem_sim' [/home/mike/agc_moni
 	Parameter COMPLETE bound to: 2'b10 
 INFO: [Synth 8-6157] synthesizing module 'erasable_addr_decoder' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/erasable_addr_decoder.v:4]
 INFO: [Synth 8-6155] done synthesizing module 'erasable_addr_decoder' (32#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/erasable_addr_decoder.v:4]
-INFO: [Synth 8-6157] synthesizing module 'erasable_sim_mem' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/erasable_sim_mem_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'erasable_sim_mem' (33#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/erasable_sim_mem_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'erasable_sim_mem' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/erasable_sim_mem_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'erasable_sim_mem' (33#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/erasable_sim_mem_stub.v:6]
 INFO: [Synth 8-6157] synthesizing module 'unedit' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/unedit.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'unedit' (34#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/unedit.v:6]
-INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/erasable_mem_sim.v:116]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/erasable_mem_sim.v:120]
 INFO: [Synth 8-6155] done synthesizing module 'erasable_mem_sim' (35#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/erasable_mem_sim.v:6]
 INFO: [Synth 8-6157] synthesizing module 'monitor_dsky' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_dsky.v:6]
 	Parameter IDLE bound to: 0 - type: integer 
@@ -293,18 +294,35 @@ INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/ag
 INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_dsky.v:373]
 INFO: [Synth 8-6155] done synthesizing module 'monitor_dsky' (36#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor_dsky.v:6]
 INFO: [Synth 8-6157] synthesizing module 'instruction_trace' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/instruction_trace.v:4]
-INFO: [Synth 8-6157] synthesizing module 'trace_memory' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/trace_memory_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'trace_memory' (37#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/trace_memory_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'trace_memory' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/trace_memory_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'trace_memory' (37#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/trace_memory_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'instruction_trace' (38#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/instruction_trace.v:4]
-INFO: [Synth 8-6155] done synthesizing module 'monitor' (39#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor.v:4]
+INFO: [Synth 8-6157] synthesizing module 'nassp_bridge' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/nassp_bridge.v:6]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/nassp_bridge.v:163]
+INFO: [Synth 8-6157] synthesizing module 'ones_comp_adder' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/ones_comp_adder.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'ones_comp_adder' (39#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/ones_comp_adder.v:6]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/nassp_bridge.v:255]
+INFO: [Synth 8-155] case statement is not full and has no default [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/nassp_bridge.v:301]
+INFO: [Synth 8-6155] done synthesizing module 'nassp_bridge' (40#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/nassp_bridge.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'monitor' (41#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/monitor.v:4]
 INFO: [Synth 8-6157] synthesizing module 'monitor_ps_wrapper' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v:12]
 INFO: [Synth 8-6157] synthesizing module 'monitor_ps' [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/synth/monitor_ps.v:13]
-INFO: [Synth 8-6157] synthesizing module 'monitor_ps_processing_system7_0_0' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'monitor_ps_processing_system7_0_0' (40#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-12164-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'monitor_ps_processing_system7_0_0' [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'monitor_ps_processing_system7_0_0' (42#1) [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/.Xil/Vivado-26126-luminary/realtime/monitor_ps_processing_system7_0_0_stub.v:6]
 WARNING: [Synth 8-350] instance 'processing_system7_0' of module 'monitor_ps_processing_system7_0_0' requires 25 connections, but only 22 given [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/synth/monitor_ps.v:79]
-INFO: [Synth 8-6155] done synthesizing module 'monitor_ps' (41#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/synth/monitor_ps.v:13]
-INFO: [Synth 8-6155] done synthesizing module 'monitor_ps_wrapper' (42#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v:12]
-INFO: [Synth 8-6155] done synthesizing module 'agc_monitor' (43#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_monitor.v:4]
+INFO: [Synth 8-6155] done synthesizing module 'monitor_ps' (43#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/synth/monitor_ps.v:13]
+INFO: [Synth 8-6155] done synthesizing module 'monitor_ps_wrapper' (44#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/bd/monitor_ps/hdl/monitor_ps_wrapper.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'agc_monitor' (45#1) [/home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/agc_monitor.v:4]
+WARNING: [Synth 8-3331] design nassp_bridge has unconnected port mt[10]
+WARNING: [Synth 8-3331] design nassp_bridge has unconnected port mt[9]
+WARNING: [Synth 8-3331] design nassp_bridge has unconnected port mt[8]
+WARNING: [Synth 8-3331] design nassp_bridge has unconnected port mt[7]
+WARNING: [Synth 8-3331] design nassp_bridge has unconnected port mt[6]
+WARNING: [Synth 8-3331] design nassp_bridge has unconnected port mt[5]
+WARNING: [Synth 8-3331] design nassp_bridge has unconnected port mt[4]
+WARNING: [Synth 8-3331] design nassp_bridge has unconnected port mt[3]
+WARNING: [Synth 8-3331] design nassp_bridge has unconnected port mt[2]
+WARNING: [Synth 8-3331] design nassp_bridge has unconnected port g[15]
 WARNING: [Synth 8-3331] design instruction_trace has unconnected port mt[10]
 WARNING: [Synth 8-3331] design instruction_trace has unconnected port mt[9]
 WARNING: [Synth 8-3331] design instruction_trace has unconnected port mt[7]
@@ -395,19 +413,9 @@ WARNING: [Synth 8-3331] design agc_channels has unconnected port addr[15]
 WARNING: [Synth 8-3331] design agc_channels has unconnected port addr[14]
 WARNING: [Synth 8-3331] design agc_channels has unconnected port addr[13]
 WARNING: [Synth 8-3331] design agc_channels has unconnected port addr[12]
-WARNING: [Synth 8-3331] design agc_channels has unconnected port addr[11]
-WARNING: [Synth 8-3331] design agc_channels has unconnected port addr[10]
-WARNING: [Synth 8-3331] design agc_channels has unconnected port addr[9]
-WARNING: [Synth 8-3331] design agc_erasable has unconnected port addr[15]
-WARNING: [Synth 8-3331] design agc_erasable has unconnected port addr[14]
-WARNING: [Synth 8-3331] design agc_erasable has unconnected port addr[13]
-WARNING: [Synth 8-3331] design agc_erasable has unconnected port addr[12]
-WARNING: [Synth 8-3331] design agc_erasable has unconnected port addr[11]
-WARNING: [Synth 8-3331] design agc_erasable has unconnected port data_in[0]
-WARNING: [Synth 8-3331] design agc_erasable has unconnected port periph_read_data[15]
 INFO: [Common 17-14] Message 'Synth 8-3331' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:05 . Memory (MB): peak = 1411.328 ; gain = 61.391 ; free physical = 4501 ; free virtual = 18936
+Finished RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1414.324 ; gain = 73.387 ; free physical = 2271 ; free virtual = 17402
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -420,10 +428,10 @@ Report Check Netlist:
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1411.328 ; gain = 61.391 ; free physical = 4506 ; free virtual = 18941
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1414.324 ; gain = 73.387 ; free physical = 2280 ; free virtual = 17409
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1411.328 ; gain = 61.391 ; free physical = 4506 ; free virtual = 18941
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:03 ; elapsed = 00:00:04 . Memory (MB): peak = 1414.324 ; gain = 73.387 ; free physical = 2280 ; free virtual = 17409
 ---------------------------------------------------------------------------------
 INFO: [Device 21-403] Loading part xc7z020clg484-1
 INFO: [Project 1-570] Preparing netlist for logic optimization
@@ -452,27 +460,27 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/agc_monitor_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Parsing XDC File [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/dont_touch.xdc]
 Finished Parsing XDC File [/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/dont_touch.xdc]
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1802.383 ; gain = 0.000 ; free physical = 4213 ; free virtual = 18648
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1805.379 ; gain = 0.000 ; free physical = 1981 ; free virtual = 17104
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1802.383 ; gain = 0.000 ; free physical = 4213 ; free virtual = 18649
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1805.379 ; gain = 0.000 ; free physical = 1981 ; free virtual = 17105
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1802.383 ; gain = 0.000 ; free physical = 4213 ; free virtual = 18649
-Constraint Validation Runtime : Time (s): cpu = 00:00:00.02 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1802.383 ; gain = 0.000 ; free physical = 4213 ; free virtual = 18649
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1805.379 ; gain = 0.000 ; free physical = 1981 ; free virtual = 17105
+Constraint Validation Runtime : Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00.01 . Memory (MB): peak = 1805.379 ; gain = 0.000 ; free physical = 1981 ; free virtual = 17105
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mon/crs/rope_mem' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mon/ems/core_mem' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'mon/trace/mem' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1802.383 ; gain = 452.445 ; free physical = 4311 ; free virtual = 18747
+Finished Constraint Validation : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 2059 ; free virtual = 17182
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z020clg484-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:16 . Memory (MB): peak = 1802.383 ; gain = 452.445 ; free physical = 4311 ; free virtual = 18747
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 2059 ; free virtual = 17182
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -747,7 +755,7 @@ Applied set_property DONT_TOUCH = true for mon/crs/rope_mem. (constraint file  a
 Applied set_property DONT_TOUCH = true for mon/ems/core_mem. (constraint file  auto generated constraint, line ).
 Applied set_property DONT_TOUCH = true for mon/trace/mem. (constraint file  auto generated constraint, line ).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:17 . Memory (MB): peak = 1802.383 ; gain = 452.445 ; free physical = 4311 ; free virtual = 18746
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:11 ; elapsed = 00:00:12 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 2060 ; free virtual = 17181
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'cmd_receiver'
 INFO: [Synth 8-5546] ROM "next_state" won't be mapped to RAM because it is too sparse
@@ -831,6 +839,15 @@ INFO: [Synth 8-5546] ROM "read_data" won't be mapped to RAM because it is too sp
 INFO: [Synth 8-5544] ROM "mnhsbf" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "keycode" won't be mapped to Block RAM because address size (3) smaller than threshold (5)
 INFO: [Synth 8-5544] ROM "next_state" won't be mapped to Block RAM because address size (1) smaller than threshold (5)
+INFO: [Synth 8-5546] ROM "agc_pipax" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "agc_pipay" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "agc_pipaz" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "ch30_en" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "ch31_en" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "ch32_en" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "ch33_en" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "periph_s" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-5546] ROM "read_data" won't be mapped to RAM because it is too sparse
 ---------------------------------------------------------------------------------------------------
                    State |                     New Encoding |                Previous Encoding 
 ---------------------------------------------------------------------------------------------------
@@ -904,7 +921,7 @@ INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 
 ---------------------------------------------------------------------------------------------------
 INFO: [Synth 8-3354] encoded FSM with state register 'state_reg' using encoding 'sequential' in module 'monitor_dsky'
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1802.383 ; gain = 452.445 ; free physical = 4297 ; free virtual = 18734
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:14 ; elapsed = 00:00:17 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1921 ; free virtual = 17109
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -917,7 +934,8 @@ Start RTL Component Statistics
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input     16 Bit       Adders := 1     
+	   2 Input     16 Bit       Adders := 2     
+	   2 Input     15 Bit       Adders := 1     
 	   2 Input     14 Bit       Adders := 1     
 	   3 Input     14 Bit       Adders := 1     
 	   2 Input     12 Bit       Adders := 1     
@@ -936,10 +954,10 @@ Detailed RTL Component Info :
 	               64 Bit    Registers := 1     
 	               40 Bit    Registers := 3     
 	               27 Bit    Registers := 3     
-	               16 Bit    Registers := 37    
-	               15 Bit    Registers := 15    
+	               16 Bit    Registers := 40    
+	               15 Bit    Registers := 27    
 	               14 Bit    Registers := 1     
-	               12 Bit    Registers := 18    
+	               12 Bit    Registers := 20    
 	               11 Bit    Registers := 3     
 	               10 Bit    Registers := 3     
 	                9 Bit    Registers := 1     
@@ -950,19 +968,19 @@ Detailed RTL Component Info :
 	                4 Bit    Registers := 36    
 	                3 Bit    Registers := 18    
 	                2 Bit    Registers := 11    
-	                1 Bit    Registers := 140   
+	                1 Bit    Registers := 155   
 +---Muxes : 
 	  38 Input     64 Bit        Muxes := 1     
 	   7 Input     40 Bit        Muxes := 1     
 	   2 Input     40 Bit        Muxes := 2     
 	  15 Input     27 Bit        Muxes := 3     
-	   2 Input     16 Bit        Muxes := 39    
+	   2 Input     16 Bit        Muxes := 45    
 	   8 Input     16 Bit        Muxes := 1     
-	   4 Input     16 Bit        Muxes := 8     
-	   2 Input     15 Bit        Muxes := 21    
+	   4 Input     16 Bit        Muxes := 9     
+	   2 Input     15 Bit        Muxes := 22    
 	   8 Input     15 Bit        Muxes := 1     
 	  22 Input     15 Bit        Muxes := 1     
-	   4 Input     15 Bit        Muxes := 1     
+	   4 Input     15 Bit        Muxes := 2     
 	   2 Input     14 Bit        Muxes := 1     
 	   2 Input     13 Bit        Muxes := 1     
 	   2 Input     12 Bit        Muxes := 15    
@@ -974,33 +992,34 @@ Detailed RTL Component Info :
 	   3 Input      8 Bit        Muxes := 2     
 	   2 Input      7 Bit        Muxes := 1     
 	   2 Input      6 Bit        Muxes := 1     
+	   7 Input      6 Bit        Muxes := 1     
 	   2 Input      5 Bit        Muxes := 9     
 	  22 Input      5 Bit        Muxes := 1     
 	   3 Input      5 Bit        Muxes := 2     
-	   2 Input      4 Bit        Muxes := 45    
-	  12 Input      4 Bit        Muxes := 1     
-	  14 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 44    
+	  13 Input      4 Bit        Muxes := 1     
+	   6 Input      4 Bit        Muxes := 2     
 	   3 Input      4 Bit        Muxes := 1     
-	   6 Input      4 Bit        Muxes := 1     
 	   2 Input      3 Bit        Muxes := 4     
 	   3 Input      3 Bit        Muxes := 3     
+	  15 Input      3 Bit        Muxes := 1     
 	   4 Input      3 Bit        Muxes := 2     
 	  10 Input      3 Bit        Muxes := 1     
 	   3 Input      2 Bit        Muxes := 4     
 	   2 Input      2 Bit        Muxes := 16    
 	   4 Input      2 Bit        Muxes := 5     
-	   2 Input      1 Bit        Muxes := 185   
+	   2 Input      1 Bit        Muxes := 215   
 	   3 Input      1 Bit        Muxes := 16    
-	   4 Input      1 Bit        Muxes := 15    
-	  14 Input      1 Bit        Muxes := 20    
+	   4 Input      1 Bit        Muxes := 19    
+	  15 Input      1 Bit        Muxes := 22    
 	  34 Input      1 Bit        Muxes := 1     
 	  36 Input      1 Bit        Muxes := 31    
 	   8 Input      1 Bit        Muxes := 12    
 	  12 Input      1 Bit        Muxes := 1     
-	   6 Input      1 Bit        Muxes := 2     
+	   6 Input      1 Bit        Muxes := 9     
 	  11 Input      1 Bit        Muxes := 1     
 	  13 Input      1 Bit        Muxes := 4     
-	   7 Input      1 Bit        Muxes := 1     
+	   7 Input      1 Bit        Muxes := 2     
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -1114,11 +1133,12 @@ Detailed RTL Component Info :
 	               40 Bit    Registers := 1     
 	                4 Bit    Registers := 1     
 +---Muxes : 
-	  12 Input      4 Bit        Muxes := 1     
-	   2 Input      4 Bit        Muxes := 8     
-	  14 Input      4 Bit        Muxes := 1     
-	  14 Input      1 Bit        Muxes := 20    
-	   2 Input      1 Bit        Muxes := 4     
+	  13 Input      4 Bit        Muxes := 1     
+	   2 Input      4 Bit        Muxes := 7     
+	   6 Input      4 Bit        Muxes := 1     
+	  15 Input      3 Bit        Muxes := 1     
+	  15 Input      1 Bit        Muxes := 22    
+	   2 Input      1 Bit        Muxes := 5     
 Module control_regs 
 Detailed RTL Component Info : 
 +---XORs : 
@@ -1498,6 +1518,28 @@ Detailed RTL Component Info :
 	   2 Input      6 Bit        Muxes := 1     
 	   3 Input      3 Bit        Muxes := 1     
 	   2 Input      1 Bit        Muxes := 36    
+Module ones_comp_adder 
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input     16 Bit       Adders := 1     
+	   2 Input     15 Bit       Adders := 1     
+Module nassp_bridge 
+Detailed RTL Component Info : 
++---Registers : 
+	               16 Bit    Registers := 3     
+	               15 Bit    Registers := 12    
+	               12 Bit    Registers := 2     
+	                1 Bit    Registers := 15    
++---Muxes : 
+	   2 Input     16 Bit        Muxes := 6     
+	   4 Input     16 Bit        Muxes := 1     
+	   4 Input     15 Bit        Muxes := 1     
+	   2 Input     15 Bit        Muxes := 1     
+	   7 Input      6 Bit        Muxes := 1     
+	   2 Input      1 Bit        Muxes := 29    
+	   7 Input      1 Bit        Muxes := 1     
+	   4 Input      1 Bit        Muxes := 4     
+	   6 Input      1 Bit        Muxes := 7     
 ---------------------------------------------------------------------------------
 Finished RTL Hierarchical Component Statistics
 ---------------------------------------------------------------------------------
@@ -1553,15 +1595,55 @@ INFO: [Synth 8-5546] ROM "start_req" won't be mapped to RAM because it is too sp
 INFO: [Synth 8-5546] ROM "proceed_req" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "adv_s" won't be mapped to RAM because it is too sparse
 INFO: [Synth 8-5546] ROM "read_data" won't be mapped to RAM because it is too sparse
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mon/nassp/\target_addr_reg[12] )
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[1]' (FDC) to 'mon/nassp/periph_s_reg[12]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_s_reg[2]' (FDC) to 'mon/nassp/periph_s_reg[3]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[2]' (FDC) to 'mon/nassp/periph_s_reg[12]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[3]' (FDC) to 'mon/nassp/periph_s_reg[12]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_s_reg[4]' (FDC) to 'mon/nassp/periph_s_reg[5]'
 INFO: [Synth 8-3886] merging instance 'mon/ctrl_regs/periph_bb_reg[4]' (FDC) to 'mon/ctrl_regs/periph_bb_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[4]' (FDC) to 'mon/nassp/periph_s_reg[12]'
 INFO: [Synth 8-3886] merging instance 'mon/ctrl_regs/periph_bb_reg[5]' (FDC) to 'mon/ctrl_regs/periph_bb_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[5]' (FDC) to 'mon/nassp/periph_s_reg[12]'
 INFO: [Synth 8-3886] merging instance 'mon/ctrl_regs/periph_bb_reg[6]' (FDC) to 'mon/ctrl_regs/periph_bb_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[6]' (FDC) to 'mon/nassp/periph_s_reg[12]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_s_reg[7]' (FDC) to 'mon/nassp/periph_s_reg[12]'
 INFO: [Synth 8-3886] merging instance 'mon/ctrl_regs/periph_bb_reg[7]' (FDC) to 'mon/ctrl_regs/periph_bb_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[7]' (FDC) to 'mon/nassp/periph_s_reg[12]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_s_reg[8]' (FDC) to 'mon/nassp/periph_s_reg[12]'
 INFO: [Synth 8-3886] merging instance 'mon/ctrl_regs/periph_bb_reg[8]' (FDC) to 'mon/ctrl_regs/periph_bb_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[8]' (FDC) to 'mon/nassp/periph_s_reg[12]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_s_reg[9]' (FDC) to 'mon/nassp/periph_s_reg[12]'
 INFO: [Synth 8-3886] merging instance 'mon/ctrl_regs/periph_bb_reg[9]' (FDC) to 'mon/ctrl_regs/periph_bb_reg[10]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[9]' (FDC) to 'mon/nassp/periph_s_reg[12]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_s_reg[10]' (FDC) to 'mon/nassp/periph_s_reg[12]'
 INFO: [Synth 8-3333] propagating constant 0 across sequential element (mon/ctrl_regs/\periph_bb_reg[10] )
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[10]' (FDC) to 'mon/nassp/periph_s_reg[12]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_s_reg[11]' (FDC) to 'mon/nassp/periph_s_reg[12]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[11]' (FDC) to 'mon/nassp/periph_s_reg[12]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_s_reg[12]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[12]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[13]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[14]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_data_reg[15]' (FDC) to 'mon/nassp/periph_data_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/periph_bb_reg[15]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[1]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[2]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[3]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[4]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[5]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[7]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[8]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[9]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[10]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[11]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[12]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[13]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[14]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3886] merging instance 'mon/nassp/mdt_redirect_reg[15]' (FDC) to 'mon/nassp/mdt_redirect_reg[16]'
+INFO: [Synth 8-3333] propagating constant 0 across sequential element (mon/nassp/\mdt_redirect_reg[16] )
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:46 ; elapsed = 00:00:51 . Memory (MB): peak = 1802.383 ; gain = 452.445 ; free physical = 4260 ; free virtual = 18703
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:34 ; elapsed = 00:00:38 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 2008 ; free virtual = 17128
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1575,13 +1657,13 @@ Start Applying XDC Timing Constraints
 INFO: [Synth 8-5578] Moved timing constraint from pin 'monitor_ps/monitor_ps_i/processing_system7_0/FCLK_CLK0' to pin 'monitor_ps/monitor_ps_i/processing_system7_0/bbstub_FCLK_CLK0/O'
 INFO: [Synth 8-5819] Moved 1 constraints on hierarchical pins to their respective driving/loading pins
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:54 ; elapsed = 00:00:59 . Memory (MB): peak = 1802.383 ; gain = 452.445 ; free physical = 4142 ; free virtual = 18585
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:39 ; elapsed = 00:00:43 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1863 ; free virtual = 17010
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:01 ; elapsed = 00:01:06 . Memory (MB): peak = 1818.391 ; gain = 468.453 ; free physical = 4122 ; free virtual = 18564
+Finished Timing Optimization : Time (s): cpu = 00:00:41 ; elapsed = 00:00:45 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1857 ; free virtual = 17000
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1595,7 +1677,7 @@ Start Technology Mapping
 INFO: [Synth 8-3886] merging instance 'mon/mon_regs/monwt_sr_reg[0]' (FDC) to 'mon/ctmr/monwt_d_reg'
 INFO: [Synth 8-3886] merging instance 'mon/crs/mrgg_r_reg' (FDC) to 'mon/ems/mrgg_p_reg'
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:04 ; elapsed = 00:01:09 . Memory (MB): peak = 1818.391 ; gain = 468.453 ; free physical = 4119 ; free virtual = 18561
+Finished Technology Mapping : Time (s): cpu = 00:00:43 ; elapsed = 00:00:47 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1859 ; free virtual = 17000
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1620,7 +1702,7 @@ INFO: [Synth 8-5365] Flop mon/periph_insts/request_reg[0] is being inverted and 
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:05 ; elapsed = 00:01:10 . Memory (MB): peak = 1818.391 ; gain = 468.453 ; free physical = 4119 ; free virtual = 18561
+Finished IO Insertion : Time (s): cpu = 00:00:45 ; elapsed = 00:00:48 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1848 ; free virtual = 16996
 ---------------------------------------------------------------------------------
 
 Report Check Netlist: 
@@ -1633,7 +1715,7 @@ Report Check Netlist:
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:05 ; elapsed = 00:01:10 . Memory (MB): peak = 1818.391 ; gain = 468.453 ; free physical = 4119 ; free virtual = 18561
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:45 ; elapsed = 00:00:49 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1848 ; free virtual = 16996
 ---------------------------------------------------------------------------------
 
 Report RTL Partitions: 
@@ -1645,25 +1727,25 @@ Report RTL Partitions:
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:06 ; elapsed = 00:01:11 . Memory (MB): peak = 1818.391 ; gain = 468.453 ; free physical = 4119 ; free virtual = 18561
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:45 ; elapsed = 00:00:49 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1848 ; free virtual = 16997
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:06 ; elapsed = 00:01:11 . Memory (MB): peak = 1818.391 ; gain = 468.453 ; free physical = 4119 ; free virtual = 18561
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:45 ; elapsed = 00:00:49 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1848 ; free virtual = 16997
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:06 ; elapsed = 00:01:11 . Memory (MB): peak = 1818.391 ; gain = 468.453 ; free physical = 4119 ; free virtual = 18561
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:45 ; elapsed = 00:00:49 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1848 ; free virtual = 16997
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:06 ; elapsed = 00:01:11 . Memory (MB): peak = 1818.391 ; gain = 468.453 ; free physical = 4119 ; free virtual = 18561
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:45 ; elapsed = 00:00:49 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1848 ; free virtual = 16997
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -1696,16 +1778,16 @@ Report Cell Usage:
 |7     |rope_sim_mem                      |     1|
 |8     |trace_memory                      |     1|
 |9     |BUFG                              |     2|
-|10    |CARRY4                            |    33|
-|11    |LUT1                              |    62|
-|12    |LUT2                              |   146|
-|13    |LUT3                              |   556|
-|14    |LUT4                              |   266|
-|15    |LUT5                              |   297|
-|16    |LUT6                              |   921|
-|17    |MUXF7                             |    40|
-|18    |MUXF8                             |     4|
-|19    |FDCE                              |  1839|
+|10    |CARRY4                            |    41|
+|11    |LUT1                              |    63|
+|12    |LUT2                              |   176|
+|13    |LUT3                              |   565|
+|14    |LUT4                              |   275|
+|15    |LUT5                              |   361|
+|16    |LUT6                              |  1080|
+|17    |MUXF7                             |    41|
+|18    |MUXF8                             |     2|
+|19    |FDCE                              |  2065|
 |20    |FDPE                              |    71|
 |21    |IBUF                              |    91|
 |22    |IOBUF                             |     8|
@@ -1717,49 +1799,49 @@ Report Instance Areas:
 +------+------------------+---------------------------+------+
 |      |Instance          |Module                     |Cells |
 +------+------------------+---------------------------+------+
-|1     |top               |                           |  4642|
-|2     |  io              |io_circuits                |   685|
+|1     |top               |                           |  5147|
+|2     |  io              |io_circuits                |   703|
 |3     |    db1           |debounce                   |    15|
-|4     |    db10          |debounce__parameterized3   |    46|
-|5     |    db11          |debounce__parameterized4   |    20|
+|4     |    db10          |debounce__parameterized3   |    49|
+|5     |    db11          |debounce__parameterized4   |    19|
 |6     |    db12          |debounce_9                 |    15|
-|7     |    db13          |debounce_10                |    14|
-|8     |    db14          |debounce_11                |    15|
+|7     |    db13          |debounce_10                |    15|
+|8     |    db14          |debounce_11                |    14|
 |9     |    db15          |debounce_12                |    14|
 |10    |    db16          |debounce_13                |    14|
 |11    |    db17          |debounce_14                |    15|
-|12    |    db18          |debounce_15                |    15|
-|13    |    db19          |debounce_16                |    16|
+|12    |    db18          |debounce_15                |    14|
+|13    |    db19          |debounce_16                |    14|
 |14    |    db2           |debounce_17                |    24|
-|15    |    db20          |debounce_18                |    14|
-|16    |    db21          |debounce_19                |    14|
+|15    |    db20          |debounce_18                |    15|
+|16    |    db21          |debounce_19                |    15|
 |17    |    db22          |debounce_20                |    15|
 |18    |    db23          |debounce_21                |    14|
-|19    |    db24          |debounce_22                |    15|
-|20    |    db25          |debounce_23                |    15|
-|21    |    db26          |debounce_24                |    18|
-|22    |    db27          |debounce_25                |    17|
+|19    |    db24          |debounce_22                |    14|
+|20    |    db25          |debounce_23                |    16|
+|21    |    db26          |debounce_24                |    20|
+|22    |    db27          |debounce_25                |    19|
 |23    |    db28          |debounce_26                |    15|
 |24    |    db29          |debounce_27                |    16|
-|25    |    db3           |debounce__parameterized0   |    68|
+|25    |    db3           |debounce__parameterized0   |    76|
 |26    |    db30          |debounce_28                |    16|
 |27    |    db31          |debounce_29                |    18|
 |28    |    db32          |debounce_30                |    14|
-|29    |    db4           |debounce__parameterized1   |    93|
+|29    |    db4           |debounce__parameterized1   |    98|
 |30    |    db5           |debounce_31                |    15|
 |31    |    db6           |debounce_32                |    15|
 |32    |    db7           |debounce_33                |    22|
 |33    |    db8           |debounce_34                |    15|
 |34    |    db9           |debounce__parameterized2   |    33|
-|35    |  mon             |monitor                    |  3803|
-|36    |    channels      |agc_channels               |    22|
-|37    |    cmd_ctrl      |cmd_controller             |   550|
-|38    |    crs           |core_rope_sim              |   133|
+|35    |  mon             |monitor                    |  4290|
+|36    |    channels      |agc_channels               |     6|
+|37    |    cmd_ctrl      |cmd_controller             |   695|
+|38    |    crs           |core_rope_sim              |   127|
 |39    |    ctmr          |clear_timer                |   392|
-|40    |    ctrl_regs     |control_regs               |   517|
-|41    |    ems           |erasable_mem_sim           |   105|
-|42    |    erasable      |agc_erasable               |     6|
-|43    |    fixed         |agc_fixed                  |     4|
+|40    |    ctrl_regs     |control_regs               |   538|
+|41    |    ems           |erasable_mem_sim           |   107|
+|42    |    erasable      |agc_erasable               |     5|
+|43    |    fixed         |agc_fixed                  |     7|
 |44    |    mon_chans     |monitor_channels           |   337|
 |45    |      chan_10     |channel__parameterized4    |    50|
 |46    |      chan_11     |channel__parameterized5    |    15|
@@ -1774,63 +1856,64 @@ Report Instance Areas:
 |55    |      chan_32     |channel__parameterized13   |    15|
 |56    |      chan_33     |channel__parameterized14   |    21|
 |57    |      chan_34     |channel__parameterized15   |    15|
-|58    |      chan_35     |channel__parameterized16   |    30|
-|59    |      chan_4      |channel__parameterized0    |    39|
+|58    |      chan_35     |channel__parameterized16   |    31|
+|59    |      chan_4      |channel__parameterized0    |    38|
 |60    |      chan_5      |channel__parameterized1    |     8|
 |61    |      chan_6      |channel__parameterized2    |     8|
 |62    |      chan_7      |channel__parameterized3    |     3|
 |63    |    mon_dsky      |monitor_dsky               |   268|
-|64    |    mon_regs      |monitor_regs               |   420|
+|64    |    mon_regs      |monitor_regs               |   442|
 |65    |      editing     |edit                       |    28|
-|66    |      reg_a       |register                   |    17|
+|66    |      reg_a       |register                   |    16|
 |67    |      reg_b       |register_0                 |    20|
 |68    |      reg_eb      |register2                  |     3|
 |69    |      reg_fb      |register__parameterized0   |     5|
-|70    |      reg_g       |register2__parameterized1  |    42|
+|70    |      reg_g       |register2__parameterized1  |    40|
 |71    |      reg_l       |register_1                 |    16|
-|72    |      reg_q       |register_2                 |    17|
-|73    |      reg_s       |register2__parameterized0  |    65|
+|72    |      reg_q       |register_2                 |    19|
+|73    |      reg_s       |register2__parameterized0  |    77|
 |74    |      reg_true_eb |register2_3                |     3|
 |75    |      reg_true_fb |register__parameterized0_4 |    10|
-|76    |      reg_true_s  |register__parameterized1   |    26|
+|76    |      reg_true_s  |register__parameterized1   |    37|
 |77    |      reg_u       |register_5                 |    29|
 |78    |      reg_w       |register_6                 |    16|
-|79    |      reg_y       |register_7                 |    41|
-|80    |      reg_z       |register_8                 |    46|
-|81    |    periph_insts  |peripheral_instructions    |   149|
-|82    |    restart_mon   |restart_monitor            |    27|
-|83    |    stat_regs     |status_regs                |   183|
-|84    |    strt_stp      |start_stop                 |    17|
-|85    |    trace         |instruction_trace          |   236|
-|86    |    usb_if        |usb_interface              |   303|
-|87    |      cmd_rx      |cmd_receiver               |    86|
-|88    |      msg_sndr    |msg_sender                 |    96|
-|89    |  monitor_ps      |monitor_ps_wrapper         |     3|
-|90    |    monitor_ps_i  |monitor_ps                 |     3|
+|79    |      reg_y       |register_7                 |    42|
+|80    |      reg_z       |register_8                 |    45|
+|81    |    nassp         |nassp_bridge               |   298|
+|82    |    periph_insts  |peripheral_instructions    |   152|
+|83    |    restart_mon   |restart_monitor            |     9|
+|84    |    stat_regs     |status_regs                |   181|
+|85    |    strt_stp      |start_stop                 |    17|
+|86    |    trace         |instruction_trace          |   236|
+|87    |    usb_if        |usb_interface              |   296|
+|88    |      cmd_rx      |cmd_receiver               |    86|
+|89    |      msg_sndr    |msg_sender                 |    93|
+|90    |  monitor_ps      |monitor_ps_wrapper         |     3|
+|91    |    monitor_ps_i  |monitor_ps                 |     3|
 +------+------------------+---------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:06 ; elapsed = 00:01:11 . Memory (MB): peak = 1818.391 ; gain = 468.453 ; free physical = 4119 ; free virtual = 18561
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:45 ; elapsed = 00:00:49 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1848 ; free virtual = 16997
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 104 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:59 ; elapsed = 00:01:04 . Memory (MB): peak = 1818.391 ; gain = 77.398 ; free physical = 4175 ; free virtual = 18618
-Synthesis Optimization Complete : Time (s): cpu = 00:01:06 ; elapsed = 00:01:11 . Memory (MB): peak = 1818.398 ; gain = 468.453 ; free physical = 4186 ; free virtual = 18629
+Synthesis finished with 0 errors, 0 critical warnings and 114 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:40 ; elapsed = 00:00:44 . Memory (MB): peak = 1805.379 ; gain = 73.387 ; free physical = 1903 ; free virtual = 17052
+Synthesis Optimization Complete : Time (s): cpu = 00:00:45 ; elapsed = 00:00:49 . Memory (MB): peak = 1805.379 ; gain = 464.441 ; free physical = 1914 ; free virtual = 17063
 INFO: [Project 1-571] Translating synthesized netlist
-INFO: [Netlist 29-17] Analyzing 85 Unisim elements for replacement
+INFO: [Netlist 29-17] Analyzing 92 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1850.406 ; gain = 0.000 ; free physical = 4121 ; free virtual = 18563
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1825.395 ; gain = 0.000 ; free physical = 1851 ; free virtual = 16997
 INFO: [Project 1-111] Unisim Transformation Summary:
   A total of 8 instances were transformed.
   IOBUF => IOBUF (IBUF, OBUFT): 8 instances
 
 INFO: [Common 17-83] Releasing license: Synthesis
-313 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
+369 Infos, 106 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:09 ; elapsed = 00:01:14 . Memory (MB): peak = 1850.406 ; gain = 500.828 ; free physical = 4185 ; free virtual = 18627
-Netlist sorting complete. Time (s): cpu = 00:00:00.01 ; elapsed = 00:00:00 . Memory (MB): peak = 1850.406 ; gain = 0.000 ; free physical = 4185 ; free virtual = 18627
+synth_design: Time (s): cpu = 00:00:48 ; elapsed = 00:00:51 . Memory (MB): peak = 1825.395 ; gain = 484.820 ; free physical = 1909 ; free virtual = 17055
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1825.395 ; gain = 0.000 ; free physical = 1909 ; free virtual = 17055
 WARNING: [Constraints 18-5210] No constraints selected for write.
 Resolution: This message can indicate that there are no constraints for the design, or it can indicate that the used_in flags are set such that the constraints are ignored. This later case is used when running synth_design to not write synthesis constraints to the resulting checkpoint. Instead, project constraints are read when the synthesized design is opened.
 INFO: [Common 17-1381] The checkpoint '/home/mike/agc_monitor/fpga/agc_monitor.runs/synth_1/agc_monitor.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file agc_monitor_utilization_synth.rpt -pb agc_monitor_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Jun  8 09:07:00 2019...
+INFO: [Common 17-206] Exiting Vivado at Mon Jul  1 18:33:24 2019...

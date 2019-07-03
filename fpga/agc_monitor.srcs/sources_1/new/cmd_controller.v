@@ -65,7 +65,12 @@ module cmd_controller(
     output reg mon_dsky_write_en,
 
     // Trace control signals
-    output reg trace_read_en
+    output reg trace_read_en,
+
+    // NASSP bridge signals
+    output reg nassp_read_en,
+    output reg nassp_write_en,
+    input wire nassp_write_done
 );
 
 /*******************************************************************************.
@@ -83,6 +88,7 @@ localparam IDLE          = 0,
            MON_CHANNELS  = 9,
            MON_DSKY      = 10,
            TRACE         = 11,
+           NASSP         = 12,
            SEND_READ_MSG = 15;
 
 reg [3:0] state;
@@ -146,6 +152,8 @@ always @(*) begin
     mon_dsky_read_en = 1'b0;
     mon_dsky_write_en = 1'b0;
     trace_read_en = 1'b0;
+    nassp_read_en = 1'b0;
+    nassp_write_en = 1'b0;
 
     case (state)
     IDLE: begin
@@ -166,6 +174,7 @@ always @(*) begin
             `ADDR_GROUP_MON_CHANNELS: next_state = MON_CHANNELS;
             `ADDR_GROUP_MON_DSKY:     next_state = MON_DSKY;
             `ADDR_GROUP_TRACE:        next_state = TRACE;
+            `ADDR_GROUP_NASSP:        next_state = NASSP;
             default:                  next_state = IDLE;
             endcase
         end
@@ -294,6 +303,19 @@ always @(*) begin
             next_state = SEND_READ_MSG;
         end else begin
             next_state = IDLE;
+        end
+    end
+
+    NASSP: begin
+        if (cmd_write_flag) begin
+            if (nassp_write_done) begin
+                next_state = IDLE;
+            end else begin
+                nassp_write_en = 1'b1;
+            end
+        end else begin
+            nassp_read_en = 1'b1;
+            next_state = SEND_READ_MSG;
         end
     end
 

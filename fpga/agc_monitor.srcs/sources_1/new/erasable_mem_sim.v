@@ -28,7 +28,10 @@ module erasable_mem_sim(
     input wire mrgg,
     input wire mwg,
     output wire mamu,
-    output wire [16:1] mdt
+    output wire [16:1] mdt,
+
+    output wire e_cycle_starting,
+    output wire [11:1] e_cycle_addr
 );
 
 localparam IDLE = 2'o0,
@@ -38,13 +41,12 @@ localparam IDLE = 2'o0,
 reg [1:0] state;
 assign mamu = (state != IDLE);
 
-wire [11:1] eaddr;
 wire [2:0] bank;
-assign bank = eaddr[11:9];
+assign bank = e_cycle_addr[11:9];
 erasable_addr_decoder(
     .eb(eb),
     .s(s),
-    .eaddr(eaddr)
+    .eaddr(e_cycle_addr)
 );
 
 wire dv13764;
@@ -63,7 +65,7 @@ wire agc_write_en;
 assign agc_write_en = mamu & mt[11];
 
 wire [11:1] agc_addr;
-assign agc_addr = mamu ? writeback_eaddr : eaddr;
+assign agc_addr = mamu ? writeback_eaddr : e_cycle_addr;
 
 wire [16:1] agc_data_in;
 assign agc_data_in = {g[16], g[14:1], ~mgp_n};
@@ -106,6 +108,8 @@ assign mdt = mdt_wg | mdt_rg;
 
 reg mrgg_p;
 
+assign e_cycle_starting = mt[2] && (~dv13764) && (~io_inst) && (s >= `ERASABLE_BASE_ADDR) && (s < `FIXED_BASE_ADDR);
+
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         state <= IDLE;
@@ -115,8 +119,8 @@ always @(posedge clk or negedge rst_n) begin
     end else begin
         case (state)
         IDLE: begin
-            if (bank_en[bank] && mt[2] && (~dv13764) && (~io_inst) && (s >= `ERASABLE_BASE_ADDR) && (s < `FIXED_BASE_ADDR)) begin
-                writeback_eaddr <= eaddr;
+            if (bank_en[bank] && e_cycle_starting) begin
+                writeback_eaddr <= e_cycle_addr;
                 read_word <= agc_data_out;
                 state <= ACTIVE;
             end

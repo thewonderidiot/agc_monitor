@@ -318,7 +318,7 @@ end
 reg proceed;
 
 wire rxor_start;
-assign rxor_start = msqext & (sq == `SQ_RXOR) & (ch == 9'o32) & mt[2];
+assign rxor_start = msqext & (sq == `SQ_RXOR) & ((ch[9:1] == 9'o32) | (ch[9:1] == 9'o72)) & mt[2];
 
 reg rxor_32;
 always @(posedge clk or negedge rst_n) begin

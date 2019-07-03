@@ -201,10 +201,15 @@ wire [15:0] ems_data;
 wire trace_read_en;
 wire [15:0] trace_data;
 
+wire nassp_read_en;
+wire nassp_write_en;
+wire nassp_write_done;
+wire [15:0] nassp_data;
+
 // Resulting data from the active read command
 wire [15:0] read_data;
-assign read_data = ctrl_data | status_data | mon_reg_data | mon_chan_data | agc_fixed_data |
-                   agc_erasable_data | agc_channels_data | crs_data | ems_data | mon_dsky_data | trace_data;
+assign read_data = ctrl_data | status_data | mon_reg_data | mon_chan_data | agc_fixed_data | agc_erasable_data |
+                   agc_channels_data | crs_data | ems_data | mon_dsky_data | trace_data | nassp_data;
 
 // Command controller 
 cmd_controller cmd_ctrl(
@@ -241,7 +246,10 @@ cmd_controller cmd_ctrl(
     .ems_write_en(ems_write_en),
     .mon_dsky_read_en(mon_dsky_read_en),
     .mon_dsky_write_en(mon_dsky_write_en),
-    .trace_read_en(trace_read_en)
+    .trace_read_en(trace_read_en),
+    .nassp_read_en(nassp_read_en),
+    .nassp_write_en(nassp_write_en),
+    .nassp_write_done(nassp_write_done)
 );
 
 /*******************************************************************************.
@@ -617,6 +625,11 @@ wire agc_channels_periph_loadch;
 wire [12:1] agc_channels_periph_s;
 wire [16:1] agc_channels_periph_data;
 
+wire nassp_periph_load;
+wire [12:1] nassp_periph_s;
+wire [15:1] nassp_periph_bb;
+wire [16:1] nassp_periph_data;
+
 wire periph_load;
 wire periph_read;
 wire periph_loadch;
@@ -629,14 +642,14 @@ wire [16:1] mdt_periph;
 wire [16:1] periph_read_data;
 wire periph_read_parity;
 
-assign periph_load = ctrl_periph_load | agc_erasable_periph_load;
+assign periph_load = ctrl_periph_load | agc_erasable_periph_load | nassp_periph_load;
 assign periph_read = ctrl_periph_read | agc_fixed_periph_read | agc_erasable_periph_read;
 assign periph_loadch = ctrl_periph_loadch | agc_fixed_periph_loadch | agc_channels_periph_loadch;
 assign periph_readch = ctrl_periph_readch | agc_channels_periph_readch;
 assign periph_tcsaj = ctrl_periph_tcsaj;
-assign periph_bb = ctrl_periph_bb | agc_fixed_periph_bb | agc_erasable_periph_bb;
-assign periph_s = ctrl_periph_s | agc_fixed_periph_s | agc_erasable_periph_s | agc_channels_periph_s;
-assign periph_data = ctrl_periph_data | agc_fixed_periph_data | agc_erasable_periph_data | agc_channels_periph_data;
+assign periph_bb = ctrl_periph_bb | agc_fixed_periph_bb | agc_erasable_periph_bb | nassp_periph_bb;
+assign periph_s = ctrl_periph_s | agc_fixed_periph_s | agc_erasable_periph_s | agc_channels_periph_s | nassp_periph_s;
+assign periph_data = ctrl_periph_data | agc_fixed_periph_data | agc_erasable_periph_data | agc_channels_periph_data | nassp_periph_data;
 
 peripheral_instructions periph_insts(
     .clk(clk),
@@ -797,6 +810,8 @@ core_rope_sim crs(
 * Erasable Memory Simulation                                                    *
 '*******************************************************************************/
 wire [16:1] mdt_ems;
+wire e_cycle_starting;
+wire [11:1] e_cycle_addr;
 
 erasable_mem_sim ems(
     .clk(clk),
@@ -823,7 +838,10 @@ erasable_mem_sim ems(
     .mrgg(mrgg),
     .mwg(mwg),
     .mamu(mamu),
-    .mdt(mdt_ems)
+    .mdt(mdt_ems),
+
+    .e_cycle_starting(e_cycle_starting),
+    .e_cycle_addr(e_cycle_addr)
 );
 
 /*******************************************************************************.
@@ -897,8 +915,48 @@ instruction_trace trace(
     .w(w)
 );
 
+/*******************************************************************************.
+* NASSP Bridge                                                                  *
+'*******************************************************************************/
+wire [16:1] mdt_nassp;
+nassp_bridge nassp(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .read_en(nassp_read_en),
+    .write_en(nassp_write_en),
+    .write_done(nassp_write_done),
+    .addr(cmd_addr),
+    .data_in(cmd_data),
+    .data_out(nassp_data),
+
+    .e_cycle_starting(e_cycle_starting),
+    .e_cycle_addr(e_cycle_addr),
+
+    .mt(mt),
+    .mnisq(mnisq),
+    .minkl(minkl),
+    .mst(mst),
+    .msqext(msqext),
+    .mrgg(mrgg),
+    .mwbg(mwbg),
+    .mwsg(mwsg),
+    .mrchg(mrchg),
+    .mwchg(mwchg),
+    .ch(s[9:1]),
+    .g(g),
+    .mwl(mwl),
+    .mdt(mdt_nassp),
+
+    .periph_load(nassp_periph_load),
+    .periph_s(nassp_periph_s),
+    .periph_bb(nassp_periph_bb),
+    .periph_data(nassp_periph_data),
+    .periph_complete(periph_complete)
+);
+
 assign mnhsbf = mnhsbf_crs | mnhsbf_dsky;
-assign mdt = mdt_chan77 | mdt_periph | mdt_crs | mdt_ems | mdt_dsky;
+assign mdt = mdt_chan77 | mdt_periph | mdt_crs | mdt_ems | mdt_dsky | mdt_nassp;
 assign monpar = monpar_crs | monpar_dsky;
 
 endmodule

@@ -1,0 +1,129 @@
+{
+    "name": "NASSP",
+    "id": 38,
+    "registers": [
+        {
+            "addr": 0,
+            "name": "Ch30",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "value",
+                    "width": 15
+                },
+                {
+                    "name": "enable",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 1,
+            "name": "Ch31",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "value",
+                    "width": 15
+                },
+                {
+                    "name": "enable",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 2,
+            "name": "Ch32",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "value",
+                    "width": 15
+                },
+                {
+                    "name": "enable",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 3,
+            "name": "Ch33",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "value",
+                    "width": 15
+                },
+                {
+                    "name": "enable",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 4,
+            "name": "PipaX",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "counts",
+                    "width": 15
+                }
+            ]
+        },
+        {
+            "addr": 5,
+            "name": "PipaY",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "counts",
+                    "width": 15
+                }
+            ]
+        },
+        {
+            "addr": 6,
+            "name": "PipaZ",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "counts",
+                    "width": 15
+                }
+            ]
+        },
+        {
+            "addr": 7,
+            "name": "Thrust",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "counts",
+                    "width": 15
+                },
+                {
+                    "name": "new",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 8,
+            "name": "Altm",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "counts",
+                    "width": 15
+                },
+                {
+                    "name": "new",
+                    "width": 1
+                }
+            ]
+        }
+    ]
+}
