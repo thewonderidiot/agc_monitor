@@ -18,7 +18,6 @@ proc create_report { reportName command } {
   }
 }
 set_param xicom.use_bs_reader 1
-set_msg_config -id {Common 17-41} -limit 10000000
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -61,6 +60,7 @@ read_verilog -library xil_defaultlib {
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/nassp_bridge.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/od_buf.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/ones_comp_adder.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/output_counter.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/peripheral_instructions.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v

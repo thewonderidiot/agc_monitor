@@ -132,62 +132,33 @@ end
 reg [15:1] agc_pipax;
 reg [15:1] agc_pipay;
 reg [15:1] agc_pipaz;
-reg [15:1] agc_thrust;
-reg [15:1] agc_altm;
-
-wire [15:1] agc_pipa;
 reg [12:1] target_addr;
-
-reg thrust_changed;
-reg new_thrust;
-
-reg altm_changed;
-reg new_altm;
 
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         agc_pipax <= 15'b0;
         agc_pipay <= 15'b0;
         agc_pipaz <= 15'b0;
-        agc_thrust <= 15'b0;
-        thrust_changed <= 1'b0;
-        agc_altm <= 15'b0;
-        altm_changed <= 1'b0;
+        agc_pipaz <= 15'b0;
         target_addr <= 12'o0;
     end else begin
         if (ems_write_en) begin
             case (ems_addr)
-            `PIPAX:  agc_pipax  <= pipa_sum;
-            `PIPAY:  agc_pipay  <= pipa_sum;
-            `PIPAZ:  agc_pipaz  <= pipa_sum;
+            `PIPAX: agc_pipax <= pipa_sum;
+            `PIPAY: agc_pipay <= pipa_sum;
+            `PIPAZ: agc_pipaz <= pipa_sum;
             endcase
         end
         if (target_addr == 12'o0) begin
-            if (e_cycle_starting & (((e_cycle_addr >= `PIPAX) & (e_cycle_addr <= `PIPAZ)) |
-                (e_cycle_addr == `THRUST) | (e_cycle_addr == `ALTM)))  begin
+            if (e_cycle_starting & ((e_cycle_addr >= `PIPAX) & (e_cycle_addr <= `PIPAZ))) begin
                 target_addr <= e_cycle_addr;
             end
         end else begin
-            if (new_thrust) begin
-                thrust_changed <= 1'b0;
-            end
             if (mt[11]) begin
                 case (target_addr)
                 `PIPAX:  agc_pipax  <= {g[16], g[14:1]};
                 `PIPAY:  agc_pipay  <= {g[16], g[14:1]};
                 `PIPAZ:  agc_pipaz  <= {g[16], g[14:1]};
-                `THRUST: begin
-                    if (~minkl) begin
-                        thrust_changed <= 1'b1;
-                        agc_thrust <= {g[16], g[14:1]};
-                    end
-                end
-                `ALTM: begin
-                    if (~minkl) begin
-                        altm_changed <= 1'b1;
-                        agc_altm <= {g[16], g[14:1]};
-                    end
-                end
                 endcase
                 target_addr <= 12'o0;
             end
@@ -209,32 +180,138 @@ end
 wire [15:1] pipa_sum;
 ones_comp_adder adder(agc_pipa_value, data_in[14:0], pipa_sum);
 
-reg [15:1] latched_thrust;
-reg [15:1] latched_altm;
+wire cduxcmd_started;
+wire [15:1] cduxcmd_value;
+output_counter #(`CDUXCMD, `NASSP_REG_CDUXCMD, 9'o14, 5'd16) cduxcmd(
+    .clk(clk),
+    .rst_n(rst_n),
+    .e_cycle_starting(e_cycle_starting),
+    .e_cycle_addr(e_cycle_addr),
+    .mt11(mt[11]),
+    .minkl(minkl),
+    .mwchg(mwchg),
+    .g(g),
+    .ch(ch),
+    .mwl(mwl),
+    .read_en(read_en),
+    .addr(addr),
+    .started(cduxcmd_started),
+    .latched_value(cduxcmd_value)
+);
 
-always @(posedge clk or negedge rst_n) begin
-    if (~rst_n) begin
-        latched_thrust <= 15'o0;
-        new_thrust <= 1'b0;
+wire cduycmd_started;
+wire [15:1] cduycmd_value;
+output_counter #(`CDUYCMD, `NASSP_REG_CDUYCMD, 9'o14, 5'd14) cduycmd(
+    .clk(clk),
+    .rst_n(rst_n),
+    .e_cycle_starting(e_cycle_starting),
+    .e_cycle_addr(e_cycle_addr),
+    .mt11(mt[11]),
+    .minkl(minkl),
+    .mwchg(mwchg),
+    .g(g),
+    .ch(ch),
+    .mwl(mwl),
+    .read_en(read_en),
+    .addr(addr),
+    .started(cduycmd_started),
+    .latched_value(cduycmd_value)
+);
 
-        latched_altm <= 15'o0;
-        new_altm <= 1'b0;
-    end else begin
-        if (mwchg && (ch == 9'o14) && (mwl & 16'o10)) begin
-            latched_thrust <= agc_thrust;
-            new_thrust <= thrust_changed;
-        end else if (read_en & (addr == `NASSP_REG_THRUST)) begin
-            new_thrust <= 1'b0;
-        end
+wire cduzcmd_started;
+wire [15:1] cduzcmd_value;
+output_counter #(`CDUZCMD, `NASSP_REG_CDUZCMD, 9'o14, 5'd13) cduzcmd(
+    .clk(clk),
+    .rst_n(rst_n),
+    .e_cycle_starting(e_cycle_starting),
+    .e_cycle_addr(e_cycle_addr),
+    .mt11(mt[11]),
+    .minkl(minkl),
+    .mwchg(mwchg),
+    .g(g),
+    .ch(ch),
+    .mwl(mwl),
+    .read_en(read_en),
+    .addr(addr),
+    .started(cduzcmd_started),
+    .latched_value(cduzcmd_value)
+);
 
-        if (mwchg && (ch == 9'o14) && (mwl & 16'o4)) begin
-            latched_altm <= agc_altm;
-            new_altm <= altm_changed;
-        end else if (read_en & (addr == `NASSP_REG_ALTM)) begin
-            new_altm <= 1'b0;
-        end
-    end
-end
+wire cdutcmd_started;
+wire [15:1] cdutcmd_value;
+output_counter #(`CDUTCMD, `NASSP_REG_CDUTCMD, 9'o14, 5'd12) cdutcmd(
+    .clk(clk),
+    .rst_n(rst_n),
+    .e_cycle_starting(e_cycle_starting),
+    .e_cycle_addr(e_cycle_addr),
+    .mt11(mt[11]),
+    .minkl(minkl),
+    .mwchg(mwchg),
+    .g(g),
+    .ch(ch),
+    .mwl(mwl),
+    .read_en(read_en),
+    .addr(addr),
+    .started(cdutcmd_started),
+    .latched_value(cdutcmd_value)
+);
+
+wire cduscmd_started;
+wire [15:1] cduscmd_value;
+output_counter #(`CDUSCMD, `NASSP_REG_CDUSCMD, 9'o14, 5'd11) cduscmd(
+    .clk(clk),
+    .rst_n(rst_n),
+    .e_cycle_starting(e_cycle_starting),
+    .e_cycle_addr(e_cycle_addr),
+    .mt11(mt[11]),
+    .minkl(minkl),
+    .mwchg(mwchg),
+    .g(g),
+    .ch(ch),
+    .mwl(mwl),
+    .read_en(read_en),
+    .addr(addr),
+    .started(cduscmd_started),
+    .latched_value(cduscmd_value)
+);
+
+wire thrust_started;
+wire [15:1] thrust_value;
+output_counter #(`THRUST, `NASSP_REG_THRUST, 9'o14, 5'd4) thrust(
+    .clk(clk),
+    .rst_n(rst_n),
+    .e_cycle_starting(e_cycle_starting),
+    .e_cycle_addr(e_cycle_addr),
+    .mt11(mt[11]),
+    .minkl(minkl),
+    .mwchg(mwchg),
+    .g(g),
+    .ch(ch),
+    .mwl(mwl),
+    .read_en(read_en),
+    .addr(addr),
+    .started(thrust_started),
+    .latched_value(thrust_value)
+);
+
+wire altm_started;
+wire [15:1] altm_value;
+output_counter #(`ALTM, `NASSP_REG_ALTM, 9'o14, 5'd3) altm(
+    .clk(clk),
+    .rst_n(rst_n),
+    .e_cycle_starting(e_cycle_starting),
+    .e_cycle_addr(e_cycle_addr),
+    .mt11(mt[11]),
+    .minkl(minkl),
+    .mwchg(mwchg),
+    .g(g),
+    .ch(ch),
+    .mwl(mwl),
+    .read_en(read_en),
+    .addr(addr),
+    .started(altm_started),
+    .latched_value(altm_value)
+);
 
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
@@ -331,12 +408,17 @@ always @(posedge clk or negedge rst_n) begin
     end else if (read_en) begin
         read_done <= 1'b1;
         case (addr)
-        `NASSP_REG_CH30:   read_data <= {ch30_en, ch30};
-        `NASSP_REG_CH31:   read_data <= {ch31_en, ch31};
-        `NASSP_REG_CH32:   read_data <= {ch32_en, ch32};
-        `NASSP_REG_CH33:   read_data <= {ch33_en, ch33};
-        `NASSP_REG_THRUST: read_data <= {new_thrust, latched_thrust};
-        `NASSP_REG_ALTM:   read_data <= {new_altm, latched_altm};
+        `NASSP_REG_CH30:    read_data <= {ch30_en, ch30};
+        `NASSP_REG_CH31:    read_data <= {ch31_en, ch31};
+        `NASSP_REG_CH32:    read_data <= {ch32_en, ch32};
+        `NASSP_REG_CH33:    read_data <= {ch33_en, ch33};
+        `NASSP_REG_CDUXCMD: read_data <= {cduxcmd_started, cduxcmd_value};
+        `NASSP_REG_CDUYCMD: read_data <= {cduycmd_started, cduycmd_value};
+        `NASSP_REG_CDUZCMD: read_data <= {cduzcmd_started, cduzcmd_value};
+        `NASSP_REG_CDUTCMD: read_data <= {cdutcmd_started, cdutcmd_value};
+        `NASSP_REG_CDUSCMD: read_data <= {cduscmd_started, cduscmd_value};
+        `NASSP_REG_THRUST:  read_data <= {thrust_started, thrust_value};
+        `NASSP_REG_ALTM:    read_data <= {altm_started, altm_value};
         endcase
     end else begin
         read_done <= 1'b0;

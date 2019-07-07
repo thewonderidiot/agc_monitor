@@ -112,15 +112,20 @@
 `define DSKY_REG_PROCEED 16'h0A
 `define DSKY_REG_STATUS  16'h0B
 
-`define NASSP_REG_CH30   16'h0
-`define NASSP_REG_CH31   16'h1
-`define NASSP_REG_CH32   16'h2
-`define NASSP_REG_CH33   16'h3
-`define NASSP_REG_PIPAX  16'h4
-`define NASSP_REG_PIPAY  16'h5
-`define NASSP_REG_PIPAZ  16'h6
-`define NASSP_REG_THRUST 16'h7
-`define NASSP_REG_ALTM   16'h8
+`define NASSP_REG_CH30    16'h0
+`define NASSP_REG_CH31    16'h1
+`define NASSP_REG_CH32    16'h2
+`define NASSP_REG_CH33    16'h3
+`define NASSP_REG_PIPAX   16'h4
+`define NASSP_REG_PIPAY   16'h5
+`define NASSP_REG_PIPAZ   16'h6
+`define NASSP_REG_CDUXCMD 16'h20
+`define NASSP_REG_CDUYCMD 16'h21
+`define NASSP_REG_CDUZCMD 16'h22
+`define NASSP_REG_CDUTCMD 16'h23
+`define NASSP_REG_CDUSCMD 16'h24
+`define NASSP_REG_THRUST  16'h25
+`define NASSP_REG_ALTM    16'h26
 
 `define W_MODE_ALL 3'o0
 `define W_MODE_S   3'o1
@@ -164,12 +169,17 @@
 `define SQ_IO 3'o0
 `define IO_RUPT 3'o7
 
-`define CYR    12'o0020
-`define SR     12'o0021
-`define CYL    12'o0022
-`define EDOP   12'o0023
-`define PIPAX  12'o0037
-`define PIPAY  12'o0040
-`define PIPAZ  12'o0041
-`define THRUST 12'o0055
-`define ALTM   12'o0060
+`define CYR     12'o0020
+`define SR      12'o0021
+`define CYL     12'o0022
+`define EDOP    12'o0023
+`define PIPAX   12'o0037
+`define PIPAY   12'o0040
+`define PIPAZ   12'o0041
+`define CDUXCMD 12'o0050
+`define CDUYCMD 12'o0051
+`define CDUZCMD 12'o0052
+`define CDUTCMD 12'o0053
+`define CDUSCMD 12'o0054
+`define THRUST  12'o0055
+`define ALTM    12'o0060
