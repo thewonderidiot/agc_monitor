@@ -73,18 +73,34 @@ NASSPPipaZ = namedtuple('NASSPPipaZ', ['counts'])
 NASSPPipaZ.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteNASSPPipaZ = namedtuple('WriteNASSPPipaZ', ['counts'])
 WriteNASSPPipaZ.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadNASSPCduXCmd = namedtuple('ReadNASSPCduXCmd', [])
+ReadNASSPCduXCmd.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+NASSPCduXCmd = namedtuple('NASSPCduXCmd', ['counts', 'new'])
+NASSPCduXCmd.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadNASSPCduYCmd = namedtuple('ReadNASSPCduYCmd', [])
+ReadNASSPCduYCmd.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+NASSPCduYCmd = namedtuple('NASSPCduYCmd', ['counts', 'new'])
+NASSPCduYCmd.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadNASSPCduZCmd = namedtuple('ReadNASSPCduZCmd', [])
+ReadNASSPCduZCmd.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+NASSPCduZCmd = namedtuple('NASSPCduZCmd', ['counts', 'new'])
+NASSPCduZCmd.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadNASSPCduTCmd = namedtuple('ReadNASSPCduTCmd', [])
+ReadNASSPCduTCmd.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+NASSPCduTCmd = namedtuple('NASSPCduTCmd', ['counts', 'new'])
+NASSPCduTCmd.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadNASSPCduSCmd = namedtuple('ReadNASSPCduSCmd', [])
+ReadNASSPCduSCmd.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+NASSPCduSCmd = namedtuple('NASSPCduSCmd', ['counts', 'new'])
+NASSPCduSCmd.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadNASSPThrust = namedtuple('ReadNASSPThrust', [])
 ReadNASSPThrust.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 NASSPThrust = namedtuple('NASSPThrust', ['counts', 'new'])
 NASSPThrust.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-WriteNASSPThrust = namedtuple('WriteNASSPThrust', ['counts', 'new'])
-WriteNASSPThrust.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadNASSPAltm = namedtuple('ReadNASSPAltm', [])
 ReadNASSPAltm.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 NASSPAltm = namedtuple('NASSPAltm', ['counts', 'new'])
 NASSPAltm.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
-WriteNASSPAltm = namedtuple('WriteNASSPAltm', ['counts', 'new'])
-WriteNASSPAltm.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadMonRegA = namedtuple('ReadMonRegA', [])
 ReadMonRegA.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 MonRegA = namedtuple('MonRegA', ['a'])
@@ -482,8 +498,13 @@ class NASSP(object):
     PipaX = 0x0004
     PipaY = 0x0005
     PipaZ = 0x0006
-    Thrust = 0x0007
-    Altm = 0x0008
+    CduXCmd = 0x0020
+    CduYCmd = 0x0021
+    CduZCmd = 0x0022
+    CduTCmd = 0x0023
+    CduSCmd = 0x0024
+    Thrust = 0x0025
+    Altm = 0x0026
 class MonReg(object):
     A = 0x0000
     L = 0x0001
@@ -654,23 +675,26 @@ def _pack_WriteNASSPPipaZ(msg):
     data |= (msg.counts & 0x7FFF) << 0
     return _pack_write_msg(AddressGroup.NASSP, NASSP.PipaZ, data)
 
+def _pack_ReadNASSPCduXCmd(msg):
+    return _pack_read_msg(AddressGroup.NASSP, NASSP.CduXCmd)
+
+def _pack_ReadNASSPCduYCmd(msg):
+    return _pack_read_msg(AddressGroup.NASSP, NASSP.CduYCmd)
+
+def _pack_ReadNASSPCduZCmd(msg):
+    return _pack_read_msg(AddressGroup.NASSP, NASSP.CduZCmd)
+
+def _pack_ReadNASSPCduTCmd(msg):
+    return _pack_read_msg(AddressGroup.NASSP, NASSP.CduTCmd)
+
+def _pack_ReadNASSPCduSCmd(msg):
+    return _pack_read_msg(AddressGroup.NASSP, NASSP.CduSCmd)
+
 def _pack_ReadNASSPThrust(msg):
     return _pack_read_msg(AddressGroup.NASSP, NASSP.Thrust)
 
-def _pack_WriteNASSPThrust(msg):
-    data = 0x0000
-    data |= (msg.counts & 0x7FFF) << 0
-    data |= (msg.new & 0x0001) << 15
-    return _pack_write_msg(AddressGroup.NASSP, NASSP.Thrust, data)
-
 def _pack_ReadNASSPAltm(msg):
     return _pack_read_msg(AddressGroup.NASSP, NASSP.Altm)
-
-def _pack_WriteNASSPAltm(msg):
-    data = 0x0000
-    data |= (msg.counts & 0x7FFF) << 0
-    data |= (msg.new & 0x0001) << 15
-    return _pack_write_msg(AddressGroup.NASSP, NASSP.Altm, data)
 
 def _pack_ReadMonRegA(msg):
     return _pack_read_msg(AddressGroup.MonReg, MonReg.A)
@@ -1311,6 +1335,36 @@ def _unpack_NASSPPipaZ(data):
         counts = (data >> 0) & 0x7FFF,
     )
 
+def _unpack_NASSPCduXCmd(data):
+    return NASSPCduXCmd(
+        counts = (data >> 0) & 0x7FFF,
+        new = (data >> 15) & 0x0001,
+    )
+
+def _unpack_NASSPCduYCmd(data):
+    return NASSPCduYCmd(
+        counts = (data >> 0) & 0x7FFF,
+        new = (data >> 15) & 0x0001,
+    )
+
+def _unpack_NASSPCduZCmd(data):
+    return NASSPCduZCmd(
+        counts = (data >> 0) & 0x7FFF,
+        new = (data >> 15) & 0x0001,
+    )
+
+def _unpack_NASSPCduTCmd(data):
+    return NASSPCduTCmd(
+        counts = (data >> 0) & 0x7FFF,
+        new = (data >> 15) & 0x0001,
+    )
+
+def _unpack_NASSPCduSCmd(data):
+    return NASSPCduSCmd(
+        counts = (data >> 0) & 0x7FFF,
+        new = (data >> 15) & 0x0001,
+    )
+
 def _unpack_NASSPThrust(data):
     return NASSPThrust(
         counts = (data >> 0) & 0x7FFF,
@@ -1826,6 +1880,11 @@ _unpack_reg_fns = {
     (DATA_FLAG | AddressGroup.NASSP, NASSP.PipaX): _unpack_NASSPPipaX,
     (DATA_FLAG | AddressGroup.NASSP, NASSP.PipaY): _unpack_NASSPPipaY,
     (DATA_FLAG | AddressGroup.NASSP, NASSP.PipaZ): _unpack_NASSPPipaZ,
+    (DATA_FLAG | AddressGroup.NASSP, NASSP.CduXCmd): _unpack_NASSPCduXCmd,
+    (DATA_FLAG | AddressGroup.NASSP, NASSP.CduYCmd): _unpack_NASSPCduYCmd,
+    (DATA_FLAG | AddressGroup.NASSP, NASSP.CduZCmd): _unpack_NASSPCduZCmd,
+    (DATA_FLAG | AddressGroup.NASSP, NASSP.CduTCmd): _unpack_NASSPCduTCmd,
+    (DATA_FLAG | AddressGroup.NASSP, NASSP.CduSCmd): _unpack_NASSPCduSCmd,
     (DATA_FLAG | AddressGroup.NASSP, NASSP.Thrust): _unpack_NASSPThrust,
     (DATA_FLAG | AddressGroup.NASSP, NASSP.Altm): _unpack_NASSPAltm,
     (DATA_FLAG | AddressGroup.MonReg, MonReg.A): _unpack_MonRegA,

@@ -96,9 +96,9 @@
             ]
         },
         {
-            "addr": 7,
-            "name": "Thrust",
-            "type": "rw",
+            "addr": 32,
+            "name": "CduXCmd",
+            "type": "r",
             "fields": [
                 {
                     "name": "counts",
@@ -111,9 +111,84 @@
             ]
         },
         {
-            "addr": 8,
+            "addr": 33,
+            "name": "CduYCmd",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "counts",
+                    "width": 15
+                },
+                {
+                    "name": "new",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 34,
+            "name": "CduZCmd",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "counts",
+                    "width": 15
+                },
+                {
+                    "name": "new",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 35,
+            "name": "CduTCmd",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "counts",
+                    "width": 15
+                },
+                {
+                    "name": "new",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 36,
+            "name": "CduSCmd",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "counts",
+                    "width": 15
+                },
+                {
+                    "name": "new",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 37,
+            "name": "Thrust",
+            "type": "r",
+            "fields": [
+                {
+                    "name": "counts",
+                    "width": 15
+                },
+                {
+                    "name": "new",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 38,
             "name": "Altm",
-            "type": "rw",
+            "type": "r",
             "fields": [
                 {
                     "name": "counts",
