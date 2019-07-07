@@ -32,6 +32,11 @@ module nassp_bridge(
     input wire [16:1] mwl,
     output wire [16:1] mdt,
 
+    input wire ems_bank0_en,
+    output reg ems_write_en,
+    output reg [11:1] ems_addr,
+    output reg [16:1] ems_data,
+
     output reg periph_load,
     output reg [12:1] periph_s,
     output reg [15:1] periph_bb,
@@ -150,6 +155,13 @@ always @(posedge clk or negedge rst_n) begin
         altm_changed <= 1'b0;
         target_addr <= 12'o0;
     end else begin
+        if (ems_write_en) begin
+            case (ems_addr)
+            `PIPAX:  agc_pipax  <= pipa_sum;
+            `PIPAY:  agc_pipay  <= pipa_sum;
+            `PIPAZ:  agc_pipaz  <= pipa_sum;
+            endcase
+        end
         if (target_addr == 12'o0) begin
             if (e_cycle_starting & (((e_cycle_addr >= `PIPAX) & (e_cycle_addr <= `PIPAZ)) |
                 (e_cycle_addr == `THRUST) | (e_cycle_addr == `ALTM)))  begin
@@ -242,12 +254,20 @@ always @(posedge clk or negedge rst_n) begin
         periph_s <= 12'b0;
         periph_bb <= 15'b0;
         periph_data <= 16'b0;
+
+        ems_write_en <= 1'b0;
+        ems_addr <= 11'b0;
+        ems_data <= 16'b0;
     end else begin
         write_done <= 1'b0;
         periph_load <= 1'b0;
         periph_s <= 12'b0;
         periph_bb <= 15'b0;
         periph_data <= 16'b0;
+
+        ems_write_en <= 1'b0;
+        ems_addr <= 11'b0;
+        ems_data <= 16'b0;
 
         if (write_en) begin
             if (addr < `NASSP_REG_PIPAX) begin
@@ -274,18 +294,30 @@ always @(posedge clk or negedge rst_n) begin
                 end
                 endcase
             end else begin
-                if (periph_complete) begin
+                if (ems_bank0_en) begin
                     write_done <= 1'b1;
-                end else begin
-                    periph_load <= 1'b1;
-                    periph_bb <= 15'b0;
-                    periph_data <= {pipa_sum[15], pipa_sum[15:1]};
+                    ems_write_en <= 1'b1;
+                    ems_data <= {pipa_sum, 1'b0};
                     case (addr)
-                    `NASSP_REG_PIPAX: periph_s <= `PIPAX;
-                    `NASSP_REG_PIPAY: periph_s <= `PIPAY;
-                    `NASSP_REG_PIPAZ: periph_s <= `PIPAZ;
-                    default: periph_s <= 12'o7;
+                    `NASSP_REG_PIPAX: ems_addr <= `PIPAX;
+                    `NASSP_REG_PIPAY: ems_addr <= `PIPAY;
+                    `NASSP_REG_PIPAZ: ems_addr <= `PIPAZ;
+                    default: ems_addr <= 12'o7;
                     endcase
+                end else begin
+                    if (periph_complete) begin
+                        write_done <= 1'b1;
+                    end else begin
+                        periph_load <= 1'b1;
+                        periph_bb <= 15'b0;
+                        periph_data <= {pipa_sum[15], pipa_sum[15:1]};
+                        case (addr)
+                        `NASSP_REG_PIPAX: periph_s <= `PIPAX;
+                        `NASSP_REG_PIPAY: periph_s <= `PIPAY;
+                        `NASSP_REG_PIPAZ: periph_s <= `PIPAZ;
+                        default: periph_s <= 12'o7;
+                        endcase
+                    end
                 end
             end
         end

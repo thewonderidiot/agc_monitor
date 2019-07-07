@@ -30,6 +30,10 @@ module erasable_mem_sim(
     output wire mamu,
     output wire [16:1] mdt,
 
+    input wire int_write_en,
+    input wire [11:1] int_addr,
+    input wire [16:1] int_data,
+
     output wire e_cycle_starting,
     output wire [11:1] e_cycle_addr
 );
@@ -58,7 +62,7 @@ assign io_inst = (~minkl & msqext & (msq[15:13] == `SQ_IO) && (msq[12:10] < `IO_
 reg [11:1] writeback_eaddr;
 
 wire erasable_mem_en;
-assign erasable_mem_en = read_en | write_en;
+assign erasable_mem_en = read_en | write_en | int_write_en;
 wire [15:0] erasable_mem_data;
 
 wire agc_write_en;
@@ -75,9 +79,9 @@ wire [16:1] agc_data_out;
 erasable_sim_mem core_mem(
     .clka(clk),
     .ena(erasable_mem_en),
-    .wea(write_en),
-    .addra(addr[10:0]),
-    .dina(data_in),
+    .wea(write_en | int_write_en),
+    .addra(int_write_en ? int_addr : addr[10:0]),
+    .dina(int_write_en ? int_data : data_in),
     .douta(erasable_mem_data),
 
     .clkb(clk),

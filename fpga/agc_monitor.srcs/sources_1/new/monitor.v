@@ -813,6 +813,10 @@ wire [16:1] mdt_ems;
 wire e_cycle_starting;
 wire [11:1] e_cycle_addr;
 
+wire nassp_ems_write_en;
+wire [11:1] nassp_ems_addr;
+wire [16:1] nassp_ems_data;
+
 erasable_mem_sim ems(
     .clk(clk),
     .rst_n(rst_n),
@@ -839,6 +843,10 @@ erasable_mem_sim ems(
     .mwg(mwg),
     .mamu(mamu),
     .mdt(mdt_ems),
+
+    .int_write_en(nassp_ems_write_en),
+    .int_addr(nassp_ems_addr),
+    .int_data(nassp_ems_data),
 
     .e_cycle_starting(e_cycle_starting),
     .e_cycle_addr(e_cycle_addr)
@@ -947,6 +955,11 @@ nassp_bridge nassp(
     .g(g),
     .mwl(mwl),
     .mdt(mdt_nassp),
+
+    .ems_bank0_en(ems_bank_en[0]),
+    .ems_write_en(nassp_ems_write_en),
+    .ems_addr(nassp_ems_addr),
+    .ems_data(nassp_ems_data),
 
     .periph_load(nassp_periph_load),
     .periph_s(nassp_periph_s),

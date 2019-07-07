@@ -4,6 +4,7 @@ from PySide2.QtCore import Qt
 from memory_load import MemoryLoad
 from memory_dump import MemoryDump
 import usb_msg as um
+import time
 
 class ErasableMemSim(QFrame):
     def __init__(self, parent, usbif):
@@ -147,6 +148,7 @@ class ErasableMemSim(QFrame):
         
         msg_type = um.WriteErasable if self._agc_sel.isChecked() else um.WriteSimErasable
         for addr, val in load_data:
+            print('%04o %o' % (addr, val))
             self._usbif.send(msg_type(addr=addr, data=val, parity=0))
 
     def _load_core(self):

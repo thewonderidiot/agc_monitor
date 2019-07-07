@@ -31,6 +31,7 @@ class Alarms(QFrame):
         self._setup_ui()
 
         usbif.poll(um.ReadStatusAlarms())
+        usbif.poll(um.ReadNASSPAltm())
         usbif.listen(self)
 
         self._reset_alarms()
@@ -39,6 +40,9 @@ class Alarms(QFrame):
         if isinstance(msg, um.StatusAlarms):
             for v in self._alarm_inds.keys():
                 self._alarm_inds[v].set_on(getattr(msg, v))
+        elif isinstance(msg, um.NASSPAltm):
+            if msg.new:
+                print(oct(msg.counts))
 
     def _reset_alarms(self):
         z = (1,) * len(ALARMS)
@@ -63,19 +67,31 @@ class Alarms(QFrame):
         check.setStyleSheet('QCheckBox::indicator{subcontrol-position:center;}')
         layout.addWidget(check, 2, 2)
         layout.setAlignment(check, Qt.AlignCenter)
-        check.stateChanged.connect(lambda state: self._usbif.send(um.WriteControlDoscal(bool(state))))
+        check.stateChanged.connect(lambda state: self._usbif.send(um.WriteNASSPCh30(value=0o12345, enable=bool(state))))
 
         check = QCheckBox(self)
         check.setFixedSize(20,20)
         check.setStyleSheet('QCheckBox::indicator{subcontrol-position:center;}')
         layout.addWidget(check, 2, 3)
         layout.setAlignment(check, Qt.AlignCenter)
-        check.stateChanged.connect(lambda state: self._usbif.send(um.WriteControlDbltst(bool(state))))
+        check.stateChanged.connect(lambda state: self._usbif.send(um.WriteNASSPCh31(value=0o54321, enable=bool(state))))
 
         b = QPushButton(self)
         b.setFixedSize(20,20)
         layout.addWidget(b, 2, 8, 1, 2)
         layout.setAlignment(b, Qt.AlignCenter)
+
+        b = QPushButton('Y+', self)
+        b.setFixedSize(20,20)
+        layout.addWidget(b, 6, 1, 1, 1)
+        layout.setAlignment(b, Qt.AlignCenter)
+        b.pressed.connect(lambda: self._usbif.send(um.WriteNASSPPipaZ(counts=1)))
+
+        b = QPushButton('Y-', self)
+        b.setFixedSize(20,20)
+        layout.addWidget(b, 6, 2, 1, 1)
+        layout.setAlignment(b, Qt.AlignCenter)
+        b.pressed.connect(lambda: self._usbif.send(um.WriteNASSPPipaZ(counts=0o77776)))
 
         label = QLabel('RESET', self)
         label.setAlignment(Qt.AlignRight)
