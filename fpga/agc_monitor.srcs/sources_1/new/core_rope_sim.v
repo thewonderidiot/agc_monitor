@@ -14,7 +14,7 @@ module core_rope_sim(
     output wire [15:0] data_out,
 
     input wire [63:0] bank_en,
-    input wire mnhsbf_dsky,
+    input wire mnhsbf_rupts,
 
     input wire [7:5] fext,
     input wire [15:11] fb,
@@ -82,7 +82,7 @@ always @(posedge clk or negedge rst_n) begin
     end else begin
         case (mnhsbf)
         1'b0: begin
-            if (mt02 & (s >= `FIXED_BASE_ADDR) & bank_en[bank] & ~mnhsbf_dsky) begin
+            if (mt02 & (s >= `FIXED_BASE_ADDR) & bank_en[bank] & ~mnhsbf_rupts) begin
                 mnhsbf <= 1'b1;
                 mon_word <= fixed_data;
             end

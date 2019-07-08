@@ -14,31 +14,27 @@ module monitor_dsky(
 
     input wire mgojam,
     input wire [12:1] mt,
-    input wire [3:1] mst,
     input wire msqext,
     input wire [15:10] sq,
-    input wire miip,
-    input wire mrgg,
     input wire mrchg,
-    input wire mwbg,
-    input wire mwsg,
     input wire [9:1] ch,
-    input wire [16:1] mwl,
 
     input wire [15:1] out0,
     input wire [15:1] dsalmout,
     input wire [15:1] chan13,
 
-    output reg mnhsbf,
     output wire [16:1] mdt,
-    output reg monpar
+
+    output reg keyrupt1,
+    output reg keyrupt2
 );
 
 `define RYWD_5MS_COUNT 19'd500000
 
-reg [16:1] mdt_key;
+wire [16:1] mdt_mainkey;
+wire [16:1] mdt_navkey;
 wire [16:1] mdt_pro;
-assign mdt = mdt_key | mdt_pro;
+assign mdt = mdt_mainkey | mdt_navkey | mdt_pro;
 
 wire [15:12] rywd;
 assign rywd = out0[15:12];
@@ -166,7 +162,7 @@ always @(posedge clk or negedge rst_n) begin
     end else begin
         if (mgojam) begin
             restart_ff <= 1'b1;
-        end else if (keycode == 5'b10010) begin
+        end else if ((keyrupt1 & (main_keycode == 5'b10010)) | (keyrupt2 & (nav_keycode == 5'b10010))) begin
             restart_ff <= 1'b0;
         end
     end
@@ -196,129 +192,13 @@ assign com_act = dsalmout[2];
 wire vnflash;
 assign vnflash = dsalmout[6];
 
-localparam IDLE = 0,
-           WAIT_FOR_RSM = 1,
-           BREAK_RSM = 2,
-           WAIT_FOR_NDX1 = 3,
-           FORCE_TCF = 4,
-           INJECT_KEY = 5,
-           COMPLETE = 6;
-
-reg [2:0] state;
-reg [2:0] next_state;
-
-wire ch15_read;
-assign ch15_read = (mrchg & (ch == 9'o15));
-
-reg [1:0] ch15_read_sr;
-always @(posedge clk or negedge rst_n) begin
-    if (~rst_n) begin
-        ch15_read_sr <= 2'b0;
-    end else begin
-        ch15_read_sr <= {ch15_read_sr[0], ch15_read};
-    end
-end
-
-reg [4:0] keycode;
-
-always @(*) begin
-    mdt_key = 16'o0;
-    monpar = 1'b0;
-    mnhsbf = 1'b0;
-    case (state)
-    BREAK_RSM: begin
-        mdt_key = 16'o20;
-    end
-
-    FORCE_TCF: begin
-        mnhsbf = 1'b1;
-        if (mt[2]) begin
-            mdt_key = `TCF_KEYRUPT1;
-            monpar = 1'b1;
-        end
-        if (mt[5]) begin
-            mdt_key = 16'o177777;
-        end
-    end
-
-    INJECT_KEY: begin
-        if (ch15_read) begin
-            mdt_key = {11'b0, keycode};
-        end
-    end
-
-    endcase
-end
-
-always @(*) begin
-    next_state = state;
-    if (mgojam) begin
-        next_state = IDLE;
-    end else begin
-        case (state)
-        IDLE: begin
-            if (keycode != 5'b0) begin
-                next_state = WAIT_FOR_RSM;
-            end
-        end
-
-        WAIT_FOR_RSM: begin
-            if (miip & mt[8] & mrgg & ~mwbg & (mwl == `RESUME)) begin
-                next_state = BREAK_RSM;
-            end
-        end
-
-        BREAK_RSM: begin
-            if (~mt[8]) begin
-                next_state = WAIT_FOR_NDX1;
-            end
-        end
-
-        WAIT_FOR_NDX1: begin
-            if (mst == 3'd1 & mt[1]) begin
-                if (~msqext & (sq == 6'o50)) begin
-                    next_state = FORCE_TCF;
-                end else begin
-                    next_state = WAIT_FOR_RSM;
-                end
-            end
-        end
-
-        FORCE_TCF: begin
-            if (mt[10]) begin
-                next_state = INJECT_KEY;
-            end
-        end
-
-        INJECT_KEY: begin
-            if (ch15_read_sr == 2'b10) begin
-                next_state = COMPLETE;
-            end
-        end
-
-        COMPLETE: begin
-            next_state = IDLE;
-        end
-
-        default: begin
-            next_state = IDLE;
-        end
-        endcase
-    end
-end
-
-always @(posedge clk or negedge rst_n) begin
-    if (~rst_n) begin
-        state <= IDLE;
-    end else begin
-        state <= next_state;
-    end
-end
+reg [4:0] main_keycode;
+reg [6:0] nav_keycode;
 
 reg proceed;
 
 wire rxor_start;
-assign rxor_start = msqext & (sq == `SQ_RXOR) & ((ch[9:1] == 9'o32) | (ch[9:1] == 9'o72)) & mt[2];
+assign rxor_start = msqext & (sq == `SQ_RXOR) & ((ch == 9'o32) | (ch == 9'o72)) & mt[2];
 
 reg rxor_32;
 always @(posedge clk or negedge rst_n) begin
@@ -334,22 +214,31 @@ always @(posedge clk or negedge rst_n) begin
 end
 
 assign mdt_pro = (proceed & rxor_32 & mt[9]) ? 16'o20000 : 16'o0;
+assign mdt_mainkey = (mrchg & (ch == 9'o15)) ? {11'b0, main_keycode} : 16'o0;
+assign mdt_navkey = (mrchg & (ch == 9'o16)) ? {9'b0, nav_keycode} : 16'o0;
 
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
-        keycode <= 5'b0;
+        main_keycode <= 5'b0;
+        nav_keycode <= 7'b0;
         proceed <= 1'b0;
+        keyrupt1 <= 1'b0;
+        keyrupt2 <= 1'b0;
     end else begin
-        if (state == COMPLETE) begin
-            keycode <= 5'b0;
-        end
+        keyrupt1 <= 1'b0;
+        keyrupt2 <= 1'b0;
         if (rxor_32 & mt[11]) begin
             proceed <= 1'b0;
         end
         if (write_en) begin
             case (addr)
-            `DSKY_REG_BUTTON: begin
-                keycode <= data_in[4:0];
+            `DSKY_REG_MAIN_BUTTON: begin
+                main_keycode <= data_in[4:0];
+                keyrupt1 <= 1'b1;
+            end
+            `DSKY_REG_NAV_BUTTON: begin
+                nav_keycode <= data_in[6:0];
+                keyrupt2 <= 1'b1;
             end
             `DSKY_REG_PROCEED: begin
                 proceed <= 1'b1;

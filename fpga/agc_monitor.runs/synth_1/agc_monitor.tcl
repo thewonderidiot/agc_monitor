@@ -17,7 +17,6 @@ proc create_report { reportName command } {
     send_msg_id runtcl-5 warning "$msg"
   }
 }
-set_param xicom.use_bs_reader 1
 create_project -in_memory -part xc7z020clg484-1
 
 set_param project.singleFileAddWarning.threshold 0
@@ -65,6 +64,7 @@ read_verilog -library xil_defaultlib {
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/register2.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/restart_monitor.v
+  /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/rupt_injector.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/start_stop.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/status_regs.v
   /home/mike/agc_monitor/fpga/agc_monitor.srcs/sources_1/new/unedit.v

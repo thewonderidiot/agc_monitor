@@ -26,6 +26,9 @@ module control_regs(
     output reg doscal,
     output reg dbltst,
 
+    output reg downrupt,
+    output reg handrupt,
+
     input wire [12:1] s,
     input wire [11:9] eb,
     input wire [15:11] fb,
@@ -165,6 +168,8 @@ always @(posedge clk or negedge rst_n) begin
         nhstrt2 <= 1'b0;
         doscal <= 1'b0;
         dbltst <= 1'b0;
+        downrupt <= 1'b0;
+        handrupt <= 1'b0;
 
         s1_s <= 12'b0;
         s1_eb <= 3'b0;
@@ -225,6 +230,8 @@ always @(posedge clk or negedge rst_n) begin
         periph_s <= 12'b0;
         periph_bb <= 15'b0;
         periph_data <= 16'b0;
+        downrupt <= 1'b0;
+        handrupt <= 1'b0;
 
         if (write_en) begin
             if (addr < `CTRL_REG_LOAD_S) begin
@@ -293,6 +300,8 @@ always @(posedge clk or negedge rst_n) begin
                 `CTRL_REG_CRS_BANK_EN2: crs_bank_en[47:32] <= data_in;
                 `CTRL_REG_CRS_BANK_EN3: crs_bank_en[63:48] <= data_in;
                 `CTRL_REG_EMS_BANK_EN: ems_bank_en <= data_in[7:0];
+                `CTRL_REG_DOWNRUPT: downrupt <= 1'b1;
+                `CTRL_REG_HANDRUPT: handrupt <= 1'b1;
                 endcase
             end else begin
                 if (periph_complete) begin

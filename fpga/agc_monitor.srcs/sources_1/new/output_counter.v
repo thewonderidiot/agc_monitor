@@ -28,10 +28,14 @@ parameter ADDRESS = 0;
 parameter REGISTER = 0;
 parameter CHANNEL = 0;
 parameter BIT = 0;
+parameter SERIAL = 0;
 
 reg active;
 reg changed;
 reg [15:1] agc_value;
+wire [15:1] integrated_value;
+
+ones_comp_adder adder(agc_value, {g[16], g[14:1]}, integrated_value);
 
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
@@ -52,7 +56,11 @@ always @(posedge clk or negedge rst_n) begin
                 active <= 1'b0;
                 if (~minkl) begin
                     changed <= 1'b1;
-                    agc_value <= {g[16], g[14:1]};
+                    if (started & ~SERIAL) begin
+                        agc_value <= integrated_value;
+                    end else begin
+                        agc_value <= {g[16], g[14:1]};
+                    end
                 end
             end
         end

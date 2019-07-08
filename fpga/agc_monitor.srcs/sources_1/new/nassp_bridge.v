@@ -37,6 +37,8 @@ module nassp_bridge(
     output reg [11:1] ems_addr,
     output reg [16:1] ems_data,
 
+    output reg handrupt,
+
     output reg periph_load,
     output reg [12:1] periph_s,
     output reg [15:1] periph_bb,
@@ -129,6 +131,23 @@ always @(posedge clk or negedge rst_n) begin
     end
 end
 
+reg trap31a;
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        trap31a <= 1'b0;
+        handrupt <= 1'b0;
+    end else begin
+        handrupt <= 1'b0;
+
+        if (mwchg & (ch == 9'o13) & mwl[12]) begin
+            trap31a <= 1'b1;
+        end else if (trap31a & ch31_en & (ch30[6:1] != 6'o77)) begin
+            trap31a <= 1'b0;
+            handrupt <= 1'b1;
+        end
+    end
+end
+
 reg [15:1] agc_pipax;
 reg [15:1] agc_pipay;
 reg [15:1] agc_pipaz;
@@ -182,7 +201,7 @@ ones_comp_adder adder(agc_pipa_value, data_in[14:0], pipa_sum);
 
 wire cduxcmd_started;
 wire [15:1] cduxcmd_value;
-output_counter #(`CDUXCMD, `NASSP_REG_CDUXCMD, 9'o14, 5'd16) cduxcmd(
+output_counter #(`CDUXCMD, `NASSP_REG_CDUXCMD, 9'o14, 5'd16, 1'b0) cduxcmd(
     .clk(clk),
     .rst_n(rst_n),
     .e_cycle_starting(e_cycle_starting),
@@ -201,7 +220,7 @@ output_counter #(`CDUXCMD, `NASSP_REG_CDUXCMD, 9'o14, 5'd16) cduxcmd(
 
 wire cduycmd_started;
 wire [15:1] cduycmd_value;
-output_counter #(`CDUYCMD, `NASSP_REG_CDUYCMD, 9'o14, 5'd14) cduycmd(
+output_counter #(`CDUYCMD, `NASSP_REG_CDUYCMD, 9'o14, 5'd14, 1'b0) cduycmd(
     .clk(clk),
     .rst_n(rst_n),
     .e_cycle_starting(e_cycle_starting),
@@ -220,7 +239,7 @@ output_counter #(`CDUYCMD, `NASSP_REG_CDUYCMD, 9'o14, 5'd14) cduycmd(
 
 wire cduzcmd_started;
 wire [15:1] cduzcmd_value;
-output_counter #(`CDUZCMD, `NASSP_REG_CDUZCMD, 9'o14, 5'd13) cduzcmd(
+output_counter #(`CDUZCMD, `NASSP_REG_CDUZCMD, 9'o14, 5'd13, 1'b0) cduzcmd(
     .clk(clk),
     .rst_n(rst_n),
     .e_cycle_starting(e_cycle_starting),
@@ -239,7 +258,7 @@ output_counter #(`CDUZCMD, `NASSP_REG_CDUZCMD, 9'o14, 5'd13) cduzcmd(
 
 wire cdutcmd_started;
 wire [15:1] cdutcmd_value;
-output_counter #(`CDUTCMD, `NASSP_REG_CDUTCMD, 9'o14, 5'd12) cdutcmd(
+output_counter #(`CDUTCMD, `NASSP_REG_CDUTCMD, 9'o14, 5'd12, 1'b0) cdutcmd(
     .clk(clk),
     .rst_n(rst_n),
     .e_cycle_starting(e_cycle_starting),
@@ -258,7 +277,7 @@ output_counter #(`CDUTCMD, `NASSP_REG_CDUTCMD, 9'o14, 5'd12) cdutcmd(
 
 wire cduscmd_started;
 wire [15:1] cduscmd_value;
-output_counter #(`CDUSCMD, `NASSP_REG_CDUSCMD, 9'o14, 5'd11) cduscmd(
+output_counter #(`CDUSCMD, `NASSP_REG_CDUSCMD, 9'o14, 5'd11, 1'b0) cduscmd(
     .clk(clk),
     .rst_n(rst_n),
     .e_cycle_starting(e_cycle_starting),
@@ -277,7 +296,7 @@ output_counter #(`CDUSCMD, `NASSP_REG_CDUSCMD, 9'o14, 5'd11) cduscmd(
 
 wire thrust_started;
 wire [15:1] thrust_value;
-output_counter #(`THRUST, `NASSP_REG_THRUST, 9'o14, 5'd4) thrust(
+output_counter #(`THRUST, `NASSP_REG_THRUST, 9'o14, 5'd4, 1'b0) thrust(
     .clk(clk),
     .rst_n(rst_n),
     .e_cycle_starting(e_cycle_starting),
@@ -296,7 +315,7 @@ output_counter #(`THRUST, `NASSP_REG_THRUST, 9'o14, 5'd4) thrust(
 
 wire altm_started;
 wire [15:1] altm_value;
-output_counter #(`ALTM, `NASSP_REG_ALTM, 9'o14, 5'd3) altm(
+output_counter #(`ALTM, `NASSP_REG_ALTM, 9'o14, 5'd3, 1'b1) altm(
     .clk(clk),
     .rst_n(rst_n),
     .e_cycle_starting(e_cycle_starting),

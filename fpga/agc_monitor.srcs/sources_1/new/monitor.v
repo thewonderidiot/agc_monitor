@@ -296,6 +296,12 @@ wire periph_complete;
 wire [63:0] crs_bank_en;
 wire [7:0] ems_bank_en;
 
+wire downrupt;
+wire handrupt;
+wire handrupt_ctrl;
+wire handrupt_nassp;
+assign handrupt = handrupt_ctrl | handrupt_nassp;
+
 control_regs ctrl_regs(
     .clk(clk),
     .rst_n(rst_n),
@@ -318,6 +324,9 @@ control_regs ctrl_regs(
     .nhstrt2(nhstrt2),
     .doscal(doscal),
     .dbltst(dbltst),
+
+    .downrupt(downrupt),
+    .handrupt(handrupt_ctrl),
 
     .s(s),
     .eb(eb),
@@ -767,7 +776,7 @@ agc_channels channels(
 /*******************************************************************************.
 * Core Rope Simulation                                                          *
 '*******************************************************************************/
-wire mnhsbf_dsky;
+wire mnhsbf_rupts;
 wire mnhsbf_crs;
 wire [16:1] mdt_crs;
 wire monpar_crs;
@@ -783,7 +792,7 @@ core_rope_sim crs(
     .data_out(crs_data),
 
     .bank_en(crs_bank_en),
-    .mnhsbf_dsky(mnhsbf_dsky),
+    .mnhsbf_rupts(mnhsbf_rupts),
     
     .fext(fext),
     .fb(true_fb),
@@ -853,10 +862,43 @@ erasable_mem_sim ems(
 );
 
 /*******************************************************************************.
+* Interrupt Injection                                                           *
+'*******************************************************************************/
+wire keyrupt1;
+wire keyrupt2;
+wire monpar_rupts;
+wire [16:1] mdt_rupts;
+
+rupt_injector rupts(
+    .clk(clk),
+    .rst_n(rst_n),
+
+    .keyrupt1(keyrupt1),
+    .keyrupt2(keyrupt2),
+    .uprupt(1'b0),
+    .downrupt(downrupt),
+    .handrupt(handrupt),
+
+    .mgojam(mgojam),
+    .mt(mt),
+    .mst(mst),
+    .msqext(msqext),
+    .sq(sq),
+    .miip(miip),
+    .mrgg(mrgg),
+    .mwbg(mwbg),
+    .mwl(mwl),
+
+    .mnhsbf(mnhsbf_rupts),
+    .mdt(mdt_rupts),
+    .monpar(monpar_rupts)
+);
+
+
+/*******************************************************************************.
 * DSKY                                                                          *
 '*******************************************************************************/
 wire [16:1] mdt_dsky;
-wire monpar_dsky;
 
 monitor_dsky mon_dsky(
     .clk(clk),
@@ -870,24 +912,19 @@ monitor_dsky mon_dsky(
 
     .mgojam(mgojam),
     .mt(mt),
-    .mst(mst),
     .msqext(msqext),
     .sq(sq),
-    .miip(miip),
-    .mrgg(mrgg),
     .mrchg(mrchg),
-    .mwbg(mwbg),
-    .mwsg(mwsg),
     .ch(s[9:1]),
-    .mwl(mwl),
 
     .out0(out0),
     .dsalmout(dsalmout),
     .chan13(chan13),
 
-    .mnhsbf(mnhsbf_dsky),
     .mdt(mdt_dsky),
-    .monpar(monpar_dsky)
+
+    .keyrupt1(keyrupt1),
+    .keyrupt2(keyrupt2)
 );
 
 /*******************************************************************************.
@@ -961,6 +998,8 @@ nassp_bridge nassp(
     .ems_addr(nassp_ems_addr),
     .ems_data(nassp_ems_data),
 
+    .handrupt(handrupt_nassp),
+
     .periph_load(nassp_periph_load),
     .periph_s(nassp_periph_s),
     .periph_bb(nassp_periph_bb),
@@ -968,9 +1007,9 @@ nassp_bridge nassp(
     .periph_complete(periph_complete)
 );
 
-assign mnhsbf = mnhsbf_crs | mnhsbf_dsky;
-assign mdt = mdt_chan77 | mdt_periph | mdt_crs | mdt_ems | mdt_dsky | mdt_nassp;
-assign monpar = monpar_crs | monpar_dsky;
+assign mnhsbf = mnhsbf_crs | mnhsbf_rupts;
+assign mdt = mdt_chan77 | mdt_periph | mdt_crs | mdt_ems | mdt_rupts | mdt_dsky | mdt_nassp;
+assign monpar = monpar_crs | monpar_rupts;
 
 endmodule
 `default_nettype wire
