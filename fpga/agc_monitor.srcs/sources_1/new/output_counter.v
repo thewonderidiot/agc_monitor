@@ -32,10 +32,11 @@ parameter SERIAL = 0;
 
 reg active;
 reg changed;
+reg change_latched;
 reg [15:1] agc_value;
 wire [15:1] integrated_value;
 
-ones_comp_adder adder(agc_value, {g[16], g[14:1]}, integrated_value);
+ones_comp_adder adder(agc_value, latched_value, integrated_value);
 
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
@@ -43,24 +44,20 @@ always @(posedge clk or negedge rst_n) begin
         changed <= 1'b0;
         agc_value <= 15'b0;
     end else begin
+        if (change_latched) begin
+            changed <= 1'b0;
+        end
+
         if (~active) begin
             if (e_cycle_starting & (e_cycle_addr == ADDRESS)) begin
                 active <= 1'b1;
             end
         end else begin
-            if (started) begin
-                changed <= 1'b0;
-            end
-
             if (mt11) begin
                 active <= 1'b0;
                 if (~minkl) begin
                     changed <= 1'b1;
-                    if (started & ~SERIAL) begin
-                        agc_value <= integrated_value;
-                    end else begin
-                        agc_value <= {g[16], g[14:1]};
-                    end
+                    agc_value <= {g[16], g[14:1]};
                 end
             end
         end
@@ -71,10 +68,19 @@ always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         latched_value <= 15'b0;
         started <= 1'b0;
+        change_latched <= 1'b0;
     end else begin
+        change_latched <= 1'b0;
         if (mwchg & (ch == CHANNEL) & mwl[BIT]) begin
-            latched_value <= agc_value;
-            started <= changed;
+            if (changed & ~change_latched) begin
+                change_latched <= 1'b1;
+                if (started & ~SERIAL) begin
+                    latched_value <= integrated_value;
+                end else begin
+                    latched_value <= agc_value;
+                end
+                started <= 1'b1;
+            end
         end else if (read_en & (addr == REGISTER)) begin
             started <= 1'b0;
         end
