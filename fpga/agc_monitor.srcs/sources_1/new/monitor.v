@@ -297,6 +297,9 @@ wire [63:0] crs_bank_en;
 wire [7:0] ems_bank_en;
 
 wire downrupt;
+wire downrupt_ctrl;
+wire downrupt_nassp;
+assign downrupt = downrupt_ctrl | downrupt_nassp;
 wire handrupt;
 wire handrupt_ctrl;
 wire handrupt_nassp;
@@ -325,7 +328,7 @@ control_regs ctrl_regs(
     .doscal(doscal),
     .dbltst(dbltst),
 
-    .downrupt(downrupt),
+    .downrupt(downrupt_ctrl),
     .handrupt(handrupt_ctrl),
 
     .s(s),
@@ -422,8 +425,9 @@ status_regs stat_regs(
 wire mrchg;
 wire mwchg;
 wire ss_mstp;
+wire mstp_nassp;
 wire inhibit_mstp;
-assign mstp = ss_mstp & ~inhibit_mstp;
+assign mstp = (ss_mstp | mstp_nassp) & ~inhibit_mstp;
 start_stop strt_stp(
     .clk(clk),
     .rst_n(rst_n),
@@ -978,6 +982,7 @@ nassp_bridge nassp(
     .e_cycle_starting(e_cycle_starting),
     .e_cycle_addr(e_cycle_addr),
 
+    .monwt(monwt),
     .mt(mt),
     .mnisq(mnisq),
     .minkl(minkl),
@@ -992,6 +997,10 @@ nassp_bridge nassp(
     .g(g),
     .mwl(mwl),
     .mdt(mdt_nassp),
+    .out0(out0),
+
+    .mstpit_n(mstpit_n),
+    .mstp(mstp_nassp),
 
     .ems_bank0_en(ems_bank_en[0]),
     .ems_write_en(nassp_ems_write_en),
@@ -999,6 +1008,7 @@ nassp_bridge nassp(
     .ems_data(nassp_ems_data),
 
     .handrupt(handrupt_nassp),
+    .downrupt(downrupt_nassp),
 
     .periph_load(nassp_periph_load),
     .periph_s(nassp_periph_s),

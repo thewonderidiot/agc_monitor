@@ -17,6 +17,7 @@ module nassp_bridge(
     input wire e_cycle_starting,
     input wire [11:1] e_cycle_addr,
 
+    input wire monwt,
     input wire [12:1] mt,
     input wire mnisq,
     input wire minkl,
@@ -31,6 +32,10 @@ module nassp_bridge(
     input wire [16:1] g,
     input wire [16:1] mwl,
     output wire [16:1] mdt,
+    input wire [15:1] out0,
+
+    input wire mstpit_n,
+    output wire mstp,
 
     input wire ems_bank0_en,
     output reg ems_write_en,
@@ -38,6 +43,7 @@ module nassp_bridge(
     output reg [16:1] ems_data,
 
     output reg handrupt,
+    output reg downrupt,
 
     output reg periph_load,
     output reg [12:1] periph_s,
@@ -46,9 +52,16 @@ module nassp_bridge(
     input wire periph_complete
 );
 
-reg [15:0] read_data;
-reg read_done;
-assign data_out = read_done ? read_data : 16'b0;
+reg [15:1] sticky_ch10;
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        sticky_ch10 <= 15'b0;
+    end else begin
+        if (out0 != 15'b0) begin
+            sticky_ch10 <= out0;
+        end
+    end
+end
 
 reg ch30_en;
 reg [15:1] ch30;
@@ -144,6 +157,31 @@ always @(posedge clk or negedge rst_n) begin
         end else if (trap31a & ch31_en & (ch30[6:1] != 6'o77)) begin
             trap31a <= 1'b0;
             handrupt <= 1'b1;
+        end
+    end
+end
+
+reg [14:0] downrupt_count;
+reg downrupt_en;
+reg monwt_q;
+
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        downrupt_count <= 15'b0;
+        downrupt <= 1'b0;
+    end else begin
+        downrupt <= 1'b0;
+        if (downrupt_en) begin
+            if (~monwt_q & monwt) begin
+                if (downrupt_count < 15'd20480) begin
+                    downrupt_count <= downrupt_count + 1;
+                end else begin
+                    downrupt_count <= 15'b0;
+                    downrupt <= 1'b1;
+                end
+            end
+        end else begin
+            downrupt_count <= 15'b0;
         end
     end
 end
@@ -332,9 +370,49 @@ output_counter #(`ALTM, `NASSP_REG_ALTM, 9'o14, 5'd3, 1'b1) altm(
     .latched_value(altm_value)
 );
 
+reg [16:1] tloss_wts;
+reg [16:1] tloss_t12s;
+
+reg [16:1] wt_count;
+reg [16:1] t12_count;
+
+assign mstp = (t12_count > 0);
+
+always @(posedge clk or negedge rst_n) begin
+    if (~rst_n) begin
+        wt_count <= 16'b0;
+        t12_count <= 16'b0;
+        monwt_q <= 1'b0;
+    end else begin
+        monwt_q <= monwt;
+        if (~monwt_q & monwt) begin
+            if (t12_count > 0) begin
+                if (~mstpit_n) begin
+                    t12_count <= t12_count - 1;
+                end
+            end else begin
+                if (wt_count < tloss_wts) begin
+                    wt_count <= wt_count + 1;
+                    t12_count <= 16'b0;
+                end else begin
+                    wt_count <= 16'b0;
+                    t12_count <= tloss_t12s;
+                end
+            end
+        end
+    end
+end
+
+reg [15:0] read_data;
+reg read_done;
+assign data_out = read_done ? read_data : 16'b0;
+
 always @(posedge clk or negedge rst_n) begin
     if (~rst_n) begin
         write_done <= 1'b0;
+
+        tloss_wts <= 16'b0;
+        tloss_t12s <= 16'b0;
 
         ch30_en <= 1'b0;
         ch31_en <= 1'b0;
@@ -345,6 +423,8 @@ always @(posedge clk or negedge rst_n) begin
         ch31 <= 15'b0;
         ch32 <= 15'b0;
         ch33 <= 15'b0;
+
+        downrupt_en <= 1'b0;
 
         periph_load <= 1'b0;
         periph_s <= 12'b0;
@@ -388,6 +468,18 @@ always @(posedge clk or negedge rst_n) begin
                     ch33_en <= data_in[15];
                     ch33 <= data_in[14:0];
                 end
+
+                `NASSP_REG_TLOSS_W: begin
+                    tloss_wts <= data_in;
+                end
+
+                `NASSP_REG_TLOSS_T: begin
+                    tloss_t12s <= data_in;
+                end
+
+                `NASSP_REG_DOWNRUPT: begin
+                    downrupt_en <= data_in[0];
+                end
                 endcase
             end else begin
                 if (ems_bank0_en) begin
@@ -427,17 +519,21 @@ always @(posedge clk or negedge rst_n) begin
     end else if (read_en) begin
         read_done <= 1'b1;
         case (addr)
-        `NASSP_REG_CH30:    read_data <= {ch30_en, ch30};
-        `NASSP_REG_CH31:    read_data <= {ch31_en, ch31};
-        `NASSP_REG_CH32:    read_data <= {ch32_en, ch32};
-        `NASSP_REG_CH33:    read_data <= {ch33_en, ch33};
-        `NASSP_REG_CDUXCMD: read_data <= {cduxcmd_started, cduxcmd_value};
-        `NASSP_REG_CDUYCMD: read_data <= {cduycmd_started, cduycmd_value};
-        `NASSP_REG_CDUZCMD: read_data <= {cduzcmd_started, cduzcmd_value};
-        `NASSP_REG_CDUTCMD: read_data <= {cdutcmd_started, cdutcmd_value};
-        `NASSP_REG_CDUSCMD: read_data <= {cduscmd_started, cduscmd_value};
-        `NASSP_REG_THRUST:  read_data <= {thrust_started, thrust_value};
-        `NASSP_REG_ALTM:    read_data <= {altm_started, altm_value};
+        `NASSP_REG_CH10:     read_data <= {1'b0, sticky_ch10};
+        `NASSP_REG_CH30:     read_data <= {ch30_en, ch30};
+        `NASSP_REG_CH31:     read_data <= {ch31_en, ch31};
+        `NASSP_REG_CH32:     read_data <= {ch32_en, ch32};
+        `NASSP_REG_CH33:     read_data <= {ch33_en, ch33};
+        `NASSP_REG_TLOSS_W:  read_data <= tloss_wts;
+        `NASSP_REG_TLOSS_T:  read_data <= tloss_t12s;
+        `NASSP_REG_DOWNRUPT: read_data <= {15'b0, downrupt_en};
+        `NASSP_REG_CDUXCMD:  read_data <= {cduxcmd_started, cduxcmd_value};
+        `NASSP_REG_CDUYCMD:  read_data <= {cduycmd_started, cduycmd_value};
+        `NASSP_REG_CDUZCMD:  read_data <= {cduzcmd_started, cduzcmd_value};
+        `NASSP_REG_CDUTCMD:  read_data <= {cdutcmd_started, cdutcmd_value};
+        `NASSP_REG_CDUSCMD:  read_data <= {cduscmd_started, cduscmd_value};
+        `NASSP_REG_THRUST:   read_data <= {thrust_started, thrust_value};
+        `NASSP_REG_ALTM:     read_data <= {altm_started, altm_value};
         endcase
     end else begin
         read_done <= 1'b0;

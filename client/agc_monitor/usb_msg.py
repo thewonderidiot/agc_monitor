@@ -31,6 +31,12 @@ ReadTrace = namedtuple('ReadTrace', ['addr'])
 ReadTrace.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Trace = namedtuple('Trace', ['addr', 'data'])
 Trace.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadNASSPCh10 = namedtuple('ReadNASSPCh10', [])
+ReadNASSPCh10.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+NASSPCh10 = namedtuple('NASSPCh10', ['value'])
+NASSPCh10.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteNASSPCh10 = namedtuple('WriteNASSPCh10', ['value'])
+WriteNASSPCh10.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadNASSPCh30 = namedtuple('ReadNASSPCh30', [])
 ReadNASSPCh30.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 NASSPCh30 = namedtuple('NASSPCh30', ['value', 'enable'])
@@ -55,6 +61,18 @@ NASSPCh33 = namedtuple('NASSPCh33', ['value', 'enable'])
 NASSPCh33.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteNASSPCh33 = namedtuple('WriteNASSPCh33', ['value', 'enable'])
 WriteNASSPCh33.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadNASSPTlossMcts = namedtuple('ReadNASSPTlossMcts', [])
+ReadNASSPTlossMcts.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+NASSPTlossMcts = namedtuple('NASSPTlossMcts', ['value'])
+NASSPTlossMcts.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteNASSPTlossMcts = namedtuple('WriteNASSPTlossMcts', ['value'])
+WriteNASSPTlossMcts.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+ReadNASSPTlossT12s = namedtuple('ReadNASSPTlossT12s', [])
+ReadNASSPTlossT12s.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+NASSPTlossT12s = namedtuple('NASSPTlossT12s', ['value'])
+NASSPTlossT12s.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteNASSPTlossT12s = namedtuple('WriteNASSPTlossT12s', ['value'])
+WriteNASSPTlossT12s.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadNASSPPipaX = namedtuple('ReadNASSPPipaX', [])
 ReadNASSPPipaX.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 NASSPPipaX = namedtuple('NASSPPipaX', ['counts'])
@@ -201,6 +219,8 @@ ReadDSKYStatus = namedtuple('ReadDSKYStatus', [])
 ReadDSKYStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 DSKYStatus = namedtuple('DSKYStatus', ['vel', 'alt', 'tracker', 'restart', 'prog', 'gimbal_lock', 'temp', 'prio_disp', 'no_dap', 'opr_err', 'key_rel', 'stby', 'no_att', 'uplink_acty', 'comp_acty', 'vnflash'])
 DSKYStatus.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteDSKYNavButton = namedtuple('WriteDSKYNavButton', ['keycode'])
+WriteDSKYNavButton.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 ReadFixed = namedtuple('ReadFixed', ['addr'])
 ReadFixed.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 Fixed = namedtuple('Fixed', ['addr', 'parity', 'data'])
@@ -459,6 +479,10 @@ ControlSTRT2 = namedtuple('ControlSTRT2', ['strt2'])
 ControlSTRT2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlSTRT2 = namedtuple('WriteControlSTRT2', ['strt2'])
 WriteControlSTRT2.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlDownrupt = namedtuple('WriteControlDownrupt', ['downrupt'])
+WriteControlDownrupt.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
+WriteControlHandrupt = namedtuple('WriteControlHandrupt', ['handrupt'])
+WriteControlHandrupt.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlLoadS = namedtuple('WriteControlLoadS', [])
 WriteControlLoadS.__eq__ = lambda a,b: (type(a) is type(b)) and (tuple(a) == tuple(b))
 WriteControlLoadPreset = namedtuple('WriteControlLoadPreset', [])
@@ -491,20 +515,23 @@ class AddressGroup(object):
     Control = 0x20
 
 class NASSP(object):
-    Ch30 = 0x0000
-    Ch31 = 0x0001
-    Ch32 = 0x0002
-    Ch33 = 0x0003
-    PipaX = 0x0004
-    PipaY = 0x0005
-    PipaZ = 0x0006
-    CduXCmd = 0x0020
-    CduYCmd = 0x0021
-    CduZCmd = 0x0022
-    CduTCmd = 0x0023
-    CduSCmd = 0x0024
-    Thrust = 0x0025
-    Altm = 0x0026
+    Ch10 = 0x0000
+    Ch30 = 0x0001
+    Ch31 = 0x0002
+    Ch32 = 0x0003
+    Ch33 = 0x0004
+    TlossMcts = 0x0010
+    TlossT12s = 0x0011
+    PipaX = 0x0020
+    PipaY = 0x0021
+    PipaZ = 0x0022
+    CduXCmd = 0x0030
+    CduYCmd = 0x0031
+    CduZCmd = 0x0032
+    CduTCmd = 0x0033
+    CduSCmd = 0x0034
+    Thrust = 0x0035
+    Altm = 0x0036
 class MonReg(object):
     A = 0x0000
     L = 0x0001
@@ -533,6 +560,7 @@ class DSKY(object):
     Button = 0x0009
     Proceed = 0x000A
     Status = 0x000B
+    NavButton = 0x000C
 class Status(object):
     Alarms = 0x0000
     Peripheral = 0x0001
@@ -585,6 +613,8 @@ class Control(object):
     NHALGA = 0x0040
     STRT1 = 0x0041
     STRT2 = 0x0042
+    Downrupt = 0x0050
+    Handrupt = 0x0051
     LoadS = 0x0070
     LoadPreset = 0x0071
     LoadChan = 0x0072
@@ -614,6 +644,14 @@ def _pack_WriteSimErasable(msg):
 
 def _pack_ReadTrace(msg):
     return _pack_read_msg(AddressGroup.Trace, msg.addr)
+
+def _pack_ReadNASSPCh10(msg):
+    return _pack_read_msg(AddressGroup.NASSP, NASSP.Ch10)
+
+def _pack_WriteNASSPCh10(msg):
+    data = 0x0000
+    data |= (msg.value & 0x7FFF) << 0
+    return _pack_write_msg(AddressGroup.NASSP, NASSP.Ch10, data)
 
 def _pack_ReadNASSPCh30(msg):
     return _pack_read_msg(AddressGroup.NASSP, NASSP.Ch30)
@@ -650,6 +688,22 @@ def _pack_WriteNASSPCh33(msg):
     data |= (msg.value & 0x7FFF) << 0
     data |= (msg.enable & 0x0001) << 15
     return _pack_write_msg(AddressGroup.NASSP, NASSP.Ch33, data)
+
+def _pack_ReadNASSPTlossMcts(msg):
+    return _pack_read_msg(AddressGroup.NASSP, NASSP.TlossMcts)
+
+def _pack_WriteNASSPTlossMcts(msg):
+    data = 0x0000
+    data |= (msg.value & 0xFFFF) << 0
+    return _pack_write_msg(AddressGroup.NASSP, NASSP.TlossMcts, data)
+
+def _pack_ReadNASSPTlossT12s(msg):
+    return _pack_read_msg(AddressGroup.NASSP, NASSP.TlossT12s)
+
+def _pack_WriteNASSPTlossT12s(msg):
+    data = 0x0000
+    data |= (msg.value & 0xFFFF) << 0
+    return _pack_write_msg(AddressGroup.NASSP, NASSP.TlossT12s, data)
 
 def _pack_ReadNASSPPipaX(msg):
     return _pack_read_msg(AddressGroup.NASSP, NASSP.PipaX)
@@ -776,6 +830,11 @@ def _pack_WriteDSKYProceed(msg):
 
 def _pack_ReadDSKYStatus(msg):
     return _pack_read_msg(AddressGroup.DSKY, DSKY.Status)
+
+def _pack_WriteDSKYNavButton(msg):
+    data = 0x0000
+    data |= (msg.keycode & 0x001F) << 0
+    return _pack_write_msg(AddressGroup.DSKY, DSKY.NavButton, data)
 
 def _pack_ReadFixed(msg):
     return _pack_read_msg(AddressGroup.Fixed, msg.addr)
@@ -1250,6 +1309,16 @@ def _pack_WriteControlSTRT2(msg):
     data |= (msg.strt2 & 0x0001) << 0
     return _pack_write_msg(AddressGroup.Control, Control.STRT2, data)
 
+def _pack_WriteControlDownrupt(msg):
+    data = 0x0000
+    data |= (msg.downrupt & 0x0001) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.Downrupt, data)
+
+def _pack_WriteControlHandrupt(msg):
+    data = 0x0000
+    data |= (msg.handrupt & 0x0001) << 0
+    return _pack_write_msg(AddressGroup.Control, Control.Handrupt, data)
+
 def _pack_WriteControlLoadS(msg):
     data = 0x0000
     return _pack_write_msg(AddressGroup.Control, Control.LoadS, data)
@@ -1296,6 +1365,11 @@ def _unpack_Trace(addr, data):
         data = (data >> 0) & 0xFFFF,
     )
 
+def _unpack_NASSPCh10(data):
+    return NASSPCh10(
+        value = (data >> 0) & 0x7FFF,
+    )
+
 def _unpack_NASSPCh30(data):
     return NASSPCh30(
         value = (data >> 0) & 0x7FFF,
@@ -1318,6 +1392,16 @@ def _unpack_NASSPCh33(data):
     return NASSPCh33(
         value = (data >> 0) & 0x7FFF,
         enable = (data >> 15) & 0x0001,
+    )
+
+def _unpack_NASSPTlossMcts(data):
+    return NASSPTlossMcts(
+        value = (data >> 0) & 0xFFFF,
+    )
+
+def _unpack_NASSPTlossT12s(data):
+    return NASSPTlossT12s(
+        value = (data >> 0) & 0xFFFF,
     )
 
 def _unpack_NASSPPipaX(data):
@@ -1873,10 +1957,13 @@ def _unpack_ControlSTRT2(data):
 
 
 _unpack_reg_fns = {
+    (DATA_FLAG | AddressGroup.NASSP, NASSP.Ch10): _unpack_NASSPCh10,
     (DATA_FLAG | AddressGroup.NASSP, NASSP.Ch30): _unpack_NASSPCh30,
     (DATA_FLAG | AddressGroup.NASSP, NASSP.Ch31): _unpack_NASSPCh31,
     (DATA_FLAG | AddressGroup.NASSP, NASSP.Ch32): _unpack_NASSPCh32,
     (DATA_FLAG | AddressGroup.NASSP, NASSP.Ch33): _unpack_NASSPCh33,
+    (DATA_FLAG | AddressGroup.NASSP, NASSP.TlossMcts): _unpack_NASSPTlossMcts,
+    (DATA_FLAG | AddressGroup.NASSP, NASSP.TlossT12s): _unpack_NASSPTlossT12s,
     (DATA_FLAG | AddressGroup.NASSP, NASSP.PipaX): _unpack_NASSPPipaX,
     (DATA_FLAG | AddressGroup.NASSP, NASSP.PipaY): _unpack_NASSPPipaY,
     (DATA_FLAG | AddressGroup.NASSP, NASSP.PipaZ): _unpack_NASSPPipaZ,

@@ -4,6 +4,17 @@
     "registers": [
         {
             "addr": 0,
+            "name": "Ch10",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "value",
+                    "width": 15
+                }
+            ]
+        },
+        {
+            "addr": 1,
             "name": "Ch30",
             "type": "rw",
             "fields": [
@@ -18,7 +29,7 @@
             ]
         },
         {
-            "addr": 1,
+            "addr": 2,
             "name": "Ch31",
             "type": "rw",
             "fields": [
@@ -33,7 +44,7 @@
             ]
         },
         {
-            "addr": 2,
+            "addr": 3,
             "name": "Ch32",
             "type": "rw",
             "fields": [
@@ -48,7 +59,7 @@
             ]
         },
         {
-            "addr": 3,
+            "addr": 4,
             "name": "Ch33",
             "type": "rw",
             "fields": [
@@ -63,7 +74,29 @@
             ]
         },
         {
-            "addr": 4,
+            "addr": 16,
+            "name": "TlossMcts",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "value",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 17,
+            "name": "TlossT12s",
+            "type": "rw",
+            "fields": [
+                {
+                    "name": "value",
+                    "width": 16
+                }
+            ]
+        },
+        {
+            "addr": 32,
             "name": "PipaX",
             "type": "rw",
             "fields": [
@@ -74,7 +107,7 @@
             ]
         },
         {
-            "addr": 5,
+            "addr": 33,
             "name": "PipaY",
             "type": "rw",
             "fields": [
@@ -85,7 +118,7 @@
             ]
         },
         {
-            "addr": 6,
+            "addr": 34,
             "name": "PipaZ",
             "type": "rw",
             "fields": [
@@ -96,7 +129,7 @@
             ]
         },
         {
-            "addr": 32,
+            "addr": 48,
             "name": "CduXCmd",
             "type": "r",
             "fields": [
@@ -111,7 +144,7 @@
             ]
         },
         {
-            "addr": 33,
+            "addr": 49,
             "name": "CduYCmd",
             "type": "r",
             "fields": [
@@ -126,7 +159,7 @@
             ]
         },
         {
-            "addr": 34,
+            "addr": 50,
             "name": "CduZCmd",
             "type": "r",
             "fields": [
@@ -141,7 +174,7 @@
             ]
         },
         {
-            "addr": 35,
+            "addr": 51,
             "name": "CduTCmd",
             "type": "r",
             "fields": [
@@ -156,7 +189,7 @@
             ]
         },
         {
-            "addr": 36,
+            "addr": 52,
             "name": "CduSCmd",
             "type": "r",
             "fields": [
@@ -171,7 +204,7 @@
             ]
         },
         {
-            "addr": 37,
+            "addr": 53,
             "name": "Thrust",
             "type": "r",
             "fields": [
@@ -186,7 +219,7 @@
             ]
         },
         {
-            "addr": 38,
+            "addr": 54,
             "name": "Altm",
             "type": "r",
             "fields": [

@@ -997,6 +997,28 @@
             ]
         },
         {
+            "addr": 80,
+            "name": "Downrupt",
+            "type": "w",
+            "fields": [
+                {
+                    "name": "downrupt",
+                    "width": 1
+                }
+            ]
+        },
+        {
+            "addr": 81,
+            "name": "Handrupt",
+            "type": "w",
+            "fields": [
+                {
+                    "name": "handrupt",
+                    "width": 1
+                }
+            ]
+        },
+        {
             "addr": 112,
             "name": "LoadS",
             "type": "w",

@@ -248,6 +248,17 @@
                     "width": 1
                 }
             ]
+        },
+        {
+            "addr": 12,
+            "name": "NavButton",
+            "type": "w",
+            "fields": [
+                {
+                    "name": "keycode",
+                    "width": 5
+                }
+            ]
         }
     ]
 }
